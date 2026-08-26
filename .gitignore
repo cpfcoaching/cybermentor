@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment
+.env
+*.env.local
+
+# Secrets / Credentials
+*service-account*.json
+*-key.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Agent artifacts
+.gemini/
+
+# Logs
+*.log
+logs/
+
+# Distribution
+*.zip
+*.tar.gz

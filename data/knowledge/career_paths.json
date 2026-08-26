@@ -1,0 +1,163 @@
+{
+  "soc_analyst": {
+    "title": "SOC Analyst (Security Operations Center)",
+    "description": "Monitor, detect, and respond to security incidents in real time. The first line of defense.",
+    "day_to_day": [
+      "Monitor SIEM dashboards",
+      "Triage and investigate alerts",
+      "Escalate incidents",
+      "Write incident reports",
+      "Threat hunting"
+    ],
+    "salary_range": {
+      "entry": 55000,
+      "mid": 80000,
+      "senior": 110000,
+      "currency": "USD"
+    },
+    "required_skills": [
+      "SIEM (Splunk, QRadar, Microsoft Sentinel)",
+      "Network analysis",
+      "Log analysis",
+      "Incident response process",
+      "Malware analysis basics"
+    ],
+    "recommended_certs": [
+      "Security+",
+      "CySA+",
+      "Splunk Core Certified",
+      "GCIH"
+    ],
+    "time_to_first_job": "6-12 months",
+    "growth_paths": [
+      "SOC Team Lead",
+      "Incident Response Analyst",
+      "Threat Intelligence Analyst",
+      "Security Engineer"
+    ],
+    "companies_hiring": [
+      "MSSPs (Managed Security Service Providers)",
+      "Financial institutions",
+      "Healthcare",
+      "Government contractors"
+    ],
+    "breaking_into_cyber_tips": "Get Security+ first. Then set up a home lab with a free Splunk license and practice analyzing logs from TryHackMe or a vulnerable VM."
+  },
+  "penetration_tester": {
+    "title": "Penetration Tester / Ethical Hacker",
+    "description": "Get paid to legally hack systems, networks, and applications to find vulnerabilities before attackers do.",
+    "day_to_day": [
+      "Scope and plan assessments",
+      "Conduct network and web app pen tests",
+      "Write detailed reports",
+      "Present findings to clients",
+      "Retest after remediation"
+    ],
+    "salary_range": {
+      "entry": 70000,
+      "mid": 100000,
+      "senior": 150000,
+      "currency": "USD"
+    },
+    "required_skills": [
+      "Networking fundamentals",
+      "Linux command line",
+      "Python/scripting",
+      "Web app security (OWASP Top 10)",
+      "Exploitation frameworks (Metasploit)",
+      "Report writing"
+    ],
+    "recommended_certs": [
+      "eJPT",
+      "CEH or PNPT",
+      "OSCP",
+      "GPEN"
+    ],
+    "time_to_first_job": "12-24 months from zero",
+    "growth_paths": [
+      "Senior Pen Tester",
+      "Red Team Operator",
+      "Bug Bounty Hunter",
+      "AppSec Engineer"
+    ],
+    "breaking_into_cyber_tips": "Labs beat certs in this field. Do 50+ machines on TryHackMe/HackTheBox before worrying about OSCP. Build a public GitHub of your writeups."
+  },
+  "grc": {
+    "title": "GRC Analyst (Governance, Risk & Compliance)",
+    "description": "Manage security programs, assess risk, ensure regulatory compliance, and build policies that protect the organization.",
+    "day_to_day": [
+      "Risk assessments",
+      "Policy development and review",
+      "Compliance audits (SOC2, ISO 27001, HIPAA, PCI-DSS)",
+      "Vendor risk management",
+      "Executive reporting"
+    ],
+    "salary_range": {
+      "entry": 60000,
+      "mid": 90000,
+      "senior": 130000,
+      "currency": "USD"
+    },
+    "required_skills": [
+      "Risk management frameworks (NIST, ISO 27001)",
+      "Regulatory knowledge",
+      "Written communication",
+      "Project management",
+      "Audit methodology"
+    ],
+    "recommended_certs": [
+      "Security+",
+      "CISA",
+      "CRISC",
+      "CISSP",
+      "ISO 27001 Lead Auditor"
+    ],
+    "time_to_first_job": "6-18 months",
+    "growth_paths": [
+      "Senior GRC",
+      "CISO",
+      "Compliance Manager",
+      "Risk Manager",
+      "DPO (Data Protection Officer)"
+    ],
+    "breaking_into_cyber_tips": "Strong writing and communication skills matter more here than technical skills. Study one framework deeply (start with NIST CSF) and get CISA if you have accounting/audit background."
+  },
+  "cloud_security": {
+    "title": "Cloud Security Engineer",
+    "description": "Design, implement, and monitor security controls for cloud environments (AWS, GCP, Azure).",
+    "day_to_day": [
+      "Secure cloud architecture reviews",
+      "IAM policy design",
+      "Cloud CSPM configuration",
+      "Security automation (Terraform, scripts)",
+      "Incident response in cloud environments"
+    ],
+    "salary_range": {
+      "entry": 90000,
+      "mid": 130000,
+      "senior": 175000,
+      "currency": "USD"
+    },
+    "required_skills": [
+      "At least one cloud platform (AWS/GCP/Azure)",
+      "Infrastructure as Code (Terraform)",
+      "IAM and least privilege",
+      "Container security (Kubernetes)",
+      "CSPM tools"
+    ],
+    "recommended_certs": [
+      "AWS Security Specialty",
+      "Google Professional Cloud Security Engineer",
+      "CCSP",
+      "Certified Kubernetes Security Specialist"
+    ],
+    "time_to_first_job": "12-18 months",
+    "growth_paths": [
+      "Principal Cloud Security Engineer",
+      "Cloud Architect",
+      "CISO",
+      "DevSecOps Lead"
+    ],
+    "breaking_into_cyber_tips": "Pick one cloud provider and go deep. Get your associate-level cloud cert, then the security specialty. Cloud skills pay a significant premium over traditional security roles."
+  }
+}

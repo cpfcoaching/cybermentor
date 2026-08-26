@@ -1,0 +1,172 @@
+[
+  {
+    "name": "CompTIA Security+",
+    "vendor": "CompTIA",
+    "code": "SY0-701",
+    "difficulty": "Beginner",
+    "prerequisites": [
+      "CompTIA Network+ recommended but not required"
+    ],
+    "study_hours": 120,
+    "exam_details": {
+      "questions": 90,
+      "duration_minutes": 90,
+      "passing_score": 750,
+      "cost_usd": 392
+    },
+    "domains": [
+      "General Security Concepts",
+      "Threats/Vulnerabilities/Mitigations",
+      "Security Architecture",
+      "Security Operations",
+      "Security Program Management"
+    ],
+    "best_for": [
+      "SOC Analyst entry level",
+      "IT admins pivoting to security",
+      "Meeting DoD 8570 requirements"
+    ],
+    "resources": [
+      "Professor Messer (free)",
+      "Jason Dion (Udemy)",
+      "Mike Chapple Study Guide"
+    ],
+    "breaking_into_cyber_notes": "The most recognized entry-level security certification. If you only get one cert, make it this one."
+  },
+  {
+    "name": "CompTIA CySA+",
+    "vendor": "CompTIA",
+    "code": "CS0-003",
+    "difficulty": "Intermediate",
+    "prerequisites": [
+      "Security+ or equivalent 4 years experience"
+    ],
+    "study_hours": 150,
+    "exam_details": {
+      "questions": 85,
+      "duration_minutes": 165,
+      "passing_score": 750,
+      "cost_usd": 392
+    },
+    "domains": [
+      "Security Operations",
+      "Vulnerability Management",
+      "Incident Response",
+      "Reporting and Communication"
+    ],
+    "best_for": [
+      "SOC Analysts",
+      "Threat hunters",
+      "Vulnerability analysts"
+    ],
+    "resources": [
+      "Mike Chapple book",
+      "Jason Dion (Udemy)",
+      "CompTIA official labs"
+    ],
+    "breaking_into_cyber_notes": "The SOC analyst cert. Perfect for those wanting to work in a Security Operations Center."
+  },
+  {
+    "name": "CISSP",
+    "vendor": "ISC2",
+    "code": "CISSP",
+    "difficulty": "Advanced",
+    "prerequisites": [
+      "5 years paid work experience in 2+ of 8 CISSP domains",
+      "OR 4 years with a degree"
+    ],
+    "study_hours": 250,
+    "exam_details": {
+      "questions": "125-175 adaptive",
+      "duration_minutes": 240,
+      "passing_score": "700/1000",
+      "cost_usd": 749
+    },
+    "domains": [
+      "Security and Risk Management",
+      "Asset Security",
+      "Security Architecture",
+      "Communication and Network Security",
+      "Identity and Access Management",
+      "Security Assessment and Testing",
+      "Security Operations",
+      "Software Development Security"
+    ],
+    "best_for": [
+      "Senior security professionals",
+      "Security managers",
+      "CISOs"
+    ],
+    "resources": [
+      "Mike Chapple Official Study Guide",
+      "Kelly Handerhan (YouTube/Cybrary)",
+      "Boson practice exams"
+    ],
+    "breaking_into_cyber_notes": "The gold standard for senior security roles. You need experience first \u2014 dont try to get this as a beginner."
+  },
+  {
+    "name": "eJPT",
+    "vendor": "eLearnSecurity (INE)",
+    "code": "eJPT",
+    "difficulty": "Beginner",
+    "prerequisites": [
+      "Basic networking knowledge",
+      "Linux fundamentals helpful"
+    ],
+    "study_hours": 80,
+    "exam_details": {
+      "questions": "Practical exam",
+      "duration_minutes": 1440,
+      "passing_score": "70%",
+      "cost_usd": 200
+    },
+    "domains": [
+      "Network Penetration Testing",
+      "Web Application Basics",
+      "Exploitation Fundamentals"
+    ],
+    "best_for": [
+      "Aspiring penetration testers",
+      "IT pros wanting to learn hacking basics"
+    ],
+    "resources": [
+      "INE free Starter Pass",
+      "TryHackMe beginner paths"
+    ],
+    "breaking_into_cyber_notes": "The best entry-level pen test cert. Fully hands-on \u2014 no memorization, you actually hack machines to pass."
+  },
+  {
+    "name": "OSCP",
+    "vendor": "Offensive Security",
+    "code": "PEN-200",
+    "difficulty": "Advanced",
+    "prerequisites": [
+      "Solid networking/Linux knowledge",
+      "Experience with basic exploitation"
+    ],
+    "study_hours": 400,
+    "exam_details": {
+      "questions": "Practical 24-hour exam",
+      "duration_minutes": 1440,
+      "passing_score": "70 points",
+      "cost_usd": 1499
+    },
+    "domains": [
+      "Active Directory Attacks",
+      "Web Application Attacks",
+      "Buffer Overflows",
+      "Privilege Escalation",
+      "Pivoting/Tunneling"
+    ],
+    "best_for": [
+      "Penetration testers",
+      "Red teamers"
+    ],
+    "resources": [
+      "Offensive Security PEN-200 course",
+      "TJNull OSCP prep list",
+      "HackTheBox/TryHackMe"
+    ],
+    "breaking_into_cyber_notes": "The most respected pen test cert in the industry. Try Harder is real \u2014 budget 3-6 months of serious lab time."
+  }
+]

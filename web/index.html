@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberMentor — AI Career Coach for Cybersecurity Professionals</title>
+  <meta name="description" content="CyberMentor is your AI-powered career coach for breaking into cybersecurity. Get personalized study plans, cert guidance, resume reviews, and interview coaching — powered by Breaking Into Cyber." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ── Onboarding Modal ─────────────────────────────────────────── -->
+<div id="onboarding-overlay" class="overlay active" role="dialog" aria-modal="true" aria-labelledby="onboarding-title">
+  <div class="onboarding-card glass">
+    <div class="onboarding-logo">
+      <span class="logo-shield">🛡️</span>
+      <h1 id="onboarding-title" class="logo-text">CyberMentor</h1>
+      <p class="logo-sub">by <strong>Breaking Into Cyber</strong></p>
+    </div>
+    <p class="onboarding-tagline">Your AI-powered guide to a cybersecurity career.</p>
+    <div class="onboarding-form">
+      <label for="username-input" class="form-label">Choose a display name to get started</label>
+      <input
+        id="username-input"
+        type="text"
+        class="form-input"
+        placeholder="e.g. jsmith or SecurityNewbie42"
+        maxlength="32"
+        autocomplete="off"
+        aria-required="true"
+      />
+      <p class="form-hint">Your progress will be saved under this name.</p>
+      <button id="start-btn" class="btn btn-primary" disabled>
+        <span>Start Coaching Session</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Main App Layout ──────────────────────────────────────────── -->
+<div id="app" class="app-layout hidden">
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar glass" role="complementary" aria-label="Progress and navigation">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <span>🛡️</span>
+        <span class="sidebar-title">CyberMentor</span>
+      </div>
+      <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 6h12M4 10h12M4 14h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="user-pill">
+      <div class="user-avatar" id="user-avatar" aria-hidden="true">?</div>
+      <div class="user-info">
+        <span class="user-name" id="sidebar-username">Loading...</span>
+        <span class="user-badge">Active Session</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Quick actions">
+      <button class="quick-action-btn" id="btn-career-path" data-prompt="Help me figure out the best cybersecurity career path for my background.">
+        <span class="qa-icon">🗺️</span>
+        <span>Career Path</span>
+      </button>
+      <button class="quick-action-btn" id="btn-study-plan" data-prompt="Create a personalized study plan for my next certification.">
+        <span class="qa-icon">📅</span>
+        <span>Study Plan</span>
+      </button>
+      <button class="quick-action-btn" id="btn-resume" data-prompt="I'd like to get my resume reviewed for cybersecurity roles.">
+        <span class="qa-icon">📄</span>
+        <span>Resume Review</span>
+      </button>
+      <button class="quick-action-btn" id="btn-interview" data-prompt="Let's do a mock interview. Ask me a cybersecurity interview question.">
+        <span class="qa-icon">🎤</span>
+        <span>Interview Prep</span>
+      </button>
+    </nav>
+
+    <div class="progress-panel" aria-label="Your progress">
+      <h3 class="progress-title">Your Progress</h3>
+      <div id="progress-list" class="progress-list">
+        <p class="progress-empty">No milestones yet. Start chatting!</p>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <p class="footer-brand">Powered by <a href="https://breakingintocyber.com" target="_blank" rel="noopener noreferrer">Breaking Into Cyber</a></p>
+      <p class="footer-tech">Google Antigravity SDK · Gemini 3.5</p>
+    </div>
+  </aside>
+
+  <!-- Main Chat Area -->
+  <main class="chat-area" role="main">
+    <header class="chat-header glass" role="banner">
+      <div class="chat-header-info">
+        <div class="agent-status">
+          <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+          <span id="status-text">CyberMentor Ready</span>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button id="clear-btn" class="btn btn-ghost" title="Clear conversation" aria-label="Clear conversation">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M5.333 4V2.667a1.333 1.333 0 0 1 1.334-1.334h2.666a1.333 1.333 0 0 1 1.334 1.334V4m2 0v9.333A1.333 1.333 0 0 1 11.333 14.667H4.667A1.333 1.333 0 0 1 3.333 13.333V4h9.334Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Clear
+        </button>
+      </div>
+    </header>
+
+    <!-- Messages -->
+    <div id="messages" class="messages-container" role="log" aria-live="polite" aria-label="Conversation">
+      <!-- Welcome message injected by JS -->
+    </div>
+
+    <!-- Input Bar -->
+    <div class="input-area glass">
+      <div class="input-wrapper">
+        <textarea
+          id="message-input"
+          class="message-textarea"
+          placeholder="Ask about certs, career paths, resume help, or interview prep..."
+          rows="1"
+          maxlength="8000"
+          aria-label="Type your message"
+        ></textarea>
+        <button id="send-btn" class="send-btn" aria-label="Send message" disabled>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M18.333 10 2.5 2.5l3.333 7.5-3.333 7.5L18.333 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="input-hint">
+        <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for new line
+      </p>
+    </div>
+  </main>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
