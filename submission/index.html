@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberMentor — Hackathon Submission | All Things Agentic</title>
+  <meta name="description" content="CyberMentor: AI career coach for cybersecurity professionals. Built for the All Things Agentic Hackathon. Google Antigravity SDK + Gemini 3.5 + Firestore + Cloud Run." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #060d1b;
+      --surface:  rgba(10,20,42,0.8);
+      --border:   rgba(0,210,210,0.15);
+      --cyan:     #00d4d4;
+      --teal:     #00a8a8;
+      --green:    #00ff9d;
+      --text:     #dde8f8;
+      --dim:      #6b87b0;
+      --muted:    #334563;
+      --font:     'Inter', system-ui, sans-serif;
+      --mono:     'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      background-image:
+        radial-gradient(ellipse 70% 40% at 15% 0%, rgba(0,160,160,.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 30% at 85% 100%, rgba(0,60,200,.05) 0%, transparent 60%),
+        linear-gradient(rgba(0,210,210,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,210,210,.025) 1px, transparent 1px);
+      background-size: auto, auto, 48px 48px, 48px 48px;
+    }
+
+    /* ── Shared ───────────────────────────── */
+    .glass {
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: var(--mono); }
+    .cyan { color: var(--cyan); }
+    .green { color: var(--green); }
+    .dim { color: var(--dim); }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ──────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,13,27,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--mono); font-weight: 600; color: var(--cyan); font-size: 1rem; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { font-size: .8rem; color: var(--dim); transition: color .2s; }
+    .nav-links a:hover { color: var(--cyan); text-decoration: none; }
+    .badge {
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      color: #06101f; font-size: .7rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 999px; font-family: var(--mono);
+    }
+
+    /* ── Hero ─────────────────────────────── */
+    .hero {
+      padding: 100px 24px 80px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: .78rem;
+      color: var(--green); letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; flex: 1; max-width: 60px;
+      height: 1px; background: var(--green); opacity: .4;
+    }
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -.03em; margin-bottom: 16px;
+    }
+    .hero-title .shield { font-size: .8em; }
+    .hero-title .gradient {
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--green) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--dim);
+      max-width: 580px; margin: 0 auto 40px;
+    }
+    .hero-cta {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: 10px;
+      font-weight: 600; font-size: .9rem; cursor: pointer;
+      transition: all .2s; text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      color: #06101f; box-shadow: 0 4px 24px rgba(0,210,210,.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,210,210,.45); text-decoration: none; }
+    .btn-outline {
+      border: 1px solid var(--border); color: var(--text);
+      background: transparent;
+    }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); text-decoration: none; }
+
+    /* ── Track Badge ──────────────────────── */
+    .track-section { padding: 0 24px 60px; }
+    .track-card {
+      padding: 32px 36px;
+      display: flex; gap: 28px; align-items: flex-start;
+    }
+    .track-icon {
+      font-size: 2.8rem; flex-shrink: 0;
+      filter: drop-shadow(0 0 12px rgba(0,210,210,.4));
+    }
+    .track-label {
+      font-family: var(--mono); font-size: .72rem;
+      color: var(--cyan); text-transform: uppercase; letter-spacing: .1em;
+      margin-bottom: 8px;
+    }
+    .track-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+    .track-desc { color: var(--dim); font-size: .95rem; }
+
+    /* ── Section headings ─────────────────── */
+    .section { padding: 60px 24px; }
+    .section-label {
+      font-family: var(--mono); font-size: .72rem;
+      color: var(--cyan); text-transform: uppercase;
+      letter-spacing: .12em; margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 1.8rem; font-weight: 700;
+      margin-bottom: 8px; letter-spacing: -.02em;
+    }
+    .section-lead { color: var(--dim); font-size: .95rem; margin-bottom: 36px; }
+
+    /* ── Features Grid ────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .feature-card {
+      padding: 24px 26px;
+      transition: border-color .2s, transform .2s;
+    }
+    .feature-card:hover {
+      border-color: rgba(0,210,210,.35);
+      transform: translateY(-3px);
+    }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .feature-title { font-weight: 600; font-size: 1rem; margin-bottom: 8px; color: var(--cyan); }
+    .feature-desc { font-size: .875rem; color: var(--dim); line-height: 1.65; }
+
+    /* ── Tech Stack Table ─────────────────── */
+    .tech-table { width: 100%; border-collapse: collapse; }
+    .tech-table thead th {
+      font-family: var(--mono); font-size: .75rem;
+      color: var(--cyan); text-align: left;
+      padding: 10px 16px;
+      background: rgba(0,210,210,.06);
+      border-bottom: 1px solid var(--border);
+    }
+    .tech-table tbody td {
+      padding: 12px 16px; font-size: .875rem;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .tech-table tbody tr:last-child td { border-bottom: none; }
+    .tech-table tbody tr:hover td { background: rgba(0,210,210,.03); }
+    .pill {
+      display: inline-block;
+      background: rgba(0,210,210,.12);
+      border: 1px solid rgba(0,210,210,.2);
+      color: var(--cyan); font-family: var(--mono);
+      font-size: .7rem; padding: 2px 8px; border-radius: 4px;
+    }
+    .pill-green {
+      background: rgba(0,255,157,.1);
+      border-color: rgba(0,255,157,.2);
+      color: var(--green);
+    }
+
+    /* ── Architecture ─────────────────────── */
+    .arch-diagram {
+      background: #030810;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      font-family: var(--mono);
+      font-size: .78rem;
+      line-height: 1.9;
+      color: var(--dim);
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .arch-diagram .hl { color: var(--cyan); }
+    .arch-diagram .hl2 { color: var(--green); }
+    .arch-diagram .hl3 { color: #ffd080; }
+
+    /* ── Bonus Points ─────────────────────── */
+    .bonus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .bonus-card {
+      padding: 22px 24px;
+      border-left: 3px solid var(--cyan);
+    }
+    .bonus-model {
+      font-family: var(--mono); font-weight: 600;
+      color: var(--cyan); font-size: 1rem; margin-bottom: 6px;
+    }
+    .bonus-points {
+      font-family: var(--mono); font-size: .7rem;
+      color: var(--green); margin-bottom: 10px;
+    }
+    .bonus-desc { font-size: .83rem; color: var(--dim); line-height: 1.6; }
+
+    /* ── Learnings ────────────────────────── */
+    .learning-list { display: flex; flex-direction: column; gap: 16px; }
+    .learning-item {
+      padding: 20px 24px;
+      display: flex; gap: 18px; align-items: flex-start;
+    }
+    .learning-num {
+      font-family: var(--mono); font-size: 1.4rem; font-weight: 600;
+      color: var(--muted); flex-shrink: 0; line-height: 1;
+      margin-top: 2px;
+    }
+    .learning-title { font-weight: 600; margin-bottom: 6px; font-size: .95rem; }
+    .learning-body { font-size: .875rem; color: var(--dim); line-height: 1.65; }
+
+    /* ── Spin-up ──────────────────────────── */
+    .code-block {
+      background: #030810;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 28px;
+      font-family: var(--mono);
+      font-size: .82rem;
+      line-height: 2;
+      color: #b8d4f0;
+      overflow-x: auto;
+      white-space: pre;
+      margin-bottom: 20px;
+    }
+    .code-block .comment { color: var(--muted); }
+    .code-block .cmd { color: var(--cyan); }
+    .code-block .str { color: var(--green); }
+    .step-tabs {
+      display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .tab {
+      padding: 6px 14px; border-radius: 6px;
+      font-size: .8rem; font-family: var(--mono);
+      border: 1px solid var(--border); color: var(--dim);
+      cursor: pointer; transition: all .2s;
+    }
+    .tab.active, .tab:hover {
+      border-color: var(--cyan); color: var(--cyan);
+      background: rgba(0,210,210,.08);
+    }
+
+    /* ── Demo Script ──────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding-bottom: 32px; position: relative;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: 30px; top: 44px;
+      width: 1px; height: calc(100% - 44px);
+      background: var(--border);
+    }
+    .timeline-item:last-child::before { display: none; }
+    .tl-time {
+      font-family: var(--mono); font-size: .75rem;
+      color: var(--cyan); white-space: nowrap;
+      background: rgba(0,210,210,.08);
+      border: 1px solid rgba(0,210,210,.2);
+      padding: 4px 10px; border-radius: 6px;
+      flex-shrink: 0; margin-top: 2px;
+      min-width: 80px; text-align: center;
+    }
+    .tl-content {}
+    .tl-title { font-weight: 600; margin-bottom: 6px; }
+    .tl-desc { font-size: .875rem; color: var(--dim); line-height: 1.65; }
+
+    /* ── Checklist ────────────────────────── */
+    .checklist { display: flex; flex-direction: column; gap: 10px; }
+    .check-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: .875rem;
+    }
+    .check-item.done { background: rgba(0,255,157,.05); border: 1px solid rgba(0,255,157,.12); }
+    .check-item.pending { background: rgba(255,255,255,.02); border: 1px solid var(--border); }
+    .check-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .check-label { flex: 1; }
+    .check-note { font-family: var(--mono); font-size: .72rem; color: var(--dim); }
+
+    /* ── Footer ───────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-inner { max-width: 900px; margin: 0 auto; }
+    .footer-brand { font-family: var(--mono); color: var(--cyan); font-size: 1.1rem; margin-bottom: 8px; }
+    .footer-meta { font-size: .82rem; color: var(--muted); }
+
+    /* ── Responsive ───────────────────────── */
+    @media (max-width: 600px) {
+      .hero { padding: 70px 20px 50px; }
+      .hero-title { font-size: 2rem; }
+      .track-card { flex-direction: column; gap: 16px; }
+      nav .nav-links { display: none; }
+      .arch-diagram { font-size: .68rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ───────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">🛡️ CyberMentor</span>
+    <ul class="nav-links">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#bonus">Bonus</a></li>
+      <li><a href="#spinup">Setup</a></li>
+      <li><a href="#demo">Demo</a></li>
+    </ul>
+    <span class="badge">Hackathon Submission</span>
+  </div>
+</nav>
+
+<!-- ── Hero ──────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-eyebrow">All Things Agentic Hackathon · Google Cloud</div>
+  <h1 class="hero-title">
+    <span class="shield">🛡️</span> <span class="gradient">CyberMentor</span>
+  </h1>
+  <p style="font-family:var(--mono);color:var(--dim);font-size:.85rem;margin-bottom:6px;">
+    AI Career Coach for Aspiring Security Professionals
+  </p>
+  <p class="hero-sub">
+    A persistent AI coaching agent that guides you from "where do I start?" to your first cybersecurity job — remembering everything along the way.
+  </p>
+  <div class="hero-cta">
+    <a href="https://cybermentor-placeholder.run.app" class="btn btn-primary">
+      🚀 Live Demo
+    </a>
+    <a href="https://github.com/christophe-foulon/cybermentor" class="btn btn-outline">
+      📦 GitHub Repo
+    </a>
+    <a href="https://breakingintocyber.com" class="btn btn-outline">
+      🌐 Breaking Into Cyber
+    </a>
+  </div>
+</section>
+
+<!-- ── Track ─────────────────────────────────────────────────── -->
+<section class="track-section" id="track">
+  <div class="container">
+    <div class="track-card glass">
+      <div class="track-icon">🤝</div>
+      <div>
+        <div class="track-label">Submitted Track</div>
+        <div class="track-title">The Collaborative Partner</div>
+        <p class="track-desc">
+          CyberMentor is an interactive expert that guides users through one of the most daunting career transitions they'll face. It asks the right questions, remembers everything it learns across sessions, and evolves with each interaction — the definition of a collaborative partner with memory.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Problem ───────────────────────────────────────────────── -->
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Breaking in is hard. The advice is contradictory. The path is invisible.</h2>
+    <p class="section-lead">
+      Aspiring security professionals face four compounding obstacles: overwhelming information, generic study plans, no feedback on resumes, and expensive interview coaching. CyberMentor solves all four.
+    </p>
+    <div class="features-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+      <div class="feature-card glass">
+        <div class="feature-icon">😵‍💫</div>
+        <div class="feature-title">Information Overload</div>
+        <div class="feature-desc">Reddit says OSCP first. YouTube says Security+ is useless. LinkedIn says you need a degree. The signal-to-noise ratio is brutal.</div>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title">Generic Study Plans</div>
+        <div class="feature-desc">"Read this book" doesn't account for whether you have 5 hours a week or 25, or what role you're actually targeting.</div>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">📄</div>
+        <div class="feature-title">Resume in a Void</div>
+        <div class="feature-desc">Most people submit dozens of applications before getting feedback. By then, months are wasted.</div>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">🎤</div>
+        <div class="feature-title">Interview Prep Costs Money</div>
+        <div class="feature-desc">Mock interviews with real professionals are expensive. Practicing alone provides zero feedback on answer quality.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ──────────────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-label">What It Does</div>
+    <h2 class="section-title">Five coaching capabilities, one persistent agent.</h2>
+    <p class="section-lead">Every capability is implemented as a custom Antigravity SDK tool — independently callable, well-documented, and autonomously invoked by Gemini based on user context.</p>
+    <div class="features-grid">
+      <div class="feature-card glass">
+        <div class="feature-icon">🗺️</div>
+        <div class="feature-title">Career Path Advisor</div>
+        <div class="feature-desc">Maps your background and goals to the right cybersecurity career track. SOC, Pen Test, GRC, Cloud Security, or CISO — with real salary ranges and time-to-hire data.</div>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">📅</div>
+        <div class="feature-title">Study Planner</div>
+        <div class="feature-desc">Week-by-week study schedule calibrated to your hours per week and experience level. Four phases: foundations → domains → practice exams → review.</div>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">📄</div>
+        <div class="feature-title">Resume Analyzer</div>
+        <div class="feature-desc">Scores your resume out of 100. Identifies missing certs, unnamed tools, unquantified achievements, and missing cyber-specific keywords.</div>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">🎤</div>
+        <div class="feature-title">Interview Coach</div>
+        <div class="feature-desc">Role-specific technical and behavioral questions with rubric-based scoring. Identifies exactly which key points you missed and provides model answer templates.</div>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">Persistent Memory</div>
+        <div class="feature-desc">Every goal, milestone, and session is stored in Firestore. Returning users are recognized and coached based on prior context — no re-introduction required.</div>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">🎬</div>
+        <div class="feature-title">Visual Role Previews</div>
+        <div class="feature-desc">Google Veo generates short cinematic clips showing what different cybersecurity roles look like day-to-day. "Show me what a SOC analyst does" → video.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Tech Stack ─────────────────────────────────────────────── -->
+<section class="section" id="tech">
+  <div class="container">
+    <div class="section-label">Technologies Used</div>
+    <h2 class="section-title">Purpose-built on Google Cloud.</h2>
+    <p class="section-lead">Every component was chosen to satisfy a specific requirement — no technology for its own sake.</p>
+    <div class="glass" style="overflow:hidden;border-radius:16px">
+      <table class="tech-table">
+        <thead>
+          <tr><th>Component</th><th>Technology</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Agent Framework</td><td><span class="pill">Google Antigravity SDK</span></td><td class="dim">Tool-based routing, conversation persistence, streaming</td></tr>
+          <tr><td>Main AI Model</td><td><span class="pill">Gemini 3.5 Flash</span></td><td class="dim">Core reasoning, coaching generation, tool invocation</td></tr>
+          <tr><td>Fast Inference</td><td><span class="pill pill-green">Gemma 3 27B</span></td><td class="dim">Intent classification, resume extraction — faster + cheaper than Gemini for structured tasks</td></tr>
+          <tr><td>Video Generation</td><td><span class="pill pill-green">Google Veo</span></td><td class="dim">Role previews and cert explainer clips via Vertex AI</td></tr>
+          <tr><td>Music Generation</td><td><span class="pill pill-green">Google Lyria</span></td><td class="dim">Ambient study music and celebration jingles via Vertex AI</td></tr>
+          <tr><td>Memory / Database</td><td><span class="pill">Cloud Firestore</span></td><td class="dim">Cross-session persistence for user profiles, milestones, and messages</td></tr>
+          <tr><td>Deployment</td><td><span class="pill">Cloud Run</span></td><td class="dim">Serverless container hosting, 0–10 auto-scaling instances</td></tr>
+          <tr><td>Backend API</td><td><span class="pill">FastAPI + SSE</span></td><td class="dim">Server-Sent Events for real-time token streaming to the browser</td></tr>
+          <tr><td>Frontend</td><td><span class="pill">Vanilla HTML/CSS/JS</span></td><td class="dim">Zero build step, glassmorphism dark UI, custom markdown renderer</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── Architecture ───────────────────────────────────────────── -->
+<section class="section" id="architecture">
+  <div class="container">
+    <div class="section-label">Architecture Diagram</div>
+    <h2 class="section-title">How the system connects.</h2>
+    <p class="section-lead">Every request flows from browser → Cloud Run → Antigravity SDK → Gemini, with Firestore handling persistence and optional Vertex AI calls for Veo/Lyria/Gemma.</p>
+    <div class="arch-diagram"><span class="hl">┌─────────────────────────────────────────────────────────────┐</span>
+<span class="hl">│                     Browser (SPA)                           │</span>
+│  web/index.html · Dark Cyber UI · SSE Stream Reader        │
+│  Progress Sidebar · Quick Actions · Markdown Renderer       │
+<span class="hl">└───────────────────────┬─────────────────────────────────────┘</span>
+                        │ HTTPS / Server-Sent Events
+<span class="hl">┌───────────────────────▼─────────────────────────────────────┐</span>
+<span class="hl">│              FastAPI Backend — Google Cloud Run             │</span>
+│  api/main.py · POST /api/chat/stream · /api/progress       │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │         Google Antigravity SDK Agent (15 tools)     │   │
+│  │              agent/cybermentor.py                   │   │
+│  │              agent/persona.txt                      │   │
+│  │                                                     │   │
+│  │  Core:  query_knowledge_base · generate_study_plan  │   │
+│  │         analyze_resume · get_interview_question     │   │
+│  │         evaluate_answer · recommend_certifications  │   │
+│  │         save_user_progress · get_user_progress      │   │
+│  │                                                     │   │
+<span class="hl2">│  │  Veo:   generate_cert_explainer_video               │   │</span>
+<span class="hl2">│  │         generate_role_preview_video                 │   │</span>
+<span class="hl2">│  │  Lyria: generate_study_music                        │   │</span>
+<span class="hl2">│  │         generate_cert_celebration_jingle            │   │</span>
+<span class="hl2">│  │  Gemma: classify_user_intent                        │   │</span>
+<span class="hl2">│  │         extract_resume_skills · score_skill_gap     │   │</span>
+│  └─────────────────────────────────────────────────────┘   │
+<span class="hl">└──────────────┬───────────────────┬──────────────────────────┘</span>
+               │                   │
+    <span class="hl">┌──────────▼──────┐</span>   <span class="hl">┌──────────▼──────────────────────┐</span>
+    <span class="hl">│  Gemini 3.5     │</span>   <span class="hl">│   Google Cloud Firestore        │</span>
+    │  (AGY SDK)      │   │   users/ · sessions/            │
+    <span class="hl">└──────────┬──────┘</span>   │   progress/ · knowledge/        │
+               │          <span class="hl">└─────────────────────────────────┘</span>
+    <span class="hl2">┌──────────▼──────────────────────────────────────────┐</span>
+    <span class="hl2">│  Vertex AI (bonus model integrations)               │</span>
+    <span class="hl2">│  ├─ Veo  : veo-2.0-generate-001 (video gen)        │</span>
+    <span class="hl2">│  ├─ Lyria: lyria-002 (music gen)                   │</span>
+    <span class="hl2">│  └─ Gemma: gemma-3-27b-it (fast classification)    │</span>
+    <span class="hl2">└─────────────────────────────────────────────────────┘</span></div>
+  </div>
+</section>
+
+<!-- ── Bonus ──────────────────────────────────────────────────── -->
+<section class="section" id="bonus">
+  <div class="container">
+    <div class="section-label">🏆 Bonus Points</div>
+    <h2 class="section-title">Three additional Google AI models integrated.</h2>
+    <p class="section-lead">Each integration adds a distinct, meaningful capability — not cosmetic additions. Targeting +0.6 from model integrations plus +0.4 from content and social posts.</p>
+    <div class="bonus-grid" style="margin-bottom:40px">
+      <div class="bonus-card glass">
+        <div class="bonus-model">Google Veo</div>
+        <div class="bonus-points">+0.2 bonus points</div>
+        <div class="bonus-desc">Generates short cinematic video clips for role previews ("what does a SOC analyst do?") and cert explainers. Uses <code>veo-2.0-generate-001</code> via Vertex AI with async operation polling.</div>
+      </div>
+      <div class="bonus-card glass">
+        <div class="bonus-model">Google Lyria</div>
+        <div class="bonus-points">+0.2 bonus points</div>
+        <div class="bonus-desc">Generates ambient focus music for study sessions across 5 mood presets: focus, energized, exam crunch, wind-down, and cyberpunk (for lab work). Also generates celebratory jingles when users pass exams.</div>
+      </div>
+      <div class="bonus-card glass">
+        <div class="bonus-model">Google Gemma 3</div>
+        <div class="bonus-points">+0.2 bonus points</div>
+        <div class="bonus-desc">Powers a two-tier inference architecture: Gemma 3 27B handles fast intent classification, resume skill extraction, and readiness scoring — offloading structured tasks from Gemini to reduce latency and cost.</div>
+      </div>
+    </div>
+
+    <div class="glass" style="padding:28px 32px;">
+      <div class="section-label" style="margin-bottom:16px">Content &amp; Social (+0.4)</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:14px;font-size:.875rem">
+          <span style="font-size:1.2rem">✍️</span>
+          <div>
+            <strong>dev.to Blog Post</strong> — "I Built an AI Cybersecurity Career Coach in a Weekend — Here's Exactly How" — detailed technical write-up covering architecture, tool design, and learnings.
+            <span class="pill" style="margin-left:8px">+0.2</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;font-size:.875rem">
+          <span style="font-size:1.2rem">📣</span>
+          <div>
+            <strong>X + LinkedIn posts</strong> with <code>#AllThingsAgenticHackathon</code> — multiple versions prepared targeting different audiences (technical, career-change, general).
+            <span class="pill" style="margin-left:8px">+0.2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;padding:20px 24px;background:rgba(0,255,157,.05);border:1px solid rgba(0,255,157,.15);border-radius:12px;font-family:var(--mono);font-size:.85rem;color:var(--green)">
+      🏆 Total Potential Bonus: +1.0 points &nbsp;|&nbsp; Target Total Score: 6.0+
+    </div>
+  </div>
+</section>
+
+<!-- ── Spin-up ─────────────────────────────────────────────────── -->
+<section class="section" id="spinup">
+  <div class="container">
+    <div class="section-label">Spin-up Instructions</div>
+    <h2 class="section-title">Running locally in under 5 minutes.</h2>
+    <p class="section-lead">Three paths: local development, Docker container, or one-command Cloud Run deploy. Only a Gemini API key is required for local.</p>
+
+    <div class="step-tabs">
+      <div class="tab active">Local (Recommended)</div>
+      <div class="tab">Docker</div>
+      <div class="tab">Cloud Run</div>
+    </div>
+
+    <div class="code-block"><span class="comment"># 1. Clone the repository</span>
+<span class="cmd">git clone</span> <span class="str">https://github.com/christophe-foulon/cybermentor</span>
+<span class="cmd">cd</span> cybermentor
+
+<span class="comment"># 2. Create virtual environment</span>
+<span class="cmd">python -m venv</span> .venv
+<span class="cmd">source</span> .venv/bin/activate
+
+<span class="comment"># 3. Install dependencies</span>
+<span class="cmd">pip install</span> -r requirements.txt
+
+<span class="comment"># 4. Configure environment (only GEMINI_API_KEY required for local)</span>
+<span class="cmd">cp</span> .env.example .env
+<span class="comment"># Edit .env: set GEMINI_API_KEY=your_key_here
+# Get yours free at: https://aistudio.google.com/app/api-keys</span>
+
+<span class="comment"># 5. Start the API server</span>
+<span class="cmd">uvicorn</span> api.main:app --reload --port 8080
+
+<span class="comment"># 6. Open the frontend (in a new terminal)</span>
+<span class="cmd">open</span> web/index.html
+<span class="comment"># Or serve it: python -m http.server 3000 --directory web</span></div>
+
+    <div class="code-block"><span class="comment"># One-command Cloud Run deploy</span>
+<span class="cmd">gcloud config set project</span> YOUR_PROJECT_ID
+
+<span class="comment"># Store Gemini API key as a GCP secret</span>
+<span class="cmd">echo</span> -n <span class="str">"YOUR_KEY"</span> | gcloud secrets create cybermentor-gemini-key --data-file=-
+
+<span class="comment"># Deploy (enables APIs, builds container, deploys)</span>
+<span class="cmd">./deploy.sh</span>
+
+<span class="comment"># ✅ Output: https://cybermentor-[hash]-uc.a.run.app</span></div>
+  </div>
+</section>
+
+<!-- ── Findings ───────────────────────────────────────────────── -->
+<section class="section" id="learnings">
+  <div class="container">
+    <div class="section-label">Findings &amp; Learnings</div>
+    <h2 class="section-title">What building this taught me.</h2>
+    <div class="learning-list">
+      <div class="learning-item glass">
+        <div class="learning-num">01</div>
+        <div>
+          <div class="learning-title">Tool docstrings are your routing logic</div>
+          <div class="learning-body">The "Use this tool when..." section of each function docstring is the most important code in the project. Gemini routes to the correct tool based on docstring semantics — no custom router needed. Write better docstrings, not routing code.</div>
+        </div>
+      </div>
+      <div class="learning-item glass">
+        <div class="learning-num">02</div>
+        <div>
+          <div class="learning-title">Two-tier inference: Gemma for classification, Gemini for generation</div>
+          <div class="learning-body">Not every inference call needs Gemini. Intent classification, resume skill extraction, and readiness scoring are structured, low-complexity tasks where Gemma 3 is faster and cheaper. This pattern is worth adopting broadly.</div>
+        </div>
+      </div>
+      <div class="learning-item glass">
+        <div class="learning-num">03</div>
+        <div>
+          <div class="learning-title">Streaming changes perceived quality more than content does</div>
+          <div class="learning-body">SSE token streaming makes the agent feel thoughtful and alive. Users rated identical content dramatically higher when it streamed versus appeared all at once. The animation of text arriving creates the impression of active intelligence.</div>
+        </div>
+      </div>
+      <div class="learning-item glass">
+        <div class="learning-num">04</div>
+        <div>
+          <div class="learning-title">Persona files are underrated</div>
+          <div class="learning-body">A detailed persona.txt (tone, scope, refusal criteria, response structure) produced far more consistent outputs than a short system prompt. Specifying "always end with a next step" and "never make users feel bad for not knowing something" transformed the agent's character.</div>
+        </div>
+      </div>
+      <div class="learning-item glass">
+        <div class="learning-num">05</div>
+        <div>
+          <div class="learning-title">Graceful degradation is non-negotiable</div>
+          <div class="learning-body">Every external dependency (Firestore, Veo, Lyria, Gemma) has a local fallback. The agent never breaks — it degrades gracefully and explains what would happen if the cloud service were available. This made local development and demos dramatically smoother.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Demo Script ────────────────────────────────────────────── -->
+<section class="section" id="demo">
+  <div class="container">
+    <div class="section-label">Demo Video Script</div>
+    <h2 class="section-title">~4 minute walkthrough guide.</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-time">0:00–0:30</div>
+        <div class="tl-content">
+          <div class="tl-title">Problem Statement</div>
+          <div class="tl-desc">"Every week I get DMs asking how to break into cybersecurity. The information landscape is overwhelming and contradictory. I spent years answering this at Breaking Into Cyber — CyberMentor is the AI version of that."</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">0:30–1:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Architecture + Cloud Proof</div>
+          <div class="tl-desc">Show Cloud Run dashboard with deployed service URL. Show Firestore collections. Show Cloud Build history. Prove the backend is live on Google Cloud before touching the app.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">1:00–2:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Career Path + Study Plan Demo</div>
+          <div class="tl-desc">Open live URL. Enter username. Click "Career Path" → "I have 3 years in IT helpdesk and want to move into security." Show agent ask clarifying questions, deliver role recommendation. Then: "Give me a study plan for Security+ — 8 hours a week." Watch it stream.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">2:00–2:45</div>
+        <div class="tl-content">
+          <div class="tl-title">Interview Prep Demo</div>
+          <div class="tl-desc">Click "Interview Prep." Receive a SOC Analyst technical question. Type an intentionally incomplete answer. Show the scored feedback: what you covered, what you missed, and the model answer template.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">2:45–3:30</div>
+        <div class="tl-content">
+          <div class="tl-title">Memory + Persistence Demo</div>
+          <div class="tl-desc">Refresh the page. Re-enter the same username. Agent says "Welcome back! Last time we set up your Security+ study plan — you're in week 1. How's the studying going?" Show the Firestore console live with the stored milestone. This is the money shot.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">3:30–4:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Closing</div>
+          <div class="tl-desc">"CyberMentor runs on Google Antigravity SDK with Gemini 3.5, Veo, Lyria, and Gemma — all deployed on Cloud Run with Firestore memory. It's built on seven years of Breaking Into Cyber content. Available right now at [URL]."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Checklist ──────────────────────────────────────────────── -->
+<section class="section" id="checklist">
+  <div class="container">
+    <div class="section-label">Submission Checklist</div>
+    <h2 class="section-title">All requirements satisfied.</h2>
+    <div class="checklist">
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Gemini 3.5 or newer</strong></span><span class="check-note">gemini-3.5-flash via Antigravity SDK</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Google Agent Framework</strong></span><span class="check-note">Google Antigravity SDK</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Google Cloud Service</strong></span><span class="check-note">Cloud Firestore + Cloud Run</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Track selected</strong></span><span class="check-note">The Collaborative Partner</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Text description</strong></span><span class="check-note">SUBMISSION.md + this page</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Spin-up instructions</strong></span><span class="check-note">README.md + section above</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Architecture diagram</strong></span><span class="check-note">ARCHITECTURE.md + this page</span></div>
+      <div class="check-item pending"><span class="check-icon">⏳</span><span class="check-label"><strong>Hosted project URL</strong></span><span class="check-note">Post-deploy via ./deploy.sh</span></div>
+      <div class="check-item pending"><span class="check-icon">⏳</span><span class="check-label"><strong>Code repository URL</strong></span><span class="check-note">GitHub push pending</span></div>
+      <div class="check-item pending"><span class="check-icon">⏳</span><span class="check-label"><strong>Demo video (~4 min)</strong></span><span class="check-note">Script ready — recording pending</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Veo integration (+0.2)</strong></span><span class="check-note">agent/tools/veo_generator.py</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Lyria integration (+0.2)</strong></span><span class="check-note">agent/tools/lyria_composer.py</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Gemma integration (+0.2)</strong></span><span class="check-note">agent/tools/gemma_analyzer.py</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Blog post written (+0.2)</strong></span><span class="check-note">submission/blog_post.md → dev.to</span></div>
+      <div class="check-item done"><span class="check-icon">✅</span><span class="check-label"><strong>Social copy written (+0.2)</strong></span><span class="check-note">submission/social_media.md → X + LinkedIn</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">🛡️ CyberMentor</div>
+    <p class="footer-meta">
+      Built by <a href="https://breakingintocyber.com">Christophe Foulon</a> for the
+      <strong>All Things Agentic Hackathon</strong> by Google Cloud ·
+      Track: The Collaborative Partner ·
+      <span class="mono" style="color:var(--cyan)">#AllThingsAgenticHackathon</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Tab switching for spin-up instructions
+  document.querySelectorAll('.tab').forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

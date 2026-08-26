@@ -1,5 +1,13 @@
-# Core agent framework
+# ─────────────────────────────────────────────────────────────────────────────
+# CyberMentor — Python Dependencies
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Core agent framework (includes Gemini 3.5 access)
 google-antigravity>=0.1.0
+
+# Google AI SDK — Veo (video), Lyria (music), Gemma (fast inference)
+# Used for bonus Google AI model integrations
+google-genai>=0.8.0
 
 # API server
 fastapi>=0.115.0
@@ -8,6 +16,7 @@ python-multipart>=0.0.9
 
 # Google Cloud
 google-cloud-firestore>=2.19.0
+google-cloud-aiplatform>=1.70.0
 google-auth>=2.35.0
 
 # Utilities
@@ -16,5 +25,6 @@ pydantic>=2.9.0
 pydantic-settings>=2.6.0
 httpx>=0.27.0
 
-# Data processing
-markdown>=3.7
+# Optional: YouTube transcript ingestion
+# youtube-transcript-api>=0.6.0
+# google-api-python-client>=2.0.0
