@@ -15,7 +15,7 @@ Every week, someone DMs me some version of the same question:
 
 *"I want to break into cybersecurity. Where do I start?"*
 
-I've answered this hundreds of times on [Breaking Into Cyber](https://breakingintocyber.com) — through YouTube videos, podcast episodes, mentorship calls. The answer is always personalized: it depends on your background, your goals, how many hours you have, and which role actually excites you.
+I've answered this hundreds of times on [Breaking Into Cybersecurity](https://breakingintocyberscurity.org) — through YouTube videos, podcast episodes, mentorship calls. The answer is always personalized: it depends on your background, your goals, how many hours you have, and which role actually excites you.
 
 The problem is I can't personally coach everyone. So I built the next best thing: **CyberMentor**, an AI agent that coaches people through their cybersecurity career journey the same way I would — asking the right questions, remembering the answers, and giving structured, actionable guidance.
 

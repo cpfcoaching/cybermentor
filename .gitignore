@@ -36,3 +36,21 @@ logs/
 # Distribution
 *.zip
 *.tar.gz
+
+# Added by GitGuard (Python, FastAPI)
+# Local environment files contain developer-specific secrets
+.env.local
+# Any environment file may contain sensitive configuration
+*.env
+ENV/
+*.so
+.ipynb_checkpoints/
+# SQLite database files may contain sensitive data
+*.sqlite3
+# Django default SQLite database should not be committed
+db.sqlite3
+*.db
+# Secrets file should never be committed
+secrets.json
+# Local settings often contain secrets and should not be committed
+local_settings.py
