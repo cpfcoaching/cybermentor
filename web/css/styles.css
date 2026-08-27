@@ -1093,6 +1093,239 @@ audio.media-player {
   color: #38bdf8;
 }
 
+/* ── Focus Music Studio Deck ────────────────────────────────────────── */
+.focus-studio-deck {
+  margin: 0 var(--sp-4) var(--sp-3) var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  animation: slideUp 0.25s ease;
+  z-index: 15;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.deck-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deck-track-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.deck-icon {
+  font-size: 1.4rem;
+  background: rgba(56, 189, 248, 0.15);
+  padding: 6px;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.deck-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.deck-title {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #38bdf8;
+}
+
+.deck-tag {
+  font-size: 0.72rem;
+  color: var(--clr-text-muted);
+}
+
+.deck-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.btn-close-deck {
+  background: none;
+  border: none;
+  color: var(--clr-text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.btn-close-deck:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.deck-progress-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.deck-time {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--clr-text-muted);
+  min-width: 32px;
+}
+
+.deck-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  flex: 1;
+}
+
+.deck-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+  cursor: pointer;
+}
+
+.deck-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.deck-main-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.deck-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--clr-text);
+  border-radius: var(--r-sm);
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.deck-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+
+.deck-btn-primary {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  border-color: #38bdf8;
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 16px;
+}
+
+.deck-btn-primary:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.deck-btn.active {
+  color: #38bdf8;
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.deck-visualizer-mini {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 20px;
+}
+
+.deck-visualizer-mini span {
+  display: block;
+  width: 3px;
+  height: 4px;
+  background: rgba(56, 189, 248, 0.3);
+  border-radius: 1px;
+}
+
+.deck-visualizer-mini.active span {
+  background: #38bdf8;
+  animation: barBounceMini 0.7s infinite ease-in-out alternate;
+}
+
+.deck-visualizer-mini.active span:nth-child(1) { animation-delay: 0.0s; }
+.deck-visualizer-mini.active span:nth-child(2) { animation-delay: 0.1s; }
+.deck-visualizer-mini.active span:nth-child(3) { animation-delay: 0.2s; }
+.deck-visualizer-mini.active span:nth-child(4) { animation-delay: 0.3s; }
+.deck-visualizer-mini.active span:nth-child(5) { animation-delay: 0.15s; }
+.deck-visualizer-mini.active span:nth-child(6) { animation-delay: 0.25s; }
+.deck-visualizer-mini.active span:nth-child(7) { animation-delay: 0.05s; }
+.deck-visualizer-mini.active span:nth-child(8) { animation-delay: 0.35s; }
+
+@keyframes barBounceMini {
+  0%   { height: 4px; }
+  100% { height: 18px; }
+}
+
+.deck-volume-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vol-icon { font-size: 0.8rem; }
+.vol-slider { width: 70px; }
+
+.deck-playlist-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.deck-tab {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--clr-text-muted);
+  border-radius: var(--r-sm);
+  padding: 4px 8px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.deck-tab:hover,
+.deck-tab.active {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+}
+
 /* ── Mindmap & Transfer Explorer Modal ───────────────────────────────── */
 .mindmap-card {
   width: 92%;

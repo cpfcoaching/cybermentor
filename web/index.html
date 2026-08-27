@@ -499,6 +499,59 @@
       <!-- Welcome message injected by JS -->
     </div>
 
+    <!-- Focus Music Studio Deck with Full Media Controls -->
+    <div id="focus-studio-deck" class="focus-studio-deck glass hidden">
+      <div class="deck-header">
+        <div class="deck-track-meta">
+          <span class="deck-icon">🎧</span>
+          <div class="deck-info">
+            <span id="deck-track-title" class="deck-title">Deep Focus Alpha (10Hz Binaural Beats)</span>
+            <span id="deck-track-tag" class="deck-tag">Alpha Flow · 60 BPM Ambient Synth</span>
+          </div>
+        </div>
+        <div class="deck-header-actions">
+          <span id="deck-status" class="audio-status-pill">○ READY</span>
+          <button id="btn-close-deck" class="btn-close-deck" title="Hide Player">✕</button>
+        </div>
+      </div>
+
+      <div class="deck-progress-row">
+        <span id="deck-current-time" class="deck-time">0:00</span>
+        <input type="range" id="deck-seek-bar" class="deck-slider seek-slider" min="0" max="60" value="0" step="0.1" aria-label="Seek track">
+        <span id="deck-duration" class="deck-time">1:00</span>
+      </div>
+
+      <div class="deck-controls-row">
+        <div class="deck-main-controls">
+          <button id="btn-audio-prev" class="deck-btn" title="Previous Track (⏮)">⏮</button>
+          <button id="btn-audio-play" class="deck-btn deck-btn-primary" title="Play / Pause (⏯)">▶</button>
+          <button id="btn-audio-stop" class="deck-btn" title="Stop (⏹)">⏹</button>
+          <button id="btn-audio-next" class="deck-btn" title="Next Track (⏭)">⏭</button>
+          <button id="btn-audio-loop" class="deck-btn active" title="Toggle Loop (🔁)">🔁</button>
+        </div>
+
+        <div id="deck-visualizer" class="deck-visualizer-mini">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="deck-volume-controls">
+          <button id="btn-audio-mute" class="deck-btn btn-mute" title="Mute / Unmute">🔊</button>
+          <input type="range" id="deck-vol-slider" class="deck-slider vol-slider" min="0" max="1" step="0.05" value="0.75" aria-label="Volume">
+        </div>
+      </div>
+
+      <!-- Playlist Selection Tabs -->
+      <div class="deck-playlist-tabs">
+        <button class="deck-tab active" data-track="0">🧘 Alpha Focus (10Hz)</button>
+        <button class="deck-tab" data-track="1">⚡ Beta Crunch (14Hz)</button>
+        <button class="deck-tab" data-track="2">🌌 Cyber SOC Drone</button>
+        <button class="deck-tab" data-track="3">🌙 Theta Cooldown</button>
+      </div>
+
+      <!-- Native Audio Element -->
+      <audio id="global-focus-audio" preload="auto" loop></audio>
+    </div>
+
     <!-- Input Bar -->
     <div class="input-area glass">
       <div class="input-wrapper">
@@ -542,6 +595,6 @@
 <!-- Firebase Auth SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-<script src="js/app.js?v=2.1.2"></script>
+<script src="js/app.js?v=2.1.3"></script>
 </body>
 </html>

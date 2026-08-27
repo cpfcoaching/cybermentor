@@ -430,6 +430,11 @@ document.querySelectorAll('.quick-action-btn').forEach(btn => {
       handleDeleteProfile();
       return;
     }
+    if (btn.id === 'btn-lyria-music') {
+      openFocusDeck(0);
+      addAgentMessage(`### 🎧 Focus Music Studio Activated!\n\nI've opened the **CyberMentor Focus Music Player** below with full media controls:\n\n* **Track 1:** Deep Focus Alpha (10Hz Binaural Beats · 60 BPM)\n* **Track 2:** Beta Exam Crunch (14Hz Active Problem Solving)\n* **Track 3:** Cyber SOC Night Drone (7.83Hz Schumann Resonance)\n* **Track 4:** Solfeggio Theta Cooldown (6Hz Relaxation)\n\n*Use the media buttons below to Play (▶), Pause (⏸), Stop (⏹), Next/Prev (⏮/⏭), Loop (🔁), Seek, and adjust Volume (🔊)!*`);
+      return;
+    }
     const prompt = btn.dataset.prompt;
     if (prompt && !isStreaming) {
       messageInput.value = prompt;
@@ -1405,5 +1410,225 @@ function updateAudioPlayerUI(playing, mood = 'focus', activeBtn = null) {
   if (activeBtn) {
     activeBtn.classList.add('active');
   }
+}
+
+// ── Focus Studio Music Deck Engine with Full Media Controls ──────────────
+const FOCUS_PLAYLIST = [
+  {
+    title: 'Deep Focus Alpha (10Hz Binaural Beats)',
+    tag: 'Alpha Flow · 60 BPM Ambient Synth',
+    src: 'audio/track1_deep_focus_alpha.wav'
+  },
+  {
+    title: 'Beta Exam Crunch (14Hz Active Prep)',
+    tag: 'High-Retention Problem Solving',
+    src: 'audio/track2_beta_exam_crunch.wav'
+  },
+  {
+    title: 'Cyber SOC Night Drone (7.83Hz Schumann)',
+    tag: 'Dark Ambient Lab & Terminal Focus',
+    src: 'audio/track3_cyber_soc_drone.wav'
+  },
+  {
+    title: 'Solfeggio Theta Cooldown (6Hz Relaxation)',
+    tag: 'Post-Study Restoration Pad',
+    src: 'audio/track4_theta_cooldown.wav'
+  }
+];
+
+let currentTrackIndex = 0;
+let isAudioMuted = false;
+let previousVolume = 0.75;
+
+const focusDeck       = document.getElementById('focus-studio-deck');
+const globalAudio     = document.getElementById('global-focus-audio');
+const deckTitle       = document.getElementById('deck-track-title');
+const deckTag         = document.getElementById('deck-track-tag');
+const deckStatus      = document.getElementById('deck-status');
+const deckSeekBar     = document.getElementById('deck-seek-bar');
+const deckCurTime     = document.getElementById('deck-current-time');
+const deckDuration    = document.getElementById('deck-duration');
+const deckPlayBtn     = document.getElementById('btn-audio-play');
+const deckStopBtn     = document.getElementById('btn-audio-stop');
+const deckPrevBtn     = document.getElementById('btn-audio-prev');
+const deckNextBtn     = document.getElementById('btn-audio-next');
+const deckLoopBtn     = document.getElementById('btn-audio-loop');
+const deckMuteBtn     = document.getElementById('btn-audio-mute');
+const deckVolSlider   = document.getElementById('deck-vol-slider');
+const deckVisualizer  = document.getElementById('deck-visualizer');
+const btnCloseDeck    = document.getElementById('btn-close-deck');
+const deckTabs        = document.querySelectorAll('.deck-tab');
+
+function formatAudioTime(secs) {
+  if (isNaN(secs)) return '0:00';
+  const m = Math.floor(secs / 60);
+  const s = Math.floor(secs % 60);
+  return `${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
+function loadTrack(index, autoplay = true) {
+  if (index < 0) index = FOCUS_PLAYLIST.length - 1;
+  if (index >= FOCUS_PLAYLIST.length) index = 0;
+  currentTrackIndex = index;
+
+  const track = FOCUS_PLAYLIST[index];
+  if (deckTitle) deckTitle.textContent = track.title;
+  if (deckTag) deckTag.textContent = track.tag;
+  if (globalAudio) {
+    globalAudio.src = track.src;
+    globalAudio.load();
+    if (autoplay) {
+      globalAudio.play().catch(e => console.log('Audio autoplay info:', e));
+    }
+  }
+
+  deckTabs.forEach((tab, i) => {
+    tab.classList.toggle('active', i === index);
+  });
+}
+
+function openFocusDeck(trackIndex = 0) {
+  if (focusDeck) {
+    focusDeck.classList.remove('hidden');
+  }
+  loadTrack(trackIndex, true);
+}
+window.openFocusDeck = openFocusDeck;
+
+if (globalAudio) {
+  globalAudio.volume = 0.75;
+
+  globalAudio.addEventListener('play', () => {
+    if (deckPlayBtn) deckPlayBtn.innerHTML = '⏸';
+    if (deckStatus) {
+      deckStatus.textContent = '● PLAYING';
+      deckStatus.classList.add('active');
+    }
+    if (deckVisualizer) deckVisualizer.classList.add('active');
+  });
+
+  globalAudio.addEventListener('pause', () => {
+    if (deckPlayBtn) deckPlayBtn.innerHTML = '▶';
+    if (deckStatus) {
+      deckStatus.textContent = '○ PAUSED';
+      deckStatus.classList.remove('active');
+    }
+    if (deckVisualizer) deckVisualizer.classList.remove('active');
+  });
+
+  globalAudio.addEventListener('timeupdate', () => {
+    if (globalAudio.duration) {
+      const cur = globalAudio.currentTime;
+      const dur = globalAudio.duration;
+      if (deckCurTime) deckCurTime.textContent = formatAudioTime(cur);
+      if (deckDuration) deckDuration.textContent = formatAudioTime(dur);
+      if (deckSeekBar) {
+        deckSeekBar.max = dur;
+        deckSeekBar.value = cur;
+      }
+    }
+  });
+
+  globalAudio.addEventListener('ended', () => {
+    if (!globalAudio.loop) {
+      loadTrack(currentTrackIndex + 1, true);
+    }
+  });
+}
+
+if (deckPlayBtn) {
+  deckPlayBtn.addEventListener('click', () => {
+    if (!globalAudio) return;
+    if (globalAudio.paused) {
+      if (!globalAudio.src) loadTrack(currentTrackIndex, true);
+      else globalAudio.play();
+    } else {
+      globalAudio.pause();
+    }
+  });
+}
+
+if (deckStopBtn) {
+  deckStopBtn.addEventListener('click', () => {
+    if (!globalAudio) return;
+    globalAudio.pause();
+    globalAudio.currentTime = 0;
+    if (deckSeekBar) deckSeekBar.value = 0;
+    if (deckCurTime) deckCurTime.textContent = '0:00';
+    if (deckStatus) {
+      deckStatus.textContent = '○ STOPPED';
+      deckStatus.classList.remove('active');
+    }
+  });
+}
+
+if (deckPrevBtn) {
+  deckPrevBtn.addEventListener('click', () => {
+    loadTrack(currentTrackIndex - 1, true);
+  });
+}
+
+if (deckNextBtn) {
+  deckNextBtn.addEventListener('click', () => {
+    loadTrack(currentTrackIndex + 1, true);
+  });
+}
+
+if (deckLoopBtn) {
+  deckLoopBtn.addEventListener('click', () => {
+    if (!globalAudio) return;
+    globalAudio.loop = !globalAudio.loop;
+    deckLoopBtn.classList.toggle('active', globalAudio.loop);
+  });
+}
+
+if (deckSeekBar) {
+  deckSeekBar.addEventListener('input', () => {
+    if (globalAudio) {
+      globalAudio.currentTime = parseFloat(deckSeekBar.value);
+    }
+  });
+}
+
+if (deckVolSlider) {
+  deckVolSlider.addEventListener('input', () => {
+    if (globalAudio) {
+      const vol = parseFloat(deckVolSlider.value);
+      globalAudio.volume = vol;
+      isAudioMuted = vol === 0;
+      if (deckMuteBtn) deckMuteBtn.textContent = vol === 0 ? '🔇' : (vol < 0.5 ? '🔉' : '🔊');
+    }
+  });
+}
+
+if (deckMuteBtn) {
+  deckMuteBtn.addEventListener('click', () => {
+    if (!globalAudio) return;
+    if (isAudioMuted) {
+      globalAudio.volume = previousVolume || 0.75;
+      if (deckVolSlider) deckVolSlider.value = globalAudio.volume;
+      deckMuteBtn.textContent = '🔊';
+      isAudioMuted = false;
+    } else {
+      previousVolume = globalAudio.volume;
+      globalAudio.volume = 0;
+      if (deckVolSlider) deckVolSlider.value = 0;
+      deckMuteBtn.textContent = '🔇';
+      isAudioMuted = true;
+    }
+  });
+}
+
+deckTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const idx = parseInt(tab.dataset.track, 10);
+    loadTrack(idx, true);
+  });
+});
+
+if (btnCloseDeck) {
+  btnCloseDeck.addEventListener('click', () => {
+    if (focusDeck) focusDeck.classList.add('hidden');
+  });
 }
 
