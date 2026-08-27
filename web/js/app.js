@@ -31,16 +31,15 @@ const statusText        = document.getElementById('status-text');
 const progressList      = document.getElementById('progress-list');
 
 // ── Google SSO & MFA Login ────────────────────────────────────────────────
-// ── Google SSO & MFA Login ────────────────────────────────────────────────
 function handleGoogleSso(e) {
   if (e && e.preventDefault) e.preventDefault();
+
   const ssoModal = document.getElementById('google-sso-overlay');
   if (ssoModal) {
     ssoModal.classList.remove('hidden');
     const input = document.getElementById('custom-google-email');
     if (input) input.focus();
   } else {
-    // Fallback
     initSessionWithUser('Christophe_Foulon', 'google_sso_verified_token', false);
   }
 }
