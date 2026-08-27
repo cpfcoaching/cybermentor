@@ -331,6 +331,8 @@ document.querySelectorAll('.quick-action-btn').forEach(btn => {
         renderSkillsMindmap();
         renderCertsMindmap();
       }
+      return;
+    }
     if (btn.id === 'btn-privacy-policy') {
       const privacyOverlay = document.getElementById('privacy-overlay');
       if (privacyOverlay) {
