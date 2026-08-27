@@ -184,9 +184,33 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const totpInput = document.getElementById('mfa-totp-input');
+  const mfaError = document.getElementById('mfa-error-msg');
+
+  function completeMfaVerification() {
+    const rawCode = totpInput ? totpInput.value.trim() : '';
+    const cleanCode = rawCode.replace(/[\s-]+/g, '');
+
+    if (!cleanCode || !/^\d{6}$/.test(cleanCode)) {
+      if (mfaError) {
+        mfaError.textContent = "⚠️ Please enter a valid 6-digit Authenticator code (e.g. 749201)";
+        mfaError.classList.remove('hidden');
+      }
+      if (totpInput) totpInput.focus();
+      return;
+    }
+
+    if (mfaError) mfaError.classList.add('hidden');
+    initSessionWithUser(pendingSsoUser, 'google_sso_mfa_verified_token', false);
+  }
+
   if (btnVerifyMfa) {
-    btnVerifyMfa.addEventListener('click', () => {
-      initSessionWithUser(pendingSsoUser, 'google_sso_mfa_verified_token', false);
+    btnVerifyMfa.addEventListener('click', completeMfaVerification);
+  }
+
+  if (totpInput) {
+    totpInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') completeMfaVerification();
     });
   }
 

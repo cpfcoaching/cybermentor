@@ -223,6 +223,7 @@ async def chat(request: ChatRequest):
 
 
 @router.get("/history/{user_id}")
+@router.get("/chat/history/{user_id}")
 async def get_history(user_id: str, session_id: str | None = None):
     """
     Retrieve past conversation messages for a user from Cloud Firestore database.
