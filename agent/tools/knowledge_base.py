@@ -144,6 +144,10 @@ def get_cited_resources() -> str:
     - Direct and indirect prompt injection threat vectors, delimiter protections, and defensive mitigation frameworks.
 
 15. **OWASP GenAI Security Checklist & Guide**: [https://genai.owasp.org/download/44348/?tmstv=1734330814](https://genai.owasp.org/download/44348/?tmstv=1734330814)
-    - Comprehensive governance, security audit checklist, and operational readiness guide for Generative AI applications."""
+    - Comprehensive governance, security audit checklist, and operational readiness guide for Generative AI applications.
+
+16. **OWASP Top 10 Web Application Security Risks**: [https://owasp.org/Top10/2025/](https://owasp.org/Top10/2025/)
+    - Foundational global security benchmark for securing web applications, APIs, authentication, and backend infrastructure."""
+
 
 
