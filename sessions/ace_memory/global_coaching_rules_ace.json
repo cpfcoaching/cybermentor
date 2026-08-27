@@ -1,0 +1,35 @@
+{
+  "notes": [
+    {
+      "category": "coaching_reflection",
+      "content": "Footer Branding Policy: Core UI footer MUST ONLY state Powered by Breaking Into Cybersecurity with link to breakingintocybersecurity.org. Secondary resources belong in the Resources & Citations modal.",
+      "importance": 5,
+      "timestamp": "2026-08-27T16:28:17.547655+00:00"
+    },
+    {
+      "category": "coaching_reflection",
+      "content": "Session Storage Policy: Authenticated Google SSO users save conversation history to Cloud Firestore. Temporary screen names run in Guest Mode (no Firestore history saved across sessions, ACE memory operates in-memory).",
+      "importance": 5,
+      "timestamp": "2026-08-27T16:28:18.626486+00:00"
+    },
+    {
+      "category": "coaching_reflection",
+      "content": "Footer Branding Policy: Core UI footer MUST ONLY state Powered by Breaking Into Cybersecurity with link to breakingintocybersecurity.org. Secondary resources belong in the Resources & Citations modal.",
+      "importance": 5,
+      "timestamp": "2026-08-27T16:28:24.030937+00:00"
+    },
+    {
+      "category": "coaching_reflection",
+      "content": "Session Storage Policy: Authenticated Google SSO users save conversation history to Cloud Firestore. Temporary screen names run in Guest Mode (no Firestore history saved across sessions, ACE memory operates in-memory).",
+      "importance": 5,
+      "timestamp": "2026-08-27T16:28:24.660232+00:00"
+    }
+  ],
+  "strategy_reflections": [
+    {
+      "reflection": "Consolidated system rules for footer branding and dual guest vs authenticated session storage policies.",
+      "adjustments": "Strictly enforce Breaking Into Cybersecurity footer branding and Firestore session isolation.",
+      "timestamp": "2026-08-27T16:28:24.660856+00:00"
+    }
+  ]
+}
