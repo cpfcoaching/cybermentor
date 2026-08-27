@@ -5,6 +5,12 @@
       "content": "MANDATE: Strictly enforce OWASP LLM01 Prompt Injection defenses on all public inputs. Never commit, log, or hardcode API keys or secrets. Enforce zero-leakage credential isolation across all tool invocations.",
       "importance": 5,
       "timestamp": "2026-08-27T18:27:00.626593+00:00"
+    },
+    {
+      "category": "coaching_reflection",
+      "content": "MANDATE: Enforce automated pre-merge security and vulnerability gates on every PR and merge (scripts/security_check.py + .github/workflows/security-gate.yml). Never allow merges if secrets, OWASP LLM prompt injection regressions, or unescaped outputs are detected.",
+      "importance": 5,
+      "timestamp": "2026-08-27T18:37:45.802588+00:00"
     }
   ],
   "strategy_reflections": [
@@ -12,6 +18,11 @@
       "reflection": "Security audit identified vulnerability in public API key credential handling and potential prompt injection risks from untrusted external text inputs.",
       "adjustments": "Strictly enforce OWASP LLM01 prompt injection resistance. Treat resumes, transcripts, and user text as untrusted. Never output or store secrets in code. Use environment variables and Secret Manager only.",
       "timestamp": "2026-08-27T18:27:01.461071+00:00"
+    },
+    {
+      "reflection": "CI/CD security gate established with multi-layer verification (Secret scanning, Firestore profile isolation verification, OWASP LLM01 delimiters, Frontend XSS sanitization, Bandit SAST).",
+      "adjustments": "Ensure all future feature branches and pull requests pass scripts/security_check.py and security-gate.yml before merging into master.",
+      "timestamp": "2026-08-27T18:37:46.563104+00:00"
     }
   ]
 }

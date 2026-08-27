@@ -10,5 +10,11 @@
     "anonymized_insight": "Security audit identified vulnerability in public API key credential handling and potential prompt injection risks from untrusted external text inputs.",
     "pedagogical_adjustment": "Strictly enforce OWASP LLM01 prompt injection resistance. Treat resumes, transcripts, and [ANON_CANDIDATE] as untrusted. Never output or store secrets in code. Use environment variables and Secret Manager only.",
     "timestamp": "2026-08-27T18:27:01.461265+00:00"
+  },
+  {
+    "domain_tag": "general",
+    "anonymized_insight": "CI/CD security gate established with multi-layer verification (Secret scanning, Firestore profile isolation verification, OWASP LLM01 delimiters, Frontend XSS sanitization, Bandit SAST).",
+    "pedagogical_adjustment": "Ensure all future feature branches and pull requests pass scripts/security_check.py and security-gate.yml before merging into master.",
+    "timestamp": "2026-08-27T18:37:46.563336+00:00"
   }
 ]
