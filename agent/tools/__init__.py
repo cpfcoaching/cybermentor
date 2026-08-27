@@ -8,6 +8,9 @@ from agent.tools.interview_coach import get_interview_question, evaluate_answer
 from agent.tools.cert_advisor import recommend_certifications
 from agent.tools.progress_tracker import save_user_progress, get_user_progress
 
+# ACE Memory & Self-Optimization Cognitive Framework
+from agent.tools.ace_memory import save_agent_note, get_agent_memory, optimize_coaching_strategy
+
 # Bonus: Google AI model integrations
 from agent.tools.veo_generator import generate_cert_explainer_video, generate_role_preview_video
 from agent.tools.lyria_composer import generate_study_music, generate_cert_celebration_jingle
@@ -23,6 +26,10 @@ __all__ = [
     "recommend_certifications",
     "save_user_progress",
     "get_user_progress",
+    # ACE Cognitive Memory Framework
+    "save_agent_note",
+    "get_agent_memory",
+    "optimize_coaching_strategy",
     # Veo (video generation)
     "generate_cert_explainer_video",
     "generate_role_preview_video",

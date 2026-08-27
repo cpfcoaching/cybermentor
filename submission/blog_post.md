@@ -250,6 +250,6 @@ CyberMentor solves a real problem I care about. That's the only kind of project 
 
 → **[Try CyberMentor](https://cybermentor-1019457807345.us-central1.run.app)**
 → **[GitHub Repository](https://github.com/christophe-foulon/cybermentor)**
-→ **[Breaking Into Cyber](https://breakingintocyber.com)**
+→ **[Breaking Into Cybersecurity](https://breakingintocybersecurity.org)**
 
 *Built for the All Things Agentic Hackathon by Google Cloud | #AllThingsAgenticHackathon*

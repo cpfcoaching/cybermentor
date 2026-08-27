@@ -3,7 +3,7 @@
 > Built for the **All Things Agentic Hackathon** | Track: **The Collaborative Partner**  
 > Powered by **Google Antigravity SDK** · **Gemini 3.5** · **Firestore** · **Cloud Run**
 
-CyberMentor is an autonomous AI career coaching agent tailored to the [Breaking Into Cyber](https://breakingintocyber.com) brand. It guides aspiring cybersecurity professionals through every stage of their journey — from choosing the right certification path to practicing technical interview answers — while remembering your progress across every session.
+CyberMentor is an autonomous AI career coaching agent tailored to the [Breaking Into Cybersecurity](https://breakingintocybersecurity.org) brand. It guides aspiring cybersecurity professionals through every stage of their journey — from choosing the right certification path to practicing technical interview answers — while remembering your progress across every session.
 
 ---
 
@@ -15,7 +15,8 @@ CyberMentor is an autonomous AI career coaching agent tailored to the [Breaking 
 | 📅 **Study Planner** | Generates week-by-week study plans for Security+, CISSP, OSCP, and more |
 | 📄 **Resume Analyzer** | Reviews your resume and identifies gaps for cybersecurity roles |
 | 🎤 **Interview Coach** | Drills you on technical and behavioral questions with scored feedback |
-| 🧠 **Persistent Memory** | Remembers your goals and progress across every session via Firestore |
+| 🧠 **ACE Memory & Self-Optimization** | Takes structured memory notes & continuously adapts coaching strategy |
+| 💾 **Persistent Memory** | Remembers your goals, notes, and progress across every session via Firestore |
 
 ---
 
@@ -88,4 +89,4 @@ gcloud config set project YOUR_PROJECT_ID
 
 ## 👤 Author
 
-Built by **Christophe Foulon** | [Breaking Into Cyber](https://breakingintocyber.com)
+Built by **Christophe Foulon** | [Breaking Into Cybersecurity](https://breakingintocybersecurity.org)

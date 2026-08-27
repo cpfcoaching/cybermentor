@@ -34,7 +34,7 @@ Breaking into cybersecurity is genuinely hard — and not because the field is i
 - Interview prep is scattered. Mock interviews cost money, and there's no feedback loop when you practice alone.
 - Progress is invisible. Without someone tracking your wins and reminding you how far you've come, it's easy to quit.
 
-I've spent years at [Breaking Into Cyber](https://breakingintocyber.com) helping people navigate exactly this — through YouTube content, mentorship, and courses. CyberMentor is the autonomous agent version of that work: available 24/7, personalized to each user, and powered by the same content and philosophy that's already helped thousands of people break in.
+I've spent years at [Breaking Into Cybersecurity](https://breakingintocybersecurity.org) helping people navigate exactly this — through YouTube content, mentorship, and courses. CyberMentor is the autonomous agent version of that work: available 24/7, personalized to each user, and powered by the same content and philosophy that's already helped thousands of people break in.
 
 ---
 
@@ -337,4 +337,4 @@ See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the full Mermaid diagram. Summary:
 
 ---
 
-*Built by Christophe Foulon · Breaking Into Cyber · All Things Agentic Hackathon 2026*
+*Built by Christophe Foulon · Breaking Into Cybersecurity · All Things Agentic Hackathon 2026*

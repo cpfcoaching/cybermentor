@@ -20,6 +20,10 @@ from agent.tools import (
     recommend_certifications,
     save_user_progress,
     get_user_progress,
+    # ACE Cognitive Memory & Continual Evolution Architecture
+    save_agent_note,
+    get_agent_memory,
+    optimize_coaching_strategy,
     # Veo — video generation
     generate_cert_explainer_video,
     generate_role_preview_video,
@@ -53,6 +57,10 @@ ALL_TOOLS = [
     recommend_certifications,
     save_user_progress,
     get_user_progress,
+    # ── ACE Cognitive Memory & Continual Evolution ─────────────────────────
+    save_agent_note,                 # Save structured long-term notes & candidate observations
+    get_agent_memory,                # Retrieve candidate memory notes & strategy reflections
+    optimize_coaching_strategy,      # Continuously adapt & optimize coaching strategy
     # ── Veo: video generation (Google AI bonus) ────────────────────────────
     generate_cert_explainer_video,   # "Show me what Security+ covers" → video
     generate_role_preview_video,     # "What does a SOC analyst do?" → video
@@ -75,7 +83,7 @@ def create_cybermentor_agent(
     Create and return a fully configured CyberMentor agent.
 
     The agent is equipped with:
-    - Gemini 3.5 (via Antigravity SDK default)
+    - Gemini 3.5 / 2.5 (via Antigravity SDK default or Vertex AI)
     - 15 custom tools across core coaching + Veo + Lyria + Gemma
     - Persistent conversation state via save_dir
 
@@ -95,6 +103,17 @@ def create_cybermentor_agent(
         tools=ALL_TOOLS,
         save_dir=save_dir,
     )
+
+    api_key = os.getenv("GEMINI_API_KEY", "")
+    project_id = os.getenv("GOOGLE_CLOUD_PROJECT", "cybermentor-506813")
+
+    if api_key and not "placeholder" in api_key.lower() and not "your_" in api_key.lower():
+        config_kwargs["api_key"] = api_key
+    else:
+        config_kwargs["vertex"] = True
+        config_kwargs["project"] = project_id
+        config_kwargs["location"] = os.getenv("GOOGLE_CLOUD_REGION", "us-central1")
+        config_kwargs["model"] = "gemini-2.5-flash"
 
     if conversation_id:
         config_kwargs["conversation_id"] = conversation_id
