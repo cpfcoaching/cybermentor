@@ -8,6 +8,7 @@ Supports Server-Sent Events (SSE) for real-time streaming responses.
 import asyncio
 import json
 import logging
+import os
 import pathlib
 import uuid
 from contextlib import asynccontextmanager
