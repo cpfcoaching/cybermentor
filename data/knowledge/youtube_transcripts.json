@@ -8,7 +8,7 @@
     "host": "Christophe Foulon",
     "category": "career_strategy",
     "key_takeaways": [
-      "Cybersecurity is an outcome, not an entry-level job title — transferrable skills matter immensely.",
+      "Cybersecurity is an outcome, not an entry-level job title \u2014 transferrable skills matter immensely.",
       "Identify whether your strengths align with technical operations (SOC/Infra), risk/compliance (GRC), or offensive testing (Pentesting).",
       "Do not rely solely on certifications; practical home labs and documented projects build real credibility."
     ],
@@ -72,7 +72,7 @@
       "Master core technical fundamentals: OSI model 7 layers, TCP 3-way handshake, DNS, DHCP, IDS vs IPS.",
       "It is acceptable to say 'I don't know the answer, but here is how I would investigate it.'"
     ],
-    "transcript": "Interviewers aren't just checking if you know command flags — they want to see your troubleshooting methodology. When asked how you'd investigate a suspicious IP, walk through your process step-by-step: check firewall logs, query Threat Intel feeds (VirusTotal, AlienVault OTX), isolate the endpoint, and document the incident timeline. For behavioral questions, highlight how you collaborate under pressure, resolve conflict, and stay updated on emerging threat vectors."
+    "transcript": "Interviewers aren't just checking if you know command flags \u2014 they want to see your troubleshooting methodology. When asked how you'd investigate a suspicious IP, walk through your process step-by-step: check firewall logs, query Threat Intel feeds (VirusTotal, AlienVault OTX), isolate the endpoint, and document the incident timeline. For behavioral questions, highlight how you collaborate under pressure, resolve conflict, and stay updated on emerging threat vectors."
   },
   {
     "video_id": "BIC-EP006",
@@ -148,5 +148,805 @@
       "Find mentors by asking specific, thoughtful questions rather than vague 'can you mentor me?' requests."
     ],
     "transcript": "No one in cybersecurity knows everything. The field is too vast. When you feel imposter syndrome, remember that curiosity and continuous learning are what matter. Attend local BSides conferences, participate in capture the flag (CTF) competitions, and engage with mentors on LinkedIn. When reaching out to a mentor, introduce yourself, state your specific goal, and ask a focused question. The community is eager to help those who demonstrate initiative."
+  },
+  {
+    "video_id": "VOGZhurW6gU",
+    "title": "AI + Enterprise Strategy | Shan Kulkarni | BIC",
+    "published_at": "2026-06-19T17:37:18Z",
+    "description": "How is AI redefining value in the enterprise? Discover why humans must shift from knowledge work to intuition-based value creation in this deep dive.\\n\\nKey Takeaways:\\n- Understand the shift from SaaS knowledge work to AI-driven efficiency.\\n- Discover the transition from knowledge work to intuition-based tasks.\\n- Learn how modern enterprises measure and define value in the age of AI.\\n- Gain insights into cybersecurity implications of AI integration.\\n- Develop strategies to future-proof your",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI + Enterprise Strategy | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "really starting to to define differently now how enterprises create value, right? Like previously humans were using SAS to perform knowledge work, make them more efficient. Now they're noticing that AI is actually better at performing that knowledge work. So humans have to now move to perform a kind of intuition work. So enterprises in general are kind of at this turning point of like, \"Well, how do we even How do we measure value? How do we create value? How do we define what value is?\"",
+    "url": "https://youtube.com/watch?v=VOGZhurW6gU"
+  },
+  {
+    "video_id": "PzccUovaYak",
+    "title": "AI + Threat Mitigation | Jeremiah Baker | BIC",
+    "published_at": "2026-06-19T17:37:14Z",
+    "description": "None of your internal business chats are safe when cybercriminals weaponize AI for extortion. Key Takeaways: - Learn how bad actors use AI to scan internal chat logs for corporate liabilities. - Discover the risks of executive negligence and how it feeds ransomware extortion demands. - Understand the mechanism behind a $300,000 AI-accelerated extortion scam. - Identify strategies to secure admin credentials against compromise. - Implement proactive threat mitigation to protect your board and exe",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI + Threat Mitigation | Jeremiah Baker | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "And extortion is another thing that's really a really big big problem that's, you know, equal to kind of how ransomware works but a little differently and where they will they for example one use case is a very popular internal chat tool inside of a business was compromised through the person that had admin rights. AI was then used to scour all the conversations looking for compromising dialogue between employees and they hit Eureka. They had bingo, we found something the bad guys. And what they found was a communication where a um junior person was reporting up to I believe it was the CFO about something that didn't quite seem right and they were told to ignore it more than once and the bad guys that cyber criminal screen captured that and then sent it to the CFO saying you can get in really big trouble and if you don't pay us $300,000 and pick your form of cryptocurrency, we're going to report this up to the board and to the CEO and to the legal authority. So seeing AI being used to really accelerate what I would consider the most consistent cyber scam",
+    "url": "https://youtube.com/watch?v=PzccUovaYak"
+  },
+  {
+    "video_id": "aQjVs-gdl4A",
+    "title": "Self-Serve DevSecOps Strategy | Shan Kulkarni",
+    "published_at": "2026-06-19T17:37:09Z",
+    "description": "How can you scale security without slowing down engineering? In this episode, Shan Kulkarni shares how to distribute security ownership and implement self-serve security guidance.\n\nKey Takeaways:\n- Shift security ownership directly to engineering teams\n- Productize Amazon's proven security guidance philosophy\n- Build tooling that safely tests and breaks software\n- Enable self-serve security to reduce developer friction\n- Scale operations through automated security guardrails\n\nTimestamps:\n0:00 - ",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Self-Serve DevSecOps Strategy | Shan Kulkarni'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "So, building tooling, building software that breaks other software was very interesting to me. I think what for example what we're trying to do with with Nullify is productizing a philosophy that was very very successful in Amazon called security guidance. And so security guidance was I think the first model where, you know, engineering teams were able to self-serve security and security was able to distribute that ownership all the way throughout engineering teams very very successfully.",
+    "url": "https://youtube.com/watch?v=aQjVs-gdl4A"
+  },
+  {
+    "video_id": "vLHQ4PxiTtw",
+    "title": "AI + SecOps Strategy | Shan Kulkarni | BIC",
+    "published_at": "2026-06-19T17:37:05Z",
+    "description": "Discover how modern engineering teams are scaling security through gamification and AI-driven automation. Learn how CISOs are shifting towards lean, generalist security teams leveraging cutting-edge AI agents to maximize defense coverage.\n\nIn this episode, you will learn:\n- How to gamify security to drive ownership across engineering teams\n- Strategies for utilizing scoreboards to accelerate vulnerability resolution\n- Why CISOs prefer lean, generalist staff-level security engineers with AI tools",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI + SecOps Strategy | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "engineering teams were able to self-serve security and security was able to distribute that ownership all the way throughout engineering teams very, very successfully. One of them was like gamifying that kind of goal. So, they would have scoreboards and kind of measure against teams like who was fixing the most vulnerabilities and which workloads were the most secure and which were the most secure on average and taking the shortest time to keep things keep vulnerabilities fixed. What I'm hearing from a lot of CISOs is like they would rather hire a smaller number of generalist kind of staff level security engineers and then get them to adopt a lot of AI tools to improve their coverage and their their their their output. And I built a open brain system for myself where I use an agent and kind of like a super base back brain between the different MCPs and sub agents to kind of analyze tasks between my email and Claude and other things to to keep me",
+    "url": "https://youtube.com/watch?v=vLHQ4PxiTtw"
+  },
+  {
+    "video_id": "khQTKlIU9h4",
+    "title": "AI Agents + SecOps Strategy | Shan Kulkarni | BIC",
+    "published_at": "2026-06-19T17:37:00Z",
+    "description": "Unlock next-level SecOps efficiency with none of the manual overhead using AI agents.\n\nIn this episode, Shan Kulkarni discusses how security teams can leverage agentic workflows and LLMs to automate manual tasks and 10x their output.\n\nKey Takeaways:\n- How to integrate Claude into your daily security priorities and workflows\n- Leveraging open-source AI agents to automate security engineering tasks\n- Transitioning manual security playbooks into automated agentic runs\n- Practical strategies for lea",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI Agents + SecOps Strategy | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "I talked to a head of security the other day that said, you know, he has called like Regal's emails, Regal's Slack messages, you know, like bubble up tasks and initiatives and >> [snorts] >> you know, pieces of work and activities that are really critical. So, you know, like giving Claude access and giving Claude contacts about, you know, all the different priorities in the security program, all the different initiatives. I think that's definitely one thing that like it would serve would serve well, serve you well. Like practitioners are getting creative and you know, publishing like open source projects around yeah, like ways that you are using a using AI or using agents to basically save you time and kind of like help you operate at like a higher level of functioning and a higher level of um yeah, just like speed in like your day-to-day tasks and you like just what we're seeing today like the ability the the yeah, ability for Claude to like reason and and remember things and these kind of agentic systems that remember things and know what to do and what the next task or the the next best thing to do is and then also if you give it the right tooling and the right access like, you know, actually go and perhaps do those things means that like security teams can handle a lot more work at the same time than [snorts] they were able to before, which is definitely exciting. So, yeah, if I was a security practitioner, I would just be um you know, like publishing open source projects like, hey, you know, this is this agent that I built to, you know, automate these workflows, automate these um practices or playbooks that like I've often done manually and now it's maybe better than me at doing it and this is how you you in a in a security team which maybe don't have doesn't have that many security engineers can also adopt adopt it or or use that to be more",
+    "url": "https://youtube.com/watch?v=khQTKlIU9h4"
+  },
+  {
+    "video_id": "dueOQlFNQkI",
+    "title": "AI + Business Value Strategy | Shan Kulkarni | BIC",
+    "published_at": "2026-06-19T17:36:56Z",
+    "description": "How do you bridge the gap between technical security and business value? Learn how to speak the language of business stakeholders and secure your seat at the decision-making table.\\n\\nKey Takeaways:\\n- Discover how to align security strategies with core business goals.\\n- Learn the art of translating complex cybersecurity metrics into stakeholder value.\\n- Explore methods to engage business leaders in the security journey.\\n- Understand how artificial intelligence drives modern business value.\\n",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI + Business Value Strategy | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "It's never been more important to understand how all the stakeholders of the business really really care about and then like where does that leave me in security? You know, where does that leave leave security and does it mean that I have to do more or less to kind of have a seat at the table or get them interested or get them engaged in security or you know, do I have to speak their language? What does that look like in order to get them on the security journey so to speak? I think that's really important.",
+    "url": "https://youtube.com/watch?v=dueOQlFNQkI"
+  },
+  {
+    "video_id": "LB-YnibPX0s",
+    "title": "AI Agents + SecOps Strategy | Nikhil Agarwal | BIC",
+    "published_at": "2026-06-19T17:36:52Z",
+    "description": "Can AI agents completely replace traditional security teams? Nikhil Agarwal shares how he uses autonomous GRC and SecOps agents to scale operations without hiring interns, while maintaining the crucial human-in-the-loop.\n\nKey Takeaways:\n- How AI agents are transforming traditional GRC analyst and security engineering roles.\n- The reality of scaling cybersecurity operations with zero full-time interns.\n- Why the human-in-the-loop model is critical to prevent AI hallucinations.\n- Practical steps t",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI Agents + SecOps Strategy | Nikhil Agarwal | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "the AI space is running like anything. I am expanding myself by creating my own AI security team. So, I have a lot of agents which are working as a security engineer for me and they are doing all the sort of jobs. I don't need interns or any other full-time employees to do the cybersecurity role. I have a GRC analyst agent who gives me an update on what are the software reports, what are the ISO findings which are not there. So, these kind of automation as I am I'm really personally enjoying a lot of these things and I think uh I just love AI means it it it could have been I was I'm just always like you know think that why we did not started early. Yes, yes. But, um I I like that. Well, make sure that there's the the human in the loop part because there's there's still a lot of hallucination that's happening.",
+    "url": "https://youtube.com/watch?v=LB-YnibPX0s"
+  },
+  {
+    "video_id": "wkv8RqJkzf0",
+    "title": "Dev to Binary Analyst | Steve Regester | BIC",
+    "published_at": "2026-06-19T17:36:48Z",
+    "description": "Discover how a single character can break an entire system and spark a lifelong passion for cybersecurity. In this episode, Steve Regester shares his journey into binary analysis and automation.\n\nWhat you will learn:\n- How to exploit and secure systems against SQL injection vulnerabilities.\n- The mindset shift required to pivot into binary analysis and automation roles.\n- Strategies for finding open secrets and hidden loopholes in modern applications.\n- Practical tips for mastering cybersecurity",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Dev to Binary Analyst | Steve Regester | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "And this dude put one character in it and broke the whole system. And that to me felt like magic. And I've always been attracted to magic. I've always been attracted to open secrets. To me, that felt like someone had just opened someone had just poked a hole just big enough for me to look through and ask the question, what's on the other side? And so I learned about SQL injection and I was like, \"Whoa. What? What? Like it was like what? Like my mind exploded, you know?",
+    "url": "https://youtube.com/watch?v=wkv8RqJkzf0"
+  },
+  {
+    "video_id": "b2IRy7nUFcQ",
+    "title": "DIY Reverse Engineering Guide | Steve Regester | BIC",
+    "published_at": "2026-06-19T17:36:45Z",
+    "description": "Discover how a simple comma shattered a developer's application and unlocked a lifelong passion for cybersecurity. In this episode, we dive deep into the mindset shift from writing code to breaking it.\\n\\nKey Takeaways:\\n- Understand the eye-opening power of SQL and code injection\\n- Learn how to adopt the mindset of an ethical hacker\\n- Discover how to identify and patch hidden system vulnerabilities\\n- Explore the transition from software development to cybersecurity\\n- Master DIY reverse engi",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'DIY Reverse Engineering Guide | Steve Regester | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "And so I sent one of them a link to the thing that I was building and I was like, \"Hey, check this out. I built this. It's really cool, right?\" And the first thing he did is he shoved a comma into the password form and broke it. >> [laughter] >> And and I was like I had this moment. I think that like you asked what what drives this what drives this you know this this attitude this this perspective on cybersecurity. That moment for me was really formative because I didn't understand what I was looking at. I had built this thing by hand myself, wrote every single line of code and checked every semicolon. And this dude put one character in it and broke the whole system. And that to me felt like magic. And I've always been attracted to magic. I've always been attracted to banned knowledge. I've always been attracted to uh open secrets. I've always been attracted to um you know, the unspoken truth that lives among us. You know what I mean? And to me that felt like someone had just opened someone had just poked a hole just big enough for me to look through and ask the question, \"What's on the other side?\" And so I learned about SQL injection and I was like, \"Whoa.\" What What like it would like what like my mind exploded, you know? I was like, \"Okay, well you can inject SQL. Can you inject JavaScript? You can inject JavaScript. Can you inject PHP? You can inject PHP. Can you And you know, I started going down this rabbit hole of like look at all the ways that I can put code into a system to make it do what I want it to do as opposed to what the original author had intended it to do.",
+    "url": "https://youtube.com/watch?v=b2IRy7nUFcQ"
+  },
+  {
+    "video_id": "OS4-IBF1W5E",
+    "title": "Build & Sell Security Products | Peter Schawacker | BIC",
+    "published_at": "2026-06-19T17:36:40Z",
+    "description": "Discover how aligning business principles with cybersecurity can accelerate your career and how building and validating your own products can open massive doors.\n\nKey Takeaways:\n- Why understanding business fundamentals is your ultimate superpower in cybersecurity.\n- The step-by-step process of building, sharing, and validating a product with real customers.\n- How to leverage nearshore talent to scale your security operations effectively.\n- Overcoming the imposter syndrome and admitting what you",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Build & Sell Security Products | Peter Schawacker | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "Build stuff. Build stuff and share with your friends. And then ask your friends, would you pay for this? And if they say yes, you say how much? And then you sell it to them. And if they'll buy it, then start marketing it. Right? The more you understand about business, the better off you are at everything. And the more like there are things I learned about security over the past 4 months that I just pretended I knew.",
+    "url": "https://youtube.com/watch?v=OS4-IBF1W5E"
+  },
+  {
+    "video_id": "dTmR8OR-X8I",
+    "title": "Community Networking Strategy | Justin Collins | BIC",
+    "published_at": "2026-06-19T17:36:28Z",
+    "description": "Discover how active community participation and high-visibility projects can land you top-tier roles without ever sending a cold resume.\n\nKey Takeaways:\n- How community involvement and presenting at meetups replaces traditional job applications.\n- Leveraging highly visible projects to naturally showcase your technical expertise.\n- Recognizing hidden networking cues that signal real interview opportunities.\n- Navigating intellectual property concerns when transitioning to entrepreneurship.\n- Stra",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Community Networking Strategy | Justin Collins | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=dTmR8OR-X8I! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=dTmR8OR-X8I"
+  },
+  {
+    "video_id": "sGG6rTrNg5w",
+    "title": "Ace Your Cyber Interview | Justin Collins | BIC",
+    "published_at": "2026-06-19T17:32:13Z",
+    "description": "How do you fail an interview when they give you the questions beforehand? Justin Collins joins us to share the shocking truth about candidate preparation and how you can easily stand out in the hiring process.\n\nKey Takeaways:\n- Learn why basic preparation is the biggest competitive advantage in cybersecurity.\n- Discover how to decode interview hints and study effectively.\n- Master the common technical questions hiring managers always ask.\n- Understand how to showcase your soft skills during the ",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Ace Your Cyber Interview | Justin Collins | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "I found out later I was one of the only people that, you know, they told me what was going to be on the test, right? They said, \"We're going to ask you about these topics.\" I looked them up and studied them and most of the candidates didn't. So that's really what got me started in the security space.",
+    "url": "https://youtube.com/watch?v=sGG6rTrNg5w"
+  },
+  {
+    "video_id": "GfVSXcJgXSQ",
+    "title": "DevSecOps Shipping Strategy | J. Collins | BIC",
+    "published_at": "2026-06-19T17:31:35Z",
+    "description": "None of the traditional security gates work when anyone can ship code in seconds. Learn how to secure modern CI/CD pipelines without slowing down innovation in this episode.\n\nKey Takeaways:\n- How to balance rapid software deployment with robust risk mitigation\n- Strategic alignment between engineering velocity and AppSec mandates\n- Identifying critical vulnerabilities in automated pipelines\n- Actionable advice for starting a career in Application Security\n- Why collaboration beats enforcement in",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'DevSecOps Shipping Strategy | J. Collins | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=GfVSXcJgXSQ! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=GfVSXcJgXSQ"
+  },
+  {
+    "video_id": "QYC5YCw7Azw",
+    "title": "Recruit From Conf Talks | Justin Collins | BIC",
+    "published_at": "2026-06-19T17:30:47Z",
+    "description": "None of the traditional job boards compare to this hidden hiring hack for cybersecurity. Discover how to recruit top-tier talent directly from conference presentations with Justin Collins.\\n\\nKey Takeaways:\\n- Why conference presentations are the ultimate proof of technical skill.\\n- How to bypass the traditional HR resume filter to find premium talent.\\n- Strategies for approaching speakers and building immediate rapport.\\n- Leveraging networking events to build a passive candidate pipeline.\\n-",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Recruit From Conf Talks | Justin Collins | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=QYC5YCw7Azw! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=QYC5YCw7Azw"
+  },
+  {
+    "video_id": "M-Afu17AEjI",
+    "title": "Get Noticed via Open Source | Justin Collins | BIC",
+    "published_at": "2026-06-19T17:29:58Z",
+    "description": "Want to stand out to cybersecurity recruiters without years of formal experience? Discover how contributing to open-source projects can skyrocket your visibility and launch your security career.\n\nKey Takeaways:\n- Why open-source contributions act as a public resume for security recruiters.\n- Practical steps to find and contribute to your first security project.\n- How to leverage open-source work to bypass entry-level experience barriers.\n- Building a high-impact portfolio that showcases your pra",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Get Noticed via Open Source | Justin Collins | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=M-Afu17AEjI! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=M-Afu17AEjI"
+  },
+  {
+    "video_id": "BAetbzulErs",
+    "title": "How I Landed a Sec Internship | Justin Collins",
+    "published_at": "2026-06-19T17:29:08Z",
+    "description": "Discover how mastering foundational web vulnerabilities can help you stand out and land a security internship. Justin Collins shares his blueprint for turning technical knowledge into real-world career opportunities.\n\nKey Takeaways:\n- How to leverage SQLi and XSS knowledge for interviews\n- Strategies to secure your first cybersecurity internship\n- Building a practical lab environment to test web vulnerabilities\n- Effective networking tips for aspiring security practitioners\n- Turning technical p",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'How I Landed a Sec Internship | Justin Collins'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=BAetbzulErs! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=BAetbzulErs"
+  },
+  {
+    "video_id": "rSbcV1fXiVs",
+    "title": "Scout Talks for Cyber Talent | Justin Collins | BIC",
+    "published_at": "2026-06-19T17:28:11Z",
+    "description": "How do top cybersecurity leaders find stellar talent without looking at resumes? Justin Collins joins us to reveal how scouting conference talks can unlock hidden talent pipelines.\n\nKey Takeaways:\n- Learn why conference speaking is the ultimate cheat code for landing a cybersecurity role.\n- Discover how hiring managers use presentation Q&As to evaluate technical and soft skills.\n- Gain strategies to craft compelling talk proposals that attract major industry recruiters.\n- Understand the shift fr",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Scout Talks for Cyber Talent | Justin Collins | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "Now, I'll tell you one of the things that I did, I went and looked at conference talks. Who's giving talks, right? Who's out there and visible? I can watch their talk, right? That gives me a sense of who they are, how you know, how they communicate. I can see their background, right? And then I hit them up on LinkedIn and say like, \"Hey, are you looking for a job? I have this role available.\" I did that quite a bit early beginning. This was a while back when it was hard to find people to hire. But that just shows you, right? I was looking for who's out there, right? Who's giving talks? Who's part of a community? Because that's who I want to bring in.",
+    "url": "https://youtube.com/watch?v=rSbcV1fXiVs"
+  },
+  {
+    "video_id": "LKvhjffxaT4",
+    "title": "Cyber Career Blueprint | Justin Collins | BIC",
+    "published_at": "2026-06-19T17:27:18Z",
+    "description": "Discover the essential strategies and mindset shifts needed to jumpstart your career in infosec with this exclusive highlight reel.\n\nKey Takeaways:\n- Map out your personalized cybersecurity career transition strategy\n- Leverage transferable skills to stand out to hiring managers\n- Identify high-value certifications that actually move the needle\n- Build an impactful professional network without awkward cold outreach\n- Create a practical portfolio that proves your hands-on technical abilities\n\nTim",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Cyber Career Blueprint | Justin Collins | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "In the middle of my PhD, my advisor told me, \"Hey, I'm running out of funding. So, you need to go get an internship, go get a job essentially.\" So, prior to that, I didn't have any security exper look up. And I think they said SQL injection and cross- sight scripting which were two terms I'd never heard before by taking static analysis courses and I thought well maybe I can apply this to the security space and program analysis especially on Ruby and Rails and so from there created a project it's called breakman uh open sourced it at the end of the internship and things kind of went from there. I would probably say the three main lessons I learned was don't spend too much on lawyers, which nowadays you don't need to anyway. It's all you can just their services that will just do everything for you. Hire a salesperson and hire a UX person, which we did do that. It's a an industry you can get into as long as you're interested and you have the desire to be a part of it. And you don't have to be coming in with previous knowledge of security. I met other folks there and one of those folks, his name was Alex Mullen. He was working at Twitter and he said, \"Hey, you should stop by Twitter sometime.\" Which I didn't know at the time was actually his code for, \"Hey, come interview.\" In fact, just one more anecdote, right? Everyone was very happy. They were getting paid a lot. It was very hard to find people. And I'll tell you, one of the things that I did, I went and looked at conference talks. who's giving talks, right? Who's out there invisible? I can watch their talk, right? That gives me a sense of who they are, how, you know, how they communicate. Yes. If you can find that thing that you're interested in and that gap where like, well, look, wow, no one's written up this documentation or it doesn't seem like anyone's digging into this. I absolutely agree that that's a way of building up a profile, showing expertise, showing people you can learn, you can grow, you can communicate and yeah, if you and I'm sure this has happened many times where you're like, well, you know, I'm at a company and we use that technology and look, you obviously know this technology because you've been writing about it, experimenting with it, you've been using it or contributing to it, they're going to want to talk to you or they're at least going to be more inclined to talk to you. So, you know, if you're looking for a challenge and you're looking to be involved in problems that haven't been solved yet, now's the time. Just got to be brave.",
+    "url": "https://youtube.com/watch?v=LKvhjffxaT4"
+  },
+  {
+    "video_id": "INezt3udSfo",
+    "title": "LLM Reasoning Guide | Justin Collins | BIC",
+    "published_at": "2026-06-19T17:26:07Z",
+    "description": "Can you trust AI in cybersecurity? Discover how to get LLMs to reason before answering with Justin Collins.\\n\\nKey Takeaways:\\n- Master LLM prompt engineering techniques for deeper reasoning.\\n- Reduce AI hallucinations in critical cybersecurity workflows.\\n- Implement logical verification steps in LLM-driven applications.\\n- Elevate your security operations with advanced AI hybridization.\\n- Leverage logical reasoning frameworks to secure enterprise data.\\n\\nTimestamps:\\n0:00 - LLM Reasoning Gu",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'LLM Reasoning Guide | Justin Collins | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "So, joined this company DryRun Security, which is building out essentially AI-powered code review, security code review. And um prior to joining I mean, you know, Augusto was a big AI adopter, really pushing it, but I hadn't touched it like in depth. Um and what I've really been finding is you know, it obviously people see a lot of stuff in the news. Um the anthropic likes to, you know, manipulate the software market with dropping bombs on everyone in cybersecurity. Um but reality is you can't just say AI, you know, make this thing secure, right? Or AI, you know, tell me where all the vulnerabilities are. It really takes a lot of orchestration. It takes a lot of injection of knowledge. Um one of the cool things I think about DryRun is it's founded by AppSec folks who have a lot of knowledge, they have a lot of experience with code review. And building that into a product is very interesting. It's interesting to learn things like um Pete on the team was telling me like, \"Hey, did you know like if you ask for a conclusion and then reasoning that the AI or you know, LLMs, we're only talking about LLMs, right? The LLM will justify its reason like regardless like it first of all like come up or sorry, justify its decision. So, if you like, you know, give me a yes no and then why first they'll be like, \"Yes.\" And then it will come up for a reason why it said yes, which is not at all what you want, right? You want to give me, you know, reason through it.",
+    "url": "https://youtube.com/watch?v=INezt3udSfo"
+  },
+  {
+    "video_id": "mv9YUa_mHp0",
+    "title": "Intern to Founder Guide | Justin Collins | BIC",
+    "published_at": "2026-06-19T17:24:37Z",
+    "description": "Can you scale your career from a simple intern to a cybersecurity founder with none of the traditional industry pedigree? Justin Collins shares the exact blueprint he used to build his own path in cybersecurity.\n\nKey Takeaways:\n- Transition from a cybersecurity intern to an industry founder successfully.\n- Essential technical and soft skills needed to launch a security startup.\n- How to overcome entry-level hurdles in the competitive infosec landscape.\n- Strategic networking tips to accelerate y",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Intern to Founder Guide | Justin Collins | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "Welcome to another episode of Breaking into Cyber Security, where we talk to cyber security professionals about what got them interested into tech and cyber to begin with, how they grew in their career, and then what challenges you're facing today. Today we have Justin Collins on with us today. Uh Justin, tell us a little bit about your career and uh what really got you interested in tech and cyber to begin with. >> Thanks Kristoff. Really happy to be here. Happy to share. Um I was one of those kids that got into computers pretty early, probably around 11, 12. uh taught myself programming, got really interested in it and ended up going to college for computer science and then kept going to graduate school again for computer science. Uh I was very into programming, programming languages. I thought that's what I wanted to do. Um and in the middle of my PhD, my advisor told me, \"Hey, um I'm running out of funding, so you need to go get an internship. Go get a job essentially. So again, at the time I was very into programming. Uh I was very into the Ruby programming language. So I looked for the local companies. Uh this was in Los Angeles. I looked for the local companies uh that were doing Ruby at the time. AT&T Interactive or yellow pages.com. They were kind of big in the Ruby community. They sponsored a lot of conferences. I saw their name, their logo on videos. So I applied to all of their internships and the team that called me was the security team. So prior to that I didn't have any security experience um any particular interest in security but uh I got the call from that team um and interestingly enough uh did a phone screen first and in the phone screen they said hey we're going to have you come in for an interview uh look up and I think they said SQL injection and cross-ite scripting which were two terms I'd never heard before. So, you know, I was in school. I was used to being told to go study things. So, I I looked them up, you know, some Wikipedia, maybe some OASP resources. I don't quite remember. And I went in, you know, did the interview, uh, got the role, uh, the internship role. And I found out later, um, I was one of the only people that, you know, they told me what was going to be on the test, right? They said, \"We're going to ask you about these topics.\" I looked them up and studied them and most of the candidates didn't. So uh that's really what got me started uh in the security space. Um I had a a great manager there uh his name is Tim Zaw and while I was there I started working on a static analysis tool again pulling in I wanted to do programming languages. So I'd taken compilers courses, I'd taken static analysis courses and I thought well maybe I can apply this to the security space and program analysis especially on Ruby and Rails and so from there um created a project it's called greatman uh open sourced it at the end of the internship and uh things kind of went from there that ended up turning into a very small company um it ended up getting acquired and really it led to all of the opportunities that I ended up having after that. So that was really the beginning and uh really kicked off uh my experience in the security industry. So going from an internship to creating your own company um whether it was a small company or not um that that must have been a a big um change. Um so did were what was your role in the company? Were you leading it as the CEO bootstrapping doing everything or um what part what roles did you play in that um startup at the time? >> Yeah. And I I do want to emphasize this was the tiniest company you can imagine. Um all of us were still working real jobs at the time. Uh so I had uh two co co-founders Jim Manico and Neil Matal. Uh we came together. We were working on this as kind of like a side thing I guess you would say. Um I was doing yeah the CEO role, the marketing role, the sales role, little bit of the development role. Neil was really taking on uh he built out our desktop ap",
+    "url": "https://youtube.com/watch?v=mv9YUa_mHp0"
+  },
+  {
+    "video_id": "3Vtcad12Jfk",
+    "title": "Internship to Job Secret | Guest | BIC",
+    "published_at": "2026-06-19T17:18:13Z",
+    "description": "Discover how you can land your dream cybersecurity roles with none of the endless, painful online job applications that hold most beginners back. Learn the exact networking blueprint used to convert a single internship into a lifetime of career opportunities.\n\nKey Takeaways:\n- How to maximize your internship value to secure a permanent offer\n- Networking strategies that bypass HR algorithms entirely\n- Why personal branding outperforms a standard resume every time\n- How to create a self-sustainin",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Internship to Job Secret | Guest | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=3Vtcad12Jfk! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=3Vtcad12Jfk"
+  },
+  {
+    "video_id": "u9QL2XOJzaM",
+    "title": "PC Builder to Cyber Pro Guide | Jim West | BIC",
+    "published_at": "2026-05-29T17:00:28Z",
+    "description": "Breaking into cybersecurity doesn't require expensive loans or complex certifications. Jim West shares his journey from building PCs to landing his first major role, revealing why brutal honesty and social engineering are your best tools.\n\nKey Takeaways:\n- Learn why hands-on curiosity beats expensive courses every time.\n- Discover how to leverage LinkedIn to unlock hidden job opportunities.\n- Understand the role of brutal honesty in high-stakes interview panels.\n- Explore strategies to transitio",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'PC Builder to Cyber Pro Guide | Jim West | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=u9QL2XOJzaM! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=u9QL2XOJzaM"
+  },
+  {
+    "video_id": "zgbNQHQbvro",
+    "title": "Bench Tech to Cyber Guide | Jim West | BIC",
+    "published_at": "2026-05-29T17:00:14Z",
+    "description": "Discover how Jim West transitioned from a curious bench technician building custom PCs to a seasoned cybersecurity leader. Learn how hands-on hardware experience and an insatiable curiosity can pave your way into the infosec field. Key Takeaways: - How cultivating innate curiosity drives long-term success in cybersecurity. - The lucrative early days of building custom computers for local businesses. - Transitioning from a bench technician to high-value corporate refresh projects. - Why vendor-sp",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Bench Tech to Cyber Guide | Jim West | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "Welcome to another episode of breaking into cybersecurity where we talk to cybersecurity professionals who have broken into the field and want to share their tips and tricks so that others in the field can follow in their footsteps. Today we have Jim Loss who is going to share his career, his tips and tricks. Jim, why don't you tell us a little bit about yourself before you got into cyber and then uh what got you into the field? >> Before I got into the cyber, I was always the I'm the kid that likes to take apart toasters and radios and figure out how they work and see if I can make them work again once I put them back together. More unsuccessful than not, but I think it's the you know, being a just a curious kid is what I started out as and but I was always curious about learning things, reading books. You know, my love of reading which I don't read as much as I used to when I was younger, but I was just fascinated by like Jules Verne. Of course, when I got a hold of Lord of the Rings, that was like something I would read once a year. But yeah, just being just curious and inquisitive, just trying to figure things out has been something that's driven me to every aspect of my career so far. But yeah, prior to cyber, it was just kind of figuring out how how many things work, why why do things work? And just from that drive, just in curiosity, learning more about it. But yeah, IT cyber was one of those things I was like, \"Hey, you know, I get to work in air-conditioned offices. I get to actually have an impact on operations because everything today touches a computer. No matter what field you're in, what profession, every company, every business on the planet has to touch a computer at some point in their operations, some more than others. And just getting involved at an early stage in the early '90s was truly a great time to be in IT and cyber. As as I'm sure you know, kind of going from like the 386, 286 CPU computers to now we're in the, you know, such such varying speeds that we can just keep outpacing >> What was your first role and or some of the things that you learned in that first role that were so pivotal for you? >> My first money-making job was I was building computers and towers out of my apartment. I was in Louisiana and just building computers for like doctors' offices, small lawyer offices, cuz back then you could build a computer for approximately $1,000, but you could turn around and sell it for three or four thousand dollars. It was a very lucrative time to be customizing and building computers. But then my first job where I would work for an established company was a company called CompUSA, a business similar to like Best Buy, where they would sell computer components, computers. Their biggest sales were like Compaq was their partnership. And so one of the things that I got to do is I came in within the first month as what they call a bench technician, meaning you're the guy that's just doing memory upgrades for people, which is so easy back then. You just pop the clips, you know, remove the memory, put the upgraded memory and pop it in, boot it up, make sure you can do a memory test, and then all of a sudden like 35, 45 bucks later the customer is in and out. So doing like basic memory swap outs or hard drive upgrades, etc. was kind of what I started the first month. But quickly they saw that I excelled at that, and so by I think my third month I was doing corporate work where I would go out to a customer site and do refresh projects with upgrading computers. And next thing you know, they're sending me to all kinds of training and schools. So this is about '94, '95, and it was one month I would go to Houston for their Compaq ASE training, another month they were sending me out to Arizona to Intel's facilities out there for training. It was an amazing few years where as long as I was ready to fly, get on a plane, they were sending me almost everywhere for a lot of paid training. So, my first two years with Com",
+    "url": "https://youtube.com/watch?v=zgbNQHQbvro"
+  },
+  {
+    "video_id": "GKQO5YPJ9Co",
+    "title": "PC Builder to Cyber Expert Guide | Jim West | BIC",
+    "published_at": "2026-05-29T17:00:06Z",
+    "description": "None of today's businesses can survive without securing their operations, as Jim West explains in this insightful episode. Key Takeaways: - Discover how starting with hardware builds a robust foundation for modern cybersecurity. - Understand how the evolution of CPU speeds impacts current risk management. - Learn to identify cyber threats touching everyday business operations. - Gain insights on pivoting from local IT support to enterprise cybersecurity. - Learn strategies for aligning cyber sec",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'PC Builder to Cyber Expert Guide | Jim West | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "I get to actually have a impact on operations because everything today touches a computer. No matter what field you're in, what profession, every company, every business on the planet has to touch a computer at some point in their operations. Some more than others. And just getting involved at an early stage in the early 90s was truly a great time to be in IT and cyber. As as I'm sure you know, kind of going from like the 386, 286 CPU computers to now we're in the, you know, such such varying speeds that we can just keep up What was your first role and or some of the things that you learned in that first role that were so pivotal for you? My first money-making job was I was building computers and towers out of my apartment. I was in Louisiana and just building computers for like doctors' offices, small lawyer offices.",
+    "url": "https://youtube.com/watch?v=GKQO5YPJ9Co"
+  },
+  {
+    "video_id": "Es8f7RcM7-Y",
+    "title": "NSA Resume Secrets for Cyber Jobs | Guest | BIC",
+    "published_at": "2026-05-29T17:00:01Z",
+    "description": "Stop hiding your security clearance! Learn the official NSA resume guidelines that hiring managers actually look for to get your foot in the door.\\n\\nKey Takeaways:\\n- How to leverage official NSA resume guidelines to stand out\\n- The truth about putting your security clearance on your resume\\n- How to check the boxes for technical hiring managers\\n- Optimizing your resume to pass applicant tracking systems (ATS)\\n- Key strategies for breaking into cybersecurity\\n\\nTimestamps:\\n0:00 - NSA Resume",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'NSA Resume Secrets for Cyber Jobs | Guest | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=Es8f7RcM7-Y! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=Es8f7RcM7-Y"
+  },
+  {
+    "video_id": "2Oo7-k-kLjg",
+    "title": "Experience Over Certs Strategy | Guest | BIC",
+    "published_at": "2026-05-29T17:00:00Z",
+    "description": "None of the certifications or degrees can replace true hands-on experience. Discover how to navigate the hierarchy of cyber credentials and build real street cred.\n\nKey Takeaways:\n- Prioritize hands-on experience over certifications to stand out to employers.\n- Evaluate the real-world credibility of popular IT security certifications.\n- Leverage structured programs like WGU's bachelor's degree effectively.\n- Avoid the common pitfalls of the certification industry and exam dumps.\n- Build practica",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Experience Over Certs Strategy | Guest | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=2Oo7-k-kLjg! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=2Oo7-k-kLjg"
+  },
+  {
+    "video_id": "sqlKn61Jb7A",
+    "title": "Free Cyber Cert Blueprint | Jim West | BIC",
+    "published_at": "2026-05-29T04:00:09Z",
+    "description": "Think you need thousands of dollars to start your career? None of that is required when you leverage free entry-level training. Key Takeaways: 1. Learn why you shouldn't buy expensive courses or books early on. 2. Leverage the free (ISC)2 Certified in Cybersecurity program. 3. Build a strong foundational level one knowledge base for free. 4. Conquer your first-time exam anxiety through practice. 5. Map out a realistic step-by-step security career roadmap. Timestamps: 0:00 - Starting Your Cyberse",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Free Cyber Cert Blueprint | Jim West | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=sqlKn61Jb7A! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=sqlKn61Jb7A"
+  },
+  {
+    "video_id": "bNS40AXkAcI",
+    "title": "Industrial to Cyber Guide | Jim West | BIC",
+    "published_at": "2026-05-29T04:00:05Z",
+    "description": "Discover how brutal honesty in critical infrastructure interviews can land you your dream role, even when you do not know all the answers.\n\nKey Takeaways:\n- Why admitting \"I don't know\" builds trust with hiring panels\n- The danger of lying or dancing around complex interview questions\n- How authenticity outweighs wearing a suit in technical fields\n- The role of honesty when securing safety-critical environments\n- Actionable tips to handle challenging interview scenarios\n\nTimestamps:\n0:00 - The P",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Industrial to Cyber Guide | Jim West | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=bNS40AXkAcI! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=bNS40AXkAcI"
+  },
+  {
+    "video_id": "qXl5Y27Q8Tk",
+    "title": "Dev to CEO Guide | Archit Lohokare | BIC",
+    "published_at": "2026-05-22T17:00:52Z",
+    "description": "Learn how to navigate the tectonic shift from reactive defense to proactive AI governance with industry veteran Archit Lohokare.\\n\\nKey Takeaways:\\n- Discover the career blueprint from founding full-stack engineer to tech executive.\\n- Understand why identity and access management remains the final parameter in the era of AI.\\n- Learn how to align security and functional teams to deploy AI safely and democratically.\\n- Explore the transition from reactive cybersecurity defense to proactive AI go",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Dev to CEO Guide | Archit Lohokare | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=qXl5Y27Q8Tk! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=qXl5Y27Q8Tk"
+  },
+  {
+    "video_id": "rARWY_IfrH4",
+    "title": "AI + SecOps Strategy | Guest | BIC",
+    "published_at": "2026-05-22T17:00:51Z",
+    "description": "Move beyond reactive defense and master proactive governance to secure next-gen autonomous AI agents.\n\nKey Takeaways:\n- Understand how probabilistic, reasoning-capable AI agents differ from traditional systems.\n- Shift from reactive incident response to proactive governance and permission management.\n- Secure credentials and access paths for autonomous AI agents within your enterprise.\n- Break down traditional security silos to foster cultural and organizational alignment.\n- Implement modern str",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI + SecOps Strategy | Guest | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=rARWY_IfrH4! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=rARWY_IfrH4"
+  },
+  {
+    "video_id": "ZM_L1I1wGAk",
+    "title": "Coder to CEO Guide | Archet | BIC",
+    "published_at": "2026-05-22T17:00:37Z",
+    "description": "How do we secure the frontier of AI? Archet, founder of EOS, shares why identity remains the final perimeter in the age of artificial intelligence.\\n\\nKey Takeaways:\\n- Why identity is the ultimate security perimeter for AI\\n- The trajectory of transitioning from a coder to a cybersecurity CEO\\n- How EOS is applying legacy identity concepts to modern AI models\\n- Strategies for building and launching a successful cybersecurity startup\\n- Crucial career advice for developers pivoting into the inf",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Coder to CEO Guide | Archet | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=ZM_L1I1wGAk! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=ZM_L1I1wGAk"
+  },
+  {
+    "video_id": "QlYcDhuUrNU",
+    "title": "Engineer to CEO Guide | Archet | BIC",
+    "published_at": "2026-05-22T17:00:32Z",
+    "description": "How do you transition from an individual contributor to a CEO? Archet shares the strategic steps to elevate your cybersecurity career and harness AI effectively.\n\nKey Takeaways:\n- Learn the strategic blueprint to pivot from an engineer to a leadership role.\n- Master the balance of using AI agents while maintaining deep technical understanding.\n- Discover how to write production-ready code that impacts millions of users safely.\n- Explore the exact steps to transition from an individual contributo",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Engineer to CEO Guide | Archet | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=QlYcDhuUrNU! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=QlYcDhuUrNU"
+  },
+  {
+    "video_id": "GJSYSv4S7yQ",
+    "title": "Engineer to CEO Guide | Archet Bhase | BIC",
+    "published_at": "2026-05-22T17:00:27Z",
+    "description": "The AI revolution is here, representing a monumental platform shift where customer demand and vendor supply align perfectly. Discover how to navigate this tectonic change and pivot your career from engineering to leadership. Key Takeaways: - Understand the alignment of AI supply and demand creating new opportunities. - Learn strategies for transitioning from engineering to executive leadership. - Grasp the tectonic platform shift of AI technologies. - Position yourself as an early adopter in cyb",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Engineer to CEO Guide | Archet Bhase | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=GJSYSv4S7yQ! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=GJSYSv4S7yQ"
+  },
+  {
+    "video_id": "LoHwLQnpj74",
+    "title": "Cryptography to CEO Guide | Archet | BIC",
+    "published_at": "2026-05-22T17:00:18Z",
+    "description": "Discover how to shift from reactive defense to proactive governance when deploying AI technologies. Learn to secure AI systems from the ground up rather than relying on legacy monitor-and-detect methods.\n\nKey Takeaways:\n- Shift from reactive defense to proactive AI governance\n- Integrate security directly into your AI deployment pipeline\n- Move beyond legacy detect-and-respond security models\n- Train security teams to think differently about AI-driven anomalies\n- Align cryptography and executive",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Cryptography to CEO Guide | Archet | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=LoHwLQnpj74! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=LoHwLQnpj74"
+  },
+  {
+    "video_id": "LL5skz-xtW4",
+    "title": "Dev to CEO Guide | Archit Lohokare | BIC",
+    "published_at": "2026-05-22T17:00:17Z",
+    "description": "How does an engineer write C-code for smart cards and scale up to become a cybersecurity CEO? Archit Lohokare shares his journey from founding engineer to leading enterprises through relentless curiosity.\n\nKey Takeaways:\n- How a hands-on cryptography course laid the foundation for a 22-year cybersecurity career.\n- The transition from writing low-level device code to building scalable identity and access management platforms.\n- Core strategies for scaling enterprise security technologies from the",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Dev to CEO Guide | Archit Lohokare | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=LL5skz-xtW4! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=LL5skz-xtW4"
+  },
+  {
+    "video_id": "fUFHsTEkcv0",
+    "title": "CISO Career Secrets | Jasson Casey | BIC",
+    "published_at": "2026-05-18T11:46:36Z",
+    "description": "Discover how to accelerate your career in cybersecurity with insights from Jasson Casey. Key Takeaways: - Essential skills needed for modern cybersecurity leadership - Navigating the transition into high-level infosec roles - Strategies for building a resilient security posture - Mentorship and its role in career development - Future trends in the cybersecurity job market. Timestamps: 0:00 - Title 1:00 - Leadership Foundations 2:30 - Career Transitions 4:00 - Technical Skills 5:30 - Final Advice",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'CISO Career Secrets | Jasson Casey | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=fUFHsTEkcv0! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=fUFHsTEkcv0"
+  },
+  {
+    "video_id": "y67_mV2R5Jk",
+    "title": "AI Extortion Risks | Jeremiah Baker | BIC",
+    "published_at": "2026-05-18T11:42:13Z",
+    "description": "Jeremiah Baker reveals the hidden mechanics of AI-driven extortion where None are currently safe. Learn how to identify and neutralize these advanced digital threats before they compromise your data.\n\n- Mastery of AI-driven extortion detection methods\n- Strategies to mitigate automated social engineering attacks\n- Frameworks for responding to high-stakes cyber extortion\n- Understanding the evolution of AI in the threat landscape\n- Best practices for organizational resilience against AI\n\n0:00 - A",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI Extortion Risks | Jeremiah Baker | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=y67_mV2R5Jk! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=y67_mV2R5Jk"
+  },
+  {
+    "video_id": "JLEFKtG0PHk",
+    "title": "Stopping AI Extortion | Jeremiah Baker | BIC",
+    "published_at": "2026-05-18T11:42:11Z",
+    "description": "None of your organizational assets are safe until you understand the mechanics of AI-driven extortion. Jeremiah Baker joins the show to break down how to defend against these sophisticated digital threats.\n\n- Identify emerging AI extortion tactics used by attackers\n- Build a resilient defense against generative AI threats\n- Understand the evolution of digital extortion in 2024\n- Protect organizational assets from automated attacks\n- Transition into AI-focused cybersecurity roles\n\n0:00 - Introduc",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Stopping AI Extortion | Jeremiah Baker | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=JLEFKtG0PHk! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=JLEFKtG0PHk"
+  },
+  {
+    "video_id": "5Tv0ZOPSAYA",
+    "title": "AI Extortion | Jeremiah Baker | Breaking Into Cybersecurity",
+    "published_at": "2026-05-18T11:42:10Z",
+    "description": "Protect your organization from AI extortion before it starts. There is None better than Jeremiah Baker to guide you through these high-stakes digital threats and defense strategies. Takeaways: - Identify emerging AI-driven extortion tactics used by hackers. - Strengthen your incident response plan against deepfake threats. - Build a resilient cybersecurity culture to prevent social engineering. - Evaluate the impact of generative AI on modern ransomware. - Master the fundamentals of AI risk mana",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI Extortion | Jeremiah Baker | Breaking Into Cybersecurity'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=5Tv0ZOPSAYA! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=5Tv0ZOPSAYA"
+  },
+  {
+    "video_id": "bbSNU0LlKGA",
+    "title": "Stop AI Extortion | Jeremiah Baker | BIC",
+    "published_at": "2026-05-18T11:42:10Z",
+    "description": "Protect yourself from the rising tide of AI-driven extortion scams. Jeremiah Baker shares how to identify and neutralize these advanced digital threats.\n\n- How AI is used in modern extortion schemes\n- Identifying deepfake and voice cloning scams\n- Steps to take when targeted by AI extortionists\n- Building digital resilience against emerging threats\n- Jeremiah Baker's journey in cybersecurity defense\n\n0:00 - Introduction to AI Extortion Scams\n2:15 - The Evolution of Digital Extortion\n5:30 - How S",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Stop AI Extortion | Jeremiah Baker | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=bbSNU0LlKGA! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=bbSNU0LlKGA"
+  },
+  {
+    "video_id": "ZAqLXrjHu-8",
+    "title": "AI & Gamification | Shan Kulkarni | BIC",
+    "published_at": "2026-05-18T11:41:42Z",
+    "description": "Discover how AI security and gamification are revolutionizing the way we approach cyber defense and career development. Join us as we explore the intersection of interactive learning and emerging technology threats.\n\n- Mastering AI security frameworks for modern threats.\n- Using gamification to enhance security awareness.\n- Career strategies for pivoting into AI security domains.\n- How to scale interactive learning in Infosec environments.\n- Future trends in AI-driven cybersecurity careers.\n\n0:0",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI & Gamification | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=ZAqLXrjHu-8! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=ZAqLXrjHu-8"
+  },
+  {
+    "video_id": "bm7r9ZGP4Ms",
+    "title": "Vibe Coding & AI Security | Shan Kulkarni | BIC",
+    "published_at": "2026-05-18T11:41:42Z",
+    "description": "Discover how Vibe Coding and AI Security are reshaping the industry with Shan Kulkarni. Explore the future of development and defense in this deep dive.\n\n- Understanding the shift towards Vibe Coding in modern development.\n- Critical security considerations for AI-integrated environments.\n- Strategies to build a resilient mindset against evolving AI threats.\n- Actionable steps for pivoting into high-demand AI security roles.\n- Leveraging AI tools for proactive defense and automated security.\n\n0:",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Vibe Coding & AI Security | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=bm7r9ZGP4Ms! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=bm7r9ZGP4Ms"
+  },
+  {
+    "video_id": "eDcXjewRGaY",
+    "title": "AI Security & Vibe Coding | Shan Kulkarni | BIC",
+    "published_at": "2026-05-18T11:41:42Z",
+    "description": "Learn the intersection of AI security and vibe coding with industry expert Shan Kulkarni.\\n\\n- Discover emerging risks in AI-driven development.\\n- Learn how vibe coding changes the security landscape.\\n- Actionable steps for pivoting into AI security roles.\\n- Leveraging automation while maintaining integrity.\\n- The future of cybersecurity in the age of GenAI.\\n\\n0:00 - Introduction to AI Security\\n5:12 - What is Vibe Coding?\\n12:45 - Security Risks of Generative AI\\n22:30 - Career Paths in AI",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI Security & Vibe Coding | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=eDcXjewRGaY! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=eDcXjewRGaY"
+  },
+  {
+    "video_id": "lBb1F1ysF_k",
+    "title": "AI & Vibe Coding Era | Shan Kulkarni | BIC",
+    "published_at": "2026-05-18T11:41:42Z",
+    "description": "Discover how the rise of AI and Vibe Coding is reshaping the professional landscape for security experts. None of the traditional career paths remain untouched by this technological shift.\n\n- Understanding the shift towards the Vibe Coding Era in AI\n- How AI tools are reshaping the cybersecurity landscape\n- Essential skills needed for AI-driven security roles\n- Why adaptability matters for the next generation of developers\n- Strategies for staying relevant in a rapidly evolving industry\n\n0:00 - ",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'AI & Vibe Coding Era | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=lBb1F1ysF_k! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=lBb1F1ysF_k"
+  },
+  {
+    "video_id": "3M0KFwbU5Po",
+    "title": "Master AI Vibe Coding | Shan Kulkarni | BIC",
+    "published_at": "2026-05-18T11:41:41Z",
+    "description": "Discover how AI and Vibe Coding are reshaping the cybersecurity landscape with None.\n\n- Understanding the intersection of AI and Vibe Coding paradigms.\n- Leveraging modern AI tools for efficient security engineering.\n- Navigating the shift in coding requirements for infosec roles.\n- Developing a strategic mindset for AI tool integration.\n- Practical career advice for breaking into AI-driven security.\n\n0:00 - Introduction to Shan Kulkarni and Vibe Coding\n5:20 - The Evolution of AI in Modern Cyber",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Master AI Vibe Coding | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=3M0KFwbU5Po! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=3M0KFwbU5Po"
+  },
+  {
+    "video_id": "a0H-VAlA5po",
+    "title": "Automate Security | Shan Kulkarni | BIC",
+    "published_at": "2026-05-18T11:41:41Z",
+    "description": "None. Discover how Shan Kulkarni leverages automation to transform security operations and career growth in this episode.\n\n- Mastering automation to scale security operations\n- Streamlining daily tasks for better efficiency\n- Leveraging tools to reduce manual overhead\n- Integrating automation into cybersecurity careers\n- Future-proofing your skills with automated workflows\n\n0:00 - Title\n2:15 - Defining Workflow Automation\n5:40 - Essential Security Tools\n9:20 - Overcoming Manual Bottlenecks\n14:10",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Automate Security | Shan Kulkarni | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=a0H-VAlA5po! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=a0H-VAlA5po"
+  },
+  {
+    "video_id": "F244cm4H6jM",
+    "title": "Bug Bounty to Pro | Nikhil Agarwal | BIC",
+    "published_at": "2026-05-18T11:40:55Z",
+    "description": "Discover how Nikhil Agarwal successfully transitioned from the world of independent bug hunting to a professional cybersecurity career. This episode breaks down the path from bounty hunting to enterprise security roles.\n\n- Strategies for transitioning from bug bounty to a full-time role.\n- How to build a professional reputation through bug hunting.\n- Essential skills for moving into enterprise security.\n- Leveraging bug bounty success for career advancement.\n- Navigating the shift from freelance",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Bug Bounty to Pro | Nikhil Agarwal | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=F244cm4H6jM! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=F244cm4H6jM"
+  },
+  {
+    "video_id": "tltTyQhxqco",
+    "title": "Bug Bounty to Pro | Nikhil Agarwal | BIC",
+    "published_at": "2026-05-18T11:40:55Z",
+    "description": "None to Bug Bounty Pro: Join Nikhil Agarwal as he explains the transition from hobbyist hacking to a professional cybersecurity career. \u2022 Mastering bug bounty fundamentals \u2022 Transitioning to corporate security roles \u2022 Essential hacking tools for beginners \u2022 Networking strategies for newcomers \u2022 Building a sustainable infosec career 0:00 - Introduction to Nikhil Agarwal 0:05 - Starting in Bug Bounties 0:15 - Professional Transition 0:25 - Required Toolsets 0:35 - Career Growth Tips Nikhil Agarwal",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Bug Bounty to Pro | Nikhil Agarwal | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=tltTyQhxqco! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=tltTyQhxqco"
+  },
+  {
+    "video_id": "0x3LaKs1aYc",
+    "title": "Bug Bounty Success | Nikhil Agarwal | BIC",
+    "published_at": "2026-05-18T11:40:54Z",
+    "description": "Discover how to transform your bug bounty passion into a professional cybersecurity career. In this episode, Nikhil Agarwal shares the essential roadmap for success in the infosec industry.\n\n- How to turn bug bounties into a full-time career\n- Critical skills for professional security testing\n- Creating a high-impact cybersecurity portfolio\n- Navigating the transition from hobbyist to pro\n- Professional networking tips for bug hunters\n\n0:00 - Bug Bounty to Pro | Nikhil Agarwal | BIC\n5:15 - Start",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Bug Bounty Success | Nikhil Agarwal | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=0x3LaKs1aYc! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=0x3LaKs1aYc"
+  },
+  {
+    "video_id": "6IYjtQZBmu8",
+    "title": "Bug Bounty Success | Nikhil Agarwal | BIC",
+    "published_at": "2026-05-18T11:40:54Z",
+    "description": "Discover the blueprint for bug bounty hunting success with Nikhil Agarwal. Learn how to transform your curiosity into a professional career in ethical hacking and cybersecurity.\n\n\u2022 Proven methodologies for identifying your first critical vulnerabilities.\n\u2022 Essential tools and platforms for every aspiring bug bounty hunter.\n\u2022 How to write high-impact reports that earn top-tier rewards.\n\u2022 Strategies for building a personal brand in the infosec community.\n\u2022 Transitioning from bug hunting into a ful",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "breaking_into_cyber_episodes",
+    "key_takeaways": [
+      "Key cybersecurity insights and guidance from 'Bug Bounty Success | Nikhil Agarwal | BIC'.",
+      "Actionable industry defense practices and career strategies.",
+      "Breaking Into Cybersecurity mentorship lessons."
+    ],
+    "transcript": "[Transcript unavailable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=6IYjtQZBmu8! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!]",
+    "url": "https://youtube.com/watch?v=6IYjtQZBmu8"
   }
 ]

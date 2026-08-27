@@ -37,17 +37,18 @@ def query_knowledge_base(topic: str, category: Optional[str] = None) -> str:
         A formatted string with relevant knowledge base content, or a message
         indicating no results were found.
     """
-    topic_lower = topic.lower()
-    results = []
+    topic_lower = topic.lower().strip()
+    search_tokens = [t for t in topic_lower.split() if len(t) > 2]
+    scored_results = []
 
     files_to_search = []
-    if category == "certifications" or category is None:
+    if category in ("certifications", None):
         files_to_search.append(("certifications", "certifications.json"))
-    if category == "career_paths" or category is None:
+    if category in ("career_paths", None):
         files_to_search.append(("career_paths", "career_paths.json"))
-    if category == "interview_questions" or category is None:
+    if category in ("interview_questions", None):
         files_to_search.append(("interview_questions", "interview_questions.json"))
-    if category == "youtube_transcripts" or category is None:
+    if category in ("youtube_transcripts", None):
         files_to_search.append(("breaking_into_cyber_episodes", "youtube_transcripts.json"))
 
     for cat_name, filename in files_to_search:
@@ -56,23 +57,39 @@ def query_knowledge_base(topic: str, category: Optional[str] = None) -> str:
         if isinstance(data, list):
             for item in data:
                 item_str = json.dumps(item).lower()
+                score = 0
                 if topic_lower in item_str:
-                    results.append(f"[{cat_name.upper()}]\n{json.dumps(item, indent=2)}")
+                    score += 10
+                for token in search_tokens:
+                    if token in item_str:
+                        score += 2
+                if score > 0:
+                    scored_results.append((score, f"[{cat_name.upper()}]\n{json.dumps(item, indent=2)}"))
         elif isinstance(data, dict):
             for key, value in data.items():
-                if topic_lower in key.lower() or topic_lower in json.dumps(value).lower():
-                    results.append(f"[{cat_name.upper()} — {key}]\n{json.dumps(value, indent=2)}")
+                val_str = json.dumps(value).lower()
+                score = 0
+                if topic_lower in key.lower() or topic_lower in val_str:
+                    score += 10
+                for token in search_tokens:
+                    if token in key.lower() or token in val_str:
+                        score += 2
+                if score > 0:
+                    scored_results.append((score, f"[{cat_name.upper()} — {key}]\n{json.dumps(value, indent=2)}"))
 
-    if not results:
+    if not scored_results:
         return (
             f"No specific knowledge base entries found for '{topic}'. "
             "Please use your general training knowledge to answer, but note this "
             "was not found in the curated Breaking Into Cyber knowledge base."
         )
 
-    # Limit output to avoid overwhelming the context window
-    combined = "\n\n---\n\n".join(results[:5])
-    count_note = f"\n\n(Showing top {min(5, len(results))} of {len(results)} results)"
+    # Sort by relevance score descending
+    scored_results.sort(key=lambda x: x[0], reverse=True)
+    top_results = [r[1] for r in scored_results[:5]]
+
+    combined = "\n\n---\n\n".join(top_results)
+    count_note = f"\n\n(Showing top {min(5, len(scored_results))} of {len(scored_results)} relevant results)"
     return combined + count_note
 
 
