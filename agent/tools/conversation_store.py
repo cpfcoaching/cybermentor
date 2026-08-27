@@ -81,6 +81,19 @@ def save_conversation_message(
         return False
 
 
+def _clean_message_doc(doc_dict: dict[str, Any]) -> dict[str, Any]:
+    """Convert Firestore timestamp and datetime objects to JSON-serializable strings."""
+    cleaned = {}
+    for k, v in doc_dict.items():
+        if hasattr(v, "isoformat"):
+            cleaned[k] = v.isoformat()
+        elif isinstance(v, (str, int, float, bool, list, dict)) or v is None:
+            cleaned[k] = v
+        else:
+            cleaned[k] = str(v)
+    return cleaned
+
+
 def get_conversation_history(
     user_id: str, session_id: Optional[str] = None, limit: int = 50
 ) -> List[dict[str, Any]]:
@@ -106,7 +119,7 @@ def get_conversation_history(
             )
             docs = list(query.stream())
             if docs:
-                return [d.to_dict() for d in docs]
+                return [_clean_message_doc(d.to_dict()) for d in docs]
 
         # Fallback to latest conversation for user
         convs = list(
@@ -124,7 +137,7 @@ def get_conversation_history(
                 .limit(limit)
                 .stream()
             )
-            return [m.to_dict() for m in msg_docs]
+            return [_clean_message_doc(m.to_dict()) for m in msg_docs]
 
         return []
     except Exception as e:
