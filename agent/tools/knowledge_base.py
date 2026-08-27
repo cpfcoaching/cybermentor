@@ -194,19 +194,31 @@ def search_breaking_into_cyber_episodes(query: str, top_k: int = 4) -> str:
     results = []
     for score, ep in scored[:top_k]:
         vid_id = ep.get("video_id", "")
-        url = f"https://www.youtube.com/watch?v={vid_id}" if vid_id else "https://www.youtube.com/c/BreakingIntoCybersecurity"
-        skills_str = ", ".join(ep.get("skills_extracted", []))
-        summary = ep.get("summary") or ep.get("description", "")[:280]
+        url = ep.get("url") or (f"https://www.youtube.com/watch?v={vid_id}" if vid_id else "https://www.youtube.com/c/BreakingIntoCybersecurity")
+        category = ep.get("category", "Cyber Career Coaching").replace("_", " ").title()
+        
+        takeaways = ep.get("key_takeaways", [])
+        if isinstance(takeaways, list) and takeaways:
+            takeaway_str = "\n  * " + "\n  * ".join(takeaways[:3])
+        else:
+            takeaway_str = ep.get("summary") or (ep.get("transcript", "")[:250] + "..." if ep.get("transcript") else "Practical real-world advice from industry leaders.")
+
+        transcript_preview = ep.get("transcript", "")
+        if transcript_preview and len(transcript_preview) > 300:
+            transcript_preview = transcript_preview[:280] + "..."
+
         results.append(
             f"### 🎙️ [{ep.get('title')}]({url})\n"
+            f"- **Category**: {category}\n"
             f"- **Host/Channel**: {ep.get('channel', 'Breaking Into Cybersecurity')} ({ep.get('host', 'Christophe Foulon')})\n"
             f"- **Published**: {ep.get('published_at', 'N/A')}\n"
-            f"- **Key Competencies Covered**: {skills_str}\n"
-            f"- **Key Takeaway**: {summary}\n"
+            f"- **Key Takeaways & Guidance**:{takeaway_str}\n"
+            f"- **Transcript Excerpt**: \"{transcript_preview}\"\n"
             f"- **Watch / Listen**: [YouTube Episode Link]({url})"
         )
 
     return "## 🎧 Relevant Breaking Into Cybersecurity Episodes\n\n" + "\n\n---\n\n".join(results)
+
 
 
 
