@@ -29,7 +29,7 @@
           <path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/>
           <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
         </svg>
-        <span>Sign in with Google (MFA Protected)</span>
+        <span>Sign in with Google</span>
       </button>
       <div class="divider-or"><span>OR CONTINUE WITH TEMPORARY SCREEN NAME</span></div>
       <label for="username-input" class="form-label">Choose a temporary screen name</label>
@@ -57,58 +57,34 @@
   <div class="onboarding-card glass" style="max-width: 440px;">
     <div class="onboarding-header">
       <div style="font-size: 36px; margin-bottom: 8px;">🔐</div>
-      <h2 id="sso-modal-title" class="logo-text" style="font-size: 22px;">Google Security Verification</h2>
-      <p class="logo-sub">MFA Protected Cloud Session</p>
+      <h2 id="sso-modal-title" class="logo-text" style="font-size: 22px;">Google Single Sign-On</h2>
+      <p class="logo-sub">Authenticated Cloud Firestore Session</p>
     </div>
     <div class="onboarding-form" style="margin-top: 16px;">
-      <div id="sso-step-1">
-        <p style="font-size: 13px; color: var(--clr-text-secondary); margin-bottom: 12px;">Choose your authenticated Google Account:</p>
-        
-        <button id="btn-sso-chris" class="btn btn-google-sso" style="justify-content: flex-start; padding: 12px 14px; margin-bottom: 12px; background: rgba(66, 133, 244, 0.15); border-color: rgba(66, 133, 244, 0.45);">
-          <div style="width: 36px; height: 36px; border-radius: 50%; background: #4285F4; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; margin-right: 12px;">CF</div>
-          <div style="text-align: left;">
-            <div style="font-weight: 600; font-size: 14px; color: #fff;">Christophe Foulon</div>
-            <div style="font-size: 12px; color: var(--clr-accent-cyan);">chris@cpf-coaching.com</div>
-          </div>
-        </button>
-
-        <div class="divider-or" style="margin: 12px 0;"><span>OR USE ANOTHER GOOGLE ACCOUNT</span></div>
-
-        <input
-          id="custom-google-email"
-          type="email"
-          class="form-input"
-          placeholder="e.g. yourname@gmail.com"
-          maxlength="64"
-          style="margin-bottom: 12px;"
-        />
-
-        <button id="btn-custom-google-login" class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">
-          <span>Continue with this Account →</span>
-        </button>
-      </div>
-
-      <div id="sso-step-2" class="hidden" style="margin-top: 10px;">
-        <div style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px; margin-bottom: 14px;">
-          <div style="font-weight: 600; font-size: 13px; color: #4ade80; margin-bottom: 4px;">🛡️ Google Authenticator Prompt</div>
-          <div id="sso-user-label" style="font-size: 12px; color: var(--clr-text-secondary);">chris@cpf-coaching.com</div>
+      <p style="font-size: 13px; color: var(--clr-text-secondary); margin-bottom: 12px;">Select your Google Account to continue:</p>
+      
+      <button id="btn-sso-chris" class="btn btn-google-sso" style="justify-content: flex-start; padding: 12px 14px; margin-bottom: 12px; background: rgba(66, 133, 244, 0.15); border-color: rgba(66, 133, 244, 0.45);">
+        <div style="width: 36px; height: 36px; border-radius: 50%; background: #4285F4; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; margin-right: 12px;">CF</div>
+        <div style="text-align: left;">
+          <div style="font-weight: 600; font-size: 14px; color: #fff;">Christophe Foulon</div>
+          <div style="font-size: 12px; color: var(--clr-accent-cyan);">chris@cpf-coaching.com</div>
         </div>
+      </button>
 
-        <label for="mfa-totp-input" class="form-label" style="text-align: left; display: block; margin-bottom: 6px;">Enter 6-digit Google Authenticator / Passkey code:</label>
-        <input
-          id="mfa-totp-input"
-          type="text"
-          class="form-input"
-          placeholder="e.g. 749 201"
-          maxlength="8"
-          style="letter-spacing: 4px; font-weight: bold; font-size: 18px; text-align: center; margin-bottom: 8px;"
-        />
-        <div id="mfa-error-msg" class="auth-status-msg hidden" style="color: var(--clr-accent-red); font-size: 12px; margin-bottom: 12px; text-align: center;"></div>
+      <div class="divider-or" style="margin: 12px 0;"><span>OR ENTER ANOTHER GOOGLE EMAIL</span></div>
 
-        <button id="btn-verify-mfa" class="btn btn-primary" style="width: 100%; margin-bottom: 10px;">
-          <span>Verify & Complete Google Sign-In ➔</span>
-        </button>
-      </div>
+      <input
+        id="custom-google-email"
+        type="email"
+        class="form-input"
+        placeholder="e.g. yourname@gmail.com"
+        maxlength="64"
+        style="margin-bottom: 12px;"
+      />
+
+      <button id="btn-custom-google-login" class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">
+        <span>Sign In with this Google Account →</span>
+      </button>
 
       <button id="btn-close-sso-modal" class="btn btn-ghost" style="width: 100%;">
         <span>Cancel</span>
@@ -558,6 +534,6 @@
 <!-- Firebase Auth SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-<script src="js/app.js?v=2.0.7"></script>
+<script src="js/app.js?v=2.0.8"></script>
 </body>
 </html>
