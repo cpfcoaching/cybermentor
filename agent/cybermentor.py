@@ -14,6 +14,7 @@ from agent.tools import (
     # Core coaching tools
     query_knowledge_base,
     get_cited_resources,
+    search_breaking_into_cyber_episodes,
     generate_study_plan,
     analyze_resume,
     get_interview_question,
@@ -54,7 +55,8 @@ def _load_persona() -> str:
 ALL_TOOLS = [
     # ── Core coaching ─────────────────────────────────────────────────────
     query_knowledge_base,
-    get_cited_resources,             # List official citations and referenced resources
+    get_cited_resources,                 # List official citations and referenced resources
+    search_breaking_into_cyber_episodes, # 7+ years of YouTube podcast transcript RAG search
     generate_study_plan,
     analyze_resume,
     get_interview_question,

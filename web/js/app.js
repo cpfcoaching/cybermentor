@@ -733,9 +733,33 @@ async function loadProgress(userId) {
         const el   = document.createElement('div');
         el.className = 'milestone-item';
         el.innerHTML = `
-          <div>${escapeHtml(m.milestone)}</div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 6px;">
+            <div style="flex: 1;">${escapeHtml(m.milestone)}</div>
+            <button class="btn-share-milestone" title="Share to Community Feed" style="background: transparent; border: none; cursor: pointer; color: var(--clr-cyan); font-size: 0.8rem; padding: 2px;">🌐</button>
+          </div>
           <div class="milestone-date">${date}</div>
         `;
+
+        const shareBtn = el.querySelector('.btn-share-milestone');
+        if (shareBtn) {
+          shareBtn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            try {
+              const res = await fetch(`${API_BASE_URL}/api/progress/${encodeURIComponent(currentUser)}/share_milestone`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ milestone: m.milestone, badge: "Career Milestone" })
+              });
+              if (res.ok) {
+                shareBtn.textContent = '✅';
+                shareBtn.title = 'Shared to Community Feed!';
+              }
+            } catch (err) {
+              console.error("Failed to share milestone:", err);
+            }
+          });
+        }
+
         progressList.appendChild(el);
       }
     }
@@ -811,6 +835,19 @@ function finalizeStreamingMessage(el, markdown) {
   const bubble = el.querySelector('.message-bubble');
   bubble.classList.remove('streaming');
   bubble.innerHTML = renderMarkdown(markdown);
+  
+  // Add quick speaker button to listen on-demand
+  const speakBtn = document.createElement('button');
+  speakBtn.className = 'tts-speak-btn';
+  speakBtn.title = 'Listen to this response';
+  speakBtn.innerHTML = '🔊';
+  speakBtn.addEventListener('click', () => speakText(markdown));
+  bubble.appendChild(speakBtn);
+
+  if (voiceEnabled) {
+    speakText(markdown);
+  }
+
   scrollToBottom();
 }
 
@@ -900,3 +937,204 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+// ── Voice Input (Speech-to-Text) ──────────────────────────────────────────
+const micBtn = document.getElementById('btn-mic');
+let recognition = null;
+let isRecording = false;
+
+if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recognition.onstart = () => {
+    isRecording = true;
+    if (micBtn) micBtn.classList.add('recording');
+    setStatus('thinking', 'Listening to your voice...');
+  };
+
+  recognition.onresult = (event) => {
+    let transcript = '';
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      transcript += event.results[i][0].transcript;
+    }
+    messageInput.value = transcript;
+    messageInput.dispatchEvent(new Event('input'));
+  };
+
+  recognition.onerror = (event) => {
+    console.warn("Speech recognition error:", event.error);
+    isRecording = false;
+    if (micBtn) micBtn.classList.remove('recording');
+    setStatus('ready', 'CyberMentor Ready');
+  };
+
+  recognition.onend = () => {
+    isRecording = false;
+    if (micBtn) micBtn.classList.remove('recording');
+    setStatus('ready', 'CyberMentor Ready');
+  };
+
+  if (micBtn) {
+    micBtn.addEventListener('click', () => {
+      if (isRecording) {
+        recognition.stop();
+      } else {
+        try {
+          recognition.start();
+        } catch (e) {
+          console.error("Speech recognition start failed:", e);
+        }
+      }
+    });
+  }
+} else {
+  if (micBtn) {
+    micBtn.title = "Speech recognition not supported in this browser";
+    micBtn.style.opacity = "0.5";
+  }
+}
+
+// ── Voice Output (Text-to-Speech) ─────────────────────────────────────────
+let voiceEnabled = false;
+const voiceToggleBtn = document.getElementById('voice-toggle-btn');
+
+if (voiceToggleBtn) {
+  voiceToggleBtn.addEventListener('click', () => {
+    voiceEnabled = !voiceEnabled;
+    voiceToggleBtn.textContent = voiceEnabled ? "🔊 Voice: On" : "🔊 Voice: Off";
+    voiceToggleBtn.style.color = voiceEnabled ? "var(--clr-cyan)" : "inherit";
+    if (!voiceEnabled && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  });
+}
+
+function speakText(text) {
+  if (!('speechSynthesis' in window) || !text) return;
+  window.speechSynthesis.cancel();
+  // Strip markdown characters for clean speech
+  const clean = text.replace(/[*_#`[\]()]/g, '').replace(/https?:\/\/\S+/g, 'link').slice(0, 500);
+  const utterance = new SpeechSynthesisUtterance(clean);
+  utterance.rate = 1.05;
+  utterance.pitch = 1.0;
+  window.speechSynthesis.speak(utterance);
+}
+
+// ── Analytics Dashboard Controller ─────────────────────────────────────────
+const btnAnalytics = document.getElementById('btn-analytics');
+const closeAnalyticsBtn = document.getElementById('close-analytics-btn');
+const analyticsOverlay = document.getElementById('analytics-overlay');
+
+if (btnAnalytics && analyticsOverlay) {
+  btnAnalytics.addEventListener('click', async () => {
+    analyticsOverlay.classList.remove('hidden');
+    analyticsOverlay.classList.add('active');
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/progress/${encodeURIComponent(currentUser || 'guest')}/analytics`);
+      if (res.ok) {
+        const data = await res.json();
+        document.getElementById('stat-streak').textContent = `${data.study_streak_days} Days`;
+        document.getElementById('stat-readiness').textContent = `${data.cert_readiness_pct}%`;
+        document.getElementById('stat-interview-avg').textContent = `${data.interview_average_score} / 100`;
+        document.getElementById('stat-milestones-count').textContent = `${data.total_milestones}`;
+        if (data.recommended_next_step) {
+          document.getElementById('stat-recommended-action').textContent = data.recommended_next_step;
+        }
+
+        const skillsContainer = document.getElementById('analytics-skills-list');
+        if (skillsContainer && data.skills_breakdown) {
+          skillsContainer.innerHTML = data.skills_breakdown
+            .map(s => `<span class="skill-tag">${escapeHtml(s)}</span>`)
+            .join('');
+        }
+      }
+    } catch (err) {
+      console.warn("Could not load analytics:", err);
+    }
+  });
+}
+
+if (closeAnalyticsBtn && analyticsOverlay) {
+  closeAnalyticsBtn.addEventListener('click', () => {
+    analyticsOverlay.classList.remove('active');
+    analyticsOverlay.classList.add('hidden');
+  });
+}
+
+// ── Community Milestones Controller ───────────────────────────────────────
+const btnCommunity = document.getElementById('btn-community');
+const closeCommunityBtn = document.getElementById('close-community-btn');
+const communityOverlay = document.getElementById('community-overlay');
+const communityContainer = document.getElementById('community-feed-container');
+
+if (btnCommunity && communityOverlay) {
+  btnCommunity.addEventListener('click', async () => {
+    communityOverlay.classList.remove('hidden');
+    communityOverlay.classList.add('active');
+    loadCommunityFeed();
+  });
+}
+
+if (closeCommunityBtn && communityOverlay) {
+  closeCommunityBtn.addEventListener('click', () => {
+    communityOverlay.classList.remove('active');
+    communityOverlay.classList.add('hidden');
+  });
+}
+
+async function loadCommunityFeed() {
+  if (!communityContainer) return;
+  communityContainer.innerHTML = '<p style="color: var(--text-secondary);">Loading community feed...</p>';
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/progress/community/feed`);
+    if (!res.ok) throw new Error("Feed fetch error");
+    const data = await res.json();
+
+    communityContainer.innerHTML = (data.feed || []).map(item => `
+      <div class="community-item">
+        <div class="community-user-meta">
+          <div class="community-avatar">${item.avatar || '🛡️'}</div>
+          <div class="community-text">
+            <div class="community-header-line">
+              <span class="community-username">${escapeHtml(item.username)}</span>
+              <span class="community-badge">${escapeHtml(item.badge || 'Learner')}</span>
+              <span class="community-location">• ${escapeHtml(item.location || 'Online')}</span>
+            </div>
+            <div class="community-milestone-text">${escapeHtml(item.milestone)}</div>
+            <span class="community-time">${escapeHtml(item.timestamp)}</span>
+          </div>
+        </div>
+        <button class="community-cheer-btn" data-id="${item.id}">
+          👏 <span class="cheer-count">${item.cheers || 0}</span>
+        </button>
+      </div>
+    `).join('');
+
+    // Attach cheer handlers
+    document.querySelectorAll('.community-cheer-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        const countSpan = btn.querySelector('.cheer-count');
+        try {
+          const cheerRes = await fetch(`${API_BASE_URL}/api/progress/community/cheer/${id}`, { method: 'POST' });
+          if (cheerRes.ok) {
+            const result = await cheerRes.json();
+            if (countSpan) countSpan.textContent = result.cheers;
+            btn.classList.add('cheered');
+          }
+        } catch (e) {
+          console.error("Cheer failed:", e);
+        }
+      });
+    });
+  } catch (err) {
+    communityContainer.innerHTML = '<p style="color: var(--text-secondary);">Community network available offline.</p>';
+  }
+}
+

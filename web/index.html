@@ -175,6 +175,73 @@
 </div>
 
 
+<!-- ── Analytics & Study Streak Dashboard Modal ────────────────────── -->
+<div id="analytics-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="analytics-title">
+  <div class="resources-card glass">
+    <div class="resources-header">
+      <h2 id="analytics-title">📊 Career Progression & Readiness Dashboard</h2>
+      <button id="close-analytics-btn" class="btn-close" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="resources-content">
+      <div class="analytics-grid">
+        <div class="analytics-stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value" id="stat-streak">5 Days</div>
+          <div class="stat-label">Study Streak</div>
+        </div>
+        <div class="analytics-stat-card">
+          <div class="stat-icon">📈</div>
+          <div class="stat-value" id="stat-readiness">78%</div>
+          <div class="stat-label">Cert Exam Readiness</div>
+        </div>
+        <div class="analytics-stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-value" id="stat-interview-avg">88 / 100</div>
+          <div class="stat-label">Mock Interview Avg</div>
+        </div>
+        <div class="analytics-stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value" id="stat-milestones-count">4</div>
+          <div class="stat-label">Milestones Achieved</div>
+        </div>
+      </div>
+
+      <div class="resource-item" style="margin-top: 1.25rem;">
+        <h3>💡 Next Recommended Action</h3>
+        <p id="stat-recommended-action">Complete Domain 3 Practice Exam or initiate SOC Tier 1 Scenario 2 mock interview.</p>
+      </div>
+
+      <div class="resource-item">
+        <h3>🧠 Documented Competencies & ACE Skill Map</h3>
+        <div id="analytics-skills-list" class="skills-tag-cloud">
+          <span class="skill-tag">TCP/IP Network Analysis</span>
+          <span class="skill-tag">SIEM Alert Triage (Splunk)</span>
+          <span class="skill-tag">Wireshark PCAP Inspection</span>
+          <span class="skill-tag">OWASP Top 10 Mitigation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Community Milestones & Peer Cheers Modal ────────────────────── -->
+<div id="community-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="community-title">
+  <div class="resources-card glass">
+    <div class="resources-header">
+      <h2 id="community-title">🌐 Community Progress & Milestone Cheers</h2>
+      <button id="close-community-btn" class="btn-close" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="resources-content">
+      <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
+        Celebrate and cheer on peers across the <strong>Breaking Into Cybersecurity</strong> global learner network!
+      </p>
+      <div id="community-feed-container" class="community-feed-list">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ── Skills & Certs Mindmap & Transfer Explorer Modal ────────────── -->
 <div id="mindmap-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="mindmap-title">
   <div class="mindmap-card glass">
@@ -284,6 +351,14 @@
     </div>
 
     <nav class="sidebar-nav" aria-label="Quick actions">
+      <button class="quick-action-btn" id="btn-analytics">
+        <span class="qa-icon">📊</span>
+        <span>Career Analytics</span>
+      </button>
+      <button class="quick-action-btn" id="btn-community">
+        <span class="qa-icon">🌐</span>
+        <span>Community Feed</span>
+      </button>
       <button class="quick-action-btn" id="btn-career-path" data-prompt="Help me figure out the best cybersecurity career path for my background.">
         <span class="qa-icon">🗺️</span>
         <span>Career Path</span>
@@ -360,6 +435,9 @@
         </div>
       </div>
       <div class="chat-header-actions">
+        <button id="voice-toggle-btn" class="btn btn-ghost" title="Toggle voice narration output" aria-label="Toggle voice output">
+          🔊 Voice: Off
+        </button>
         <button id="clear-btn" class="btn btn-ghost" title="Clear conversation" aria-label="Clear conversation">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M5.333 4V2.667a1.333 1.333 0 0 1 1.334-1.334h2.666a1.333 1.333 0 0 1 1.334 1.334V4m2 0v9.333A1.333 1.333 0 0 1 11.333 14.667H4.667A1.333 1.333 0 0 1 3.333 13.333V4h9.334Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Clear
@@ -383,10 +461,18 @@
             <line x1="12" y1="3" x2="12" y2="15"></line>
           </svg>
         </button>
+        <button id="btn-mic" class="btn-icon-action" title="Voice Input (Speech-to-Text)" aria-label="Voice Input">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </button>
         <textarea
           id="message-input"
           class="message-textarea"
-          placeholder="Ask about certs, career paths, paste your resume, or upload a file..."
+          placeholder="Ask about certs, career paths, paste your resume, or click 🎤 to talk..."
           rows="1"
           maxlength="8000"
           aria-label="Type your message"
@@ -398,7 +484,7 @@
         </button>
       </div>
       <p class="input-hint">
-        <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for new line · Click 📄 to upload resume
+        <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for new line · Click 🎤 for Voice Mode · Click 📄 for Resume
       </p>
     </div>
   </main>

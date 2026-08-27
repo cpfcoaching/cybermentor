@@ -1,7 +1,7 @@
 """CyberMentor agent tools — all custom capabilities registered here."""
 
 # Core coaching tools
-from agent.tools.knowledge_base import query_knowledge_base, get_cited_resources
+from agent.tools.knowledge_base import query_knowledge_base, get_cited_resources, search_breaking_into_cyber_episodes
 from agent.tools.study_planner import generate_study_plan
 from agent.tools.resume_analyzer import analyze_resume
 from agent.tools.interview_coach import get_interview_question, evaluate_answer
@@ -23,6 +23,7 @@ __all__ = [
     # Core
     "query_knowledge_base",
     "get_cited_resources",
+    "search_breaking_into_cyber_episodes",
     "generate_study_plan",
     "analyze_resume",
     "get_interview_question",
@@ -37,14 +38,12 @@ __all__ = [
     # Mindmap & Transfer Matrix
     "get_role_mindmap",
     "explore_skill_transfer",
-    # Veo (video generation)
     "generate_cert_explainer_video",
     "generate_role_preview_video",
-    # Lyria (music generation)
     "generate_study_music",
     "generate_cert_celebration_jingle",
-    # Gemma (fast analysis)
     "classify_user_intent",
     "extract_resume_skills",
     "score_skill_gap",
 ]
+

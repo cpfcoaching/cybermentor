@@ -150,4 +150,64 @@ def get_cited_resources() -> str:
     - Foundational global security benchmark for securing web applications, APIs, authentication, and backend infrastructure."""
 
 
+def search_breaking_into_cyber_episodes(query: str, top_k: int = 4) -> str:
+    """Semantic RAG tool to search all 7+ years of Breaking Into Cybersecurity podcast and YouTube episode transcripts.
+
+    Use this tool when a user asks what Christophe Foulon or Breaking Into Cyber guests
+    said about a specific topic, asks for real-world podcast advice, or asks for recommended YouTube episodes.
+
+    Args:
+        query: The topic or concept to look up across episodes (e.g. "burnout", "entry level portfolio", "first 90 days as CISO").
+        top_k: Number of relevant episode segments to return.
+
+    Returns:
+        Structured string with episode titles, timestamps, URLs, guest advice, and key takeaways.
+    """
+    data = _load_json("youtube_transcripts.json")
+    if not data or not isinstance(data, list):
+        return "No YouTube transcript index found. Ingest transcripts using data/scripts/ingest_youtube.py."
+
+    q_tokens = [t for t in query.lower().split() if len(t) > 2]
+    scored = []
+
+    for ep in data:
+        score = 0
+        title = ep.get("title", "")
+        desc = ep.get("description", "")
+        transcript = ep.get("transcript", "")
+        skills = " ".join(ep.get("skills_extracted", []))
+        full_text = f"{title} {desc} {transcript} {skills}".lower()
+
+        if query.lower() in full_text:
+            score += 15
+        for token in q_tokens:
+            if token in full_text:
+                score += 2
+
+        if score > 0:
+            scored.append((score, ep))
+
+    if not scored:
+        return f"No specific podcast episodes found directly matching '{query}'. Try searching broader terms like 'mentorship', 'resume', or 'certs'."
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+    results = []
+    for score, ep in scored[:top_k]:
+        vid_id = ep.get("video_id", "")
+        url = f"https://www.youtube.com/watch?v={vid_id}" if vid_id else "https://www.youtube.com/c/BreakingIntoCybersecurity"
+        skills_str = ", ".join(ep.get("skills_extracted", []))
+        summary = ep.get("summary") or ep.get("description", "")[:280]
+        results.append(
+            f"### 🎙️ [{ep.get('title')}]({url})\n"
+            f"- **Host/Channel**: {ep.get('channel', 'Breaking Into Cybersecurity')} ({ep.get('host', 'Christophe Foulon')})\n"
+            f"- **Published**: {ep.get('published_at', 'N/A')}\n"
+            f"- **Key Competencies Covered**: {skills_str}\n"
+            f"- **Key Takeaway**: {summary}\n"
+            f"- **Watch / Listen**: [YouTube Episode Link]({url})"
+        )
+
+    return "## 🎧 Relevant Breaking Into Cybersecurity Episodes\n\n" + "\n\n---\n\n".join(results)
+
+
+
 

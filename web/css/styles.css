@@ -1202,4 +1202,192 @@ audio.media-player {
   white-space: nowrap;
 }
 
+/* ── Analytics Dashboard CSS ─────────────────────────────────────────────── */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+.analytics-stat-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.analytics-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 220, 220, 0.4);
+}
+
+.analytics-stat-card .stat-icon {
+  font-size: 1.5rem;
+  margin-bottom: var(--sp-1);
+}
+
+.analytics-stat-card .stat-value {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--clr-cyan);
+}
+
+.analytics-stat-card .stat-label {
+  font-size: 0.75rem;
+  color: var(--clr-text-sub);
+  margin-top: 2px;
+}
+
+.skills-tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.skill-tag {
+  background: rgba(0, 220, 220, 0.1);
+  border: 1px solid rgba(0, 220, 220, 0.25);
+  color: var(--clr-cyan);
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+}
+
+/* ── Community Feed CSS ─────────────────────────────────────────────────── */
+.community-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.community-item {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-md);
+  padding: var(--sp-3) var(--sp-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.community-user-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex: 1;
+}
+
+.community-avatar {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.community-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.community-header-line {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 0.82rem;
+}
+
+.community-username {
+  font-weight: 600;
+  color: var(--clr-text);
+}
+
+.community-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  padding: 1px 6px;
+  border-radius: var(--r-sm);
+}
+
+.community-location {
+  color: var(--clr-text-sub);
+  font-size: 0.75rem;
+}
+
+.community-milestone-text {
+  font-size: 0.88rem;
+  color: var(--clr-cyan);
+  font-weight: 500;
+}
+
+.community-time {
+  font-size: 0.72rem;
+  color: var(--clr-text-sub);
+}
+
+.community-cheer-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--clr-text);
+  padding: 6px 12px;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.community-cheer-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  transform: scale(1.05);
+}
+
+.community-cheer-btn.cheered {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #f87171;
+}
+
+/* ── Voice & Audio Player Controls ───────────────────────────────────────── */
+.btn-icon-action.recording {
+  background: rgba(239, 68, 68, 0.3) !important;
+  border-color: #ef4444 !important;
+  color: #ef4444 !important;
+  animation: pulse-mic 1s infinite alternate;
+}
+
+@keyframes pulse-mic {
+  from { transform: scale(1); box-shadow: 0 0 4px #ef4444; }
+  to { transform: scale(1.12); box-shadow: 0 0 16px #ef4444; }
+}
+
+.tts-speak-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--clr-text-sub);
+  margin-left: var(--sp-2);
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  border-radius: var(--r-sm);
+  transition: color 0.2s ease;
+}
+
+.tts-speak-btn:hover {
+  color: var(--clr-cyan);
+}
+
+
 
