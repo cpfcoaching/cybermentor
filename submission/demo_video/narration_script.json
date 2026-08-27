@@ -1,0 +1,37 @@
+[
+  {
+    "scene_number": 1,
+    "title": "Introduction & The Mentorship Challenge",
+    "duration": "45s",
+    "visual_asset": "hero_banner.jpg",
+    "narration_script": "Every single week on Breaking Into Cybersecurity, candidates ask me the same question: 'I want to break into cybersecurity. Where do I start?' Over 7 years and hundreds of podcast episodes, the answer is always tailored to each person's background. The problem is, I can't personally mentor thousands of candidates 1-on-1 every day. So for the Google Cloud All Things Agentic Hackathon, I built CyberMentor: an autonomous 24/7 AI Cybersecurity Career Coach powered by Google Gemini 3.7 Flash and the Google Antigravity SDK."
+  },
+  {
+    "scene_number": 2,
+    "title": "Interactive Study Plans & Resume Skill Audits",
+    "duration": "60s",
+    "visual_asset": "mobile_mockup.jpg",
+    "narration_script": "CyberMentor goes beyond simple chatbot answers. Tell it your background\u2014whether you're transitioning from IT helpdesk, military service, or a non-technical field\u2014and it builds a personalized weekly study schedule for certifications like Security+, CySA+, or CISSP. Paste in your resume or target job description, and CyberMentor runs an automated gap analysis aligned with the NIST NICE cybersecurity workforce framework."
+  },
+  {
+    "scene_number": 3,
+    "title": "Google Antigravity SDK & Low-Cost Model Routing",
+    "duration": "45s",
+    "visual_asset": "hero_banner.jpg",
+    "narration_script": "Under the hood, CyberMentor is built on the Google Antigravity SDK, using tool docstrings for deterministic routing without brittle prompt chains. To keep cloud costs near zero, we use a two-tier model pipeline: Google Gemma 3 27B handles fast intent classification and entity parsing, while Gemini 3.7 Flash on Vertex AI powers deep coaching reasoning and mock interview evaluations. Google Veo and Lyria generate on-demand study visuals and focus music."
+  },
+  {
+    "scene_number": 4,
+    "title": "1,164-Episode RAG Knowledge Base & Voice Coaching",
+    "duration": "60s",
+    "visual_asset": "app_icon.jpg",
+    "narration_script": "What makes CyberMentor uniquely powerful is its knowledge base. We indexed over 1,160 real Breaking Into Cybersecurity podcast episodes and Notion production briefs into a parallel semantic search engine. Ask how to break in with a history degree, and CyberMentor recalls Daniel Ayala's exact advice and timestamp. With real-time voice speech-to-text and audio narration, candidates can practice live mock interviews hands-free."
+  },
+  {
+    "scene_number": 5,
+    "title": "Zero-Cost Serverless Cloud Run & Call to Action",
+    "duration": "30s",
+    "visual_asset": "hero_banner.jpg",
+    "narration_script": "CyberMentor is deployed 100% serverless on Google Cloud Run with scale-to-zero compute and Cloud Firestore persistent memory, running comfortably within Google Cloud's free tier. Try CyberMentor live today in your browser or mobile device, and accelerate your cybersecurity career journey."
+  }
+]
