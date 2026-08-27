@@ -26,7 +26,7 @@ Here's exactly how I built it.
 ## The Stack
 
 | Layer | Technology |
-|---|---|
+| --- | --- |
 | AI Agent | Google Antigravity SDK |
 | Main Model | Gemini 3.7 Flash (via Vertex AI) |
 | Video Generation | Google Veo (via Vertex AI) |
@@ -39,27 +39,22 @@ Here's exactly how I built it.
 
 ---
 
-## Why the Google Antigravity SDK?
+## The Architecture: Google Antigravity SDK
 
-I evaluated several agent frameworks before settling on the Antigravity SDK, and the decision came down to one thing: **tool docstrings as routing logic**.
-
-In the Antigravity SDK, you give the agent Python functions with clear docstrings, and Gemini figures out when to call each one. This sounds simple, but it's the key insight for building a specialized coaching agent. When I wrote:
+CyberMentor is built around a single primary agent using the Google Antigravity SDK. The pattern is elegant: you define regular Python functions with clear docstrings and type annotations, and the SDK handles tool schema generation, reasoning loops, and multi-turn execution.
 
 ```python
-def generate_study_plan(
-    target_cert: str,
-    hours_per_week: int,
-    current_level: str = "beginner",
-) -> str:
-    """Generate a week-by-week study plan for a cybersecurity certification.
+from google_antigravity import Agent
+from agent.cybermentor import CYBERMENTOR_TOOLS, CYBERMENTOR_SYSTEM_INSTRUCTION
 
-    Use this tool when a user asks how to study for a specific certification,
-    wants a study schedule, or asks "how long will it take to get my [cert]?"
-    ...
-    """
+agent = Agent(
+    model="gemini-3.7-flash",
+    system_instruction=CYBERMENTOR_SYSTEM_INSTRUCTION,
+    tools=CYBERMENTOR_TOOLS,
+)
 ```
 
-Gemini reliably invokes `generate_study_plan()` every time a user asks about studying for a cert — without any custom routing code. The docstrings ARE the routing logic. This kept the codebase clean and the behavior predictable.
+The system instruction establishes the persona: a warm, practical, knowledgeable cybersecurity career coach rooted in the Breaking Into Cybersecurity ethos. It knows how to ask discovery questions before recommending anything, references the NICE Cybersecurity Workforce Framework (NIST SP 800-181), and maintains context across sessions.
 
 ---
 
@@ -68,6 +63,7 @@ Gemini reliably invokes `generate_study_plan()` every time a user asks about stu
 I built each coaching capability as an isolated Python function:
 
 ### 1. `query_knowledge_base()` — RAG over curated cybersecurity data
+
 Searches a curated JSON knowledge base covering 9 certifications (Security+, CISSP, OSCP, eJPT, etc.) and 5 career paths. Every entry includes Breaking Into Cyber-specific notes: opinionated, real-world guidance, not just Wikipedia summaries.
 
 ```python
@@ -78,18 +74,23 @@ def query_knowledge_base(topic: str, category: Optional[str] = None) -> str:
 ```
 
 ### 2. `generate_study_plan()` — Personalized week-by-week schedules
+
 Takes a certification name, weekly hours, and experience level, then outputs a phased plan: foundations → domain study → practice exams → final review. It adjusts total hours based on level (beginners need ~30% more time than intermediate learners).
 
 ### 3. `analyze_resume()` — Cybersecurity-specific gap analysis
+
 Parses resume text for cert keywords, tool names, quantified achievements, and cybersecurity-specific language. Returns a score out of 100 with prioritized action items. The scoring weights are calibrated to what I actually see employers care about.
 
 ### 4. `get_interview_question()` + `evaluate_answer()` — Full mock interview loop
+
 Questions are drawn from a role-specific bank (SOC Analyst, Pen Tester, GRC, general). Each question has a rubric of key points. `evaluate_answer()` scores the user's response by checking coverage of those key points, penalizes overly brief answers, and returns a model answer template.
 
 ### 5. `recommend_certifications()` — Role-specific roadmaps
+
 Recommends certs in order for 5 career tracks, calibrated to experience level. The data includes salary ranges and time-to-hire estimates — information I've verified through years of community mentorship.
 
 ### 6. `save/get_user_progress()` — Persistent memory via Firestore
+
 This is what makes CyberMentor a **collaborative partner** rather than a stateless chatbot. Every milestone is written to Firestore. At session start, `get_user_progress()` loads the user's history and injects it into the agent context — so returning users are immediately recognized and coached based on what was previously discussed.
 
 ---

@@ -35,6 +35,11 @@ function handleGoogleSso(e) {
   if (e && e.preventDefault) e.preventDefault();
 
   const ssoModal = document.getElementById('google-sso-overlay');
+  const step1 = document.getElementById('sso-step-1');
+  const step2 = document.getElementById('sso-step-2');
+  if (step1) step1.classList.remove('hidden');
+  if (step2) step2.classList.add('hidden');
+
   if (ssoModal) {
     ssoModal.classList.remove('hidden');
     ssoModal.classList.add('active');
@@ -91,8 +96,11 @@ function initSessionWithUser(username, token, isGuest = true) {
 
 async function loadConversationHistory(username) {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/history/${encodeURIComponent(username)}`);
-    if (!res.ok) return;
+    const res = await fetch(`${API_BASE_URL}/api/chat/history/${encodeURIComponent(username)}`);
+    if (!res.ok) {
+      addAgentMessage(getWelcomeMessage(username));
+      return;
+    }
     const data = await res.json();
     if (data.messages && data.messages.length > 0) {
       messagesEl.innerHTML = ''; // Clear default welcome
@@ -144,18 +152,41 @@ window.addEventListener('DOMContentLoaded', () => {
   const btnCustom = document.getElementById('btn-custom-google-login');
   const btnCloseSso = document.getElementById('btn-close-sso-modal');
   const customInput = document.getElementById('custom-google-email');
+  const btnVerifyMfa = document.getElementById('btn-verify-mfa');
+  let pendingSsoUser = 'Christophe_Foulon';
 
   if (btnChris) {
     btnChris.addEventListener('click', () => {
-      initSessionWithUser('Christophe_Foulon', 'google_sso_verified_token', false);
+      pendingSsoUser = 'Christophe_Foulon';
+      const step1 = document.getElementById('sso-step-1');
+      const step2 = document.getElementById('sso-step-2');
+      const userLabel = document.getElementById('sso-user-label');
+      if (step1) step1.classList.add('hidden');
+      if (step2) step2.classList.remove('hidden');
+      if (userLabel) userLabel.textContent = 'chris@cpf-coaching.com';
+      const totp = document.getElementById('mfa-totp-input');
+      if (totp) totp.focus();
     });
   }
 
   if (btnCustom) {
     btnCustom.addEventListener('click', () => {
       const email = (customInput && customInput.value.trim()) || 'Google_User';
-      const cleanName = email.split('@')[0].replace(/[^a-zA-Z0-9_-]/g, '_') || 'Google_User';
-      initSessionWithUser(cleanName, 'google_sso_verified_token', false);
+      pendingSsoUser = email.split('@')[0].replace(/[^a-zA-Z0-9_-]/g, '_') || 'Google_User';
+      const step1 = document.getElementById('sso-step-1');
+      const step2 = document.getElementById('sso-step-2');
+      const userLabel = document.getElementById('sso-user-label');
+      if (step1) step1.classList.add('hidden');
+      if (step2) step2.classList.remove('hidden');
+      if (userLabel) userLabel.textContent = email;
+      const totp = document.getElementById('mfa-totp-input');
+      if (totp) totp.focus();
+    });
+  }
+
+  if (btnVerifyMfa) {
+    btnVerifyMfa.addEventListener('click', () => {
+      initSessionWithUser(pendingSsoUser, 'google_sso_mfa_verified_token', false);
     });
   }
 

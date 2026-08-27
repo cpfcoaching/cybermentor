@@ -97,8 +97,8 @@ body::before {
 /* ── Glassmorphism Utility ─────────────────────────────────────────────── */
 .glass {
   background: var(--clr-surface);
-  backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
   border: 1px solid var(--clr-border);
 }
 
@@ -107,6 +107,7 @@ body::before {
   position: fixed;
   inset: 0;
   background: rgba(4, 8, 18, 0.92);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
