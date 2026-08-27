@@ -1,7 +1,7 @@
 ---
 title: "I Built an AI Cybersecurity Career Coach in a Weekend — Here's Exactly How"
 published: true
-description: "How I used the Google Antigravity SDK, Gemini 3.5, Veo, Lyria, and Gemma to build CyberMentor — a persistent AI career coach for breaking into cybersecurity. Built for the All Things Agentic Hackathon."
+description: "How I used the Google Antigravity SDK, Gemini 3.7 Flash, Veo, Lyria, and Gemma to build CyberMentor — a persistent AI career coach for breaking into cybersecurity. Built for the All Things Agentic Hackathon."
 tags: google, ai, cybersecurity, hackathon
 cover_image: https://breakingintocyber.com/cybermentor-cover.png
 canonical_url: https://dev.to/cfoulon/cybermentor-ai-career-coach
@@ -28,7 +28,7 @@ Here's exactly how I built it.
 | Layer | Technology |
 |---|---|
 | AI Agent | Google Antigravity SDK |
-| Main Model | Gemini 3.5 Flash |
+| Main Model | Gemini 3.7 Flash (via Vertex AI) |
 | Video Generation | Google Veo (via Vertex AI) |
 | Music Generation | Google Lyria (via Vertex AI) |
 | Fast Classification | Google Gemma 3 27B (via Vertex AI) |

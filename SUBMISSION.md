@@ -313,7 +313,7 @@ See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the full Mermaid diagram. Summary:
 
 | Requirement | Status |
 |---|---|
-| Gemini 3.5 or newer | ✅ Via Google Antigravity SDK (default: `gemini-3.5-flash`) |
+| Gemini 3.5 or newer | ✅ Via Google Antigravity SDK & Vertex AI (default: `gemini-3.7-flash` in `cybermentor-506813`) |
 | Google Agent Framework | ✅ Google Antigravity SDK |
 | Google Cloud Service | ✅ Cloud Firestore + Cloud Run |
 | Hosted Project URL | ⏳ Post-deploy |

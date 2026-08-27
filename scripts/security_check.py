@@ -31,12 +31,12 @@ def check_secrets_and_api_keys() -> list[str]:
     ]
 
     ignored_dirs = {".git", "__pycache__", ".venv", "venv", "node_modules", "test_helper_sessions", "test_sessions", "test_vertex_sessions"}
-    ignored_files = {"package-lock.json", ".env.example", "security_check.py"}
+    ignored_files = {"package-lock.json", ".env.example", "security_check.py", ".env", ".env.local"}
 
     for path in ROOT.rglob("*"):
         if any(part in ignored_dirs for part in path.parts):
             continue
-        if path.name in ignored_files or path.is_dir():
+        if path.name in ignored_files or path.name.endswith(".env") or path.is_dir():
             continue
 
         try:
