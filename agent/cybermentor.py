@@ -13,6 +13,7 @@ from google.antigravity import Agent, LocalAgentConfig
 from agent.tools import (
     # Core coaching tools
     query_knowledge_base,
+    get_cited_resources,
     generate_study_plan,
     analyze_resume,
     get_interview_question,
@@ -50,6 +51,7 @@ def _load_persona() -> str:
 ALL_TOOLS = [
     # ── Core coaching ─────────────────────────────────────────────────────
     query_knowledge_base,
+    get_cited_resources,             # List official citations and referenced resources
     generate_study_plan,
     analyze_resume,
     get_interview_question,

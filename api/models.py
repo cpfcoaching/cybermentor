@@ -12,6 +12,7 @@ class ChatRequest(BaseModel):
     user_id: str = Field(..., min_length=1, max_length=64, description="User's session identifier")
     message: str = Field(..., min_length=1, max_length=8000, description="The user's message")
     session_id: Optional[str] = Field(None, description="Existing session ID to resume. If None, a new session is created.")
+    is_guest: Optional[bool] = Field(True, description="Whether this is a temporary guest session (no Firestore storage).")
 
 
 class ChatResponse(BaseModel):

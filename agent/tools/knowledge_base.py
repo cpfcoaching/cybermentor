@@ -72,3 +72,34 @@ def query_knowledge_base(topic: str, category: Optional[str] = None) -> str:
     combined = "\n\n---\n\n".join(results[:5])
     count_note = f"\n\n(Showing top {min(5, len(results))} of {len(results)} results)"
     return combined + count_note
+
+
+def get_cited_resources() -> str:
+    """Return the official list of cited and referenced resources used by CyberMentor.
+
+    Use this tool when the user asks for citations, references, sources, or official links used.
+    """
+    return """## 📚 Official Resources & Citations
+
+1. **Breaking Into Cybersecurity**: [https://breakingintocybersecurity.org](https://breakingintocybersecurity.org)
+   - Primary sponsor, community, and career development platform for cybersecurity candidates.
+
+2. **Paul Jerimy Security Certification Roadmap**: [https://pauljerimy.com/security-certification-roadmap/](https://pauljerimy.com/security-certification-roadmap/)
+   - Open-Source GitHub Repository: [https://github.com/PaulJerimy/SecCertRoadmapHTML](https://github.com/PaulJerimy/SecCertRoadmapHTML)
+   - Industry-standard progression matrix mapping 300+ cybersecurity certifications across 10 security domains and 6 experience tiers.
+
+3. **Hadess Cybersecurity Certification Roadmap**: [https://career.hadess.io/certificate-roadmap](https://career.hadess.io/certificate-roadmap)
+   - Interactive certification matrix, prerequisites, exam costs, and career path mappings.
+
+4. **Cyberdudekz Security Cert Roadmap**: [https://github.com/cyberdudekz/security-cert-roadmap](https://github.com/cyberdudekz/security-cert-roadmap)
+   - Community-curated visual roadmap of security certifications categorized by specialization and difficulty.
+
+5. **ACE (Autonomous Agent with Continual Evolution) Framework**: [https://github.com/ace-agent/ace](https://github.com/ace-agent/ace)
+   - Cognitive memory, candidate observation logging, and continual self-optimization strategy framework for AI agents.
+
+6. **NIST AI Risk Management Framework (AI RMF 1.0)**: [https://www.nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework)
+   - Enterprise standards for artificial intelligence security, trust, and risk governance.
+
+7. **OWASP Top 10 for LLM Applications**: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+   - Standard security vulnerability reference for LLM integrations and Generative AI applications."""
+

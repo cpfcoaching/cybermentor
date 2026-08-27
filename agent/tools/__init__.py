@@ -1,7 +1,7 @@
 """CyberMentor agent tools — all custom capabilities registered here."""
 
 # Core coaching tools
-from agent.tools.knowledge_base import query_knowledge_base
+from agent.tools.knowledge_base import query_knowledge_base, get_cited_resources
 from agent.tools.study_planner import generate_study_plan
 from agent.tools.resume_analyzer import analyze_resume
 from agent.tools.interview_coach import get_interview_question, evaluate_answer
@@ -19,6 +19,7 @@ from agent.tools.gemma_analyzer import classify_user_intent, extract_resume_skil
 __all__ = [
     # Core
     "query_knowledge_base",
+    "get_cited_resources",
     "generate_study_plan",
     "analyze_resume",
     "get_interview_question",

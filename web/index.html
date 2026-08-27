@@ -22,21 +22,80 @@
     </div>
     <p class="onboarding-tagline">Your AI-powered guide to a cybersecurity career.</p>
     <div class="onboarding-form">
-      <label for="username-input" class="form-label">Choose a display name to get started</label>
+      <button id="google-sso-btn" type="button" onclick="handleGoogleSso(event)" class="btn btn-google-sso">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.616z"/>
+          <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"/>
+          <path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/>
+          <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
+        </svg>
+        <span>Sign in with Google (MFA Protected)</span>
+      </button>
+      <div class="divider-or"><span>OR CONTINUE WITH TEMPORARY SCREEN NAME</span></div>
+      <label for="username-input" class="form-label">Choose a temporary screen name</label>
       <input
         id="username-input"
         type="text"
         class="form-input"
-        placeholder="e.g. jsmith or SecurityNewbie42"
+        placeholder="e.g. jsmith or GuestUser42"
         maxlength="32"
         autocomplete="off"
         aria-required="true"
       />
-      <p class="form-hint">Your progress will be saved under this name.</p>
+      <p class="form-hint">Temporary session. No conversation data saved to Firestore for guest profiles. (ACE continues to learn in-memory).</p>
+      <div id="auth-status-msg" class="auth-status-msg"></div>
       <button id="start-btn" class="btn btn-primary" disabled>
-        <span>Start Coaching Session</span>
+        <span>Start Temporary Session</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Resources & FAQ Modal ────────────────────────────────────── -->
+<div id="resources-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="resources-title">
+  <div class="resources-card glass">
+    <div class="resources-header">
+      <h2 id="resources-title">📚 Official Resources & Citations</h2>
+      <button id="close-resources-btn" class="btn-close" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="resources-content">
+      <div class="resource-item">
+        <h3>1. Breaking Into Cybersecurity</h3>
+        <p>Primary sponsor, career community, and career development platform.</p>
+        <a href="https://breakingintocybersecurity.org" target="_blank" rel="noopener noreferrer">https://breakingintocybersecurity.org</a>
+      </div>
+      <div class="resource-item">
+        <h3>2. Paul Jerimy Security Certification Roadmap</h3>
+        <p>Industry-standard progression matrix mapping 300+ cybersecurity certifications across 10 security domains.</p>
+        <a href="https://pauljerimy.com/security-certification-roadmap/" target="_blank" rel="noopener noreferrer">https://pauljerimy.com/security-certification-roadmap/</a> · 
+        <a href="https://github.com/PaulJerimy/SecCertRoadmapHTML" target="_blank" rel="noopener noreferrer">GitHub Source</a>
+      </div>
+      <div class="resource-item">
+        <h3>3. Hadess Cybersecurity Certification Roadmap</h3>
+        <p>Interactive certification paths, exam costs, vendor filters, and prerequisites.</p>
+        <a href="https://career.hadess.io/certificate-roadmap" target="_blank" rel="noopener noreferrer">https://career.hadess.io/certificate-roadmap</a>
+      </div>
+      <div class="resource-item">
+        <h3>4. Cyberdudekz Security Cert Roadmap</h3>
+        <p>Community-curated visual roadmap of cybersecurity certs organized by specialization.</p>
+        <a href="https://github.com/cyberdudekz/security-cert-roadmap" target="_blank" rel="noopener noreferrer">https://github.com/cyberdudekz/security-cert-roadmap</a>
+      </div>
+      <div class="resource-item">
+        <h3>5. ACE (Autonomous Agent with Continual Evolution) Framework</h3>
+        <p>Cognitive memory, candidate observation logging, and continual self-optimization architecture.</p>
+        <a href="https://github.com/ace-agent/ace" target="_blank" rel="noopener noreferrer">https://github.com/ace-agent/ace</a>
+      </div>
+      <div class="resource-item">
+        <h3>6. NIST AI Risk Management Framework (AI RMF 1.0)</h3>
+        <p>Enterprise standards for artificial intelligence security, trust, and risk governance.</p>
+        <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI RMF 1.0 Standards</a>
+      </div>
+      <div class="resource-item">
+        <h3>7. OWASP Top 10 for LLM Applications</h3>
+        <p>Standard security vulnerability reference for Generative AI applications.</p>
+        <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer">OWASP LLM Security Top 10</a>
+      </div>
     </div>
   </div>
 </div>
@@ -89,6 +148,10 @@
         <span class="qa-icon">✏️</span>
         <span>Update Profile</span>
       </button>
+      <button class="quick-action-btn" id="btn-resources" data-prompt="List all official resources, certification roadmaps, frameworks, and sponsor links referenced by CyberMentor.">
+        <span class="qa-icon">📚</span>
+        <span>Resources & Citations</span>
+      </button>
     </nav>
 
     <div class="progress-panel" aria-label="Your progress">
@@ -100,7 +163,6 @@
 
     <div class="sidebar-footer">
       <p class="footer-brand">Powered by <a href="https://breakingintocybersecurity.org" target="_blank" rel="noopener noreferrer">Breaking Into Cybersecurity</a></p>
-      <p class="footer-tech">ACE Framework · Antigravity SDK · Gemini</p>
     </div>
   </aside>
 
@@ -150,6 +212,9 @@
   </main>
 </div>
 
+<!-- Firebase Auth SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

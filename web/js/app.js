@@ -30,6 +30,134 @@ const statusDot         = document.getElementById('status-dot');
 const statusText        = document.getElementById('status-text');
 const progressList      = document.getElementById('progress-list');
 
+// ── Google SSO & MFA Login ────────────────────────────────────────────────
+function handleGoogleSso(e) {
+  if (e && e.preventDefault) e.preventDefault();
+
+  const btn = document.getElementById('google-sso-btn');
+  const authMsg = document.getElementById('auth-status-msg');
+  if (authMsg) authMsg.textContent = '';
+
+  if (btn) {
+    btn.style.opacity = '0.7';
+    btn.innerHTML = `<span>Connecting Google SSO...</span>`;
+  }
+
+  if (typeof firebase === 'undefined' || !firebase.auth) {
+    if (btn) {
+      btn.style.opacity = '1';
+      btn.innerHTML = `<span>Sign in with Google (MFA Protected)</span>`;
+    }
+    if (authMsg) {
+      authMsg.textContent = "Firebase Auth SDK loading... Please wait or use temporary screen name.";
+    }
+    return;
+  }
+
+  try {
+    const firebaseConfig = {
+      projectId: "cybermentor-506813",
+      authDomain: "cybermentor-506813.firebaseapp.com"
+    };
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+
+    firebase.auth().signInWithPopup(provider)
+      .then(async (result) => {
+        const user = result.user;
+        const idToken = await user.getIdToken();
+        const name = user.displayName || user.email.split('@')[0];
+        initSessionWithUser(name, idToken, false); // Authenticated account
+      })
+      .catch((err) => {
+        console.warn("Google SSO Popup Notice:", err);
+        if (btn) {
+          btn.style.opacity = '1';
+          btn.innerHTML = `<span>Sign in with Google (MFA Protected)</span>`;
+        }
+        if (authMsg) {
+          authMsg.textContent = "Google Sign-In popup closed or unavailable. You can try again or use temporary screen name below.";
+        }
+      });
+  } catch (err) {
+    console.error("Google Auth Error:", err);
+    if (btn) {
+      btn.style.opacity = '1';
+      btn.innerHTML = `<span>Sign in with Google (MFA Protected)</span>`;
+    }
+    if (authMsg) {
+      authMsg.textContent = "Google Auth error. Please use temporary screen name below.";
+    }
+  }
+}
+window.handleGoogleSso = handleGoogleSso;
+
+function initSessionWithUser(username, token, isGuest = true) {
+  const cleanName = username.trim().replace(/[^a-zA-Z0-9_-]/g, '_') || 'GuestCandidate';
+  currentUser = cleanName;
+  sessionId   = null;
+  window.userAuthToken = token;
+  window.isGuestUser = isGuest;
+
+  const userBadge = document.querySelector('.user-badge');
+  if (userBadge) {
+    userBadge.textContent = isGuest ? 'Temporary Session' : 'Google Auth (MFA Verified)';
+    userBadge.style.color = isGuest ? 'var(--clr-accent-amber)' : 'var(--clr-accent-cyan)';
+  }
+
+  if (!isGuest) {
+    localStorage.setItem('cybermentor_user', cleanName);
+  }
+
+  sidebarUsername.textContent = cleanName;
+  userAvatar.textContent      = cleanName.slice(0, 2).toUpperCase();
+
+  onboardingOverlay.classList.remove('active');
+  appLayout.classList.remove('hidden');
+
+  if (!isGuest) {
+    // Authenticated account: Load and restore Firestore history & progress
+    loadConversationHistory(cleanName);
+    loadProgress(cleanName);
+  } else {
+    // Temporary Guest account: Do NOT load or save history to Firestore
+    messagesEl.innerHTML = '';
+    addAgentMessage(getWelcomeMessage(cleanName));
+  }
+
+  setTimeout(() => messageInput.focus(), 300);
+}
+
+async function loadConversationHistory(username) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/history/${encodeURIComponent(username)}`);
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data.messages && data.messages.length > 0) {
+      messagesEl.innerHTML = ''; // Clear default welcome
+      data.messages.forEach(msg => {
+        if (msg.role === 'user') {
+          addUserMessage(msg.content);
+        } else if (msg.role === 'model' || msg.role === 'assistant') {
+          addAgentMessage(msg.content);
+        }
+      });
+      // Scroll to bottom
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    } else {
+      addAgentMessage(getWelcomeMessage(username));
+    }
+  } catch (err) {
+    console.warn("Could not load Firestore history:", err);
+    addAgentMessage(getWelcomeMessage(username));
+  }
+}
+
 // ── Onboarding ────────────────────────────────────────────────────────────
 usernameInput.addEventListener('input', () => {
   const val = usernameInput.value.trim();
@@ -45,29 +173,7 @@ startBtn.addEventListener('click', startSession);
 function startSession() {
   const username = usernameInput.value.trim().replace(/[^a-zA-Z0-9_-]/g, '');
   if (!username) return;
-
-  currentUser = username;
-  sessionId   = null;
-
-  // Persist user for next visit
-  localStorage.setItem('cybermentor_user', username);
-
-  // Update UI
-  sidebarUsername.textContent = username;
-  userAvatar.textContent      = username.slice(0, 2).toUpperCase();
-
-  // Show app, hide onboarding
-  onboardingOverlay.classList.remove('active');
-  appLayout.classList.remove('hidden');
-
-  // Show welcome message
-  addAgentMessage(getWelcomeMessage(username));
-
-  // Load progress
-  loadProgress(username);
-
-  // Focus input
-  setTimeout(() => messageInput.focus(), 300);
+  initSessionWithUser(username, null);
 }
 
 // Restore session from localStorage
@@ -146,6 +252,7 @@ async function streamAgentResponse(userMessage) {
         user_id:    currentUser,
         message:    userMessage,
         session_id: sessionId || undefined,
+        is_guest:   window.isGuestUser !== false,
       }),
     });
 
@@ -225,7 +332,15 @@ async function streamAgentResponse(userMessage) {
 
 // ── Quick Actions ─────────────────────────────────────────────────────────
 document.querySelectorAll('.quick-action-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (e) => {
+    if (btn.id === 'btn-resources') {
+      const resourcesOverlay = document.getElementById('resources-overlay');
+      if (resourcesOverlay) {
+        resourcesOverlay.classList.remove('hidden');
+        resourcesOverlay.classList.add('active');
+      }
+      return;
+    }
     const prompt = btn.dataset.prompt;
     if (prompt && !isStreaming) {
       messageInput.value = prompt;
@@ -234,6 +349,17 @@ document.querySelectorAll('.quick-action-btn').forEach(btn => {
     }
   });
 });
+
+const closeResourcesBtn = document.getElementById('close-resources-btn');
+if (closeResourcesBtn) {
+  closeResourcesBtn.addEventListener('click', () => {
+    const resourcesOverlay = document.getElementById('resources-overlay');
+    if (resourcesOverlay) {
+      resourcesOverlay.classList.remove('active');
+      resourcesOverlay.classList.add('hidden');
+    }
+  });
+}
 
 // ── Clear ─────────────────────────────────────────────────────────────────
 clearBtn.addEventListener('click', () => {

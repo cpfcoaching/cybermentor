@@ -4,9 +4,7 @@
     "vendor": "CompTIA",
     "code": "SY0-701",
     "difficulty": "Beginner",
-    "prerequisites": [
-      "CompTIA Network+ recommended but not required"
-    ],
+    "prerequisites": ["CompTIA Network+ recommended but not required"],
     "study_hours": 120,
     "exam_details": {
       "questions": 90,
@@ -21,60 +19,275 @@
       "Security Operations",
       "Security Program Management"
     ],
-    "best_for": [
-      "SOC Analyst entry level",
-      "IT admins pivoting to security",
-      "Meeting DoD 8570 requirements"
-    ],
-    "resources": [
-      "Professor Messer (free)",
-      "Jason Dion (Udemy)",
-      "Mike Chapple Study Guide"
-    ],
-    "breaking_into_cyber_notes": "The most recognized entry-level security certification. If you only get one cert, make it this one."
+    "best_for": ["SOC Analyst entry level", "IT admins pivoting to security", "Meeting DoD 8570/8140 requirements"],
+    "resources": ["Professor Messer (free)", "Jason Dion (Udemy)", "Mike Chapple Study Guide"],
+    "breaking_into_cyber_notes": "The most recognized entry-level security certification globally."
   },
   {
-    "name": "CompTIA CySA+",
-    "vendor": "CompTIA",
-    "code": "CS0-003",
-    "difficulty": "Intermediate",
-    "prerequisites": [
-      "Security+ or equivalent 4 years experience"
-    ],
-    "study_hours": 150,
+    "name": "CISM (Certified Information Security Manager)",
+    "vendor": "ISACA",
+    "code": "CISM",
+    "difficulty": "Advanced Executive",
+    "prerequisites": ["5 years of verified information security management experience"],
+    "study_hours": 200,
     "exam_details": {
-      "questions": 85,
-      "duration_minutes": 165,
-      "passing_score": 750,
-      "cost_usd": 392
+      "questions": 150,
+      "duration_minutes": 240,
+      "passing_score": 450,
+      "cost_usd": 760
     },
     "domains": [
-      "Security Operations",
-      "Vulnerability Management",
-      "Incident Response",
-      "Reporting and Communication"
+      "Information Security Governance",
+      "Information Security Risk Management",
+      "Information Security Program Development",
+      "Incident Management"
     ],
-    "best_for": [
-      "SOC Analysts",
-      "Threat hunters",
-      "Vulnerability analysts"
+    "best_for": ["Aspiring CISOs", "Information Security Managers", "Director of Security", "GRC Leaders"],
+    "resources": ["ISACA CISM Review Manual", "QAE Database", "Mike Chapple CISM Prep"],
+    "breaking_into_cyber_notes": "The premier management certification for security leaders. Validates governance and business alignment."
+  },
+  {
+    "name": "CRISC (Certified in Risk and Information Systems Control)",
+    "vendor": "ISACA",
+    "code": "CRISC",
+    "difficulty": "Advanced Executive",
+    "prerequisites": ["3 years of IT risk management and control experience"],
+    "study_hours": 180,
+    "exam_details": {
+      "questions": 150,
+      "duration_minutes": 240,
+      "passing_score": 450,
+      "cost_usd": 760
+    },
+    "domains": [
+      "Governance",
+      "IT Risk Assessment",
+      "Risk Response and Mitigation",
+      "Information Technology and Security Control"
     ],
-    "resources": [
-      "Mike Chapple book",
-      "Jason Dion (Udemy)",
-      "CompTIA official labs"
+    "best_for": ["Risk Managers", "GRC Officers", "Internal Auditors", "CISO Aspirants"],
+    "resources": ["ISACA CRISC Review Manual", "ISACA QAE Database"],
+    "breaking_into_cyber_notes": "Essential for security executives focused on enterprise risk management, threat modeling, and board reporting."
+  },
+  {
+    "name": "CCISO (Certified Chief Information Security Officer)",
+    "vendor": "EC-Council",
+    "code": "CCISO",
+    "difficulty": "C-Suite Executive",
+    "prerequisites": ["5 years of experience in 3+ CCISO domains"],
+    "study_hours": 250,
+    "exam_details": {
+      "questions": 150,
+      "duration_minutes": 150,
+      "passing_score": "72%",
+      "cost_usd": 999
+    },
+    "domains": [
+      "Governance & Risk Management",
+      "Information Security Controls & Audit",
+      "Security Program Management & Operations",
+      "Core Information Security Competencies",
+      "Strategic Financial, Procurement, & Vendor Management"
     ],
-    "breaking_into_cyber_notes": "The SOC analyst cert. Perfect for those wanting to work in a Security Operations Center."
+    "best_for": ["Executive CISOs", "VP of Cybersecurity", "Security Directors"],
+    "resources": ["EC-Council Official CCISO Courseware", "CISO Executive Mentorship"],
+    "breaking_into_cyber_notes": "Tailored specifically for C-suite executive leadership, covering budget control, vendor risk, and board relations."
+  },
+  {
+    "name": "GIAC GSLC (GIAC Security Leadership)",
+    "vendor": "SANS / GIAC",
+    "code": "GSLC",
+    "difficulty": "Advanced Executive",
+    "prerequisites": ["SANS MGT512 course or equivalent technical management background"],
+    "study_hours": 160,
+    "exam_details": {
+      "questions": 115,
+      "duration_minutes": 180,
+      "passing_score": "68%",
+      "cost_usd": 979
+    },
+    "domains": [
+      "Governance & Risk Management",
+      "Incident Response Management",
+      "Application & Network Defense Architecture",
+      "Security Awareness & Culture"
+    ],
+    "best_for": ["Security Managers", "Technical Directors", "Engineering Managers pivoting to CISO"],
+    "resources": ["SANS MGT512 Courseware", "GIAC Practice Exams"],
+    "breaking_into_cyber_notes": "Bridges technical security engineering with executive leadership principles."
+  },
+  {
+    "name": "CCSP (Certified Cloud Security Professional)",
+    "vendor": "ISC2",
+    "code": "CCSP",
+    "difficulty": "Advanced Cloud",
+    "prerequisites": ["5 years in IT, 3 years in security, 1 year in cloud"],
+    "study_hours": 220,
+    "exam_details": {
+      "questions": 150,
+      "duration_minutes": 240,
+      "passing_score": 700,
+      "cost_usd": 599
+    },
+    "domains": [
+      "Cloud Concepts, Architecture & Design",
+      "Cloud Data Security",
+      "Cloud Platform & Infrastructure Security",
+      "Cloud Application Security",
+      "Cloud Security Operations",
+      "Legal, Risk & Compliance"
+    ],
+    "best_for": ["Cloud Security Architects", "Cloud Engineers", "Enterprise Security Architects"],
+    "resources": ["ISC2 CCSP Official Study Guide", "Ben Malisow Course (Udemy)"],
+    "breaking_into_cyber_notes": "Vendor-agnostic cloud security gold standard across AWS, Azure, and Google Cloud."
+  },
+  {
+    "name": "AWS Certified Security - Specialty",
+    "vendor": "Amazon Web Services",
+    "code": "SCS-C02",
+    "difficulty": "Specialized Cloud",
+    "prerequisites": ["2+ years hands-on experience securing AWS workloads"],
+    "study_hours": 160,
+    "exam_details": {
+      "questions": 65,
+      "duration_minutes": 170,
+      "passing_score": 750,
+      "cost_usd": 300
+    },
+    "domains": [
+      "Threat Detection and Incident Response",
+      "Security Logging and Monitoring",
+      "Infrastructure Security",
+      "Identity and Access Management (IAM)",
+      "Data Protection & KMS"
+    ],
+    "best_for": ["AWS Cloud Security Engineers", "DevSecOps Engineers", "Cloud Architects"],
+    "resources": ["Stephane Maarek (Udemy)", "Tutorials Dojo Practice Exams", "AWS Security Whitepapers"],
+    "breaking_into_cyber_notes": "Highly sought after for AWS-native security roles, IAM policy depth, and automated incident response."
+  },
+  {
+    "name": "GCFA (GIAC Certified Forensic Analyst)",
+    "vendor": "SANS / GIAC",
+    "code": "GCFA",
+    "difficulty": "Advanced DFIR",
+    "prerequisites": ["SANS FOR508 or extensive threat hunting / incident response background"],
+    "study_hours": 250,
+    "exam_details": {
+      "questions": 115,
+      "duration_minutes": 180,
+      "passing_score": "71%",
+      "cost_usd": 979
+    },
+    "domains": [
+      "Advanced Incident Response",
+      "Memory Forensics",
+      "NTFS File System Artifact Analysis",
+      "Threat Hunting with Timeline Analysis"
+    ],
+    "best_for": ["DFIR Specialists", "Senior Incident Responders", "Threat Hunters"],
+    "resources": ["SANS FOR508 Courseware", "Eric Zimmerman Tools"],
+    "breaking_into_cyber_notes": "Industry standard certification for deep digital forensics and enterprise threat hunting."
+  },
+  {
+    "name": "GICSP (Global Industrial Cyber Security Professional)",
+    "vendor": "SANS / GIAC",
+    "code": "GICSP",
+    "difficulty": "Specialized OT/ICS",
+    "prerequisites": ["SANS ICS410 or industrial control systems experience"],
+    "study_hours": 180,
+    "exam_details": {
+      "questions": 115,
+      "duration_minutes": 180,
+      "passing_score": "71%",
+      "cost_usd": 979
+    },
+    "domains": [
+      "ICS/SCADA System Architecture",
+      "Industrial Network Security & Segmentation",
+      "OT Threat Detection & Incident Response",
+      "Purdue Model & ISA/IEC 62443 Standards"
+    ],
+    "best_for": ["OT Security Engineers", "ICS Cybersecurity Specialists", "Critical Infrastructure Defenders"],
+    "resources": ["SANS ICS410 Courseware", "Dragos OT Security Resources"],
+    "breaking_into_cyber_notes": "Essential for securing oil & gas, manufacturing, energy grids, and water treatment utilities."
+  },
+  {
+    "name": "CSSLP (Certified Secure Software Lifecycle Professional)",
+    "vendor": "ISC2",
+    "code": "CSSLP",
+    "difficulty": "Specialized AppSec",
+    "prerequisites": ["4 years paid SDLC experience"],
+    "study_hours": 200,
+    "exam_details": {
+      "questions": 125,
+      "duration_minutes": 180,
+      "passing_score": 700,
+      "cost_usd": 599
+    },
+    "domains": [
+      "Secure Software Concepts",
+      "Secure Software Requirements",
+      "Secure Software Architecture & Design",
+      "Secure Software Implementation",
+      "Secure Software Testing",
+      "Secure Lifecycle Management"
+    ],
+    "best_for": ["AppSec Engineers", "Software Architects", "DevSecOps Leads"],
+    "resources": ["ISC2 Official CSSLP Guide", "OWASP Top 10 Guides"],
+    "breaking_into_cyber_notes": "Focuses on embedding security into software development lifecycles from architecture to deployment."
+  },
+  {
+    "name": "AIGP (Artificial Intelligence Governance Professional)",
+    "vendor": "IAPP",
+    "code": "AIGP",
+    "difficulty": "Specialized AI & Emerging Tech",
+    "prerequisites": ["Understanding of AI models, data privacy, and risk governance"],
+    "study_hours": 100,
+    "exam_details": {
+      "questions": 90,
+      "duration_minutes": 150,
+      "passing_score": "70%",
+      "cost_usd": 550
+    },
+    "domains": [
+      "AI Systems & Core Technologies",
+      "AI Risk Management Frameworks (NIST AI RMF, EU AI Act)",
+      "Ethical AI & Bias Mitigation",
+      "AI Security Governance & Auditing"
+    ],
+    "best_for": ["AI Governance Leads", "CISO Advisors", "Privacy Officers", "AI Risk Managers"],
+    "resources": ["IAPP AIGP Body of Knowledge", "NIST AI Risk Management Framework 1.0"],
+    "breaking_into_cyber_notes": "Cutting-edge certification for governing enterprise Generative AI and LLM security risks."
+  },
+  {
+    "name": "CIPP/E (Certified Information Privacy Professional/Europe)",
+    "vendor": "IAPP",
+    "code": "CIPP/E",
+    "difficulty": "Specialized Privacy",
+    "prerequisites": ["Foundational knowledge of European data protection laws (GDPR)"],
+    "study_hours": 120,
+    "exam_details": {
+      "questions": 90,
+      "duration_minutes": 150,
+      "passing_score": 300,
+      "cost_usd": 550
+    },
+    "domains": [
+      "Data Protection Laws (GDPR & ePrivacy)",
+      "International Data Transfer Mechanisms",
+      "Data Controller & Processor Obligations",
+      "Privacy Impact Assessments (DPIA)"
+    ],
+    "best_for": ["Data Privacy Officers (DPO)", "GRC Specialists", "Legal & Compliance Officers"],
+    "resources": ["IAPP CIPP/E Textbook", "GDPR Official Text"],
+    "breaking_into_cyber_notes": "Global standard for data privacy laws, compliance, and international data transfer regulations."
   },
   {
     "name": "CISSP",
     "vendor": "ISC2",
     "code": "CISSP",
     "difficulty": "Advanced",
-    "prerequisites": [
-      "5 years paid work experience in 2+ of 8 CISSP domains",
-      "OR 4 years with a degree"
-    ],
+    "prerequisites": ["5 years paid work experience in 2+ of 8 CISSP domains"],
     "study_hours": 250,
     "exam_details": {
       "questions": "125-175 adaptive",
@@ -92,58 +305,16 @@
       "Security Operations",
       "Software Development Security"
     ],
-    "best_for": [
-      "Senior security professionals",
-      "Security managers",
-      "CISOs"
-    ],
-    "resources": [
-      "Mike Chapple Official Study Guide",
-      "Kelly Handerhan (YouTube/Cybrary)",
-      "Boson practice exams"
-    ],
-    "breaking_into_cyber_notes": "The gold standard for senior security roles. You need experience first \u2014 dont try to get this as a beginner."
-  },
-  {
-    "name": "eJPT",
-    "vendor": "eLearnSecurity (INE)",
-    "code": "eJPT",
-    "difficulty": "Beginner",
-    "prerequisites": [
-      "Basic networking knowledge",
-      "Linux fundamentals helpful"
-    ],
-    "study_hours": 80,
-    "exam_details": {
-      "questions": "Practical exam",
-      "duration_minutes": 1440,
-      "passing_score": "70%",
-      "cost_usd": 200
-    },
-    "domains": [
-      "Network Penetration Testing",
-      "Web Application Basics",
-      "Exploitation Fundamentals"
-    ],
-    "best_for": [
-      "Aspiring penetration testers",
-      "IT pros wanting to learn hacking basics"
-    ],
-    "resources": [
-      "INE free Starter Pass",
-      "TryHackMe beginner paths"
-    ],
-    "breaking_into_cyber_notes": "The best entry-level pen test cert. Fully hands-on \u2014 no memorization, you actually hack machines to pass."
+    "best_for": ["Senior security professionals", "Security managers", "CISOs"],
+    "resources": ["Mike Chapple Official Study Guide", "Kelly Handerhan (Cybrary)", "Boson practice exams"],
+    "breaking_into_cyber_notes": "The gold standard for senior security roles and leadership prerequisites."
   },
   {
     "name": "OSCP",
     "vendor": "Offensive Security",
     "code": "PEN-200",
-    "difficulty": "Advanced",
-    "prerequisites": [
-      "Solid networking/Linux knowledge",
-      "Experience with basic exploitation"
-    ],
+    "difficulty": "Advanced Red Team",
+    "prerequisites": ["Solid networking/Linux knowledge, basic exploitation"],
     "study_hours": 400,
     "exam_details": {
       "questions": "Practical 24-hour exam",
@@ -154,19 +325,11 @@
     "domains": [
       "Active Directory Attacks",
       "Web Application Attacks",
-      "Buffer Overflows",
       "Privilege Escalation",
-      "Pivoting/Tunneling"
+      "Pivoting & Tunneling"
     ],
-    "best_for": [
-      "Penetration testers",
-      "Red teamers"
-    ],
-    "resources": [
-      "Offensive Security PEN-200 course",
-      "TJNull OSCP prep list",
-      "HackTheBox/TryHackMe"
-    ],
-    "breaking_into_cyber_notes": "The most respected pen test cert in the industry. Try Harder is real \u2014 budget 3-6 months of serious lab time."
+    "best_for": ["Penetration testers", "Red teamers"],
+    "resources": ["Offensive Security PEN-200 course", "TJNull OSCP prep list", "HackTheBox"],
+    "breaking_into_cyber_notes": "The most respected hands-on penetration testing certification."
   }
 ]

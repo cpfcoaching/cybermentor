@@ -1,4 +1,49 @@
 {
+  "ciso": {
+    "title": "CISO / Executive Security Leadership",
+    "description": "Lead an organization's overall cybersecurity program, risk governance, budget strategy, C-suite alignment, and Board reporting.",
+    "day_to_day": [
+      "Executive strategy & budget allocation",
+      "Board of Directors reporting & risk presentations",
+      "Third-party & enterprise risk governance",
+      "Regulatory compliance & crisis management leadership",
+      "Building and scaling cybersecurity teams"
+    ],
+    "salary_range": {
+      "entry": 180000,
+      "mid": 250000,
+      "senior": 350000,
+      "currency": "USD"
+    },
+    "required_skills": [
+      "Enterprise Risk Management (ERM)",
+      "Executive Communication & Board Presence",
+      "Financial Budgeting & Resource Allocation",
+      "Governance Frameworks (NIST CSF, ISO 27001, FAIR)",
+      "Crisis Leadership & Incident Response Command"
+    ],
+    "recommended_certs": [
+      "CISM",
+      "CRISC",
+      "CISSP",
+      "CCISO",
+      "GIAC GSLC",
+      "Executive Leadership Programs (CMU/Wharton)"
+    ],
+    "time_to_first_job": "10-20+ years IT & Security leadership experience",
+    "growth_paths": [
+      "Group CISO",
+      "Chief Risk Officer (CRO)",
+      "Board Director / Security Advisory Board Member"
+    ],
+    "companies_hiring": [
+      "Fortune 500 enterprises",
+      "High-growth tech unicorns",
+      "Financial institutions & banks",
+      "Healthcare networks"
+    ],
+    "breaking_into_cyber_tips": "Build strong business acumen. CISOs are business executives first and security technologists second. Master risk quantification (FAIR), financial budgeting, and speaking the language of business risk."
+  },
   "soc_analyst": {
     "title": "SOC Analyst (Security Operations Center)",
     "description": "Monitor, detect, and respond to security incidents in real time. The first line of defense.",
@@ -71,7 +116,8 @@
       "eJPT",
       "CEH or PNPT",
       "OSCP",
-      "GPEN"
+      "GPEN",
+      "CRTO"
     ],
     "time_to_first_job": "12-24 months from zero",
     "growth_paths": [
@@ -159,5 +205,115 @@
       "DevSecOps Lead"
     ],
     "breaking_into_cyber_tips": "Pick one cloud provider and go deep. Get your associate-level cloud cert, then the security specialty. Cloud skills pay a significant premium over traditional security roles."
+  },
+  "ot_ics_scada": {
+    "title": "OT / ICS / SCADA Critical Infrastructure Security Specialist",
+    "description": "Protect industrial control systems, manufacturing plants, smart grids, oil & gas pipelines, and SCADA networks.",
+    "day_to_day": [
+      "Purdue Model network architecture segmentation",
+      "PLC & SCADA firmware risk assessments",
+      "Industrial anomaly detection & monitoring",
+      "Safety system (SIS) cyber defense",
+      "NERC CIP / ISA/IEC 62443 compliance audits"
+    ],
+    "salary_range": {
+      "entry": 85000,
+      "mid": 125000,
+      "senior": 170000,
+      "currency": "USD"
+    },
+    "required_skills": [
+      "Industrial Control Protocols (Modbus, DNP3, Ethernet/IP)",
+      "Purdue Model Architecture",
+      "ISA/IEC 62443 Standards",
+      "OT Threat Detection (Dragos, Claroty, Nozomi)",
+      "Incident Response in Physical Environments"
+    ],
+    "recommended_certs": [
+      "GICSP",
+      "ISA/IEC 62443 Cybersecurity Specialist",
+      "GRID",
+      "GCIP"
+    ],
+    "time_to_first_job": "12-24 months",
+    "growth_paths": [
+      "Lead OT Security Architect",
+      "Director of Industrial Cybersecurity",
+      "CISO for Energy & Manufacturing"
+    ],
+    "breaking_into_cyber_tips": "Pivoting from electrical engineering, automation, or SCADA engineering into security commands high salaries. Focus on GICSP and ISA 62443 standards."
+  },
+  "dfir": {
+    "title": "Digital Forensics & Incident Response (DFIR) Specialist",
+    "description": "Investigate complex enterprise breaches, analyze malware, reconstruct intruder timelines, and preserve digital evidence.",
+    "day_to_day": [
+      "Disk image & memory forensic extraction",
+      "Reverse engineering malware binaries",
+      "Enterprise timeline analysis",
+      "Ransomware incident containment",
+      "Expert testimony & forensic reporting"
+    ],
+    "salary_range": {
+      "entry": 80000,
+      "mid": 120000,
+      "senior": 165000,
+      "currency": "USD"
+    },
+    "required_skills": [
+      "Memory forensics (Volatility)",
+      "Disk artifacts (NTFS, Registry, Event Logs)",
+      "Malware analysis (Ghidra, IDA Pro)",
+      "Timeline creation (Plaso/log2timeline)",
+      "Evidence chain of custody"
+    ],
+    "recommended_certs": [
+      "GCIH",
+      "GCFA",
+      "GREM",
+      "GNFA"
+    ],
+    "time_to_first_job": "12-24 months",
+    "growth_paths": [
+      "Principal Incident Responder",
+      "DFIR Practice Lead",
+      "Cyber Forensics Director"
+    ],
+    "breaking_into_cyber_tips": "Practice memory and disk image analysis on CyberDefenders or SANS DFIR challenges using Eric Zimmerman tools."
+  },
+  "ai_governance_security": {
+    "title": "AI Security & AI Governance Specialist",
+    "description": "Secure enterprise AI deployments, prevent prompt injection/data poisoning, and ensure compliance with AI governance frameworks.",
+    "day_to_day": [
+      "LLM red teaming & prompt injection audits",
+      "NIST AI RMF compliance reviews",
+      "Generative AI data loss prevention (DLP)",
+      "AI model supply chain risk assessments",
+      "EU AI Act & AI policy drafting"
+    ],
+    "salary_range": {
+      "entry": 95000,
+      "mid": 140000,
+      "senior": 190000,
+      "currency": "USD"
+    },
+    "required_skills": [
+      "OWASP Top 10 for LLM Applications",
+      "NIST AI Risk Management Framework 1.0",
+      "Python / Machine Learning fundamentals",
+      "Data privacy & AI regulations",
+      "Model inversion & data poisoning mitigation"
+    ],
+    "recommended_certs": [
+      "AIGP (IAPP Artificial Intelligence Governance Professional)",
+      "CISM",
+      "CCSP"
+    ],
+    "time_to_first_job": "High-demand emerging field",
+    "growth_paths": [
+      "Head of AI Security",
+      "Chief AI Ethics Officer",
+      "CISO Advisor for Emerging Technologies"
+    ],
+    "breaking_into_cyber_tips": "Study the OWASP Top 10 for LLMs and the NIST AI RMF. Position yourself as the bridge between data science teams and cybersecurity governance."
   }
 }
