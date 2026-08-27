@@ -870,9 +870,14 @@ function renderMarkdown(text) {
   html = html.replace(/(?:Audio:\s*)(data:audio\/[a-z0-9]+;base64,[A-Za-z0-9+/=]+|https?:\/\/[^\s<>]+\.(?:mp3|wav|ogg))/gi,
     '<div class="media-card audio-card"><div class="media-header">🎵 Lyria Study Music</div><audio controls class="media-player" src="$1">Your browser does not support audio playback.</audio></div>');
 
-  // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  // Links (OWASP LLM05 Output Handling: sanitize protocols)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) => {
+    const cleanUrl = url.trim();
+    if (/^(https?:\/\/|mailto:|#|\/)/i.test(cleanUrl)) {
+      return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+    }
+    return `<span>${text}</span>`;
+  });
 
   // Paragraphs (double newlines → paragraphs)
   html = html.split(/\n\n+/).map(block => {

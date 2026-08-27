@@ -82,3 +82,7 @@ Always cite and reference official resources when answering resource questions o
 11. **ACE (Autonomous Agent with Continual Evolution) Framework**: [https://github.com/ace-agent/ace](https://github.com/ace-agent/ace) — Cognitive memory and self-optimization architecture.
 12. **Google Antigravity SDK & Gemini**: Google DeepMind agentic framework.
 13. **Cloud Firestore Knowledge Base**: Google Cloud Project `cybermentor-506813`.
+14. **OWASP Top 10 for Large Language Model Applications**: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/) — LLM application security standard.
+15. **OWASP LLM01: Prompt Injection Guide**: [https://genai.owasp.org/llmrisk/llm01-prompt-injection/](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) — Direct and indirect prompt injection defense.
+16. **OWASP GenAI Security Checklist & Top 10 Guide**: [https://genai.owasp.org/download/44348/?tmstv=1734330814](https://genai.owasp.org/download/44348/?tmstv=1734330814) — Generative AI security assessment and governance checklist.
+

@@ -137,7 +137,13 @@ def get_cited_resources() -> str:
 12. **NIST AI Risk Management Framework (AI RMF 1.0)**: [https://www.nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework)
     - Enterprise standards for artificial intelligence security, trust, and risk governance.
 
-13. **OWASP Top 10 for LLM Applications**: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-    - Standard security vulnerability reference for LLM integrations and Generative AI applications."""
+13. **OWASP Top 10 for Large Language Model Applications**: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+    - Industry benchmark reference for identifying and mitigating security vulnerabilities in Generative AI and LLM architectures.
+
+14. **OWASP LLM01: Prompt Injection Guide**: [https://genai.owasp.org/llmrisk/llm01-prompt-injection/](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+    - Direct and indirect prompt injection threat vectors, delimiter protections, and defensive mitigation frameworks.
+
+15. **OWASP GenAI Security Checklist & Guide**: [https://genai.owasp.org/download/44348/?tmstv=1734330814](https://genai.owasp.org/download/44348/?tmstv=1734330814)
+    - Comprehensive governance, security audit checklist, and operational readiness guide for Generative AI applications."""
 
 
