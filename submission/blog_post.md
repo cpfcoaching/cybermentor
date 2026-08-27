@@ -213,7 +213,7 @@ This context is injected into the conversation, and Gemini uses it to craft a pe
 ## Running It Yourself
 
 ```bash
-git clone https://github.com/christophe-foulon/cybermentor
+git clone https://github.com/cpfcoaching/cybermentor
 cd cybermentor
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -249,7 +249,7 @@ The Google Antigravity SDK made building a production-quality agentic applicatio
 CyberMentor solves a real problem I care about. That's the only kind of project worth building.
 
 → **[Try CyberMentor](https://cybermentor-1019457807345.us-central1.run.app)**
-→ **[GitHub Repository](https://github.com/christophe-foulon/cybermentor)**
+→ **[GitHub Repository](https://github.com/cpfcoaching/cybermentor)**
 → **[Breaking Into Cybersecurity](https://breakingintocybersecurity.org)**
 
 *Built for the All Things Agentic Hackathon by Google Cloud | #AllThingsAgenticHackathon*

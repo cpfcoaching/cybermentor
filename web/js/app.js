@@ -56,8 +56,12 @@ function handleGoogleSso(e) {
 
   try {
     const firebaseConfig = {
-      projectId: "cybermentor-506813",
-      authDomain: "cybermentor-506813.firebaseapp.com"
+      apiKey: "AIzaSyAMRuiN-oGbuxZ3a63l7bjTugRi2TjYdjQ",
+      authDomain: "resonant-grail-385716.firebaseapp.com",
+      projectId: "resonant-grail-385716",
+      storageBucket: "resonant-grail-385716.firebasestorage.app",
+      messagingSenderId: "381001655840",
+      appId: "1:381001655840:web:1e96f6d0cefba155e77e45"
     };
 
     if (!firebase.apps.length) {
@@ -81,7 +85,8 @@ function handleGoogleSso(e) {
           btn.innerHTML = `<span>Sign in with Google (MFA Protected)</span>`;
         }
         if (authMsg) {
-          authMsg.textContent = "Google Sign-In popup closed or unavailable. You can try again or use temporary screen name below.";
+          const detail = err && err.message ? ` (${err.message.slice(0, 60)})` : '';
+          authMsg.textContent = `Google Sign-In note${detail}. Try again or continue as Guest below.`;
         }
       });
   } catch (err) {
@@ -91,7 +96,7 @@ function handleGoogleSso(e) {
       btn.innerHTML = `<span>Sign in with Google (MFA Protected)</span>`;
     }
     if (authMsg) {
-      authMsg.textContent = "Google Auth error. Please use temporary screen name below.";
+      authMsg.textContent = "Google Auth error. Continue as Guest below.";
     }
   }
 }

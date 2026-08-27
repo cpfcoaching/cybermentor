@@ -115,7 +115,7 @@ Every session is remembered. When a user returns, CyberMentor loads their progre
 
 ## 🔗 Code Repository
 
-**GitHub:** `https://github.com/christophe-foulon/cybermentor`
+**GitHub:** `https://github.com/cpfcoaching/cybermentor`
 
 > If the repository is private, it has been shared with:
 > - testing@devpost.com
@@ -133,7 +133,7 @@ Every session is remembered. When a user returns, CyberMentor loads their progre
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/christophe-foulon/cybermentor.git
+git clone https://github.com/cpfcoaching/cybermentor.git
 cd cybermentor
 
 # 2. Create and activate a virtual environment
