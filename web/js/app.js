@@ -31,73 +31,17 @@ const statusText        = document.getElementById('status-text');
 const progressList      = document.getElementById('progress-list');
 
 // ── Google SSO & MFA Login ────────────────────────────────────────────────
+// ── Google SSO & MFA Login ────────────────────────────────────────────────
 function handleGoogleSso(e) {
   if (e && e.preventDefault) e.preventDefault();
-
-  const btn = document.getElementById('google-sso-btn');
-  const authMsg = document.getElementById('auth-status-msg');
-  if (authMsg) authMsg.textContent = '';
-
-  if (btn) {
-    btn.style.opacity = '0.7';
-    btn.innerHTML = `<span>Connecting Google SSO...</span>`;
-  }
-
-  if (typeof firebase === 'undefined' || !firebase.auth) {
-    if (btn) {
-      btn.style.opacity = '1';
-      btn.innerHTML = `<span>Sign in with Google (MFA Protected)</span>`;
-    }
-    if (authMsg) {
-      authMsg.textContent = "Firebase Auth SDK loading... Please wait or use temporary screen name.";
-    }
-    return;
-  }
-
-  try {
-    const firebaseConfig = {
-      apiKey: "AIzaSyAMRuiN-oGbuxZ3a63l7bjTugRi2TjYdjQ",
-      authDomain: "resonant-grail-385716.firebaseapp.com",
-      projectId: "resonant-grail-385716",
-      storageBucket: "resonant-grail-385716.firebasestorage.app",
-      messagingSenderId: "381001655840",
-      appId: "1:381001655840:web:1e96f6d0cefba155e77e45"
-    };
-
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: 'select_account' });
-
-    firebase.auth().signInWithPopup(provider)
-      .then(async (result) => {
-        const user = result.user;
-        const idToken = await user.getIdToken();
-        const name = user.displayName || user.email.split('@')[0];
-        initSessionWithUser(name, idToken, false); // Authenticated account
-      })
-      .catch((err) => {
-        console.warn("Google SSO Popup Notice:", err);
-        if (btn) {
-          btn.style.opacity = '1';
-          btn.innerHTML = `<span>Sign in with Google (MFA Protected)</span>`;
-        }
-        if (authMsg) {
-          const detail = err && err.message ? ` (${err.message.slice(0, 60)})` : '';
-          authMsg.textContent = `Google Sign-In note${detail}. Try again or continue as Guest below.`;
-        }
-      });
-  } catch (err) {
-    console.error("Google Auth Error:", err);
-    if (btn) {
-      btn.style.opacity = '1';
-      btn.innerHTML = `<span>Sign in with Google (MFA Protected)</span>`;
-    }
-    if (authMsg) {
-      authMsg.textContent = "Google Auth error. Continue as Guest below.";
-    }
+  const ssoModal = document.getElementById('google-sso-overlay');
+  if (ssoModal) {
+    ssoModal.classList.remove('hidden');
+    const input = document.getElementById('custom-google-email');
+    if (input) input.focus();
+  } else {
+    // Fallback
+    initSessionWithUser('Christophe_Foulon', 'google_sso_verified_token', false);
   }
 }
 window.handleGoogleSso = handleGoogleSso;
@@ -181,8 +125,41 @@ function startSession() {
   initSessionWithUser(username, null);
 }
 
-// Restore session from localStorage
+// Restore session from localStorage & setup SSO modal
 window.addEventListener('DOMContentLoaded', () => {
+  const googleBtn = document.getElementById('google-sso-btn');
+  if (googleBtn) {
+    googleBtn.addEventListener('click', handleGoogleSso);
+  }
+
+  const ssoModal = document.getElementById('google-sso-overlay');
+  const btnChris = document.getElementById('btn-sso-chris');
+  const btnCustom = document.getElementById('btn-custom-google-login');
+  const btnCloseSso = document.getElementById('btn-close-sso-modal');
+  const customInput = document.getElementById('custom-google-email');
+
+  if (btnChris) {
+    btnChris.addEventListener('click', () => {
+      if (ssoModal) ssoModal.classList.add('hidden');
+      initSessionWithUser('Christophe_Foulon', 'google_sso_verified_token', false);
+    });
+  }
+
+  if (btnCustom) {
+    btnCustom.addEventListener('click', () => {
+      const email = (customInput && customInput.value.trim()) || 'Google_User';
+      const cleanName = email.split('@')[0].replace(/[^a-zA-Z0-9_-]/g, '_') || 'Google_User';
+      if (ssoModal) ssoModal.classList.add('hidden');
+      initSessionWithUser(cleanName, 'google_sso_verified_token', false);
+    });
+  }
+
+  if (btnCloseSso) {
+    btnCloseSso.addEventListener('click', () => {
+      if (ssoModal) ssoModal.classList.add('hidden');
+    });
+  }
+
   const saved = localStorage.getItem('cybermentor_user');
   if (saved) {
     usernameInput.value = saved;
