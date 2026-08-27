@@ -47,6 +47,8 @@ def query_knowledge_base(topic: str, category: Optional[str] = None) -> str:
         files_to_search.append(("career_paths", "career_paths.json"))
     if category == "interview_questions" or category is None:
         files_to_search.append(("interview_questions", "interview_questions.json"))
+    if category == "youtube_transcripts" or category is None:
+        files_to_search.append(("breaking_into_cyber_episodes", "youtube_transcripts.json"))
 
     for cat_name, filename in files_to_search:
         data = _load_json(filename)
@@ -81,25 +83,44 @@ def get_cited_resources() -> str:
     """
     return """## 📚 Official Resources & Citations
 
-1. **Breaking Into Cybersecurity**: [https://breakingintocybersecurity.org](https://breakingintocybersecurity.org)
-   - Primary sponsor, community, and career development platform for cybersecurity candidates.
+1. **Breaking Into Cybersecurity**: [https://breakingintocybersecurity.org](https://breakingintocybersecurity.org) & YouTube [https://www.youtube.com/c/BreakingIntoCybersecurity](https://www.youtube.com/c/BreakingIntoCybersecurity)
+   - Primary sponsor, community, video/audio content, and career development platform for cybersecurity candidates.
 
-2. **Paul Jerimy Security Certification Roadmap**: [https://pauljerimy.com/security-certification-roadmap/](https://pauljerimy.com/security-certification-roadmap/)
+2. **CISA NICCS Cyber Career Pathways Tool**: [https://niccs.cisa.gov/tools/cyber-career-pathways-tool](https://niccs.cisa.gov/tools/cyber-career-pathways-tool)
+   - Interactive CISA workforce pathway tool for exploring core cyber work roles, knowledge, skills, and abilities (KSAs).
+
+3. **NIST NICE Cybersecurity Workforce Framework (SP 800-181r1)**: [https://www.nist.gov/itl/applied-cybersecurity/nice/nice-framework-resource-center/nice-framework-current-versions](https://www.nist.gov/itl/applied-cybersecurity/nice/nice-framework-resource-center/nice-framework-current-versions)
+   - National standard establishing common taxonomy for cybersecurity work roles, tasks, knowledge, and skills.
+
+4. **Paul Jerimy Security Certification Roadmap**: [https://pauljerimy.com/security-certification-roadmap/](https://pauljerimy.com/security-certification-roadmap/)
    - Open-Source GitHub Repository: [https://github.com/PaulJerimy/SecCertRoadmapHTML](https://github.com/PaulJerimy/SecCertRoadmapHTML)
    - Industry-standard progression matrix mapping 300+ cybersecurity certifications across 10 security domains and 6 experience tiers.
 
-3. **Hadess Cybersecurity Certification Roadmap**: [https://career.hadess.io/certificate-roadmap](https://career.hadess.io/certificate-roadmap)
+5. **Hadess Cybersecurity Certification Roadmap**: [https://career.hadess.io/certificate-roadmap](https://career.hadess.io/certificate-roadmap)
    - Interactive certification matrix, prerequisites, exam costs, and career path mappings.
 
-4. **Cyberdudekz Security Cert Roadmap**: [https://github.com/cyberdudekz/security-cert-roadmap](https://github.com/cyberdudekz/security-cert-roadmap)
+6. **Cyberdudekz Security Cert Roadmap**: [https://github.com/cyberdudekz/security-cert-roadmap](https://github.com/cyberdudekz/security-cert-roadmap)
    - Community-curated visual roadmap of security certifications categorized by specialization and difficulty.
 
-5. **ACE (Autonomous Agent with Continual Evolution) Framework**: [https://github.com/ace-agent/ace](https://github.com/ace-agent/ace)
-   - Cognitive memory, candidate observation logging, and continual self-optimization strategy framework for AI agents.
+7. **Coursera Cybersecurity Interview Prep Guide**: [https://www.coursera.org/resources/cybersecurity-interview-prep-guide](https://www.coursera.org/resources/cybersecurity-interview-prep-guide)
+   - Comprehensive technical, situational, and behavioral interview preparation frameworks.
 
-6. **NIST AI Risk Management Framework (AI RMF 1.0)**: [https://www.nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework)
-   - Enterprise standards for artificial intelligence security, trust, and risk governance.
+8. **Bauer College 61 Cybersecurity Interview Questions & Answers**: [https://careercenter.bauer.uh.edu/blog/2021/06/17/61-cybersecurity-job-interview-questions-and-answers/](https://careercenter.bauer.uh.edu/blog/2021/06/17/61-cybersecurity-job-interview-questions-and-answers/)
+   - Industry-calibrated question bank and answers across networking, cryptography, and incident response.
 
-7. **OWASP Top 10 for LLM Applications**: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-   - Standard security vulnerability reference for LLM integrations and Generative AI applications."""
+9. **H2K Infosys Cybersecurity Interview & Career Guide**: [https://www.h2kinfosys.com/blog/most-common-cyber-security-interview-questions-and-answers-for-career-growth/](https://www.h2kinfosys.com/blog/most-common-cyber-security-interview-questions-and-answers-for-career-growth/)
+   - Common cybersecurity interview scenarios, protocols, and technical defense rubrics.
+
+10. **Insight Global Best Cybersecurity Interview Questions**: [https://insightglobal.com/blog/best-cybersecurity-interview-questions/](https://insightglobal.com/blog/best-cybersecurity-interview-questions/)
+    - Key recruiter insights, hiring manager expectations, and behavioral evaluation standards.
+
+11. **ACE (Autonomous Agent with Continual Evolution) Framework**: [https://github.com/ace-agent/ace](https://github.com/ace-agent/ace)
+    - Cognitive memory, candidate observation logging, and continual self-optimization strategy framework for AI agents.
+
+12. **NIST AI Risk Management Framework (AI RMF 1.0)**: [https://www.nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework)
+    - Enterprise standards for artificial intelligence security, trust, and risk governance.
+
+13. **OWASP Top 10 for LLM Applications**: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+    - Standard security vulnerability reference for LLM integrations and Generative AI applications."""
+
 

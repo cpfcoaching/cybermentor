@@ -346,6 +346,27 @@ document.querySelectorAll('.quick-action-btn').forEach(btn => {
       }
       return;
     }
+    if (btn.id === 'btn-mindmap-explorer') {
+      const mindmapOverlay = document.getElementById('mindmap-overlay');
+      if (mindmapOverlay) {
+        mindmapOverlay.classList.remove('hidden');
+        mindmapOverlay.classList.add('active');
+        renderTransferExplorer();
+        renderSkillsMindmap();
+        renderCertsMindmap();
+      }
+    if (btn.id === 'btn-privacy-policy') {
+      const privacyOverlay = document.getElementById('privacy-overlay');
+      if (privacyOverlay) {
+        privacyOverlay.classList.remove('hidden');
+        privacyOverlay.classList.add('active');
+      }
+      return;
+    }
+    if (btn.id === 'btn-delete-profile') {
+      handleDeleteProfile();
+      return;
+    }
     const prompt = btn.dataset.prompt;
     if (prompt && !isStreaming) {
       messageInput.value = prompt;
@@ -354,6 +375,103 @@ document.querySelectorAll('.quick-action-btn').forEach(btn => {
     }
   });
 });
+
+// ── Privacy Policy Modal Handlers ─────────────────────────────────────────
+const closePrivacyBtn = document.getElementById('close-privacy-btn');
+if (closePrivacyBtn) {
+  closePrivacyBtn.addEventListener('click', () => {
+    const privacyOverlay = document.getElementById('privacy-overlay');
+    if (privacyOverlay) {
+      privacyOverlay.classList.remove('active');
+      privacyOverlay.classList.add('hidden');
+    }
+  });
+}
+
+const linkPrivacyFooter = document.getElementById('link-privacy-footer');
+if (linkPrivacyFooter) {
+  linkPrivacyFooter.addEventListener('click', (e) => {
+    e.preventDefault();
+    const privacyOverlay = document.getElementById('privacy-overlay');
+    if (privacyOverlay) {
+      privacyOverlay.classList.remove('hidden');
+      privacyOverlay.classList.add('active');
+    }
+  });
+}
+
+// ── Delete Profile & Right to Erasure ─────────────────────────────────────
+async function handleDeleteProfile() {
+  const confirmed = confirm(
+    "⚠️ PERMANENT DATA DELETION (Right to Erasure)\n\n" +
+    "Are you sure you want to permanently delete all your data?\n\n" +
+    "This will permanently erase:\n" +
+    "• All conversation transcripts and message history\n" +
+    "• All ACE cognitive memory notes and strategy reflections\n" +
+    "• All documented skills and competencies\n" +
+    "• All career milestones and progress tracking\n\n" +
+    "This action is immediate and cannot be undone."
+  );
+
+  if (!confirmed) return;
+
+  try {
+    setStatus('working', 'Deleting all profile data...');
+    const res = await fetch(`${API_BASE_URL}/api/progress/${encodeURIComponent(currentUser)}/data`, {
+      method: 'DELETE'
+    });
+
+    // Clear local storage and state
+    messagesEl.innerHTML = '';
+    sessionId = null;
+    localStorage.removeItem('cybermentor_session_' + currentUser);
+    localStorage.removeItem('cybermentor_user_' + currentUser);
+
+    const data = await res.json();
+    addAgentMessage(
+      "🛡️ **Your data has been permanently deleted.**\n\n" +
+      "All conversation histories, ACE cognitive memory notes, and documented skills have been completely purged from Cloud Firestore and local storage in accordance with our Zero-Knowledge Privacy Policy.\n\n" +
+      "You have a completely fresh slate. How can I help you today?"
+    );
+
+    // Refresh progress sidebar
+    loadProgress(currentUser);
+    setStatus('ready', 'CyberMentor Ready');
+  } catch (err) {
+    console.error("Error deleting profile data:", err);
+    alert("An error occurred while deleting profile data. Please try again.");
+    setStatus('ready', 'CyberMentor Ready');
+  }
+}
+
+// ── Resume Upload Handler ────────────────────────────────────────────────
+const uploadResumeBtn = document.getElementById('btn-upload-resume');
+const resumeFileInput = document.getElementById('resume-file-input');
+
+if (uploadResumeBtn && resumeFileInput) {
+  uploadResumeBtn.addEventListener('click', () => {
+    resumeFileInput.click();
+  });
+
+  resumeFileInput.addEventListener('change', (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const content = event.target.result;
+      if (!content || !content.trim()) return;
+
+      const prompt = `Please review my resume text below for cybersecurity roles. Extract my current competencies, calculate my readiness score, and proactively probe me about any high-value missing or adjacent skills I might have forgotten to list that would make my resume more appealing to hiring managers:\n\n---\n${content.trim()}\n---`;
+      
+      messageInput.value = prompt;
+      messageInput.dispatchEvent(new Event('input'));
+      sendMessage();
+      resumeFileInput.value = ''; // Reset for subsequent uploads
+    };
+    reader.readAsText(file);
+  });
+}
 
 const closeResourcesBtn = document.getElementById('close-resources-btn');
 if (closeResourcesBtn) {
@@ -364,6 +482,231 @@ if (closeResourcesBtn) {
       resourcesOverlay.classList.add('hidden');
     }
   });
+}
+
+// ── Mindmaps & Transfer Explorer Controller ──────────────────────────────
+const closeMindmapBtn = document.getElementById('close-mindmap-btn');
+if (closeMindmapBtn) {
+  closeMindmapBtn.addEventListener('click', () => {
+    const mindmapOverlay = document.getElementById('mindmap-overlay');
+    if (mindmapOverlay) {
+      mindmapOverlay.classList.remove('active');
+      mindmapOverlay.classList.add('hidden');
+    }
+  });
+}
+
+// Tab Switching
+document.querySelectorAll('.mindmap-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.mindmap-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.mindmap-view').forEach(v => {
+      v.classList.remove('active');
+      v.classList.add('hidden');
+    });
+
+    tab.classList.add('active');
+    const targetId = `view-${tab.dataset.tab}`;
+    const targetView = document.getElementById(targetId);
+    if (targetView) {
+      targetView.classList.remove('hidden');
+      targetView.classList.add('active');
+    }
+  });
+});
+
+const sourceRoleSelect = document.getElementById('select-source-role');
+const targetRoleSelect = document.getElementById('select-target-role');
+const skillsRoleSelect = document.getElementById('select-skills-role');
+const certsRoleSelect  = document.getElementById('select-certs-role');
+
+if (sourceRoleSelect) sourceRoleSelect.addEventListener('change', renderTransferExplorer);
+if (targetRoleSelect) targetRoleSelect.addEventListener('change', renderTransferExplorer);
+if (skillsRoleSelect) skillsRoleSelect.addEventListener('change', renderSkillsMindmap);
+if (certsRoleSelect)  certsRoleSelect.addEventListener('change', renderCertsMindmap);
+
+// In-memory role ontology cache for client-side snappy interactions
+const _ROLE_ONTOLOGY = {
+  it_helpdesk: {
+    title: "IT Helpdesk / Systems Support",
+    skills: {
+      "Technical Foundations": ["Windows/Linux/macOS OS Internals", "Active Directory & LDAP Management", "TCP/IP, Subnetting & Gateway Routing", "DNS, DHCP, Firewall Basics"],
+      "Tooling & Admin": ["ServiceNow & Jira Service Desk", "PowerShell & CLI Scripting", "Endpoint Antivirus & Sysinternals", "RMM & Patch Management"],
+      "Process & Soft Skills": ["SLA Triage & Queue Management", "User Access Provisioning", "Root-cause Troubleshooting", "Customer Incident De-escalation"]
+    },
+    certs: { "Foundational": ["CompTIA A+", "Google IT Support"], "Core": ["CompTIA Network+", "Microsoft MD-102"], "Advanced": ["CompTIA Security+", "Microsoft SC-900"] }
+  },
+  soc_analyst: {
+    title: "SOC Analyst (Security Operations Center)",
+    skills: {
+      "Detection & SIEM": ["SIEM Architecture (Splunk / Sentinel / QRadar)", "Query Languages (SPL / KQL)", "Log Parsing (Syslog, Auth, Web, Firewall)", "Threat Hunting Hypotheses"],
+      "Network & Endpoint Defense": ["Wireshark & PCAP Traffic Analysis", "EDR Telemetry (CrowdStrike / Defender)", "Phishing Email Header Analysis", "Threat Intel (VirusTotal, AlienVault OTX)"],
+      "Incident Response & Frameworks": ["PICERL Incident Lifecycle", "MITRE ATT&CK Mapping", "Cyber Kill Chain Correlation", "NIST SP 800-61r2 Runbooks"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "Cisco CyberOps Associate"], "Core": ["CompTIA CySA+", "Splunk Core Power User", "Microsoft SC-200"], "Advanced": ["GIAC GCIH (Incident Handler)", "Blue Team Level 1 (BTL1)"], "Capstone": ["GIAC GCFA", "SANS SEC504"] }
+  },
+  penetration_tester: {
+    title: "Penetration Tester / Offensive Security",
+    skills: {
+      "Offensive Assessment": ["OWASP Top 10 Web Application Flaws", "Active Directory Domain Escalation", "Network Port & Service Enumeration", "Vulnerability Exploitation (Metasploit)"],
+      "Tooling & Scripting": ["Burp Suite Professional", "Nmap, Masscan, Amass", "BloodHound & Mimikatz", "Python & Bash Exploit Customization"],
+      "Methodology & Scoping": ["PTES Standard & Rules of Engagement", "CVSS Risk Scoring", "Technical Debriefing & Proof-of-Concept", "Executive Pentest Report Writing"]
+    },
+    certs: { "Foundational": ["eLearnSecurity eJPT", "CompTIA PenTest+"], "Core": ["TCM Security PNPT", "OffSec OSCP"], "Advanced": ["OffSec OSWE", "GIAC GPEN", "CRTO"], "Capstone": ["OffSec OSEP", "SANS SEC660"] }
+  },
+  cloud_security: {
+    title: "Cloud Security Engineer",
+    skills: {
+      "Cloud Architecture": ["AWS / GCP / Azure Security Architecture", "IAM Least Privilege & Role Trust Policies", "VPC Flow Logs, GuardDuty & CloudTrail", "KMS Encryption & Key Management"],
+      "DevSecOps & Automation": ["Infrastructure as Code (Terraform)", "CI/CD Pipeline Security Gates", "Container & Kubernetes Hardening (Falco/Trivy)", "CSPM & CWPP Configuration (Wiz, Prisma)"],
+      "Cloud Compliance": ["CIS Cloud Foundations Benchmarks", "Shared Responsibility Model", "Automated Remediation Lambda/Cloud Functions", "Cloud Forensics & Posture Audits"]
+    },
+    certs: { "Foundational": ["AWS Cloud Practitioner", "GCP Cloud Digital Leader", "CompTIA Security+"], "Core": ["AWS Certified Security - Specialty", "Google Cloud Security Engineer", "Microsoft SC-100"], "Advanced": ["ISC2 CCSP", "Certified Kubernetes Security Specialist (CKS)"], "Capstone": ["ISC2 CISSP", "GIAC GCSA"] }
+  },
+  grc: {
+    title: "GRC Analyst (Governance, Risk, Compliance)",
+    skills: {
+      "Risk & Compliance Frameworks": ["NIST CSF & NIST SP 800-53", "ISO/IEC 27001 ISMS Implementation", "SOC 2 Type II Trust Criteria Audits", "HIPAA, PCI-DSS & GDPR Privacy"],
+      "Governance & Operations": ["Third-Party Vendor Risk Reviews (TPRM)", "Risk Register & FAIR Risk Quantification", "Security Policy & SOP Authoring", "Executive Risk Presentations & Board Dashboards"],
+      "Audit & Advisory": ["Internal Audit Evidence Gathering", "Control Gap Assessments", "Security Awareness Program Design", "Regulatory Compliance Remediation Tracking"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "ISACA ITCA"], "Core": ["ISACA CISA (Auditor)", "ISACA CRISC (Risk Specialist)"], "Advanced": ["ISO 27001 Lead Auditor", "ISC2 CGRC", "IAPP CIPP/E"], "Capstone": ["ISC2 CISSP", "ISACA CISM"] }
+  },
+  dfir: {
+    title: "DFIR (Digital Forensics & Incident Response)",
+    skills: {
+      "Forensic Extraction": ["Volatile Memory Acquisition (Volatility)", "Disk Imaging & Master File Table (MFT) Parsing", "Windows Registry & Event Log Forensics", "Evidence Chain-of-Custody Protocols"],
+      "Malware & Threat Analysis": ["Static & Dynamic Malware Triage (Ghidra, PEStudio)", "Command and Control (C2) Traffic Profiling", "Ransomware Decryption & Indicator Extraction", "Forensic Timeline Creation (Plaso/log2timeline)"],
+      "Breach Response": ["Enterprise Containment Command", "Threat Actor Attribution", "Expert Forensic Witness Testimony", "Root Cause Incident Reporting"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "GIAC GCFE"], "Core": ["GIAC GCIH", "GIAC GCFA"], "Advanced": ["GIAC GREM (Reverse Engineering)", "GNFA (Network Forensics)"], "Capstone": ["SANS FOR508 / FOR572"] }
+  },
+  ciso: {
+    title: "CISO / Executive Security Leadership",
+    skills: {
+      "Executive Strategy": ["Enterprise Risk Governance & Board Reporting", "Cybersecurity Budget & Financial Allocation", "C-suite Alignment & Business Strategy", "Cyber Insurance & Contract Negotiations"],
+      "Leadership & Culture": ["Building & Mentoring Security Teams", "Crisis Command & Breach Spokesperson", "Enterprise Security Culture Advocacy", "Regulatory & Legal Risk Strategy"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "CISA"], "Core": ["CISM", "CRISC"], "Advanced": ["ISC2 CISSP", "GIAC GSLC"], "Capstone": ["CCISO", "Executive Leadership (CMU/Wharton)"] }
+  }
+};
+
+function renderTransferExplorer() {
+  const src = sourceRoleSelect ? sourceRoleSelect.value : 'it_helpdesk';
+  const tgt = targetRoleSelect ? targetRoleSelect.value : 'soc_analyst';
+  const container = document.getElementById('transfer-results');
+  if (!container) return;
+
+  const srcData = _ROLE_ONTOLOGY[src] || _ROLE_ONTOLOGY.it_helpdesk;
+  const tgtData = _ROLE_ONTOLOGY[tgt] || _ROLE_ONTOLOGY.soc_analyst;
+
+  // Transfer matrix presets
+  const presets = {
+    "it_helpdesk->soc_analyst": { score: 85, diff: "Easy to Moderate", timeline: "3-6 months", shared: ["Windows/Linux OS Troubleshooting", "Active Directory User Administration", "Network Protocol Basics (TCP/IP, DNS)", "Ticket Queue Triage under SLAs"], bridge: ["Antivirus Troubleshooting ➔ EDR Alert Triage", "Network Connectivity Checks ➔ Wireshark PCAP Analysis", "User Lockout Investigation ➔ Account Takeover Detection"], delta: ["SIEM Query Syntax (SPL / KQL)", "MITRE ATT&CK Threat Mapping", "Phishing Email Header Forensics", "Cyber Kill Chain Containment"], certs: ["CompTIA Security+", "CompTIA CySA+", "Splunk Core Power User"], note: "You already know how computers and users break. Pivot by learning how attackers exploit those exact systems using SIEM logs and TryHackMe labs." },
+    "it_helpdesk->cloud_security": { score: 65, diff: "Moderate", timeline: "6-12 months", shared: ["User Authentication Concepts", "Networking Fundamentals", "Operating System Administration"], bridge: ["On-Prem Active Directory ➔ AWS IAM / Azure Entra ID", "Virtual Machines ➔ Cloud Compute (EC2 / Compute Engine)"], delta: ["Cloud Architecture & IAM Least Privilege", "Infrastructure as Code (Terraform)", "Cloud Security Posture Management (CSPM)", "CloudTrail & GuardDuty Log Auditing"], certs: ["AWS Certified Security - Specialty", "CompTIA Security+"], note: "Build free-tier cloud projects and convert manual sysadmin scripts into secure Terraform templates." },
+    "soc_analyst->penetration_tester": { score: 75, diff: "Moderate", timeline: "6-12 months", shared: ["Network Packet Capture (Wireshark)", "Understanding Exploit Mechanics", "Attack Signature Footprints", "MITRE ATT&CK Framework"], bridge: ["Detecting Web Attacks ➔ Executing Exploits (SQLi, XSS, SSRF)", "Investigating Malware Persistence ➔ Crafting Payloads", "Reading Alert Signatures ➔ Evading EDR/IDS Rules"], delta: ["Burp Suite Professional & Web App Methodology", "Manual Privilege Escalation (Linux/Windows)", "Penetration Testing Scoping & Report Writing"], certs: ["eLearnSecurity eJPT", "TCM Security PNPT", "OffSec OSCP"], note: "You know what alarms look like on the blue team. Use that insight to practice stealthy offensive techniques on PortSwigger Web Security Academy." },
+    "soc_analyst->dfir": { score: 90, diff: "Easy to Moderate", timeline: "3-6 months", shared: ["Evidence Gathering & Timeline Creation", "Endpoint Telemetry Analysis", "Threat Intel Correlation", "Root Cause Incident Analysis"], bridge: ["EDR Alerts ➔ Deep Memory & Disk Forensics", "Alert Triage ➔ Full Forensic Timeline Reconstruction"], delta: ["Memory Dump Analysis (Volatility)", "Master File Table (MFT) & Registry Forensics", "Malware Static/Dynamic Triage (Ghidra, PEStudio)"], certs: ["GIAC GCIH", "GIAC GCFA", "Blue Team Level 1"], note: "DFIR is the natural senior evolution for SOC analysts. Practice investigating memory dumps from past CyberDefenders challenges." },
+    "soc_analyst->cloud_security": { score: 80, diff: "Moderate", timeline: "6-9 months", shared: ["Log Correlation & Parsing", "Threat Detection Rules", "Identity & Access Monitoring", "Incident Response Workflows"], bridge: ["On-Prem SIEM ➔ AWS CloudTrail, GuardDuty & CloudWatch", "Firewall Rules ➔ Security Groups & Cloud WAFs"], delta: ["Cloud Architecture (IAM, S3, VPCs)", "Infrastructure as Code Security (Tfsec)", "Container & Kubernetes Runtime Monitoring"], certs: ["AWS Certified Security - Specialty", "Google Cloud Security Engineer"], note: "Master cloud log sources and automate incident containment scripts using AWS Lambda." },
+    "grc->ciso": { score: 90, diff: "Leadership Progression", timeline: "5-8 years", shared: ["Enterprise Risk Governance", "Board & Executive Reporting", "Security Policy Management", "Regulatory Compliance (NIST/ISO)"], bridge: ["Control Auditing ➔ Departmental Security Budget Planning", "Vendor Risk Reviews ➔ Enterprise Cyber Insurance Negotiation"], delta: ["Executive Crisis Leadership", "C-suite Business Strategy Alignment", "Enterprise Security Culture Strategy"], certs: ["CISM", "CISSP", "CCISO"], note: "GRC is the most direct path to the CISO chair because modern CISOs are business risk executives first." }
+  };
+
+  const key = `${src}->${tgt}`;
+  const data = presets[key] || {
+    score: 70,
+    diff: "Moderate",
+    timeline: "6 months",
+    shared: Object.values(srcData.skills)[0].slice(0, 3),
+    bridge: ["Technical Background ➔ Domain Specific Application", "Operational Triage ➔ Strategic Problem Solving"],
+    delta: Object.values(tgtData.skills)[0].slice(0, 3),
+    certs: Object.values(tgtData.certs)[0] || ["CompTIA Security+"],
+    note: `Transitioning from ${srcData.title} to ${tgtData.title} leverages your existing domain strengths while expanding targeted hands-on skills.`
+  };
+
+  container.innerHTML = `
+    <div class="transfer-summary-card">
+      <div class="compatibility-bar-wrapper">
+        <span class="compatibility-score-text">${data.score}% Compatibility Overlap</span>
+        <div class="compatibility-bar-bg">
+          <div class="compatibility-bar-fill" style="width: ${data.score}%"></div>
+        </div>
+        <span class="chip chip-shared">${data.diff} · ⏱️ ${data.timeline}</span>
+      </div>
+
+      <div class="transfer-section">
+        <h4>✅ Directly Transferable Skills (100% Match)</h4>
+        <div class="chips-cloud">
+          ${data.shared.map(s => `<span class="chip chip-shared">${escapeHtml(s)}</span>`).join('')}
+        </div>
+      </div>
+
+      <div class="transfer-section">
+        <h4>🌉 Bridge Skills (Adapt & Recontextualize)</h4>
+        <div class="chips-cloud">
+          ${data.bridge.map(b => `<span class="chip chip-bridge">${escapeHtml(b)}</span>`).join('')}
+        </div>
+      </div>
+
+      <div class="transfer-section">
+        <h4>🎯 Delta Skills to Acquire (The Gap)</h4>
+        <div class="chips-cloud">
+          ${data.delta.map(d => `<span class="chip chip-delta">${escapeHtml(d)}</span>`).join('')}
+        </div>
+      </div>
+
+      <div class="transfer-section">
+        <h4>🎓 Recommended Bridge Certifications</h4>
+        <div class="chips-cloud">
+          ${data.certs.map(c => `<span class="chip chip-cert">${escapeHtml(c)}</span>`).join('')}
+        </div>
+      </div>
+
+      <div class="breaking-intro-quote">
+        💡 <strong>Breaking Into Cybersecurity Wisdom:</strong> "${escapeHtml(data.note)}"
+      </div>
+    </div>
+  `;
+}
+
+function renderSkillsMindmap() {
+  const role = skillsRoleSelect ? skillsRoleSelect.value : 'soc_analyst';
+  const container = document.getElementById('skills-mindmap-container');
+  if (!container) return;
+
+  const data = _ROLE_ONTOLOGY[role] || _ROLE_ONTOLOGY.soc_analyst;
+
+  container.innerHTML = `
+    <div class="mindmap-grid">
+      ${Object.entries(data.skills).map(([branch, skillList]) => `
+        <div class="mindmap-branch-card">
+          <h4>📍 ${escapeHtml(branch)}</h4>
+          <ul>
+            ${skillList.map(s => `<li>${escapeHtml(s)}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderCertsMindmap() {
+  const role = certsRoleSelect ? certsRoleSelect.value : 'soc_analyst';
+  const container = document.getElementById('certs-mindmap-container');
+  if (!container) return;
+
+  const data = _ROLE_ONTOLOGY[role] || _ROLE_ONTOLOGY.soc_analyst;
+
+  container.innerHTML = `
+    <div class="cert-timeline-wrapper">
+      ${Object.entries(data.certs).map(([tier, certList]) => `
+        <div class="cert-tier-item">
+          <span class="tier-badge">${escapeHtml(tier)}</span>
+          <div class="chips-cloud">
+            ${certList.map(c => `<span class="chip chip-cert">${escapeHtml(c)}</span>`).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
 }
 
 // ── Clear ─────────────────────────────────────────────────────────────────
@@ -518,6 +861,15 @@ function renderMarkdown(text) {
   // Ordered lists
   html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
 
+  // Media players (Veo Video & Lyria Audio)
+  // Video URLs/URIs
+  html = html.replace(/(?:Access URL:\s*|URL:\s*|URI:\s*)(https?:\/\/[^\s<>]+\.(?:mp4|webm)|https:\/\/storage\.googleapis\.com\/[^\s<>]+)/gi,
+    '<div class="media-card video-card"><div class="media-header">🎬 Veo Video Output</div><video controls playsinline class="media-player"><source src="$1">Your browser does not support video playback.</video><div class="media-link"><a href="$1" target="_blank" rel="noopener">Open Direct Video URL</a></div></div>');
+
+  // Audio URIs (data:audio or mp3/wav URLs)
+  html = html.replace(/(?:Audio:\s*)(data:audio\/[a-z0-9]+;base64,[A-Za-z0-9+/=]+|https?:\/\/[^\s<>]+\.(?:mp3|wav|ogg))/gi,
+    '<div class="media-card audio-card"><div class="media-header">🎵 Lyria Study Music</div><audio controls class="media-player" src="$1">Your browser does not support audio playback.</audio></div>');
+
   // Links
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
     '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
@@ -526,7 +878,7 @@ function renderMarkdown(text) {
   html = html.split(/\n\n+/).map(block => {
     if (block.startsWith('<h') || block.startsWith('<ul') ||
         block.startsWith('<ol') || block.startsWith('<pre') ||
-        block.startsWith('<hr')) {
+        block.startsWith('<hr') || block.startsWith('<div class="media-card')) {
       return block;
     }
     return `<p>${block.replace(/\n/g, '<br>')}</p>`;

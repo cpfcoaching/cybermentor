@@ -75,7 +75,22 @@ def get_interview_question(role: str, difficulty: str = "mixed", question_type: 
         A formatted interview question ready for the user to answer.
     """
     role_key = role.lower().replace(" ", "_").replace("-", "_")
-    questions_pool = _QUESTIONS.get(role_key, _QUESTIONS["general"])
+    questions_pool = dict(_QUESTIONS.get(role_key, _QUESTIONS["general"]))
+
+    # Merge dynamic JSON questions if available
+    json_path = _DATA_DIR / "interview_questions.json"
+    if json_path.exists():
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                json_qs = json.load(f)
+                for item in json_qs:
+                    item_role = item.get("role", "").lower().replace(" ", "_")
+                    if item_role == role_key or (role_key == "general" and item_role == "general"):
+                        q_entry = {"q": item.get("question", ""), "key_points": item.get("key_points", [])}
+                        t = item.get("type", "technical")
+                        questions_pool.setdefault(t, []).append(q_entry)
+        except Exception:
+            pass
 
     available = []
     if question_type in ("technical", "mixed") and "technical" in questions_pool:

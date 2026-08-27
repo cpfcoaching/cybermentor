@@ -25,6 +25,9 @@ from agent.tools import (
     save_agent_note,
     get_agent_memory,
     optimize_coaching_strategy,
+    # Skills Mindmaps & Transferable Skills Matrix
+    get_role_mindmap,
+    explore_skill_transfer,
     # Veo — video generation
     generate_cert_explainer_video,
     generate_role_preview_video,
@@ -63,6 +66,9 @@ ALL_TOOLS = [
     save_agent_note,                 # Save structured long-term notes & candidate observations
     get_agent_memory,                # Retrieve candidate memory notes & strategy reflections
     optimize_coaching_strategy,      # Continuously adapt & optimize coaching strategy
+    # ── Skills & Certifications Mindmaps & Skill Transfer ─────────────────
+    get_role_mindmap,                # Role-specific skills and certification breakdown
+    explore_skill_transfer,          # Cross-role transferable skills and intersection roadmap
     # ── Veo: video generation (Google AI bonus) ────────────────────────────
     generate_cert_explainer_video,   # "Show me what Security+ covers" → video
     generate_role_preview_video,     # "What does a SOC analyst do?" → video

@@ -1,0 +1,152 @@
+[
+  {
+    "video_id": "BIC-EP001",
+    "title": "Breaking Into Cybersecurity Episode 1: Mindset & Career Fundamentals",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-01-15T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "career_strategy",
+    "key_takeaways": [
+      "Cybersecurity is an outcome, not an entry-level job title — transferrable skills matter immensely.",
+      "Identify whether your strengths align with technical operations (SOC/Infra), risk/compliance (GRC), or offensive testing (Pentesting).",
+      "Do not rely solely on certifications; practical home labs and documented projects build real credibility."
+    ],
+    "transcript": "Welcome to Breaking Into Cybersecurity. The biggest myth in the industry is that you need a 4-year Computer Science degree to get started. What hiring managers actually look for is curiosity, problem-solving ability, and proof that you can apply cybersecurity principles to real systems. Whether you come from IT helpdesk, accounting, military, or customer service, you bring valuable perspective. Start by understanding basic networking (TCP/IP, DNS, OSI model) and operating system internals before chasing high-level certs."
+  },
+  {
+    "video_id": "BIC-EP002",
+    "title": "Breaking Into Cybersecurity Episode 2: How to Get Hands-On Experience Without a Job",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-02-01T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "hands_on_labs",
+    "key_takeaways": [
+      "Build a home lab using VirtualBox, VMware, or cloud free tiers (AWS/Azure/GCP).",
+      "Document every lab, project, and CTF writeup on GitHub or a personal blog.",
+      "Use platforms like TryHackMe, HackTheBox, and Security Blue Team labs to build measurable skills."
+    ],
+    "transcript": "When employers ask for 1-2 years of experience for entry-level roles, how do you break the cycle? You create your own experience. Set up a virtual lab with a SIEM like Security Onion or Splunk, generate log traffic, and write detection rules. Work through TryHackMe rooms for SOC analysis or pentesting, write detailed post-mortem writeups on GitHub, and link them on your resume. Showing published lab projects proves initiative and practical competence."
+  },
+  {
+    "video_id": "BIC-EP003",
+    "title": "Breaking Into Cybersecurity Episode 3: Security+ vs CISSP vs OSCP - Which Cert First?",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-02-20T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "certifications",
+    "key_takeaways": [
+      "CompTIA Security+ is the foundational benchmark for entry-level cybersecurity roles and DoD 8570/8140 compliance.",
+      "Do not jump straight to CISSP without 4-5 years of security management experience.",
+      "OSCP is hands-on offensive security; eJPT is a softer entry point for aspiring pentesters."
+    ],
+    "transcript": "Certification roadmaps can be confusing. For true beginners, CompTIA Security+ or Cisco CyberOps Associate establishes essential terminology and baseline defense. If you're pursuing offensive security, start with eJPT (eLearnSecurity Junior Penetration Tester) before tackling the 24-hour OSCP exam. If you are targeting GRC or management, focus on CISA or CRISC. Always match your cert path to your target job descriptions, not social media hype."
+  },
+  {
+    "video_id": "BIC-EP004",
+    "title": "Breaking Into Cybersecurity Episode 4: Cybersecurity Resume & LinkedIn Blueprint",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-03-10T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "resume_advice",
+    "key_takeaways": [
+      "Quantify achievements: use numbers, percentages, and tool names (e.g., 'Analyzed 50+ SIEM alerts daily using Splunk').",
+      "Tailor your resume keywords to match job descriptions for ATS optimization.",
+      "Optimize your LinkedIn headline: 'Aspiring SOC Analyst | CompTIA Security+ | Python & Splunk'."
+    ],
+    "transcript": "A major mistake job seekers make is listing job responsibilities instead of achievements. Don't write 'Responsible for monitoring logs.' Write 'Monitored SIEM alerts across 200+ endpoints using Splunk, reducing mean time to detect (MTTD) by 15%.' Include a dedicated 'Technical Skills' section listing specific tools, frameworks (NIST CSF, MITRE ATT&CK), and certifications. Make your GitHub lab link prominent at the top of your resume."
+  },
+  {
+    "video_id": "BIC-EP005",
+    "title": "Breaking Into Cybersecurity Episode 5: Mastering the Technical & Behavioral Interview",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-04-05T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "interview_prep",
+    "key_takeaways": [
+      "Use the STAR method (Situation, Task, Action, Result) for behavioral questions.",
+      "Master core technical fundamentals: OSI model 7 layers, TCP 3-way handshake, DNS, DHCP, IDS vs IPS.",
+      "It is acceptable to say 'I don't know the answer, but here is how I would investigate it.'"
+    ],
+    "transcript": "Interviewers aren't just checking if you know command flags — they want to see your troubleshooting methodology. When asked how you'd investigate a suspicious IP, walk through your process step-by-step: check firewall logs, query Threat Intel feeds (VirusTotal, AlienVault OTX), isolate the endpoint, and document the incident timeline. For behavioral questions, highlight how you collaborate under pressure, resolve conflict, and stay updated on emerging threat vectors."
+  },
+  {
+    "video_id": "BIC-EP006",
+    "title": "Breaking Into Cybersecurity Episode 6: Transitioning from IT Helpdesk to SOC Analyst",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-04-25T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "career_transition",
+    "key_takeaways": [
+      "IT Helpdesk professionals already have customer triage, ticket management, and Windows/Linux troubleshooting skills.",
+      "Bridge the gap by learning SIEM log analysis, Wireshark packet capture, and PowerShell/Python scripting.",
+      "Shadow internal security teams or ask your IT manager for access to security tools at your current company."
+    ],
+    "transcript": "If you are on IT helpdesk, you are already halfway to a SOC Analyst role. You troubleshoot user workstations, understand Active Directory permissions, and handle ticket queues. What you need to add is threat context: learn how attackers abuse PowerShell, how malware persists in the registry, and how to analyze PCAP files in Wireshark. When interviewing, emphasize how your helpdesk troubleshooting experience enables fast incident triage."
+  },
+  {
+    "video_id": "BIC-EP007",
+    "title": "Breaking Into Cybersecurity Episode 7: Breaking into GRC (Governance, Risk, and Compliance)",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-05-15T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "grc_strategy",
+    "key_takeaways": [
+      "GRC is the most welcoming cybersecurity path for non-technical backgrounds (legal, accounting, business analysis).",
+      "Master core frameworks: NIST CSF, NIST SP 800-53, ISO 27001, SOC 2, HIPAA, PCI-DSS.",
+      "Key certifications: ISACA CISA, CRISC, CompTIA Security+, ISC2 CGRC."
+    ],
+    "transcript": "GRC bridges business strategy and technical security controls. If you have a background in accounting, auditing, project management, or law, GRC is your fastest onramp into cybersecurity. Companies need analysts who can perform risk assessments, evaluate third-party vendor risks, and map security controls to NIST and ISO standards. Focus on learning how to translate technical risks into business impact for executive leaders."
+  },
+  {
+    "video_id": "BIC-EP008",
+    "title": "Breaking Into Cybersecurity Episode 8: The Cloud Security Engineer Roadmap (AWS / GCP / Azure)",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-06-05T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "cloud_security",
+    "key_takeaways": [
+      "Cloud security requires deep understanding of IAM (Identity & Access Management), Least Privilege, and Cloud Security Posture Management (CSPM).",
+      "Learn Infrastructure as Code (Terraform) security scanning (Checkov, tfsec).",
+      "Target certs: AWS Certified Security - Specialty, Google Professional Cloud Security Engineer, Microsoft SC-100."
+    ],
+    "transcript": "In cloud environments, the perimeter is Identity. Cloud Security Engineers design IAM boundaries, configure VPC service controls, enforce encryption at rest and in transit, and automate compliance checks in CI/CD pipelines. Start by deploying infrastructure in AWS or GCP, deliberately introduce misconfigurations (e.g. public S3 buckets, overly permissive IAM roles), and write automated scripts to detect and remediate them."
+  },
+  {
+    "video_id": "BIC-EP009",
+    "title": "Breaking Into Cybersecurity Episode 9: Offensive Security & Penetration Testing Realities",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-06-25T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "offensive_security",
+    "key_takeaways": [
+      "Penetration testing is 30% exploitation and 70% reconnaissance, scoping, methodology, and report writing.",
+      "Master the OWASP Top 10 web vulnerabilities (SQLi, XSS, SSRF, IDOR).",
+      "Start with eJPT, PortSwigger Web Security Academy, and TryHackMe before tackling OSCP."
+    ],
+    "transcript": "Penetration testing is often romanticized in movies, but in reality, clear communication and professional report writing are what make you valuable to clients. Finding a vulnerability is only half the job; explaining the business impact and providing actionable remediation code to developers is the other half. Spend time working through PortSwigger Web Security Academy and writing detailed, professional lab reports for your portfolio."
+  },
+  {
+    "video_id": "BIC-EP010",
+    "title": "Breaking Into Cybersecurity Episode 10: Building Community, Mentorship, and Overcoming Imposter Syndrome",
+    "url": "https://www.youtube.com/c/BreakingIntoCybersecurity",
+    "published_at": "2024-07-15T00:00:00Z",
+    "channel": "Breaking Into Cybersecurity",
+    "host": "Christophe Foulon",
+    "category": "mentorship",
+    "key_takeaways": [
+      "Imposter syndrome is universal in cybersecurity because the threat landscape changes daily.",
+      "Get involved in local chapters: BSides conferences, OWASP chapters, ISSA, ISACA, WiCyS.",
+      "Find mentors by asking specific, thoughtful questions rather than vague 'can you mentor me?' requests."
+    ],
+    "transcript": "No one in cybersecurity knows everything. The field is too vast. When you feel imposter syndrome, remember that curiosity and continuous learning are what matter. Attend local BSides conferences, participate in capture the flag (CTF) competitions, and engage with mentors on LinkedIn. When reaching out to a mentor, introduce yourself, state your specific goal, and ask a focused question. The community is eager to help those who demonstrate initiative."
+  }
+]

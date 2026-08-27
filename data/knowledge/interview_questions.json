@@ -1,0 +1,141 @@
+[
+  {
+    "id": "IQ-SOC-001",
+    "role": "SOC Analyst",
+    "type": "technical",
+    "source": "Coursera & Insight Global Prep Guides",
+    "question": "What is the difference between an IDS and an IPS, and where would you deploy each in an enterprise network?",
+    "key_points": [
+      "IDS (Intrusion Detection System) detects and alerts passively (out-of-band via SPAN/TAP port).",
+      "IPS (Intrusion Prevention System) sits inline and can actively drop/block malicious traffic.",
+      "IDS is ideal for internal network visibility without risk of service disruption from false positives.",
+      "IPS is deployed at perimeter/firewall boundaries or between critical VLAN zones."
+    ],
+    "model_answer_summary": "An IDS monitors traffic passively via a SPAN port or network TAP, alerting analysts to suspicious patterns without impacting traffic flow. An IPS is placed inline, inspecting packets in real-time with the ability to drop malicious packets or reset TCP connections. We place IPS at the network perimeter or sensitive enclave boundaries, while IDS is placed at internal aggregation switches for deep visibility."
+  },
+  {
+    "id": "IQ-SOC-002",
+    "role": "SOC Analyst",
+    "type": "technical",
+    "source": "Coursera & Bauer College Interview Bank",
+    "question": "Walk me through how you would investigate a high-severity phishing alert in a SIEM.",
+    "key_points": [
+      "Triage the alert: analyze email headers, SPF/DKIM/DMARC status, sender IP reputation.",
+      "Analyze payload: check attachments in an isolated sandbox, evaluate links using Threat Intel (VirusTotal, URLScan).",
+      "Scope user interaction: check if user opened attachment, entered credentials, or clicked link.",
+      "Containment & Remediation: reset credentials, purge malicious email from all mailboxes, block sender domain/IP at mail gateway and firewall, isolate impacted host if compromised.",
+      "Document the incident timeline and update detection rules."
+    ],
+    "model_answer_summary": "I start with header analysis to check authentication (SPF, DKIM, DMARC) and identify the true origin. Next, I inspect any links or attachments using safe sandboxes and threat intel platforms like VirusTotal. Then I verify user actions in proxy and endpoint logs: did they click or download anything? If compromised, I isolate the host, trigger a password reset, purge the message across the tenant, and blacklist the IOCs at the perimeter."
+  },
+  {
+    "id": "IQ-SOC-003",
+    "role": "SOC Analyst",
+    "type": "technical",
+    "source": "H2K Infosys & Insight Global",
+    "question": "Explain the 7 steps of the Cyber Kill Chain and how they correlate with the PICERL Incident Response lifecycle.",
+    "key_points": [
+      "Cyber Kill Chain: Reconnaissance, Weaponization, Delivery, Exploitation, Installation, Command & Control (C2), Actions on Objectives.",
+      "PICERL: Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned.",
+      "Explain how stopping an attacker early in the Kill Chain prevents damage.",
+      "Highlight the importance of Lessons Learned in improving future detection rules."
+    ],
+    "model_answer_summary": "The Cyber Kill Chain describes the attacker's progression from Recon to Actions on Objectives. As defenders, our goal is to break the chain as early as possible. In incident response, we follow the PICERL lifecycle: Preparation, Identification, Containment, Eradication, Recovery, and Lessons Learned. Each phase ensures systematic response without inadvertently alerting the adversary or destroying forensic evidence."
+  },
+  {
+    "id": "IQ-NET-001",
+    "role": "SOC Analyst",
+    "type": "technical",
+    "source": "Bauer Career Center 61 Questions Guide",
+    "question": "Explain the difference between TCP and UDP, the 3-way handshake, and what a SYN Flood attack is.",
+    "key_points": [
+      "TCP is connection-oriented, reliable, with flow control and sequencing (HTTP/S, SSH, FTP).",
+      "UDP is connectionless, lightweight, low-latency without delivery guarantees (DNS, VoIP, DHCP).",
+      "3-Way Handshake: SYN -> SYN-ACK -> ACK.",
+      "SYN Flood: Attacker sends continuous SYN requests without completing the final ACK, exhausting server back-log queues (mitigated with SYN cookies and rate limiting)."
+    ],
+    "model_answer_summary": "TCP establishes a reliable connection via the 3-way handshake (SYN, SYN-ACK, ACK), ensuring error checking and in-order packet delivery. UDP is connectionless and prioritizes speed over reliability. A SYN flood is a DoS attack where the attacker floods the target with SYN packets and ignores the SYN-ACK responses, leaving half-open connections that exhaust system memory until legitimate requests are denied."
+  },
+  {
+    "id": "IQ-CRYPTO-001",
+    "role": "General",
+    "type": "technical",
+    "source": "H2K Infosys & Coursera Guide",
+    "question": "What is the difference between symmetric and asymmetric encryption, and how are both used in an SSL/TLS handshake?",
+    "key_points": [
+      "Symmetric: Same secret key for encryption and decryption (AES, ChaCha20) — fast, efficient for bulk data.",
+      "Asymmetric: Public/Private keypair (RSA, ECC) — solves key exchange and digital signature authentication.",
+      "TLS Handshake: Asymmetric encryption authenticates server certificate and negotiates shared pre-master secret, then symmetric encryption (AES-GCM) encrypts the session payload."
+    ],
+    "model_answer_summary": "Symmetric encryption uses a single shared key for both encryption and decryption, making it computationally fast for bulk data. Asymmetric encryption uses mathematically linked public and private keys, enabling secure key exchange and authentication without prior secrets. In SSL/TLS, asymmetric cryptography is used to verify the server's identity and exchange session keys, after which high-speed symmetric encryption protects the application data stream."
+  },
+  {
+    "id": "IQ-PEN-001",
+    "role": "Penetration Tester",
+    "type": "technical",
+    "source": "Coursera & Insight Global Guide",
+    "question": "Describe the difference between active and passive reconnaissance phase during a penetration test.",
+    "key_points": [
+      "Passive Recon: Gathering intelligence without directly interacting with the target's network (OSINT, Shodan, WHOIS, LinkedIn, DNSDumpster).",
+      "Active Recon: Directly probing target systems (Nmap port scans, banner grabbing, directory enumeration via Gobuster).",
+      "Passive recon avoids triggering IDS/IPS alerts, while active recon directly interacts with target infrastructure."
+    ],
+    "model_answer_summary": "Passive reconnaissance relies on public data sources like Shodan, WHOIS, certificate transparency logs, and Google dorking to discover assets without sending packets to the client's network. Active reconnaissance involves sending probes directly to the target using tools like Nmap or Masscan to identify open ports, services, and versions, which may generate alerts on their security monitoring systems."
+  },
+  {
+    "id": "IQ-PEN-002",
+    "role": "Penetration Tester",
+    "type": "technical",
+    "source": "Bauer Career Center Guide",
+    "question": "Explain the difference between Stored XSS, Reflected XSS, and DOM-based XSS, and how you remediate them.",
+    "key_points": [
+      "Stored XSS: Malicious script is permanently stored in database/server and served to every visiting user.",
+      "Reflected XSS: Malicious payload is reflected off web server immediately via search queries/URL params.",
+      "DOM XSS: Vulnerability exists purely in client-side JavaScript execution without server reflection.",
+      "Remediation: Context-aware output encoding, strict input validation, Content Security Policy (CSP), HttpOnly cookies."
+    ],
+    "model_answer_summary": "Stored XSS occurs when malicious input is saved in the database (like a comment forum) and executed in victim browsers whenever viewed. Reflected XSS occurs when user-supplied input in a request is immediately returned in the response page. DOM-based XSS happens entirely on the client side when JavaScript unsafely modifies the DOM via sinks like innerHTML. Defense requires context-sensitive output encoding, input validation, CSP headers, and HttpOnly cookies."
+  },
+  {
+    "id": "IQ-GRC-001",
+    "role": "GRC Analyst",
+    "type": "technical",
+    "source": "Coursera & Insight Global Guide",
+    "question": "What is the difference between NIST CSF, ISO 27001, and SOC 2, and how do you calculate Annualized Loss Expectancy (ALE)?",
+    "key_points": [
+      "NIST CSF: Framework organized around Identify, Protect, Detect, Respond, Recover.",
+      "ISO 27001: Formal certifiable international standard for an Information Security Management System (ISMS).",
+      "SOC 2: Trust Services Criteria (Security, Availability, Confidentiality) audit report for SaaS/vendors.",
+      "ALE Formula: ALE = SLE (Single Loss Expectancy) × ARO (Annualized Rate of Occurrence). SLE = Asset Value × Exposure Factor."
+    ],
+    "model_answer_summary": "NIST CSF provides a flexible risk framework for program maturity. ISO 27001 is an internationally accredited management system standard. SOC 2 is a compliance attestation required by enterprise customers. For quantitative risk calculations: ALE = Single Loss Expectancy (SLE) multiplied by Annualized Rate of Occurrence (ARO). This helps justify security budgets to executives by showing expected financial loss."
+  },
+  {
+    "id": "IQ-BEH-001",
+    "role": "General",
+    "type": "behavioral",
+    "source": "Coursera & Bauer College Behavioral Rubric",
+    "question": "Tell me about a time you encountered a technical security problem you didn't know how to solve. How did you handle it?",
+    "key_points": [
+      "Situation: State the complex issue clearly.",
+      "Task: What was expected of you.",
+      "Action: How you researched, consulted documentation, tested in a lab, or collaborated with peers.",
+      "Result: How the issue was resolved and what you learned."
+    ],
+    "model_answer_summary": "In my home lab, I was analyzing a malware sample that was evading my Snort rule signatures. Rather than guessing, I isolated the traffic in Wireshark, researched the protocol specifications on RFCs, and compared the packet headers with known malicious heuristics. I realized the malware used non-standard TCP flags. I updated the rule syntax, replayed the PCAP, and verified 100% detection."
+  },
+  {
+    "id": "IQ-BEH-002",
+    "role": "General",
+    "type": "behavioral",
+    "source": "Insight Global & Coursera Behavioral Prep",
+    "question": "How do you handle a disagreement with a developer or system administrator who refuses to apply a critical security patch due to operational concerns?",
+    "key_points": [
+      "Empathy & Understanding: Acknowledge the developer's uptime and release deadline priorities.",
+      "Risk Translation: Quantify the vulnerability impact and exploit likelihood in business terms.",
+      "Compensating Controls: Propose temporary mitigations (WAF virtual patching, network segmentation) while testing.",
+      "Collaboration: Agree on a scheduled maintenance window with rollback plans."
+    ],
+    "model_answer_summary": "I approach disagreements through collaboration rather than mandate. I listen to the developer's uptime concerns, then clearly explain the threat intelligence and exploitability of the vulnerability. If immediate patching risks production stability, I work with them to implement compensating controls—such as a WAF rule or IP restriction—while we test the patch in staging, then schedule the deployment during an approved maintenance window."
+  }
+]

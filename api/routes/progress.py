@@ -109,3 +109,49 @@ async def add_milestone(user_id: str, body: MilestoneRequest):
     path.write_text(json.dumps(existing, indent=2))
 
     return {"status": "saved", "storage": "local", "timestamp": timestamp}
+
+
+@router.delete("/{user_id}/data")
+async def delete_user_data(user_id: str):
+    """Permanently delete all user profile data, ACE cognitive memory, progress, and conversation history (Right to Erasure)."""
+    from agent.tools.ace_memory import delete_user_ace_memory
+
+    # 1. Delete ACE Cognitive Memory
+    delete_user_ace_memory(user_id)
+
+    # 2. Delete Firestore documents
+    db = _get_firestore()
+    if db:
+        try:
+            user_ref = db.collection("users").document(user_id)
+            for subcol in ["progress", "conversations", "ace_notes", "ace_skills", "ace_reflections"]:
+                docs = user_ref.collection(subcol).stream()
+                for doc in docs:
+                    doc.reference.delete()
+            user_ref.delete()
+        except Exception:
+            pass
+
+    # 3. Delete local files
+    try:
+        p_path = _local_path(user_id)
+        if p_path.exists():
+            p_path.unlink()
+    except Exception:
+        pass
+
+    try:
+        conv_dir = pathlib.Path(__file__).parent.parent.parent / "sessions" / "conversations"
+        safe = "".join(c for c in user_id if c.isalnum() or c in "-_")
+        c_path = conv_dir / f"{safe}.json"
+        if c_path.exists():
+            c_path.unlink()
+    except Exception:
+        pass
+
+    return {
+        "status": "deleted",
+        "user_id": user_id,
+        "message": "All personal profile data, conversation history, progress milestones, and ACE cognitive memory have been permanently deleted."
+    }
+

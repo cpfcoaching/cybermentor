@@ -2,6 +2,12 @@
   "ciso": {
     "title": "CISO / Executive Security Leadership",
     "description": "Lead an organization's overall cybersecurity program, risk governance, budget strategy, C-suite alignment, and Board reporting.",
+    "nice_framework": {
+      "category": "Oversee and Govern (OV)",
+      "work_role": "Executive Cyber Leadership (OV-EXL-001) / Program Manager (OV-PMA-001)",
+      "nist_ref": "NIST SP 800-181r1",
+      "niccs_tool_url": "https://niccs.cisa.gov/tools/cyber-career-pathways-tool"
+    },
     "day_to_day": [
       "Executive strategy & budget allocation",
       "Board of Directors reporting & risk presentations",
@@ -47,6 +53,12 @@
   "soc_analyst": {
     "title": "SOC Analyst (Security Operations Center)",
     "description": "Monitor, detect, and respond to security incidents in real time. The first line of defense.",
+    "nice_framework": {
+      "category": "Protect and Defend (PR) / Analyze (AN)",
+      "work_role": "Cyber Defense Analyst (PR-CDA-001) / Threat Warning Analyst (AN-TWA-001)",
+      "nist_ref": "NIST SP 800-181r1",
+      "niccs_tool_url": "https://niccs.cisa.gov/tools/cyber-career-pathways-tool"
+    },
     "day_to_day": [
       "Monitor SIEM dashboards",
       "Triage and investigate alerts",
@@ -86,11 +98,17 @@
       "Healthcare",
       "Government contractors"
     ],
-    "breaking_into_cyber_tips": "Get Security+ first. Then set up a home lab with a free Splunk license and practice analyzing logs from TryHackMe or a vulnerable VM."
+    "breaking_into_cyber_tips": "Get Security+ first. Then set up a home lab with a free Splunk license and practice analyzing logs from TryHackMe or a vulnerable VM. Align your study with the NIST NICE Cyber Defense Analyst work role."
   },
   "penetration_tester": {
     "title": "Penetration Tester / Ethical Hacker",
     "description": "Get paid to legally hack systems, networks, and applications to find vulnerabilities before attackers do.",
+    "nice_framework": {
+      "category": "Collect and Operate (CO) / Protect and Defend (PR)",
+      "work_role": "Vulnerability Assessment Analyst (PR-VAM-001) / Exploitation Analyst (CO-EXP-001)",
+      "nist_ref": "NIST SP 800-181r1",
+      "niccs_tool_url": "https://niccs.cisa.gov/tools/cyber-career-pathways-tool"
+    },
     "day_to_day": [
       "Scope and plan assessments",
       "Conduct network and web app pen tests",
@@ -126,11 +144,23 @@
       "Bug Bounty Hunter",
       "AppSec Engineer"
     ],
+    "companies_hiring": [
+      "Security consultancies",
+      "Financial services",
+      "Tech firms",
+      "Defense contractors"
+    ],
     "breaking_into_cyber_tips": "Labs beat certs in this field. Do 50+ machines on TryHackMe/HackTheBox before worrying about OSCP. Build a public GitHub of your writeups."
   },
   "grc": {
     "title": "GRC Analyst (Governance, Risk & Compliance)",
     "description": "Manage security programs, assess risk, ensure regulatory compliance, and build policies that protect the organization.",
+    "nice_framework": {
+      "category": "Oversee and Govern (OV)",
+      "work_role": "Cyber Risk & Compliance Specialist (OV-LGA-001) / Security Control Assessor (SP-CAP-001)",
+      "nist_ref": "NIST SP 800-181r1",
+      "niccs_tool_url": "https://niccs.cisa.gov/tools/cyber-career-pathways-tool"
+    },
     "day_to_day": [
       "Risk assessments",
       "Policy development and review",
@@ -145,8 +175,8 @@
       "currency": "USD"
     },
     "required_skills": [
-      "Risk management frameworks (NIST, ISO 27001)",
-      "Regulatory knowledge",
+      "Risk management frameworks (NIST CSF, ISO 27001, NIST SP 800-53)",
+      "Regulatory knowledge (HIPAA, GDPR, PCI-DSS)",
       "Written communication",
       "Project management",
       "Audit methodology"
@@ -166,11 +196,23 @@
       "Risk Manager",
       "DPO (Data Protection Officer)"
     ],
+    "companies_hiring": [
+      "Big 4 consulting",
+      "Healthcare networks",
+      "Banks and fintech",
+      "Enterprise SaaS companies"
+    ],
     "breaking_into_cyber_tips": "Strong writing and communication skills matter more here than technical skills. Study one framework deeply (start with NIST CSF) and get CISA if you have accounting/audit background."
   },
   "cloud_security": {
     "title": "Cloud Security Engineer",
     "description": "Design, implement, and monitor security controls for cloud environments (AWS, GCP, Azure).",
+    "nice_framework": {
+      "category": "Securely Provision (SP) / Operate and Maintain (OM)",
+      "work_role": "Systems Security Architecture (SP-ARC-002) / Cloud Systems Administrator (OM-ADM-001)",
+      "nist_ref": "NIST SP 800-181r1",
+      "niccs_tool_url": "https://niccs.cisa.gov/tools/cyber-career-pathways-tool"
+    },
     "day_to_day": [
       "Secure cloud architecture reviews",
       "IAM policy design",
@@ -204,11 +246,23 @@
       "CISO",
       "DevSecOps Lead"
     ],
+    "companies_hiring": [
+      "Cloud native startups",
+      "Enterprise software companies",
+      "Consulting firms",
+      "Financial tech"
+    ],
     "breaking_into_cyber_tips": "Pick one cloud provider and go deep. Get your associate-level cloud cert, then the security specialty. Cloud skills pay a significant premium over traditional security roles."
   },
   "ot_ics_scada": {
     "title": "OT / ICS / SCADA Critical Infrastructure Security Specialist",
     "description": "Protect industrial control systems, manufacturing plants, smart grids, oil & gas pipelines, and SCADA networks.",
+    "nice_framework": {
+      "category": "Protect and Defend (PR) / Securely Provision (SP)",
+      "work_role": "Cyber Defense Infrastructure Support (PR-INF-001) / Systems Developer (SP-DEV-001)",
+      "nist_ref": "NIST SP 800-181r1",
+      "niccs_tool_url": "https://niccs.cisa.gov/tools/cyber-career-pathways-tool"
+    },
     "day_to_day": [
       "Purdue Model network architecture segmentation",
       "PLC & SCADA firmware risk assessments",
@@ -241,11 +295,23 @@
       "Director of Industrial Cybersecurity",
       "CISO for Energy & Manufacturing"
     ],
+    "companies_hiring": [
+      "Energy & utility providers",
+      "Manufacturing & automotive",
+      "Oil & gas operators",
+      "Critical infrastructure contractors"
+    ],
     "breaking_into_cyber_tips": "Pivoting from electrical engineering, automation, or SCADA engineering into security commands high salaries. Focus on GICSP and ISA 62443 standards."
   },
   "dfir": {
     "title": "Digital Forensics & Incident Response (DFIR) Specialist",
     "description": "Investigate complex enterprise breaches, analyze malware, reconstruct intruder timelines, and preserve digital evidence.",
+    "nice_framework": {
+      "category": "Investigate (IN) / Protect and Defend (PR)",
+      "work_role": "Cyber Crime Investigator (IN-INV-001) / Incident Responder (PR-CIR-001)",
+      "nist_ref": "NIST SP 800-181r1",
+      "niccs_tool_url": "https://niccs.cisa.gov/tools/cyber-career-pathways-tool"
+    },
     "day_to_day": [
       "Disk image & memory forensic extraction",
       "Reverse engineering malware binaries",
@@ -278,11 +344,22 @@
       "DFIR Practice Lead",
       "Cyber Forensics Director"
     ],
+    "companies_hiring": [
+      "Incident response consultancies (Mandiant, CrowdStrike, Unit 42)",
+      "Law enforcement & federal agencies",
+      "Major financial institutions"
+    ],
     "breaking_into_cyber_tips": "Practice memory and disk image analysis on CyberDefenders or SANS DFIR challenges using Eric Zimmerman tools."
   },
   "ai_governance_security": {
     "title": "AI Security & AI Governance Specialist",
     "description": "Secure enterprise AI deployments, prevent prompt injection/data poisoning, and ensure compliance with AI governance frameworks.",
+    "nice_framework": {
+      "category": "Oversee and Govern (OV) / Securely Provision (SP)",
+      "work_role": "Cyber Policy and Strategy Planner (OV-LGA-002) / AI Security Specialist (SP-DEV-002)",
+      "nist_ref": "NIST AI RMF 1.0 / NIST SP 800-181r1",
+      "niccs_tool_url": "https://niccs.cisa.gov/tools/cyber-career-pathways-tool"
+    },
     "day_to_day": [
       "LLM red teaming & prompt injection audits",
       "NIST AI RMF compliance reviews",
@@ -313,6 +390,11 @@
       "Head of AI Security",
       "Chief AI Ethics Officer",
       "CISO Advisor for Emerging Technologies"
+    ],
+    "companies_hiring": [
+      "Enterprise AI developers",
+      "Tech giants & cloud hyperscalers",
+      "Regulated enterprise firms"
     ],
     "breaking_into_cyber_tips": "Study the OWASP Top 10 for LLMs and the NIST AI RMF. Position yourself as the bridge between data science teams and cybersecurity governance."
   }

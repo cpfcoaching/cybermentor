@@ -17,10 +17,9 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 
 from agent.cybermentor import create_cybermentor_agent
-from agent.tools.ace_memory import get_agent_memory
-from agent.tools.progress_tracker import get_user_progress
-from agent.tools.conversation_store import save_conversation_message, get_conversation_history
-from api.models import ChatRequest, ChatResponse, SessionSummary
+from agent.tools.progress_tracker import get_user_progress, save_conversation_message
+from agent.tools.ace_memory import get_agent_memory, analyze_conversation_for_skills, get_documented_candidate_skills
+from agent.tools.gemma_analyzer import classify_user_intent
 
 logger = logging.getLogger(__name__)
 
@@ -44,18 +43,29 @@ def _session_file_exists(save_dir: pathlib.Path, session_id: str) -> bool:
     return False
 
 
-def _build_contextualized_prompt(user_id: str, message: str) -> str:
+def _build_contextualized_prompt(user_id: str, message: str, gemma_intent: str | None = None) -> str:
     """
-    Build a prompt that injects the user's persistent progress history
-    and ACE long-term cognitive memory notes into the message context.
+    Build a prompt that injects the user's persistent progress history,
+    Gemma pre-routed intent classification, and ACE long-term cognitive memory notes & documented skills into context.
     """
     history_ctx = get_user_progress(user_id)
     memory_ctx = get_agent_memory(user_id)
+    
+    # Retrieve cumulative documented skills from ACE memory
+    doc_skills = get_documented_candidate_skills(user_id)
+    skills_summary = ""
+    if doc_skills:
+        skill_names = [s.get("skill_name", "") for s in doc_skills if s.get("skill_name")]
+        skills_summary = f"[ACE DOCUMENTED CANDIDATE SKILLS ACROSS ALL PAST CONVERSATIONS]: {', '.join(skill_names)}\n"
+
+    intent_info = f"[GEMMA INTENT CLASSIFICATION PRE-ROUTING]: {gemma_intent}\n" if gemma_intent else ""
     return (
         f"[SYSTEM CONTEXT FOR CANDIDATE PROFILE '{user_id}']\n"
+        f"{intent_info}"
+        f"{skills_summary}"
         f"{history_ctx}\n\n"
         f"{memory_ctx}\n\n"
-        f"[IMPORTANT INSTRUCTION]: You already know this candidate's history, goals, and notes. "
+        f"[IMPORTANT INSTRUCTION]: You already know this candidate's history, goals, documented skills, and notes. "
         f"Do NOT ask generic questions about experience level if already known above.\n\n"
         f"[CANDIDATE MESSAGE]:\n{message}"
     )
@@ -98,6 +108,19 @@ async def chat_stream(request: ChatRequest):
 
     async def event_generator():
         try:
+            # Continually mine and document candidate skills from conversation turn into ACE memory
+            try:
+                analyze_conversation_for_skills(request.user_id, request.message, source="text_conversation")
+            except Exception as se:
+                logger.warning(f"ACE conversation skill extraction error: {se}")
+
+            # Gemma 3 27B Fast Pre-Routing Intent Classification
+            try:
+                gemma_intent = classify_user_intent(request.message)
+            except Exception as ge:
+                logger.warning(f"Gemma pre-routing intent classification fallback: {ge}")
+                gemma_intent = None
+
             async with get_cybermentor_agent(session_id) as (agent, active_session_id):
                 _SESSION_STORE[request.user_id] = active_session_id
 
@@ -111,7 +134,7 @@ async def chat_stream(request: ChatRequest):
                     )
 
                 contextualized_message = _build_contextualized_prompt(
-                    request.user_id, request.message
+                    request.user_id, request.message, gemma_intent
                 )
 
                 response = await agent.chat(contextualized_message)
@@ -159,6 +182,11 @@ async def chat(request: ChatRequest):
     session_id = request.session_id or _SESSION_STORE.get(request.user_id)
 
     try:
+        try:
+            analyze_conversation_for_skills(request.user_id, request.message, source="text_conversation")
+        except Exception as se:
+            logger.warning(f"ACE conversation skill extraction error: {se}")
+
         async with get_cybermentor_agent(session_id) as (agent, active_session_id):
             _SESSION_STORE[request.user_id] = active_session_id
 

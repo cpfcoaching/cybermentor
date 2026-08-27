@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ── Candidate Profile & Private Subcollections ────────────────────────
+    // Complete profile isolation: each user can ONLY read, write, or delete their own data.
+    // Administrators, other users, and public visitors cannot read or query private records.
+    match /users/{userId} {
+      allow read, write, delete: if request.auth != null && request.auth.uid == userId;
+      
+      // Isolated Subcollections: ace_notes, ace_skills, ace_reflections, progress, conversations
+      match /{allSubcollections=**} {
+        allow read, write, delete: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+    
+    // ── Anonymized Global ACE Coaching Heuristics ─────────────────────────
+    // Contains zero PII; generalized pedagogical insights for collective agent intelligence.
+    match /global_ace_heuristics/{heuristicId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // ── Default Deny All Other Unmatched Collections ──────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

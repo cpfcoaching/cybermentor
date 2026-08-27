@@ -329,9 +329,9 @@ See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the full Mermaid diagram. Summary:
 |---|---|---|
 | Publish blog/video about the build | dev.to post: "Building CyberMentor with Google Antigravity SDK" | +0.2 |
 | Post on X + LinkedIn with #AllThingsAgenticHackathon | Screenshot to be added | +0.2 |
-| Integrate Veo (video generation) | Planned: auto-generate cert flashcard video loops | +0.2 |
-| Integrate Lyria (music generation) | Planned: ambient focus music for study sessions | +0.2 |
-| Integrate Gemma | Planned: on-device inference for offline resume scan | +0.2 |
+| Integrate Veo (video generation) | ✅ Implemented: role previews & cert explainer video generation | +0.2 |
+| Integrate Lyria (music generation) | ✅ Implemented: ambient focus study music (5 moods) & pass fanfare | +0.2 |
+| Integrate Gemma | ✅ Implemented: two-tier pre-routing, resume skill extraction & skill gap scoring | +0.2 |
 
 **Potential bonus total: +1.0**
 

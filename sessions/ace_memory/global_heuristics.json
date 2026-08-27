@@ -1,0 +1,8 @@
+[
+  {
+    "domain_tag": "general",
+    "anonymized_insight": "[ANON_CANDIDATE]_alice_1234 at [ANON_EMAIL] was struggling with Splunk SPL subsearches.",
+    "pedagogical_adjustment": "Incorporate 2-step practice scenarios for [ANON_CANDIDATE]_1234 before escalating to multi-index correlation.",
+    "timestamp": "2026-08-27T17:47:53.531987+00:00"
+  }
+]

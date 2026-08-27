@@ -16,6 +16,9 @@ from agent.tools.veo_generator import generate_cert_explainer_video, generate_ro
 from agent.tools.lyria_composer import generate_study_music, generate_cert_celebration_jingle
 from agent.tools.gemma_analyzer import classify_user_intent, extract_resume_skills, score_skill_gap
 
+# Skills & Certifications Mindmap Explorer
+from agent.tools.skill_mindmap import get_role_mindmap, explore_skill_transfer
+
 __all__ = [
     # Core
     "query_knowledge_base",
@@ -31,6 +34,9 @@ __all__ = [
     "save_agent_note",
     "get_agent_memory",
     "optimize_coaching_strategy",
+    # Mindmap & Transfer Matrix
+    "get_role_mindmap",
+    "explore_skill_transfer",
     # Veo (video generation)
     "generate_cert_explainer_video",
     "generate_role_preview_video",
