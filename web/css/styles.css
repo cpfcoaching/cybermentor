@@ -932,8 +932,8 @@ audio.media-player {
   max-width: 960px;
   max-height: 88vh;
   background: var(--clr-bg-card);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border: 1px solid var(--clr-border);
   border-radius: var(--r-xl);
   padding: var(--sp-6);

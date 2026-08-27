@@ -11,9 +11,7 @@ canonical_url: https://dev.to/cfoulon/cybermentor-ai-career-coach
 
 ---
 
-Every week, someone DMs me some version of the same question:
-
-*"I want to break into cybersecurity. Where do I start?"*
+Every week, someone DMs me some version of the same question: "I want to break into cybersecurity. Where do I start?"
 
 I've answered this hundreds of times on [Breaking Into Cybersecurity](https://breakingintocyberscurity.org) — through YouTube videos, podcast episodes, mentorship calls. The answer is always personalized: it depends on your background, your goals, how many hours you have, and which role actually excites you.
 
@@ -170,7 +168,8 @@ The UI is built around a dark navy/cyan/teal glassmorphism aesthetic — fitting
 The session persistence pattern is worth documenting carefully, because it's what separates a smart chatbot from a genuine coaching relationship.
 
 **Firestore schema:**
-```
+
+```text
 users/{user_id}
 ├── profile: {career_goal, experience_level, target_certs[], updated_at}
 └── progress/{milestone_id}
@@ -184,6 +183,7 @@ sessions/{session_id}
 ```
 
 **At session start:**
+
 ```python
 # The agent automatically calls this tool at session start
 progress = get_user_progress(user_id)
