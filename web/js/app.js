@@ -30,9 +30,48 @@ const statusDot         = document.getElementById('status-dot');
 const statusText        = document.getElementById('status-text');
 const progressList      = document.getElementById('progress-list');
 
-// ── Google SSO Login ───────────────────────────────────────────────────────
-function handleGoogleSso(e) {
+// ── Google SSO Login & Firebase Auth ──────────────────────────────────────
+let firebaseAuthReady = false;
+
+async function initFirebaseAuth() {
+  if (typeof firebase === 'undefined' || !firebase.auth) return;
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/auth/config`);
+    if (res.ok) {
+      const config = await res.json();
+      if (config.apiKey && !firebase.apps.length) {
+        firebase.initializeApp(config);
+        firebaseAuthReady = true;
+      }
+    }
+  } catch (e) {
+    console.warn("Could not init Firebase Auth config:", e);
+  }
+}
+initFirebaseAuth();
+
+async function handleGoogleSso(e) {
   if (e && e.preventDefault) e.preventDefault();
+
+  if (typeof firebase !== 'undefined' && firebase.auth && firebase.apps.length) {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      provider.setCustomParameters({ prompt: 'select_account' });
+
+      const result = await firebase.auth().signInWithPopup(provider);
+      if (result && result.user) {
+        const email = result.user.email || 'chris@cpf-coaching.com';
+        const name = result.user.displayName || email.split('@')[0];
+        const token = await result.user.getIdToken();
+        initSessionWithUser(name, token, false);
+        return;
+      }
+    } catch (err) {
+      console.warn("Google SSO popup notice:", err);
+    }
+  }
 
   const ssoModal = document.getElementById('google-sso-overlay');
   if (ssoModal) {

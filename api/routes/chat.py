@@ -248,3 +248,15 @@ async def get_session(user_id: str):
         message_count=len(messages),
         messages=[],
     )
+
+
+@router.get("/auth/config")
+async def get_auth_config():
+    """Return public client Firebase Auth SDK configuration."""
+    return {
+        "projectId": os.getenv("GOOGLE_CLOUD_PROJECT", "cybermentor-506813"),
+        "appId": os.getenv("FIREBASE_APP_ID", "1:1019457807345:web:8eb4c313f720600b8bda50"),
+        "storageBucket": "cybermentor-506813.firebasestorage.app",
+        "apiKey": os.getenv("FIREBASE_WEB_API_KEY", ""),
+        "authDomain": os.getenv("FIREBASE_AUTH_DOMAIN", "cybermentor-506813.firebaseapp.com"),
+    }
