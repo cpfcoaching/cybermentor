@@ -90,12 +90,24 @@ function initSessionWithUser(username, token, isGuest = true) {
   currentUser = cleanName;
   sessionId   = null;
   window.userAuthToken = token;
-  window.isGuestUser = isGuest;
+  const isAdmin = !isGuest && (cleanName.toLowerCase().includes('christophe') || cleanName.toLowerCase().includes('chris') || cleanName.toLowerCase().includes('foulon'));
+  window.isAdminUser = isAdmin;
 
   const userBadge = document.querySelector('.user-badge');
   if (userBadge) {
-    userBadge.textContent = isGuest ? 'Temporary Session' : 'Google Auth (SSO Verified)';
-    userBadge.style.color = isGuest ? 'var(--clr-accent-amber)' : 'var(--clr-accent-cyan)';
+    if (isAdmin) {
+      userBadge.textContent = '👑 Admin Coach (Verified)';
+      userBadge.style.color = '#38bdf8';
+      userBadge.style.fontWeight = '600';
+    } else if (isGuest) {
+      userBadge.textContent = 'Temporary Session';
+      userBadge.style.color = 'var(--clr-accent-amber)';
+      userBadge.style.fontWeight = 'normal';
+    } else {
+      userBadge.textContent = 'Google Auth (SSO Verified)';
+      userBadge.style.color = 'var(--clr-accent-cyan)';
+      userBadge.style.fontWeight = 'normal';
+    }
   }
 
   if (!isGuest) {
