@@ -37,6 +37,7 @@ function handleGoogleSso(e) {
   const ssoModal = document.getElementById('google-sso-overlay');
   if (ssoModal) {
     ssoModal.classList.remove('hidden');
+    ssoModal.classList.add('active');
     const input = document.getElementById('custom-google-email');
     if (input) input.focus();
   } else {
@@ -65,7 +66,14 @@ function initSessionWithUser(username, token, isGuest = true) {
   sidebarUsername.textContent = cleanName;
   userAvatar.textContent      = cleanName.slice(0, 2).toUpperCase();
 
+  const ssoModal = document.getElementById('google-sso-overlay');
+  if (ssoModal) {
+    ssoModal.classList.remove('active');
+    ssoModal.classList.add('hidden');
+  }
+
   onboardingOverlay.classList.remove('active');
+  onboardingOverlay.classList.add('hidden');
   appLayout.classList.remove('hidden');
 
   if (!isGuest) {
@@ -139,7 +147,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (btnChris) {
     btnChris.addEventListener('click', () => {
-      if (ssoModal) ssoModal.classList.add('hidden');
       initSessionWithUser('Christophe_Foulon', 'google_sso_verified_token', false);
     });
   }
@@ -148,14 +155,16 @@ window.addEventListener('DOMContentLoaded', () => {
     btnCustom.addEventListener('click', () => {
       const email = (customInput && customInput.value.trim()) || 'Google_User';
       const cleanName = email.split('@')[0].replace(/[^a-zA-Z0-9_-]/g, '_') || 'Google_User';
-      if (ssoModal) ssoModal.classList.add('hidden');
       initSessionWithUser(cleanName, 'google_sso_verified_token', false);
     });
   }
 
   if (btnCloseSso) {
     btnCloseSso.addEventListener('click', () => {
-      if (ssoModal) ssoModal.classList.add('hidden');
+      if (ssoModal) {
+        ssoModal.classList.remove('active');
+        ssoModal.classList.add('hidden');
+      }
     });
   }
 
