@@ -18,7 +18,6 @@ import re
 import sys
 
 _DEFAULT_CHANNEL_ID = "UCM3YAEDu6W7JmQc0kb-CNtw"
-_DEFAULT_KEY = "AIzaSyANyNBxGgt6QZwVm4I5zwf4JmeejyQMDTY"
 OUTPUT = pathlib.Path(__file__).parent.parent / "knowledge" / "youtube_transcripts.json"
 
 # Curated Cybersecurity SEO & Skill Taxonomy for SEO Maximizer
@@ -170,7 +169,10 @@ def main():
     parser.add_argument("--all", action="store_true", help="Fetch ALL videos on the channel without limit")
     args = parser.parse_args()
 
-    api_key = args.api_key or os.getenv("YOUTUBE_API_KEY") or _DEFAULT_KEY
+    api_key = args.api_key or os.getenv("YOUTUBE_API_KEY")
+    if not api_key:
+        print("ERROR: YouTube Data API key required. Pass --api-key or set YOUTUBE_API_KEY environment variable.")
+        sys.exit(1)
 
     print(f"📡 Connecting to YouTube Data API v3 for 'Breaking Into Cybersecurity' ({args.channel})...")
     videos = get_all_channel_videos(api_key, args.channel, limit=args.limit, fetch_all=args.all)
