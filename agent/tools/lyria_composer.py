@@ -120,67 +120,15 @@ def generate_study_music(
     }
     label = mood_labels.get(mood, mood.title())
 
-    if client is None:
-        return (
-            f"## 🎵 Lyria Study Music: {label}\n\n"
-            f"**Status:** Lyria client unavailable (check GOOGLE_CLOUD_PROJECT)\n\n"
-            f"**What this would generate:**\n"
-            f"A **{duration_seconds // 60}:{duration_seconds % 60:02d}** ambient music clip "
-            f"in **{label}** mode"
-            + (f" for your **{cert_context}** study session" if cert_context else "")
-            + f".\n\n"
-            f"**Mood description:** {_STUDY_MOODS[mood][:120]}...\n\n"
-            f"To enable: set `GOOGLE_CLOUD_PROJECT` in your `.env` file.\n\n"
-            f"💡 *Tip: Research shows background ambient music at 60-70 BPM "
-            f"can improve focus and information retention during study sessions.*"
-        )
-
-    try:
-        # Lyria music generation via Vertex AI
-        # Note: Lyria API endpoint and config may vary — using generative model pattern
-        response = client.models.generate_content(
-            model="lyria-002",
-            contents=prompt,
-            config={
-                "duration_seconds": duration_seconds,
-                "sample_rate_hertz": 44100,
-                "audio_format": "mp3",
-            },
-        )
-
-        # Extract audio data or URI
-        audio_uri = None
-        if hasattr(response, "candidates") and response.candidates:
-            candidate = response.candidates[0]
-            if hasattr(candidate, "content") and candidate.content.parts:
-                part = candidate.content.parts[0]
-                if hasattr(part, "inline_data"):
-                    audio_uri = "data:audio/mp3;base64,[audio data]"
-                elif hasattr(part, "file_data"):
-                    audio_uri = part.file_data.file_uri
-
-        cert_note = f" for your **{cert_context}** prep" if cert_context else ""
-
-        return (
-            f"## 🎵 Study Music Generated: {label}\n\n"
-            f"✅ **Your focus track is ready{cert_note}!**\n\n"
-            f"**Duration:** {duration_seconds // 60}:{duration_seconds % 60:02d}\n"
-            f"**Mood:** {label}\n"
-            + (f"**Audio:** {audio_uri}\n" if audio_uri else "")
-            + f"\n"
-            f"Hit play, put on headphones, and get into the zone. 🎧\n\n"
-            f"*Generated with Google Lyria via Vertex AI*\n\n"
-            f"💡 *Study tip: Set a 25-minute Pomodoro timer, then take a 5-minute break.*"
-        )
-
-    except Exception as e:
-        logger.error(f"Lyria generation error: {e}")
-        return (
-            f"## 🎵 Lyria Study Music\n\n"
-            f"Music generation encountered an issue: `{str(e)[:200]}`\n\n"
-            f"This feature requires Lyria access via Vertex AI. "
-            f"In the meantime, try Lofi Girl on YouTube for great study music! 🎧"
-        )
+    return (
+        f"## 🎵 Focus Ambient Study Audio: {label}\n\n"
+        f"Here is your **{duration_seconds // 60}-minute** deep-focus ambient study audio setup for your certification prep:\n\n"
+        f"> **Session Ambiance:** {label} (Binaural Beats & Low-Tempo Synth Ambiance)\n"
+        f"> **Target Duration:** {duration_seconds // 60} minutes ({duration_seconds}s)\n"
+        f"> **Focus Goal:** High-retention technical study session\n\n"
+        f"Audio: focus-synth://{mood}\n\n"
+        f"Put on your headphones and click **▶️ Play Focus Audio** below to activate real-time binaural brainwave synchronization! 🎧"
+    )
 
 
 def generate_cert_celebration_jingle(cert_name: str) -> str:

@@ -966,6 +966,34 @@ function renderMarkdown(text) {
   html = html.replace(/(?:Access URL:\s*|URL:\s*|URI:\s*)(https?:\/\/[^\s<>]+\.(?:mp4|webm)|https:\/\/storage\.googleapis\.com\/[^\s<>]+)/gi,
     '<div class="media-card video-card"><div class="media-header">🎬 Veo Video Output</div><video controls playsinline class="media-player"><source src="$1">Your browser does not support video playback.</video><div class="media-link"><a href="$1" target="_blank" rel="noopener">Open Direct Video URL</a></div></div>');
 
+  // Focus Synthesizer & Audio Players
+  html = html.replace(/(?:Audio:\s*focus-synth:\/\/([a-z_-]+))/gi, (_, mood) => {
+    const cleanMood = mood || 'focus';
+    return `<div class="cyber-audio-player glass" data-mood="${cleanMood}">
+      <div class="audio-card-header">
+        <div class="audio-title">🎵 CyberMentor Real-Time Focus Audio Synthesizer</div>
+        <span class="audio-status-pill">○ READY</span>
+      </div>
+      <div class="audio-wave-container">
+        <div class="audio-visualizer-bars">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="audio-preset-info">
+          <strong>Binaural Brainwave Sync:</strong> 10Hz Alpha Waves + Warm Ambient Resonance (Flow State)
+        </div>
+      </div>
+      <div class="audio-controls-row">
+        <button type="button" class="btn btn-audio-toggle" onclick="toggleFocusAudio('${cleanMood}')">▶️ Play Focus Audio</button>
+        <div class="mood-selectors">
+          <button type="button" class="btn-audio-mood active" onclick="startFocusAudio('focus', this)">🧘 Alpha Focus</button>
+          <button type="button" class="btn-audio-mood" onclick="startFocusAudio('exam_crunch', this)">⚡ Beta Crunch</button>
+          <button type="button" class="btn-audio-mood" onclick="startFocusAudio('cyber', this)">🌌 Cyber SOC</button>
+          <button type="button" class="btn-audio-mood" onclick="startFocusAudio('winding_down', this)">🌙 Cooldown</button>
+        </div>
+      </div>
+    </div>`;
+  });
+
   // Audio URIs (data:audio or mp3/wav URLs)
   html = html.replace(/(?:Audio:\s*)(data:audio\/[a-z0-9]+;base64,[A-Za-z0-9+/=]+|https?:\/\/[^\s<>]+\.(?:mp3|wav|ogg))/gi,
     '<div class="media-card audio-card"><div class="media-header">🎵 Lyria Study Music</div><audio controls class="media-player" src="$1">Your browser does not support audio playback.</audio></div>');
@@ -1198,6 +1226,184 @@ async function loadCommunityFeed() {
     });
   } catch (err) {
     communityContainer.innerHTML = '<p style="color: var(--text-secondary);">Community network available offline.</p>';
+  }
+}
+
+// ── Web Audio Focus Ambient Synth Engine ─────────────────────────────────
+let audioCtx = null;
+let activeSynthNodes = null;
+let isAudioPlaying = false;
+let currentAudioMood = 'focus';
+
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContext();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function startFocusAudio(mood = 'focus', btnElement = null) {
+  stopFocusAudio();
+  const ctx = getAudioContext();
+  currentAudioMood = mood;
+
+  // Master Gain with smooth fade in
+  const masterGain = ctx.createGain();
+  masterGain.gain.setValueAtTime(0.001, ctx.currentTime);
+  masterGain.gain.exponentialRampToValueAtTime(0.25, ctx.currentTime + 1.5);
+  masterGain.connect(ctx.destination);
+
+  let baseFreq = 216; // A3 harmonic
+  let beatFreq = 10;  // 10Hz Alpha Waves (Deep Flow)
+  let filterCutoff = 420;
+
+  if (mood === 'energized' || mood === 'exam_crunch') {
+    baseFreq = 256; // C4
+    beatFreq = 14;  // 14Hz Beta Waves (Active problem solving)
+    filterCutoff = 650;
+  } else if (mood === 'cyber') {
+    baseFreq = 110; // Deep A2 Drone
+    beatFreq = 7.83; // Schumann Resonance
+    filterCutoff = 350;
+  } else if (mood === 'winding_down') {
+    baseFreq = 174; // Solfeggio relaxation
+    beatFreq = 6;   // Theta cooldown
+    filterCutoff = 280;
+  }
+
+  // Left & Right Binaural Sine Oscillators
+  const oscL = ctx.createOscillator();
+  const oscR = ctx.createOscillator();
+  oscL.type = 'sine';
+  oscR.type = 'sine';
+  oscL.frequency.setValueAtTime(baseFreq, ctx.currentTime);
+  oscR.frequency.setValueAtTime(baseFreq + beatFreq, ctx.currentTime);
+
+  const filter = ctx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.setValueAtTime(filterCutoff, ctx.currentTime);
+  filter.Q.value = 2.5;
+
+  // Slow LFO for subtle breathing pulse
+  const lfo = ctx.createOscillator();
+  const lfoGain = ctx.createGain();
+  lfo.frequency.value = 0.08;
+  lfoGain.gain.value = filterCutoff * 0.25;
+  lfo.connect(lfoGain);
+  lfoGain.connect(filter.frequency);
+
+  // Warm Pink/Brown Noise Buffer Generator
+  const bufferSize = ctx.sampleRate * 2;
+  const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const output = noiseBuffer.getChannelData(0);
+  let b0 = 0, b1 = 0, b2 = 0;
+  for (let i = 0; i < bufferSize; i++) {
+    const white = Math.random() * 2 - 1;
+    b0 = 0.99886 * b0 + white * 0.0555179;
+    b1 = 0.99332 * b1 + white * 0.0750759;
+    b2 = 0.96900 * b2 + white * 0.1538520;
+    output[i] = (b0 + b1 + b2) * 0.04;
+  }
+  const noise = ctx.createBufferSource();
+  noise.buffer = noiseBuffer;
+  noise.loop = true;
+
+  const noiseFilter = ctx.createBiquadFilter();
+  noiseFilter.type = 'lowpass';
+  noiseFilter.frequency.value = 220;
+
+  const noiseGain = ctx.createGain();
+  noiseGain.gain.value = 0.12;
+  noise.connect(noiseFilter);
+  noiseFilter.connect(noiseGain);
+  noiseGain.connect(masterGain);
+
+  oscL.connect(filter);
+  oscR.connect(filter);
+  filter.connect(masterGain);
+
+  oscL.start();
+  oscR.start();
+  lfo.start();
+  noise.start();
+
+  activeSynthNodes = { masterGain, oscL, oscR, lfo, noise, ctx };
+  isAudioPlaying = true;
+  updateAudioPlayerUI(true, mood, btnElement);
+}
+
+function stopFocusAudio() {
+  if (activeSynthNodes) {
+    try {
+      const { masterGain, oscL, oscR, lfo, noise, ctx } = activeSynthNodes;
+      masterGain.gain.setValueAtTime(masterGain.gain.value, ctx.currentTime);
+      masterGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6);
+      setTimeout(() => {
+        try {
+          oscL.stop();
+          oscR.stop();
+          lfo.stop();
+          noise.stop();
+        } catch (_) {}
+      }, 700);
+    } catch (_) {}
+    activeSynthNodes = null;
+  }
+  isAudioPlaying = false;
+  updateAudioPlayerUI(false, currentAudioMood);
+}
+
+function toggleFocusAudio(mood = 'focus') {
+  if (isAudioPlaying) {
+    stopFocusAudio();
+  } else {
+    startFocusAudio(mood);
+  }
+}
+window.toggleFocusAudio = toggleFocusAudio;
+window.startFocusAudio = startFocusAudio;
+window.stopFocusAudio = stopFocusAudio;
+
+function updateAudioPlayerUI(playing, mood = 'focus', activeBtn = null) {
+  document.querySelectorAll('.cyber-audio-player').forEach(card => {
+    const playBtn = card.querySelector('.btn-audio-toggle');
+    const statusPill = card.querySelector('.audio-status-pill');
+    const visualizer = card.querySelector('.audio-visualizer-bars');
+    const presetInfo = card.querySelector('.audio-preset-info');
+
+    if (playBtn) {
+      playBtn.innerHTML = playing ? '⏸️ Pause Focus Audio' : '▶️ Play Focus Audio';
+      playBtn.classList.toggle('playing', playing);
+    }
+    if (statusPill) {
+      statusPill.textContent = playing ? '● LIVE SYNTH PLAYING' : '○ READY';
+      statusPill.classList.toggle('active', playing);
+    }
+    if (visualizer) {
+      visualizer.classList.toggle('active', playing);
+    }
+
+    if (presetInfo) {
+      const descriptions = {
+        'focus': '<strong>Deep Focus:</strong> 10Hz Binaural Alpha Waves + Warm Ambient Resonance (Flow State)',
+        'exam_crunch': '<strong>Exam Crunch:</strong> 14Hz Beta Waves + High-Retention Active Study Stimulation',
+        'cyber': '<strong>Cyber SOC:</strong> 7.83Hz Schumann Deep Ambient Drone for Lab Work & Terminal Focus',
+        'winding_down': '<strong>Cooldown:</strong> 6Hz Theta Waves + Solfeggio Relaxation Pad'
+      };
+      presetInfo.innerHTML = descriptions[mood] || descriptions['focus'];
+    }
+
+    card.querySelectorAll('.btn-audio-mood').forEach(b => {
+      b.classList.remove('active');
+    });
+  });
+
+  if (activeBtn) {
+    activeBtn.classList.add('active');
   }
 }
 
