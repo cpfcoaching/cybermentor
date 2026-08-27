@@ -11,6 +11,8 @@ import pathlib
 from datetime import datetime, timezone
 from typing import Optional
 
+from agent.tools.conversation_store import save_conversation_message
+
 _LOCAL_STORAGE = pathlib.Path(__file__).parent.parent.parent / "sessions" / "progress"
 
 
