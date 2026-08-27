@@ -19,7 +19,7 @@ from fastapi.responses import StreamingResponse
 from api.models import ChatRequest, ChatResponse, SessionSummary
 from agent.cybermentor import create_cybermentor_agent
 from agent.tools.progress_tracker import get_user_progress
-from agent.tools.conversation_store import save_conversation_message
+from agent.tools.conversation_store import save_conversation_message, get_conversation_history
 from agent.tools.ace_memory import get_agent_memory, analyze_conversation_for_skills, get_documented_candidate_skills
 from agent.tools.gemma_analyzer import classify_user_intent
 
