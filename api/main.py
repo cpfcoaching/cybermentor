@@ -70,4 +70,4 @@ async def root():
 # ── Static Files (Frontend) ───────────────────────────────────────────────────
 web_dir = Path(__file__).parent.parent / "web"
 if web_dir.exists():
-    app.mount("/static", StaticFiles(directory=str(web_dir)), name="static")
+    app.mount("/", StaticFiles(directory=str(web_dir), html=True), name="static")

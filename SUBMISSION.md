@@ -15,10 +15,10 @@ CyberMentor is an interactive AI expert that guides aspiring cybersecurity profe
 
 ## 🌐 Hosted Project URL
 
-> 🚧 Deployment in progress — URL will be updated here after `./deploy.sh` completes.
-> **Live URL:** `https://cybermentor-[hash]-uc.a.run.app`
+> **Live URL:** [https://cybermentor-1019457807345.us-central1.run.app](https://cybermentor-1019457807345.us-central1.run.app)
+> **API Docs:** [https://cybermentor-1019457807345.us-central1.run.app/docs](https://cybermentor-1019457807345.us-central1.run.app/docs)
 
-The project is deployable to Google Cloud Run with a single command. See [Spin-up Instructions](#-spin-up-instructions) below.
+The project is live on Google Cloud Run and integrated with Cloud Firestore. See [Spin-up Instructions](#-spin-up-instructions) below.
 
 ---
 

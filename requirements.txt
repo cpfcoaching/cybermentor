@@ -16,7 +16,6 @@ python-multipart>=0.0.9
 
 # Google Cloud
 google-cloud-firestore>=2.19.0
-google-cloud-aiplatform>=1.70.0
 google-auth>=2.35.0
 
 # Utilities

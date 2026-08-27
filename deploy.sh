@@ -8,7 +8,7 @@ set -euo pipefail
 PROJECT_ID="${GOOGLE_CLOUD_PROJECT:-$(gcloud config get-value project)}"
 SERVICE_NAME="cybermentor"
 REGION="us-central1"
-IMAGE="gcr.io/${PROJECT_ID}/${SERVICE_NAME}"
+IMAGE="us-central1-docker.pkg.dev/${PROJECT_ID}/cybermentor/${SERVICE_NAME}"
 
 echo "🚀 Deploying CyberMentor to Cloud Run"
 echo "   Project : ${PROJECT_ID}"
