@@ -512,32 +512,130 @@ async function handleDeleteProfile() {
   }
 }
 
-// ── Resume Upload Handler ────────────────────────────────────────────────
+// ── Multi-Format Resume Upload & Document Parsing Engine (PDF, Word DOCX, TXT) ─
 const uploadResumeBtn = document.getElementById('btn-upload-resume');
 const resumeFileInput = document.getElementById('resume-file-input');
+
+async function extractTextFromResumeFile(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+
+  // 1. Plain Text / Markdown / RTF / JSON files
+  if (['txt', 'md', 'json', 'rtf'].includes(ext)) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result || '');
+      reader.onerror = (e) => reject(e);
+      reader.readAsText(file);
+    });
+  }
+
+  // 2. Microsoft Word (.docx) via Mammoth.js (Client-side)
+  if (ext === 'docx' && typeof mammoth !== 'undefined') {
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const result = await mammoth.extractRawText({ arrayBuffer });
+      if (result && result.value && result.value.trim().length > 20) {
+        return result.value.trim();
+      }
+    } catch (err) {
+      console.warn('Client-side Mammoth.js DOCX parsing fallback:', err);
+    }
+  }
+
+  // 3. Adobe PDF (.pdf) via PDF.js (Client-side)
+  if (ext === 'pdf' && typeof window['pdfjs-dist/build/pdf'] !== 'undefined') {
+    try {
+      const pdfjsLib = window['pdfjs-dist/build/pdf'];
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      const pagesText = [];
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const textContent = await page.getTextContent();
+        const pageStr = textContent.items.map(item => item.str).join(' ');
+        if (pageStr && pageStr.trim()) {
+          pagesText.push(pageStr.trim());
+        }
+      }
+      if (pagesText.length > 0) {
+        return pagesText.join('\n\n');
+      }
+    } catch (err) {
+      console.warn('Client-side PDF.js parsing fallback:', err);
+    }
+  }
+
+  // 4. Server-Side Document Parser Fallback (POST /api/resume/parse)
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    const resp = await fetch(`${API_BASE_URL}/api/resume/parse`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.text && data.text.trim()) {
+        return data.text.trim();
+      }
+    } else {
+      const err = await resp.json().catch(() => ({}));
+      console.warn('Server-side parser returned status:', resp.status, err);
+    }
+  } catch (err) {
+    console.warn('Server-side parse endpoint error:', err);
+  }
+
+  // 5. Ultimate fallback: Read as raw text if small and printable
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const text = e.target.result || '';
+      // Strip unprintable control characters to prevent binary junk
+      const printable = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]/g, ' ');
+      resolve(printable);
+    };
+    reader.onerror = () => resolve('');
+    reader.readAsText(file);
+  });
+}
 
 if (uploadResumeBtn && resumeFileInput) {
   uploadResumeBtn.addEventListener('click', () => {
     resumeFileInput.click();
   });
 
-  resumeFileInput.addEventListener('change', (e) => {
+  resumeFileInput.addEventListener('change', async (e) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const content = event.target.result;
-      if (!content || !content.trim()) return;
+    if (statusText) statusText.textContent = `📄 Extracting ${file.name}...`;
+    if (statusDot) statusDot.className = 'status-dot active';
 
-      const prompt = `Please review my resume text below for cybersecurity roles. Extract my current competencies, calculate my readiness score, and proactively probe me about any high-value missing or adjacent skills I might have forgotten to list that would make my resume more appealing to hiring managers:\n\n---\n${content.trim()}\n---`;
+    try {
+      const extractedText = await extractTextFromResumeFile(file);
+      if (!extractedText || extractedText.trim().length < 15) {
+        alert(`Could not extract readable text from "${file.name}".\n\nPlease ensure your document contains selectable text (not scanned images), or paste the resume text directly into the chat.`);
+        if (statusText) statusText.textContent = 'CyberMentor Ready';
+        resumeFileInput.value = '';
+        return;
+      }
+
+      // Format clean prompt for CyberMentor & ACE Cognitive Profile
+      const cleanContent = extractedText.trim().slice(0, 7500);
+      const prompt = `Please perform an in-depth cybersecurity resume review for my uploaded document (${file.name}). Extract all technical competencies, certifications, and hands-on tools into my ACE cognitive profile, calculate my job readiness score, and proactively probe me on any adjacent or missing high-value skills (e.g. Wireshark, Linux, Python, SIEM, NIST) I might have forgotten to mention that would significantly strengthen my hiring appeal:\n\n---\n${cleanContent}\n---`;
       
       messageInput.value = prompt;
       messageInput.dispatchEvent(new Event('input'));
       sendMessage();
-      resumeFileInput.value = ''; // Reset for subsequent uploads
-    };
-    reader.readAsText(file);
+    } catch (err) {
+      console.error('Resume processing error:', err);
+      alert(`Error reading resume: ${err.message}\n\nYou can also copy & paste the text directly into the chat.`);
+    } finally {
+      resumeFileInput.value = '';
+      if (statusText) statusText.textContent = 'CyberMentor Ready';
+    }
   });
 }
 

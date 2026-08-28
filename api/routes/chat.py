@@ -14,10 +14,11 @@ import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, UploadFile, File
 from fastapi.responses import StreamingResponse
 
 from api.models import ChatRequest, ChatResponse, SessionSummary
+from api.services.resume_parser import parse_resume_bytes
 from agent.cybermentor import create_cybermentor_agent
 from agent.tools.progress_tracker import get_user_progress
 from agent.tools.conversation_store import save_conversation_message, get_conversation_history
@@ -262,3 +263,32 @@ async def get_auth_config():
         "apiKey": api_key,
         "authDomain": os.getenv("FIREBASE_AUTH_DOMAIN", "cybermentor-506813.firebaseapp.com"),
     }
+
+
+@router.post("/resume/parse")
+async def parse_resume(file: UploadFile = File(...)):
+    """
+    Parse uploaded resume document (PDF, Word DOCX, TXT, MD) and return clean plain text.
+    """
+    try:
+        content = await file.read()
+        if not content:
+            raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+        text = parse_resume_bytes(content, file.filename or "resume.pdf")
+        if not text or not text.strip():
+            raise HTTPException(
+                status_code=400,
+                detail="Could not extract text from document. Ensure the file contains readable text."
+            )
+        return {
+            "filename": file.filename,
+            "text": text.strip(),
+            "character_count": len(text.strip()),
+            "word_count": len(text.strip().split()),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error parsing resume upload: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Document parsing error: {str(e)}")
+
