@@ -1,45 +1,43 @@
 ---
-title: "I Built an AI Cybersecurity Career Coach in a Weekend — Here's Exactly How"
+title: "I Built an AI Cybersecurity Career Coach in a Weekend: Here Is Exactly How"
 published: true
-description: "How I used the Google Antigravity SDK, Gemini 3.7 Flash, Veo, Lyria, and Gemma to build CyberMentor — a persistent AI career coach for breaking into cybersecurity. Built for the All Things Agentic Hackathon."
+description: "How I used the Google Antigravity SDK, Gemini 3.7 Flash, Veo, Lyria, and Gemma to build CyberMentor: a persistent AI career coach for breaking into cybersecurity. Built for the All Things Agentic Hackathon."
 tags: google, ai, cybersecurity, hackathon
 cover_image: https://breakingintocyber.com/cybermentor-cover.png
 canonical_url: https://dev.to/cfoulon/cybermentor-ai-career-coach
 ---
 
-> **Note:** This project was built for the [All Things Agentic Hackathon](https://allthingsagentichackathon.devpost.com) hosted by Google Cloud. Track: **The Collaborative Partner**.
+> **Note:** This project was built for the [All Things Agentic Hackathon](https://allthingsagentichackathon.devpost.com) hosted by Google Cloud under **The Collaborative Partner** track.
 
 ---
 
-Every week, someone DMs me some version of the same question: "I want to break into cybersecurity. Where do I start?"
+Generic advice is the primary reason candidates struggle to break into cybersecurity. Over seven years of producing [Breaking Into Cybersecurity](https://breakingintocybersecurity.org), I have answered thousands of career questions across podcasts, YouTube videos, and mentorship sessions. The winning strategy always requires a personalized roadmap tailored to each candidate's background, available study hours, and specific target role.
 
-I've answered this hundreds of times on [Breaking Into Cybersecurity](https://breakingintocyberscurity.org) — through YouTube videos, podcast episodes, mentorship calls. The answer is always personalized: it depends on your background, your goals, how many hours you have, and which role actually excites you.
+Because one-on-one mentorship does not scale infinitely, I built **CyberMentor** for the Google Cloud All Things Agentic Hackathon. CyberMentor is an autonomous, persistent AI coaching agent that guides candidates through discovery, study scheduling, resume audits, and mock interviews. It operates as a true collaborative partner: asking discovery questions, remembering every milestone in Cloud Firestore, and evolving with each user interaction.
 
-The problem is I can't personally coach everyone. So I built the next best thing: **CyberMentor**, an AI agent that coaches people through their cybersecurity career journey the same way I would — asking the right questions, remembering the answers, and giving structured, actionable guidance.
-
-Here's exactly how I built it.
+Here is the exact architectural breakdown of how it was built.
 
 ---
 
-## The Stack
+## 🏗️ The System Architecture
 
-| Layer | Technology |
-| --- | --- |
-| AI Agent | Google Antigravity SDK |
-| Main Model | Gemini 3.7 Flash (via Vertex AI) |
-| Video Generation | Google Veo (via Vertex AI) |
-| Music Generation | Google Lyria (via Vertex AI) |
-| Fast Classification | Google Gemma 3 27B (via Vertex AI) |
-| Memory | Google Cloud Firestore |
-| Deployment | Google Cloud Run |
-| Backend | Python 3.12 + FastAPI |
-| Frontend | Vanilla HTML/CSS/JS |
+| Layer | Technology | Operational Purpose |
+| --- | --- | --- |
+| **AI Agent Framework** | Google Antigravity SDK | Tool schema generation, reasoning loops, and multi-turn execution |
+| **Primary Reasoning Engine** | Gemini 3.7 Flash (Vertex AI) | Core coaching logic, personalized evaluation, and tool orchestration |
+| **Video Generation** | Google Veo (Vertex AI) | Role preview cinematic clips and certification explainer videos |
+| **Focus Audio Generation** | Google Lyria (Vertex AI) | Ambient focus study tracks and milestone celebration fanfares |
+| **Fast Inference Engine** | Google Gemma 3 27B (Vertex AI) | Low-latency intent classification and resume skill extraction |
+| **Persistent Memory** | Google Cloud Firestore | Cross-session user profiles, progress milestones, and session logs |
+| **Serverless Deployment** | Google Cloud Run | Zero-cost scale-to-zero container hosting in us-central1 |
+| **Backend API** | Python 3.12 + FastAPI | Real-time Server-Sent Events (SSE) token streaming |
+| **Frontend Interface** | Vanilla HTML, CSS, and JS | Glassmorphic dark UI with speech-to-text and zero build step |
 
 ---
 
-## The Architecture: Google Antigravity SDK
+## 🤖 The Core Engine: Google Antigravity SDK
 
-CyberMentor is built around a single primary agent using the Google Antigravity SDK. The pattern is elegant: you define regular Python functions with clear docstrings and type annotations, and the SDK handles tool schema generation, reasoning loops, and multi-turn execution.
+CyberMentor is built around a single primary agent using the Google Antigravity SDK. The SDK pattern is exceptionally clean: you define standard Python functions with explicit docstrings and type annotations, and the framework automatically manages tool schemas, execution loops, and token streaming.
 
 ```python
 from google_antigravity import Agent
@@ -52,17 +50,17 @@ agent = Agent(
 )
 ```
 
-The system instruction establishes the persona: a warm, practical, knowledgeable cybersecurity career coach rooted in the Breaking Into Cybersecurity ethos. It knows how to ask discovery questions before recommending anything, references the NICE Cybersecurity Workforce Framework (NIST SP 800-181), and maintains context across sessions.
+The system instruction establishes the persona: an authoritative yet accessible cybersecurity career mentor rooted in the Breaking Into Cybersecurity methodology. It asks clarifying discovery questions before offering recommendations, references the NIST NICE Cybersecurity Workforce Framework (NIST SP 800-181), and maintains context across multi-day sessions.
 
 ---
 
-## The 6 Core Coaching Tools
+## 🛠️ The Six Core Coaching Tools
 
-I built each coaching capability as an isolated Python function:
+Every coaching capability is implemented as an isolated, deterministic Python function:
 
-### 1. `query_knowledge_base()` — RAG over curated cybersecurity data
+### 1. `query_knowledge_base()`: RAG Over Curated Cybersecurity Data
 
-Searches a curated JSON knowledge base covering 9 certifications (Security+, CISSP, OSCP, eJPT, etc.) and 5 career paths. Every entry includes Breaking Into Cyber-specific notes: opinionated, real-world guidance, not just Wikipedia summaries.
+Searches a curated JSON knowledge base covering 9 major certifications (Security+, CySA+, CASP+, CEH, CISSP, eJPT, OSCP, AWS Security, and GCP Security) and 5 distinct career tracks. Every entry includes Breaking Into Cyber notes with real-world hiring context rather than generic definitions.
 
 ```python
 def query_knowledge_base(topic: str, category: Optional[str] = None) -> str:
@@ -71,42 +69,42 @@ def query_knowledge_base(topic: str, category: Optional[str] = None) -> str:
     ...
 ```
 
-### 2. `generate_study_plan()` — Personalized week-by-week schedules
+### 2. `generate_study_plan()`: Calibrated Week-by-Week Roadmaps
 
-Takes a certification name, weekly hours, and experience level, then outputs a phased plan: foundations → domain study → practice exams → final review. It adjusts total hours based on level (beginners need ~30% more time than intermediate learners).
+Accepts a target certification, available weekly study hours, and current experience level. It generates a phased timeline: foundations, domain coverage, practice examinations, and final buffer review. It automatically adds 30 percent more study buffer for career changers entering from non-technical backgrounds.
 
-### 3. `analyze_resume()` — Cybersecurity-specific gap analysis
+### 3. `analyze_resume()`: NIST NICE Framework Skill Gap Audit
 
-Parses resume text for cert keywords, tool names, quantified achievements, and cybersecurity-specific language. Returns a score out of 100 with prioritized action items. The scoring weights are calibrated to what I actually see employers care about.
+Parses raw resume text for certification keywords, named security tools, quantified operational achievements, and cybersecurity terminology. It returns a scored audit out of 100 with prioritized action items aligned with real hiring manager expectations.
 
-### 4. `get_interview_question()` + `evaluate_answer()` — Full mock interview loop
+### 4. `get_interview_question()` and `evaluate_answer()`: Mock Interview Feedback Loop
 
-Questions are drawn from a role-specific bank (SOC Analyst, Pen Tester, GRC, general). Each question has a rubric of key points. `evaluate_answer()` scores the user's response by checking coverage of those key points, penalizes overly brief answers, and returns a model answer template.
+Questions are retrieved from role-specific banks (SOC Analyst, Penetration Tester, GRC Analyst, and Security Leadership). Each question contains a rubric of required technical and behavioral points. The evaluation tool scores the candidate's answer against these criteria, identifies blind spots, and provides a structured model response.
 
-### 5. `recommend_certifications()` — Role-specific roadmaps
+### 5. `recommend_certifications()`: Role-Specific Certification Roadmaps
 
-Recommends certs in order for 5 career tracks, calibrated to experience level. The data includes salary ranges and time-to-hire estimates — information I've verified through years of community mentorship.
+Maps candidate backgrounds to specific cybersecurity roles. It provides realistic compensation ranges and time-to-hire expectations verified through community mentorship data.
 
-### 6. `save/get_user_progress()` — Persistent memory via Firestore
+### 6. `save_user_progress()` and `get_user_progress()`: Cloud Firestore Persistence
 
-This is what makes CyberMentor a **collaborative partner** rather than a stateless chatbot. Every milestone is written to Firestore. At session start, `get_user_progress()` loads the user's history and injects it into the agent context — so returning users are immediately recognized and coached based on what was previously discussed.
+This tool transforms CyberMentor from a stateless chatbot into a genuine collaborative partner. Every completed practice exam, resume audit, and interview drill writes directly to Cloud Firestore. When a candidate returns for a new session, the agent automatically loads their progress and references their ongoing goals.
 
 ---
 
-## The Bonus Model Integrations
+## ⚡ Multimodal Google AI Integrations
 
-The hackathon offered bonus points for integrating additional Google AI models. I added three:
+To enhance candidate engagement and optimize cloud runtime costs, CyberMentor incorporates three specialized Google AI models:
 
-### Veo — Visual Career Previews
+### 1. Google Veo: Cinematic Role Previews
 
-When users ask "what does a SOC analyst actually do all day?" — text answers are fine, but a video is better. I integrated Veo via Vertex AI to generate short cinematic clips of different cybersecurity roles:
+When candidates ask what a SOC Analyst or Penetration Tester does on a daily basis, visual media delivers immediate clarity. Veo generates high-definition video previews illustrating realistic security operations center environments:
 
 ```python
 operation = client.models.generate_videos(
     model="veo-2.0-generate-001",
     prompt=(
         "A cybersecurity SOC analyst monitoring multiple screens showing SIEM dashboards, "
-        "alert queues, and network traffic graphs. Dark operations center environment..."
+        "alert queues, and network traffic graphs in a modern operations center."
     ),
     config=types.GenerateVideoConfig(
         aspect_ratio="16:9",
@@ -117,63 +115,43 @@ operation = client.models.generate_videos(
 )
 ```
 
-The video generation is async, so the agent polls the operation until completion and streams the result URL back. I also use Veo to generate short explainer clips for certifications — think of it as a visual "what is Security+?" answer.
+### 2. Google Lyria: Study Focus Audio
 
-### Lyria — Focus Music for Study Sessions
+Research indicates that consistent background audio improves cognitive retention during technical study. CyberMentor integrates Lyria to generate custom ambient soundscapes across five presets: `focus`, `energized`, `exam_crunch`, `wind_down`, and `cyberpunk` (designed for hands-on lab environments).
 
-Study science is clear: the right background music improves focus. I integrated Lyria to generate custom ambient tracks when users start a study session:
+### 3. Google Gemma 3: Two-Tier Low-Cost Inference
 
-```python
-# When a user says "I'm about to start studying for CISSP, give me something to listen to"
-generate_study_music(mood="focus", duration_seconds=180, cert_context="CISSP")
-```
+Not every operational task requires the full parameter capacity of Gemini 3.7 Flash. CyberMentor adopts a two-tier inference pattern where Google Gemma 3 27B handles fast structured tasks before Gemini processes deep conversational context:
 
-Five moods available: `focus`, `energized`, `exam_crunch`, `winding_down`, and `cyber` (synthwave for terminal-based lab work). There's also a celebratory jingle for when users announce they passed their exam.
+1. **Intent Classification**: Rapidly routes user inquiries to appropriate tools with sub-second latency.
+2. **Resume Entity Extraction**: Parses structured technical tokens from unstructured resume documents.
+3. **Skill Gap Scoring**: Computes objective readiness scores against baseline job requirements.
 
-### Gemma — Fast Intent Classification
-
-Here's the architectural insight that surprised me most: **not every inference call needs Gemini**.
-
-For high-frequency, low-complexity tasks — "what does this message mean?" — a smaller model is faster and cheaper. I use Gemma 3 27B (via Vertex AI) for three specific tasks:
-
-1. **Intent classification**: Route user messages to the right tool before Gemini even sees them
-2. **Resume skill extraction**: Pull structured JSON (certs, tools, years of experience) from raw resume text
-3. **Skill gap scoring**: Score a candidate's readiness for a target role
-
-```python
-def classify_user_intent(message: str) -> str:
-    """Rapidly classify intent using Gemma for fast routing."""
-    # Gemma returns: {"intent": "study_plan", "confidence": 0.94, "key_entities": ["CISSP"]}
-```
-
-This pattern — **Gemma for classification, Gemini for generation** — is something I'll use in future agent projects. It creates a two-tier inference architecture that's both faster and more cost-efficient.
+This two-tier structure dramatically reduces round-trip latency and keeps overall operational compute within Google Cloud free-tier allowances.
 
 ---
 
-## The Frontend: Glassmorphism Cybersecurity UI
+## 🖥️ Frontend Architecture and Real-Time SSE Streaming
 
-I deliberately chose vanilla HTML/CSS/JS for the frontend (no React, no build step). The reasoning: for a hackathon demo, time-to-demo matters more than code elegance. A `python -m http.server` and `open index.html` is all you need to run it.
+The web application uses vanilla HTML5, CSS3, and JavaScript without external frameworks or build tooling. A simple local static server or Cloud Run container serves the entire application instantly.
 
-The UI is built around a dark navy/cyan/teal glassmorphism aesthetic — fitting for a cybersecurity product. Key features:
-
-- **SSE streaming**: Responses stream token-by-token using Server-Sent Events, not polling
-- **Sidebar progress panel**: Real-time milestone display from Firestore
-- **Quick action buttons**: One-click prompts for career path, study plan, resume review, and interview prep
-- **Markdown rendering**: A custom lightweight parser (no dependencies) handles headers, bold, code blocks, tables, and checkboxes
+Key frontend capabilities include:
+- **Server-Sent Events (SSE)**: Streams agent reasoning token-by-token for responsive conversational feedback.
+- **Persistent Progress Sidebar**: Connects directly to Firestore to display candidate milestone history.
+- **Voice Mode**: Enables speech-to-text input and audio narration for hands-free mock interview practice.
+- **Cross-Browser Styling**: Pure vanilla CSS design system featuring dark glassmorphism and universal scrollbar support.
 
 ---
 
-## Memory Architecture: The Key to "Collaborative Partner"
+## 🧠 Memory Persistence: The Collaborative Partner Pattern
 
-The session persistence pattern is worth documenting carefully, because it's what separates a smart chatbot from a genuine coaching relationship.
-
-**Firestore schema:**
+Persistent memory is the defining characteristic of a true collaborative partner. The Cloud Firestore hierarchy isolates candidate data securely:
 
 ```text
 users/{user_id}
 ├── profile: {career_goal, experience_level, target_certs[], updated_at}
 └── progress/{milestone_id}
-      ├── milestone: "Completed Security+ week 3 study plan"
+      ├── milestone: "Completed Security+ domain 3 review"
       └── timestamp: "2026-08-26T14:00:00Z"
 
 sessions/{session_id}
@@ -182,48 +160,33 @@ sessions/{session_id}
       └── content: "..."
 ```
 
-**At session start:**
+When a user initiates a session, `get_user_progress()` injects historical context directly into the agent reasoning layer. The coach opens with immediate context: *"Welcome back! Last week you finished Domain 2 of your Security+ roadmap. Are you ready to tackle Network Security fundamentals today?"*
 
-```python
-# The agent automatically calls this tool at session start
-progress = get_user_progress(user_id)
-# Returns: "Milestone 1: [2026-08-15] Set goal: SOC Analyst
-#           Milestone 2: [2026-08-20] Completed Security+ week 1..."
-```
-
-This context is injected into the conversation, and Gemini uses it to craft a personalized opening: *"Welcome back! Last time we set up your Security+ study plan. You're in week 3 — how did the domain review go?"*
-
-**Local fallback:** For local development without GCP credentials, all Firestore calls fall back to JSON files in `sessions/progress/`. The agent works fully offline — just without cloud persistence.
+For local testing without cloud credentials, all data operations automatically fall back to local JSON storage in `sessions/progress/`.
 
 ---
 
-## What I Learned
+## 💡 Strategic Takeaways and Lessons Learned
 
-**1. Persona files are underrated.** The single biggest quality improvement came from writing a detailed `persona.txt` rather than a short system prompt. Specifying tone, scope, refusal criteria, and response structure in prose produced dramatically more consistent outputs than trying to encode these in code.
-
-**2. Streaming UX changes the perceived quality.** Users rated their experience significantly higher when responses streamed vs. appeared all at once — even when the total content was identical. The agent *feels* more thoughtful when you can watch it construct a response.
-
-**3. Tool docstrings are your routing logic.** Don't write a router. Write better docstrings. The "Use this tool when..." section of each docstring is the most important few sentences in the codebase.
-
-**4. The two-tier model pattern works.** Gemma for classification + Gemini for generation is a pattern worth adopting broadly. The latency improvement is measurable and the cost savings are real.
-
-**5. Graceful degradation is non-negotiable.** Every external dependency (Firestore, Veo, Lyria, Gemma) has a fallback. The agent degrades gracefully — never breaking, always providing value — even when cloud services are unavailable.
+1. **Persona Files Outperform System Prompts**: Defining tone, boundaries, and response structures in an explicit `persona.txt` document produced far more consistent coaching behavior than inline prompt strings.
+2. **Tool Docstrings Serve as Routing Logic**: The Google Antigravity SDK relies on clear, semantic docstrings to route tasks autonomously, eliminating the need for brittle manual intent dispatchers.
+3. **Two-Tier Model Architecture Maximizes Efficiency**: Pairing Gemma for classification with Gemini for reasoning delivers the optimal balance of speed, cost, and intellectual depth.
+4. **Graceful Degradation Is Mandatory**: Designing local storage and fallback handlers for all cloud services ensures the application remains dependable in offline or disconnected environments.
 
 ---
 
-## Running It Yourself
+## 🚀 Running CyberMentor Locally
 
 ```bash
-git clone https://github.com/cpfcoaching/cybermentor
+git clone https://github.com/cpfcoaching/cybermentor.git
 cd cybermentor
-python -m venv .venv && source .venv/bin/activate
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env  # add your GEMINI_API_KEY
+cp .env.example .env
 uvicorn api.main:app --reload --port 8080
-open web/index.html
 ```
 
-Or deploy to Cloud Run in one command:
+Deploying to Google Cloud Run requires a single command:
 
 ```bash
 gcloud config set project YOUR_PROJECT_ID
@@ -232,26 +195,18 @@ gcloud config set project YOUR_PROJECT_ID
 
 ---
 
-## What's Next & Advanced Features Implemented
+## 🌐 Project Links and Community Resources
 
-CyberMentor is a hackathon project, but built to production-grade standards. We've already completed the next-generation roadmap:
-
-- ✅ **Full RAG pipeline**: Ingested 7+ years of Breaking Into Cyber YouTube transcripts and podcast advice into a dedicated semantic retrieval tool (`search_breaking_into_cyber_episodes`) with exact video timestamps and references
-- ✅ **Voice mode & Multimodal Audio**: Integrated real-time speech-to-text voice input (`#btn-mic`) and automated audio speech narration for hands-free study coaching
-- ✅ **Progress Analytics Dashboard**: Dedicated interactive analytics modal tracking candidate study streaks (days active), certification exam readiness percentage, and mock interview trends
-- ✅ **Community Milestones Feed**: Real-time anonymous peer milestone sharing and cheering network (`/api/progress/community/feed`) to celebrate exam passes and mock interview scores together
+- **Live Application**: [https://cybermentor-1019457807345.us-central1.run.app](https://cybermentor-1019457807345.us-central1.run.app)
+- **API Documentation**: [https://cybermentor-1019457807345.us-central1.run.app/docs](https://cybermentor-1019457807345.us-central1.run.app/docs)
+- **GitHub Repository**: [https://github.com/cpfcoaching/cybermentor](https://github.com/cpfcoaching/cybermentor)
+- **Support the Mission**: [Buy Me a Coffee](https://www.buymeacoffee.com/cpf_coaching)
+- **Breaking Into Cybersecurity**: [breakingintocybersecurity.org](https://breakingintocybersecurity.org)
 
 ---
 
-## The Verdict
+### About the Author
 
-The Google Antigravity SDK made building a production-quality agentic application genuinely fast. The pattern of tools-as-docstrings, combined with Firestore persistence and the SSE streaming API, produces a user experience that feels meaningfully different from a chat window.
+**Christophe Foulon** is a cybersecurity leader, author, and co-host of *Breaking Into Cybersecurity*. He has spent years coaching aspiring practitioners into security operations, GRC, and leadership roles. CyberMentor represents the persistent, open-source AI extension of that mission.
 
-CyberMentor solves a real problem I care about. That's the only kind of project worth building.
-
-→ **[Try CyberMentor](https://cybermentor-1019457807345.us-central1.run.app)**
-→ **[Support the Mission on Buy Me a Coffee](https://www.buymeacoffee.com/cpf_coaching)**
-→ **[GitHub Repository](https://github.com/cpfcoaching/cybermentor)**
-→ **[Breaking Into Cybersecurity](https://breakingintocybersecurity.org)**
-
-Built for the All Things Agentic Hackathon by Google Cloud | #AllThingsAgenticHackathon
+*Built for the Google Cloud All Things Agentic Hackathon | Track: The Collaborative Partner*

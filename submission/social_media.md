@@ -1,4 +1,4 @@
-# CyberMentor — Social Media Copy
+# CyberMentor: Social Media Launch Package
 
 > Copy-paste ready posts for X (Twitter) and LinkedIn.
 > Post both for +0.2 bonus points each.
@@ -6,9 +6,9 @@
 
 ---
 
-## 🐦 X (Twitter) — Version A (punchy, ~280 chars)
+## 🐦 X (Twitter) — Version A (Punchy, ~280 chars)
 
-```
+```text
 I built an AI that coaches people into cybersecurity careers.
 
 🛡️ Personalized cert roadmaps
@@ -17,178 +17,152 @@ I built an AI that coaches people into cybersecurity careers.
 🎤 Mock interview scoring
 🧠 Remembers your progress forever (Firestore)
 
-Built on Google Antigravity SDK + Gemini 3.5 + Veo + Lyria + Gemma
+Built on Google Antigravity SDK + Gemini 3.7 Flash + Veo + Lyria + Gemma
 
 #AllThingsAgenticHackathon
 
-→ [LIVE URL]
+→ https://cybermentor-1019457807345.us-central1.run.app
 ```
 
 ---
 
-## 🐦 X (Twitter) — Version B (technical angle)
+## 🐦 X (Twitter) — Version B (Technical Angle)
 
-```
-New project: CyberMentor — an agentic career coach for #cybersecurity professionals
+```text
+New project: CyberMentor, an agentic career coach for #cybersecurity professionals.
 
-Architecture nerd stuff:
-• Gemini 3.5 as the main coaching brain
-• Gemma 3 for fast intent classification
-• Veo for role preview videos
-• Lyria for focus music during study sessions
-• Firestore for cross-session memory
+Architecture breakdown:
+• Gemini 3.7 Flash as the primary reasoning brain
+• Gemma 3 for rapid intent classification
+• Veo for cinematic role preview videos
+• Lyria for ambient study focus music
+• Firestore for cross-session persistent memory
 
-Two-tier inference (Gemma → Gemini) cut latency noticeably.
+Two-tier inference (Gemma → Gemini) reduced latency significantly.
 
-Built for #AllThingsAgenticHackathon with @GoogleCloud Antigravity SDK
+Built for #AllThingsAgenticHackathon with @GoogleCloud Antigravity SDK.
 
-→ [LIVE URL] | Code: [GITHUB URL]
+Live: https://cybermentor-1019457807345.us-central1.run.app
+Code: https://github.com/cpfcoaching/cybermentor
 ```
 
 ---
 
-## 🐦 X (Twitter) — Version C (story angle)
+## 🐦 X (Twitter) — Version C (Story Angle)
 
-```
-People DM me constantly: "How do I break into cybersecurity?"
+```text
+Candidates ask me constantly: "How do I break into cybersecurity?"
 
-I spent years answering one-by-one on @BreakingIntoCyb
+I spent seven years answering one-by-one on @BreakingIntoCy1.
 
-This weekend I built the AI version of that answer.
+This weekend I built the autonomous AI version of that framework.
 
-CyberMentor: persistent memory, personalized coaching, 15 custom AI tools
+CyberMentor: persistent memory, personalized coaching, 15 custom AI tools.
 
-Powered by @GoogleCloud Antigravity SDK + Gemini 3.5
+Powered by @GoogleCloud Antigravity SDK + Gemini 3.7 Flash.
 
 #AllThingsAgenticHackathon 🛡️
 
-→ [LIVE URL]
+→ https://cybermentor-1019457807345.us-central1.run.app
 ```
 
 ---
 
-## 💼 LinkedIn — Long Form (Best for algorithm)
+## 💼 LinkedIn — Long Form (Recommended for Algorithm)
 
-```
-🛡️ I just launched CyberMentor — an AI career coach for breaking into cybersecurity.
+```markdown
+Every single week, candidates reach out with the same question: "I want to break into cybersecurity. Where do I start?"
 
-Built for the All Things Agentic Hackathon by Google Cloud. Here's why I built it and what's under the hood:
+Over seven years of hosting Breaking Into Cybersecurity, I have mentored hundreds of candidates into security careers. The right answer always depends on your specific background, target role, and study bandwidth. Generic advice simply does not work.
 
-THE PROBLEM
-Every week someone asks me: "I want to get into cybersecurity — where do I start?"
+Because 1-on-1 mentorship does not scale infinitely, I built CyberMentor for the Google Cloud #AllThingsAgenticHackathon.
 
-The right answer depends on your background, your target role, how many hours you can study, and what actually excites you. Generic advice doesn't cut it.
+🚀 CyberMentor is an autonomous AI career coach that guides candidates from career discovery to their first security job.
 
-THE SOLUTION
-CyberMentor is a persistent AI coaching agent built on the Google Antigravity SDK that:
+WHAT CYBERMENTOR DELIVERS:
+✅ Maps candidate backgrounds to the right cybersecurity specialization (SOC, Pen Test, GRC, Cloud Security)
+✅ Generates week-by-week study plans for CompTIA Security+, CySA+, CEH, and CISSP
+✅ Audits resumes against the NIST NICE workforce framework with scored gap analysis
+✅ Conducts voice-enabled mock technical interviews with instant rubric evaluations
+✅ Remembers candidate progress and milestones across sessions using Cloud Firestore
 
-✅ Maps you to the right cybersecurity career path (SOC, Pen Test, GRC, Cloud Security)
-✅ Builds a week-by-week study plan calibrated to your hours and experience level
-✅ Analyzes your resume for cybersecurity-specific gaps
-✅ Coaches you through mock interviews with scored feedback
-✅ Remembers everything across sessions — your goals, progress, and milestones
+THE TECHNICAL ARCHITECTURE:
+• Google Antigravity SDK: Core agent framework with deterministic tool routing
+• Gemini 3.7 Flash: Deep conversational reasoning and interview evaluations
+• Google Gemma 3 27B: Fast pre-routing intent classification and skill extraction
+• Google Veo: On-demand cinematic role previews and cert explainers
+• Google Lyria: Ambient focus audio across 5 study mood presets
+• Google Cloud Firestore: Secure cross-session candidate memory
+• Google Cloud Run: 100% serverless scale-to-zero container deployment
 
-THE TECH STACK
-• Google Antigravity SDK — the agent framework that made this possible
-• Gemini 3.5 — the core reasoning engine
-• Gemma 3 (Vertex AI) — fast intent classification before expensive Gemini calls
-• Veo (Vertex AI) — generates "day in the life" role preview videos
-• Lyria (Vertex AI) — generates ambient focus music for study sessions
-• Firestore — cross-session memory persistence
-• Cloud Run — serverless deployment
+KEY ARCHITECTURAL LESSON:
+Tool docstrings are your routing engine. By writing explicit "Use this tool when..." docstrings in the Google Antigravity SDK, Gemini autonomously routes complex coaching workflows without brittle prompt chains.
 
-THE INSIGHT THAT CHANGED EVERYTHING
-Tool docstrings are your routing logic.
+Try the live application for free:
+👉 https://cybermentor-1019457807345.us-central1.run.app
 
-In the Antigravity SDK, you write a Python function with a clear "Use this tool when..." docstring, and Gemini automatically knows when to call it. No custom router. No intent classification code. Just good documentation.
+Full open-source architecture breakdown:
+👉 https://github.com/cpfcoaching/cybermentor
 
-I ended up building 15 tools across coaching, video, music, and fast inference layers.
+What is the biggest hurdle you face in your cybersecurity career transition today? Let me know below. 👇
 
-The two-tier model pattern (Gemma for classification → Gemini for generation) cut response latency significantly on classification-heavy operations like resume analysis.
-
-WHAT'S LIVE NOW
-→ Demo: [LIVE URL]
-→ Code: [GITHUB URL]
-→ Full write-up: [DEV.TO URL]
-
-This project is authentic to what I do at Breaking Into Cyber — I care deeply about helping people navigate this career transition. CyberMentor is the always-on version of that.
-
-Built for #AllThingsAgenticHackathon with Google Cloud.
-
-What questions do you have about breaking into cybersecurity? Drop them below — I'll have CyberMentor answer them. 👇
-
-#Cybersecurity #AI #GoogleCloud #AgentDevelopment #CareerDevelopment #BreakingIntoCyber
+#Cybersecurity #Infosec #CareerAdvice #GoogleCloud #AllThingsAgenticHackathon #AI #Gemini #Mentorship
 ```
 
 ---
 
-## 💼 LinkedIn — Short Version (~150 words)
+## 💼 LinkedIn — Short Form (~150 words)
 
-```
-🛡️ New project: CyberMentor
+```markdown
+🛡️ New project launch: CyberMentor
 
-An AI career coach for breaking into cybersecurity — built for the All Things Agentic Hackathon by Google Cloud.
+An autonomous AI career coach for breaking into cybersecurity, built for the All Things Agentic Hackathon by Google Cloud.
 
-What it does:
-→ Career path recommendations based on your background
-→ Personalized week-by-week cert study plans (Security+, CISSP, OSCP, and more)
+Key capabilities:
+→ Career path recommendations based on your unique background
+→ Personalized week-by-week cert study plans (Security+, CISSP, OSCP)
 → Resume gap analysis scored against real hiring criteria
 → Mock interview coaching with rubric-based scoring
-→ Persistent memory — it remembers your progress every session
+→ Persistent memory that tracks your progress across sessions
 
-What powers it:
-→ Google Antigravity SDK + Gemini 3.5 (core agent)
-→ Veo — generates role preview videos
-→ Lyria — focus music for study sessions
-→ Gemma 3 — fast intent classification
-→ Cloud Firestore — cross-session memory
-→ Cloud Run — live deployment
+Powered by:
+→ Google Antigravity SDK + Gemini 3.7 Flash
+→ Google Veo (role previews) and Google Lyria (focus audio)
+→ Google Gemma 3 (fast classification)
+→ Cloud Firestore (memory) and Cloud Run (serverless hosting)
 
-This is built on 7 years of Breaking Into Cyber content and the belief that personalized career mentorship shouldn't be a luxury.
+Built on 7 years of Breaking Into Cybersecurity podcast insights.
 
-→ Try it: [LIVE URL]
+👉 Try it live: https://cybermentor-1019457807345.us-central1.run.app
 
 #AllThingsAgenticHackathon #Cybersecurity #GoogleCloud #AI #CareerCoaching
 ```
 
 ---
 
-## 📸 Instagram Caption
+## 📸 Instagram / Threads Caption
 
-```
-🛡️ Just shipped CyberMentor — an AI that coaches people into cybersecurity careers.
+```markdown
+🛡️ Just launched CyberMentor, an autonomous AI coach for cybersecurity careers.
 
-It asks you the right questions, builds a personalized study plan, reviews your resume, drills you on interview questions, and *remembers everything* across sessions.
+It asks discovery questions, builds personalized certification study roadmaps, audits your resume against the NIST NICE framework, and drills you on real interview questions with persistent Cloud Firestore memory.
 
-Powered by Google Gemini, Veo, Lyria, and Gemma — deployed on Google Cloud Run.
+Powered by Google Gemini 3.7 Flash, Antigravity SDK, Veo, Lyria, and Gemma on Google Cloud Run.
 
-Built for the All Things Agentic Hackathon.
+Built for the Google Cloud All Things Agentic Hackathon.
 
-Link in bio → [LIVE URL]
+Link: https://cybermentor-1019457807345.us-central1.run.app
 
-#Cybersecurity #AI #MachineLearning #GoogleCloud #CareerCoaching #BreakingIntoCyber #AllThingsAgenticHackathon #Tech #DevLife #SideProject
+#Cybersecurity #AI #MachineLearning #GoogleCloud #CareerCoaching #BreakingIntoCyber #AllThingsAgenticHackathon #Tech
 ```
 
 ---
 
-## 📋 Posting Checklist
+## 📋 Launch Distribution Checklist
 
-- [ ] Post X Version A or B (pick the one that feels most authentic)
-- [ ] Post LinkedIn Long Form (best engagement for this audience)
-- [ ] Both posts include `#AllThingsAgenticHackathon`
-- [ ] Replace `[LIVE URL]` with the Cloud Run URL after deploy
-- [ ] Replace `[GITHUB URL]` with the public GitHub repo URL
-- [ ] Replace `[DEV.TO URL]` with the published blog post URL
-- [ ] Screenshot both posts and add URLs to SUBMISSION.md
-
----
-
-## ✍️ Blog Post Publishing Checklist (dev.to)
-
-1. Go to [dev.to/new](https://dev.to/new)
-2. Paste the content from `blog_post.md`
-3. Set tags: `google`, `ai`, `cybersecurity`, `hackathon`
-4. Upload a cover image (use the CyberMentor screenshot from the frontend)
-5. Add the canonical URL if you're cross-posting from another platform
-6. Publish (NOT as unlisted — must be public per hackathon rules)
-7. Copy the URL and add it to SUBMISSION.md
+- [ ] Post X Version A or B
+- [ ] Post LinkedIn Long Form
+- [ ] Ensure `#AllThingsAgenticHackathon` is included
+- [ ] Confirm live service URL: `https://cybermentor-1019457807345.us-central1.run.app`
+- [ ] Confirm public GitHub repo: `https://github.com/cpfcoaching/cybermentor`
+- [ ] Add post screenshots to Hackathon submission materials
