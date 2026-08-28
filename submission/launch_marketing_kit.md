@@ -9,7 +9,7 @@
 All production visual assets have been saved directly to [`web/img/`](file:///Volumes/Crucial%20X9%20Pro%20For%20Mac/Antigravity/data/antigravity/scratch/cybermentor/web/img/):
 
 | Asset Name | Resolution / Ratio | File Path | Intended Usage |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **App Store & Mobile Icon** | 1024x1024 (1:1) | [`web/img/app_icon.jpg`](file:///Volumes/Crucial%20X9%20Pro%20For%20Mac/Antigravity/data/antigravity/scratch/cybermentor/web/img/app_icon.jpg) | iOS App Icon, Google Play Icon, Favicon, Social Avatar |
 | **Web & Blog Hero Banner** | 1920x1080 (16:9) | [`web/img/hero_banner.jpg`](file:///Volumes/Crucial%20X9%20Pro%20For%20Mac/Antigravity/data/antigravity/scratch/cybermentor/web/img/hero_banner.jpg) | Dev.to / Medium Blog Header, LinkedIn Featured Image |
 | **Mobile Screen UI Mockup** | 1080x1920 (9:16) | [`web/img/mobile_mockup.jpg`](file:///Volumes/Crucial%20X9%20Pro%20For%20Mac/Antigravity/data/antigravity/scratch/cybermentor/web/img/mobile_mockup.jpg) | App Store Screenshots, Instagram / TikTok Stories, Mobile Promo |
@@ -19,15 +19,19 @@ All production visual assets have been saved directly to [`web/img/`](file:///Vo
 ## 📱 2. App Store and Google Play Store Metadata
 
 ### iOS App Store (App Store Connect)
-* **App Name**: `CyberMentor: AI Career Coach`
-* **Subtitle (30 chars)**: `Break Into Cyber Faster`
-* **Category**: Education / Productivity
-* **Keywords (100 chars)**: `cybersecurity,infosec,ciso,security+,cissp,soc analyst,mock interview,resume review,mentorship,ai coach`
-* **Promotional Text (170 chars)**: `Your 24/7 AI cybersecurity career coach powered by Google Gemini 3.7 Flash and 7+ years of Breaking Into Cybersecurity podcast knowledge. Practice interviews and study certs.`
+
+- **App Name**: `CyberMentor: AI Career Coach`
+- **Subtitle (30 chars)**: `Break Into Cyber Faster`
+- **Category**: Education / Productivity
+- **Keywords (100 chars)**: `cybersecurity,infosec,ciso,security+,cissp,soc analyst,mock interview,resume review,mentorship,ai coach`
+- **Promotional Text (170 chars)**: `Your 24/7 AI cybersecurity career coach powered by Google Gemini 3.7 Flash and 7+ years of Breaking Into Cybersecurity podcast knowledge. Practice interviews and study certs.`
 
 ### Google Play Store
-* **Short Description (80 chars)**: `AI Cybersecurity Career Coach: Study roadmaps, mock interviews, and resume audits.`
-* **Full Description**:
+
+- **Short Description (80 chars)**: `AI Cybersecurity Career Coach: Study roadmaps, mock interviews, and resume audits.`
+
+- **Full Description**:
+
 ```markdown
 Ready to break into cybersecurity or transition into your next security leadership role?
 
@@ -84,13 +88,13 @@ What is the biggest hurdle you face in your cybersecurity career transition righ
 
 **Tweet 1 (Hook):**
 > 🧵 1/5: I turned 7+ years of @BreakingIntoCy1 podcast episodes and CISO mentorship frameworks into a 24/7 AI Career Coach in one weekend.
-> 
+>
 > Meet CyberMentor: built for the @GoogleCloud #AllThingsAgenticHackathon using Gemini 3.7 Flash and Google Antigravity SDK. 👇
 
 **Tweet 2 (The Agent Stack):**
 > 2/5: Why the Google Antigravity SDK?
 > Tool docstrings as routing logic.
-> 
+>
 > Instead of brittle prompt chains, Gemini dynamically calls structured Python tools:
 > • `generate_study_plan`
 > • `conduct_mock_interview`
@@ -105,14 +109,14 @@ What is the biggest hurdle you face in your cybersecurity career transition righ
 
 **Tweet 4 (Podcast RAG Engine):**
 > 4/5: We indexed 1,164+ real podcast episodes into a high-speed parallel RAG search engine.
-> 
+>
 > Ask: "What did Daniel Ayala say about entering cyber with a history degree?"
 > CyberMentor pulls the exact timestamp, guest bio, and actionable takeaway!
 
 **Tweet 5 (CTA & Link):**
 > 5/5: Try CyberMentor live in your browser today:
-> 🔗 https://cybermentor-1019457807345.us-central1.run.app
-> 
+> 🔗 [https://cybermentor-1019457807345.us-central1.run.app](https://cybermentor-1019457807345.us-central1.run.app)
+>
 > Full technical post + GitHub code in the replies! 🛡️🚀
 > #AI #CyberSecurity #GoogleCloud
 
@@ -123,6 +127,7 @@ What is the biggest hurdle you face in your cybersecurity career transition righ
 **Title:** `I built an open-source AI Cybersecurity Career Coach trained on 1,100+ CISO and practitioner interviews (built with Google Antigravity SDK)`
 
 **Post Body:**
+
 ```markdown
 Hey everyone!
 
