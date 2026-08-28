@@ -11,27 +11,27 @@
     "title": "Interactive Study Plans & Resume Skill Audits",
     "duration": "60s",
     "visual_asset": "mobile_mockup.jpg",
-    "narration_script": "Why do cybersecurity candidates love firewalls? Because they believe in healthy boundaries. CyberMentor delivers structured, actionable guidance rather than generic answers. When you share your background in IT helpdesk, military service, or a non-technical role, the coach generates a weekly study plan for certifications like Security+, CySA+, or CISSP. When you upload a resume, CyberMentor executes an automated skill gap audit aligned with the NIST NICE framework, so you stop phishing for compliments and start mastering the exact competencies hiring managers want."
+    "narration_script": "CyberMentor delivers structured, actionable guidance rather than generic answers. When you share your background in IT helpdesk, military service, or a non-technical role, the coach generates a weekly study plan for certifications like Security+, CySA+, or CISSP. When you upload a resume, CyberMentor executes an automated skill gap audit aligned with the NIST NICE framework, so you stop phishing for compliments and start mastering the exact competencies hiring managers want."
   },
   {
     "scene_number": 3,
     "title": "Google Antigravity SDK & Low-Cost Model Routing",
     "duration": "45s",
     "visual_asset": "hero_banner.jpg",
-    "narration_script": "Why did the AI agent break up with the prompt chain? It was tired of brittle promises. CyberMentor runs on the Google Antigravity SDK, using explicit tool docstrings for deterministic routing. We built a cost-efficient two-tier architecture: Google Gemma 3 27B handles rapid intent classification and skill extraction, while Gemini 3.7 Flash powers deep career reasoning and mock interview evaluations. That keeps your cloud bill safe from a denial-of-wallet attack, while ambient focus audio keeps you locked in."
+    "narration_script": "CyberMentor runs on the Google Antigravity SDK, using explicit tool docstrings for deterministic routing instead of brittle prompt chains. We built a cost-efficient two-tier architecture: Google Gemma 3 27B handles rapid intent classification and skill extraction, while Gemini 3.7 Flash powers deep career reasoning and mock interview evaluations. That keeps your cloud bill safe from a denial-of-wallet attack, while ambient focus audio keeps you locked in."
   },
   {
     "scene_number": 4,
     "title": "1,164-Episode RAG Knowledge Base & Voice Coaching",
     "duration": "60s",
     "visual_asset": "app_icon.jpg",
-    "narration_script": "Why do red teamers make terrible secret keepers? Because they always crack under pressure. CyberMentor is backed by seven years of real-world industry insights. We indexed over 1,160 Breaking Into Cybersecurity podcast episodes and production briefs into a semantic search engine. Candidates can ask specific career questions and receive verified insights from veteran security leaders. With integrated speech recognition and audio feedback, users can practice technical and behavioral mock interviews hands-free with zero awkward silence."
+    "narration_script": "CyberMentor is backed by seven years of real-world industry insights. Why do red teamers make terrible secret keepers? Because they always crack under pressure. We indexed over 1,160 Breaking Into Cybersecurity podcast episodes and production briefs into a semantic search engine. Candidates can ask specific career questions and receive verified insights from veteran security leaders. With integrated speech recognition and audio feedback, users can practice technical and behavioral mock interviews hands-free."
   },
   {
     "scene_number": 5,
     "title": "Zero-Cost Serverless Cloud Run & Call to Action",
     "duration": "30s",
     "visual_asset": "hero_banner.jpg",
-    "narration_script": "CyberMentor runs completely serverless on Google Cloud Run with persistent cross-session memory in Cloud Firestore. It never forgets your progress, unlike me trying to remember where I left my SSH keys. Experience the live coach today to map your career path, prepare for interviews, and exploit your full career potential."
+    "narration_script": "CyberMentor runs completely serverless on Google Cloud Run with persistent cross-session memory in Cloud Firestore. It never forgets your progress, unlike me trying to remember where I left my SSH keys. Experience the live coach today to map your career path, prepare for interviews, and land your next cybersecurity role."
   }
 ]
