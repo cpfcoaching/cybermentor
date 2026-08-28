@@ -336,6 +336,29 @@
     .footer-brand { font-family: var(--mono); color: var(--cyan); font-size: 1.1rem; margin-bottom: 8px; }
     .footer-meta { font-size: .82rem; color: var(--muted); }
 
+    /* ── Submission Page Specific Utilities ───────────── */
+    .hero-tagline { font-family: var(--mono); color: var(--dim); font-size: .85rem; margin-bottom: 6px; }
+    .btn-support { border-color: #f59e0b; color: #fbbf24; }
+    .features-grid-problems { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .tech-table-container { overflow: hidden; border-radius: 16px; }
+    .bonus-grid-models { margin-bottom: 40px; }
+    .bonus-content-card { padding: 28px 32px; }
+    .bonus-section-label { margin-bottom: 16px; }
+    .bonus-list { display: flex; flex-direction: column; gap: 12px; }
+    .bonus-item { display: flex; align-items: center; gap: 14px; font-size: .875rem; }
+    .bonus-icon { font-size: 1.2rem; }
+    .pill-margin { margin-left: 8px; }
+    .bonus-total-banner {
+      margin-top: 20px; padding: 20px 24px;
+      background: rgba(0,255,157,.05);
+      border: 1px solid rgba(0,255,157,.15);
+      border-radius: 12px;
+      font-family: var(--mono);
+      font-size: .85rem;
+      color: var(--green);
+    }
+    .footer-support-link { color: #fbbf24; font-weight: 600; }
+
     /* ── Responsive ───────────────────────── */
     @media (max-width: 600px) {
       .hero { padding: 70px 20px 50px; }
@@ -370,7 +393,7 @@
   <h1 class="hero-title">
     <span class="shield">🛡️</span> <span class="gradient">CyberMentor</span>
   </h1>
-  <p style="font-family:var(--mono);color:var(--dim);font-size:.85rem;margin-bottom:6px;">
+  <p class="hero-tagline">
     AI Career Coach for Aspiring Security Professionals
   </p>
   <p class="hero-sub">
@@ -380,7 +403,7 @@
     <a href="https://cybermentor-1019457807345.us-central1.run.app" class="btn btn-primary">
       🚀 Live Demo
     </a>
-    <a href="https://www.buymeacoffee.com/cpf_coaching" class="btn btn-outline" target="_blank" rel="noopener noreferrer" style="border-color: #f59e0b; color: #fbbf24;">
+    <a href="https://www.buymeacoffee.com/cpf_coaching" class="btn btn-outline btn-support" target="_blank" rel="noopener noreferrer">
       ☕ Support Mission
     </a>
     <a href="https://github.com/cpfcoaching/cybermentor" class="btn btn-outline">
@@ -416,7 +439,7 @@
     <p class="section-lead">
       Aspiring security professionals face four compounding obstacles: overwhelming information, generic study plans, no feedback on resumes, and expensive interview coaching. CyberMentor solves all four.
     </p>
-    <div class="features-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+    <div class="features-grid features-grid-problems">
       <div class="feature-card glass">
         <div class="feature-icon">😵‍💫</div>
         <div class="feature-title">Information Overload</div>
@@ -488,7 +511,7 @@
     <div class="section-label">Technologies Used</div>
     <h2 class="section-title">Purpose-built on Google Cloud.</h2>
     <p class="section-lead">Every component was chosen to satisfy a specific requirement — no technology for its own sake.</p>
-    <div class="glass" style="overflow:hidden;border-radius:16px">
+    <div class="glass tech-table-container">
       <table class="tech-table">
         <thead>
           <tr><th>Component</th><th>Technology</th><th>Why</th></tr>
@@ -564,7 +587,7 @@
     <div class="section-label">🏆 Bonus Points</div>
     <h2 class="section-title">Three additional Google AI models integrated.</h2>
     <p class="section-lead">Each integration adds a distinct, meaningful capability — not cosmetic additions. Targeting +0.6 from model integrations plus +0.4 from content and social posts.</p>
-    <div class="bonus-grid" style="margin-bottom:40px">
+    <div class="bonus-grid bonus-grid-models">
       <div class="bonus-card glass">
         <div class="bonus-model">Google Veo</div>
         <div class="bonus-points">+0.2 bonus points</div>
@@ -582,27 +605,27 @@
       </div>
     </div>
 
-    <div class="glass" style="padding:28px 32px;">
-      <div class="section-label" style="margin-bottom:16px">Content &amp; Social (+0.4)</div>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div style="display:flex;align-items:center;gap:14px;font-size:.875rem">
-          <span style="font-size:1.2rem">✍️</span>
+    <div class="glass bonus-content-card">
+      <div class="section-label bonus-section-label">Content &amp; Social (+0.4)</div>
+      <div class="bonus-list">
+        <div class="bonus-item">
+          <span class="bonus-icon">✍️</span>
           <div>
             <strong>dev.to Blog Post</strong> — "I Built an AI Cybersecurity Career Coach in a Weekend — Here's Exactly How" — detailed technical write-up covering architecture, tool design, and learnings.
-            <span class="pill" style="margin-left:8px">+0.2</span>
+            <span class="pill pill-margin">+0.2</span>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:14px;font-size:.875rem">
-          <span style="font-size:1.2rem">📣</span>
+        <div class="bonus-item">
+          <span class="bonus-icon">📣</span>
           <div>
             <strong>X + LinkedIn posts</strong> with <code>#AllThingsAgenticHackathon</code> — multiple versions prepared targeting different audiences (technical, career-change, general).
-            <span class="pill" style="margin-left:8px">+0.2</span>
+            <span class="pill pill-margin">+0.2</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:20px;padding:20px 24px;background:rgba(0,255,157,.05);border:1px solid rgba(0,255,157,.15);border-radius:12px;font-family:var(--mono);font-size:.85rem;color:var(--green)">
+    <div class="bonus-total-banner">
       🏆 Total Potential Bonus: +1.0 points &nbsp;|&nbsp; Target Total Score: 6.0+
     </div>
   </div>
@@ -786,9 +809,9 @@
     <p class="footer-meta">
       Built by <a href="https://breakingintocybersecurity.org" target="_blank" rel="noopener noreferrer">Christophe Foulon</a> for the
       <strong>All Things Agentic Hackathon</strong> by Google Cloud ·
-      <a href="https://www.buymeacoffee.com/cpf_coaching" target="_blank" rel="noopener noreferrer" style="color: #fbbf24; font-weight: 600;">☕ Support the Mission</a> ·
+      <a href="https://www.buymeacoffee.com/cpf_coaching" target="_blank" rel="noopener noreferrer" class="footer-support-link">☕ Support the Mission</a> ·
       Track: The Collaborative Partner ·
-      <span class="mono" style="color:var(--cyan)">#AllThingsAgenticHackathon</span>
+      <span class="mono cyan">#AllThingsAgenticHackathon</span>
     </p>
   </div>
 </footer>

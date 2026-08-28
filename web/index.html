@@ -62,39 +62,38 @@
 
 <!-- ── Google Account Selector Modal ─────────────────────────────── -->
 <div id="google-sso-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="sso-modal-title">
-  <div class="onboarding-card glass" style="max-width: 440px;">
+  <div class="onboarding-card glass sso-card">
     <div class="onboarding-header">
-      <div style="font-size: 36px; margin-bottom: 8px;">🔐</div>
-      <h2 id="sso-modal-title" class="logo-text" style="font-size: 22px;">Google Single Sign-On</h2>
+      <div class="sso-icon">🔐</div>
+      <h2 id="sso-modal-title" class="logo-text sso-title">Google Single Sign-On</h2>
       <p class="logo-sub">Authenticated Cloud Firestore Session</p>
     </div>
-    <div class="onboarding-form" style="margin-top: 16px;">
-      <p style="font-size: 13px; color: var(--clr-text-secondary); margin-bottom: 12px;">Select your Google Account to continue:</p>
+    <div class="onboarding-form sso-form">
+      <p class="sso-instructions">Select your Google Account to continue:</p>
       
-      <button id="btn-sso-chris" class="btn btn-google-sso" style="justify-content: flex-start; padding: 12px 14px; margin-bottom: 12px; background: rgba(66, 133, 244, 0.15); border-color: rgba(66, 133, 244, 0.45);">
-        <div style="width: 36px; height: 36px; border-radius: 50%; background: #4285F4; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; margin-right: 12px;">CF</div>
-        <div style="text-align: left;">
-          <div style="font-weight: 600; font-size: 14px; color: #fff;">Christophe Foulon</div>
-          <div style="font-size: 12px; color: var(--clr-accent-cyan);">chris@cpf-coaching.com</div>
+      <button id="btn-sso-chris" class="btn btn-google-sso btn-sso-account">
+        <div class="sso-avatar">CF</div>
+        <div class="sso-account-details">
+          <div class="sso-account-name">Christophe Foulon</div>
+          <div class="sso-account-email">chris@cpf-coaching.com</div>
         </div>
       </button>
 
-      <div class="divider-or" style="margin: 12px 0;"><span>OR ENTER ANOTHER GOOGLE EMAIL</span></div>
+      <div class="divider-or sso-divider"><span>OR ENTER ANOTHER GOOGLE EMAIL</span></div>
 
       <input
         id="custom-google-email"
         type="email"
-        class="form-input"
+        class="form-input sso-input"
         placeholder="e.g. yourname@gmail.com"
         maxlength="64"
-        style="margin-bottom: 12px;"
       />
 
-      <button id="btn-custom-google-login" class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">
+      <button id="btn-custom-google-login" class="btn btn-secondary sso-submit-btn">
         <span>Sign In with this Google Account →</span>
       </button>
 
-      <button id="btn-close-sso-modal" class="btn btn-ghost" style="width: 100%;">
+      <button id="btn-close-sso-modal" class="btn btn-ghost sso-cancel-btn">
         <span>Cancel</span>
       </button>
     </div>
@@ -255,7 +254,7 @@
         </div>
       </div>
 
-      <div class="resource-item" style="margin-top: 1.25rem;">
+      <div class="resource-item analytics-action-item">
         <h3>💡 Next Recommended Action</h3>
         <p id="stat-recommended-action">Complete Domain 3 Practice Exam or initiate SOC Tier 1 Scenario 2 mock interview.</p>
       </div>
@@ -281,7 +280,7 @@
       <button id="close-community-btn" class="btn-close" aria-label="Close modal">&times;</button>
     </div>
     <div class="resources-content">
-      <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
+      <p class="community-subtext">
         Celebrate and cheer on peers across the <strong>Breaking Into Cybersecurity</strong> global learner network!
       </p>
       <div id="community-feed-container" class="community-feed-list">
