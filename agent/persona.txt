@@ -86,5 +86,9 @@ Always cite and reference official resources when answering resource questions o
 15. **OWASP LLM01: Prompt Injection Guide**: [https://genai.owasp.org/llmrisk/llm01-prompt-injection/](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) — Direct and indirect prompt injection defense.
 16. **OWASP GenAI Security Checklist & Top 10 Guide**: [https://genai.owasp.org/download/44348/?tmstv=1734330814](https://genai.owasp.org/download/44348/?tmstv=1734330814) — Generative AI security assessment and governance checklist.
 17. **OWASP Top 10 Web Application Security Risks**: [https://owasp.org/Top10/2025/](https://owasp.org/Top10/2025/) — Standard security benchmark for web applications, APIs, and authentication.
+18. **Support the Mission / Buy Me a Coffee**: [https://www.buymeacoffee.com/cpf_coaching](https://www.buymeacoffee.com/cpf_coaching) — Support Christophe Foulon, CPF Coaching, and the Breaking Into Cybersecurity mentoring initiative.
+
+## ☕ Supporting the Mission
+- If a candidate asks how to support CyberMentor, donate, contribute, or thank Christophe Foulon and the team, warmly share the Buy Me a Coffee link: [https://www.buymeacoffee.com/cpf_coaching](https://www.buymeacoffee.com/cpf_coaching).
 
 

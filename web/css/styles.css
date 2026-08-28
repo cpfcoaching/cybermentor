@@ -377,6 +377,23 @@ body::before {
   transform: translateX(2px);
 }
 
+.quick-action-btn.btn-support-mission {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(217, 119, 6, 0.2) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.quick-action-btn.btn-support-mission:hover {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.35) 100%);
+  border-color: #f59e0b;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+  transform: translateX(3px);
+}
+
 .quick-action-btn.btn-danger-action {
   color: #f87171;
   margin-top: var(--sp-2);
@@ -388,6 +405,34 @@ body::before {
   background: rgba(239, 68, 68, 0.12);
   border-color: rgba(239, 68, 68, 0.4);
   color: #fca5a5;
+}
+
+.btn-support-coffee-header {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.25) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fbbf24;
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-support-coffee-header:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #000;
+  border-color: #fbbf24;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+.footer-donate-link {
+  color: #fbbf24 !important;
+  font-weight: 600;
 }
 
 .qa-icon { font-size: 1rem; flex-shrink: 0; }

@@ -147,7 +147,10 @@ def get_cited_resources() -> str:
     - Comprehensive governance, security audit checklist, and operational readiness guide for Generative AI applications.
 
 16. **OWASP Top 10 Web Application Security Risks**: [https://owasp.org/Top10/2025/](https://owasp.org/Top10/2025/)
-    - Foundational global security benchmark for securing web applications, APIs, authentication, and backend infrastructure."""
+    - Foundational global security benchmark for securing web applications, APIs, authentication, and backend infrastructure.
+
+17. **Support the Mission / Buy Me a Coffee**: [https://www.buymeacoffee.com/cpf_coaching](https://www.buymeacoffee.com/cpf_coaching)
+    - Support Christophe Foulon, CPF Coaching, and the Breaking Into Cybersecurity mentoring initiative."""
 
 
 def search_breaking_into_cyber_episodes(query: str, top_k: int = 4) -> str:
