@@ -136,6 +136,7 @@ This two-tier structure dramatically reduces round-trip latency and keeps overal
 The web application uses vanilla HTML5, CSS3, and JavaScript without external frameworks or build tooling. A simple local static server or Cloud Run container serves the entire application instantly.
 
 Key frontend capabilities include:
+
 - **Server-Sent Events (SSE)**: Streams agent reasoning token-by-token for responsive conversational feedback.
 - **Persistent Progress Sidebar**: Connects directly to Firestore to display candidate milestone history.
 - **Voice Mode**: Enables speech-to-text input and audio narration for hands-free mock interview practice.
@@ -209,4 +210,4 @@ gcloud config set project YOUR_PROJECT_ID
 
 **Christophe Foulon** is a cybersecurity leader, author, and co-host of *Breaking Into Cybersecurity*. He has spent years coaching aspiring practitioners into security operations, GRC, and leadership roles. CyberMentor represents the persistent, open-source AI extension of that mission.
 
-*Built for the Google Cloud All Things Agentic Hackathon | Track: The Collaborative Partner*
+> Built for the Google Cloud All Things Agentic Hackathon | Track: The Collaborative Partner

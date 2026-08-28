@@ -12,7 +12,7 @@
 Generate audio files per scene using the exact text from [`narration_script.json`](narration_script.json):
 
 | File | Scene Title | Duration | Voice Prompt / Text |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `scene1_intro.mp3` | Introduction & Challenge | ~45s | *"Breaking into cybersecurity is tough because generic advice fails. Why did the router go to therapy? It had too many unresolved connections..."* |
 | `scene2_study_resume.mp3` | Study Plans & Resume Audits | ~60s | *"CyberMentor delivers structured, actionable guidance rather than generic answers. When you share your background in IT helpdesk..."* |
 | `scene3_sdk_routing.mp3` | Antigravity SDK & Gemma Routing | ~45s | *"CyberMentor runs on the Google Antigravity SDK, using explicit tool docstrings for deterministic routing instead of brittle prompt chains..."* |
@@ -24,7 +24,7 @@ Generate audio files per scene using the exact text from [`narration_script.json
 ## 🎥 2. Visual Layer & B-Roll Pipeline
 
 | Scene | Visual Source | On-Screen Action |
-|---|---|---|
+| --- | --- | --- |
 | **Scene 1 (0:00–0:45)** | [`web/img/hero_banner.jpg`](../web/img/hero_banner.jpg) + Google Veo B-roll | Cyber operations center cinematic clip (`veo-2.0-generate-001`) with title overlay. |
 | **Scene 2 (0:45–1:45)** | Live Web UI (`/`) | Live screen capture: Career Path selection $\rightarrow$ Security+ 8 hr/week study plan streaming $\rightarrow$ PDF/DOCX resume drag-and-drop audit. |
 | **Scene 3 (1:45–2:30)** | Cloud Console + Architecture | Google Cloud Run dashboard + Cloud Firestore console + Antigravity SDK agent diagram showing Gemma 3 / Gemini 3.7 two-tier routing. |
