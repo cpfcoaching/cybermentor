@@ -1,5 +1,5 @@
 // CyberMentor Service Worker
-const CACHE_NAME = 'cybermentor-v1';
+const CACHE_NAME = 'cybermentor-v2.2.0';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -10,11 +10,6 @@ const STATIC_ASSETS = [
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS).catch((err) => console.warn('PWA Precache Notice:', err));
-    })
-  );
   self.skipWaiting();
 });
 
@@ -22,11 +17,10 @@ self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
-        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+        keys.map((key) => caches.delete(key))
       );
-    })
+    }).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener('fetch', (e) => {
@@ -34,9 +28,16 @@ self.addEventListener('fetch', (e) => {
   if (e.request.url.includes('/api/')) {
     return;
   }
+  // Network first for all scripts and documents to avoid stale code
   e.respondWith(
-    caches.match(e.request).then((res) => {
-      return res || fetch(e.request).catch(() => caches.match('/index.html'));
-    })
+    fetch(e.request)
+      .then((networkRes) => {
+        if (networkRes && networkRes.status === 200) {
+          const resClone = networkRes.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, resClone));
+        }
+        return networkRes;
+      })
+      .catch(() => caches.match(e.request).then((cached) => cached || caches.match('/index.html')))
   );
 });
