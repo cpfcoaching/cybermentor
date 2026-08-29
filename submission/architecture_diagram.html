@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CyberMentor Architecture Diagram</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1920px;
+      height: 1080px;
+      background-color: #050b17;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 220, 220, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(0, 255, 157, 0.08) 0%, transparent 50%),
+        linear-gradient(rgba(0, 220, 220, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 220, 220, 0.03) 1px, transparent 1px);
+      background-size: auto, auto, auto, 48px 48px, 48px 48px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #f8fafc;
+      padding: 48px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(0, 220, 220, 0.25);
+      padding-bottom: 24px;
+    }
+    .brand-title {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 30%, #00dcdc 70%, #00ff9d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-tagline {
+      font-size: 18px;
+      color: #94a3b8;
+      margin-top: 6px;
+    }
+    .badge-track {
+      background: rgba(0, 220, 220, 0.12);
+      border: 1px solid rgba(0, 220, 220, 0.35);
+      border-radius: 9999px;
+      padding: 10px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #00dcdc;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #00ff9d;
+      box-shadow: 0 0 10px #00ff9d;
+    }
+
+    /* Main Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 360px 56px 820px 56px 420px;
+      align-items: center;
+      gap: 0;
+      margin: 32px 0;
+    }
+
+    .card {
+      background: rgba(12, 23, 44, 0.85);
+      border: 1px solid rgba(0, 220, 220, 0.25);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .card-glow-cyan { border-color: rgba(0, 220, 220, 0.5); box-shadow: 0 0 35px rgba(0, 220, 220, 0.15); }
+    .card-glow-green { border-color: rgba(0, 255, 157, 0.4); box-shadow: 0 0 35px rgba(0, 255, 157, 0.12); }
+    .card-glow-blue { border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 0 35px rgba(59, 130, 246, 0.12); }
+
+    .card-header {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .text-cyan { color: #00dcdc; }
+    .text-green { color: #00ff9d; }
+    .text-blue { color: #60a5fa; }
+    .text-purple { color: #c084fc; }
+
+    .item-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+    .item-box:last-child { margin-bottom: 0; }
+    .item-title { font-size: 16px; font-weight: 600; color: #ffffff; }
+    .item-desc { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+
+    /* Connector Arrows */
+    .connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #00dcdc;
+      font-family: monospace;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .connector-line {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #00dcdc, #00ff9d);
+      position: relative;
+    }
+    .connector-line::after {
+      content: '▶';
+      position: absolute;
+      right: -4px;
+      top: -8px;
+      font-size: 12px;
+      color: #00ff9d;
+    }
+
+    /* Agent Center Card */
+    .agent-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .tool-chip {
+      background: rgba(0, 220, 220, 0.06);
+      border: 1px solid rgba(0, 220, 220, 0.2);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tool-chip span { color: #00dcdc; }
+
+    /* Footer / Metadata */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      font-size: 15px;
+      color: #94a3b8;
+    }
+    .footer-highlight { color: #00dcdc; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="brand-title">🛡️ CYBERMENTOR ARCHITECTURE</div>
+      <div class="brand-tagline">Autonomous Multi-Modal AI Cybersecurity Career Coach & Collaborative Partner</div>
+    </div>
+    <div class="badge-track">
+      <div class="badge-dot"></div>
+      Google Cloud All Things Agentic Hackathon
+    </div>
+  </div>
+
+  <!-- Main Architecture Flow -->
+  <div class="grid">
+    
+    <!-- Left: Frontend Layer -->
+    <div class="card card-glow-cyan">
+      <div class="card-header text-cyan">
+        <span>🖥️ Client & UI Layer</span>
+      </div>
+      <div class="item-box">
+        <div class="item-title">Single Page Web App</div>
+        <div class="item-desc">Vanilla HTML5, CSS3 Glassmorphism, SSE Streaming Client</div>
+      </div>
+      <div class="item-box">
+        <div class="item-title">Voice & Audio Engine</div>
+        <div class="item-desc">Web Speech API Voice Mock Interviews & Web Audio Synthesizer</div>
+      </div>
+      <div class="item-box">
+        <div class="item-title">Mobile Distribution</div>
+        <div class="item-desc">Capacitor iOS & Android Trusted Web Activity (TWA)</div>
+      </div>
+      <div class="item-box">
+        <div class="item-title">Interactive Mindmap</div>
+        <div class="item-desc">Dynamic SVG NIST NICE career path exploration</div>
+      </div>
+    </div>
+
+    <!-- Arrow 1 -->
+    <div class="connector">
+      <span>HTTP/SSE</span>
+      <div class="connector-line"></div>
+      <span>JSON/REST</span>
+    </div>
+
+    <!-- Center: Serverless Agent Core -->
+    <div class="card card-glow-green" style="height: 100%;">
+      <div class="card-header text-green">
+        <span>☁️ Google Cloud Run — Containerized Agent Backend (Python 3.12 + FastAPI)</span>
+      </div>
+      
+      <div class="item-box" style="background: rgba(0, 255, 157, 0.05); border-color: rgba(0, 255, 157, 0.2);">
+        <div class="item-title" style="color: #00ff9d;">🤖 Google Antigravity SDK Agent Runtime</div>
+        <div class="item-desc" style="color: #cbd5e1;">Orchestrates persistent candidate profiles, persona steering, and deterministic tool execution via Gemini 3.7 Flash</div>
+      </div>
+
+      <div style="font-size: 14px; font-weight: 600; color: #94a3b8; text-transform: uppercase; margin: 18px 0 10px; letter-spacing: 0.05em;">
+        Registered Agentic Tool Capabilities:
+      </div>
+
+      <div class="agent-grid">
+        <div class="tool-chip"><span>🗺️</span> query_knowledge_base()</div>
+        <div class="tool-chip"><span>📅</span> generate_study_plan()</div>
+        <div class="tool-chip"><span>📄</span> analyze_resume()</div>
+        <div class="tool-chip"><span>🎙️</span> conduct_mock_interview()</div>
+        <div class="tool-chip"><span>📊</span> evaluate_answer()</div>
+        <div class="tool-chip"><span>💾</span> sync_user_progress()</div>
+      </div>
+
+      <div class="item-box" style="margin-top: 18px;">
+        <div class="item-title">⚡ Multi-Modal Google AI Augmentations</div>
+        <div class="item-desc">
+          <strong style="color:#00dcdc;">Gemma 3:</strong> Token-efficient pre-routing & skill extraction · 
+          <strong style="color:#c084fc;">Google Veo:</strong> Role video previews · 
+          <strong style="color:#60a5fa;">Google Lyria:</strong> Focus audio
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrow 2 -->
+    <div class="connector">
+      <span>GRPC/API</span>
+      <div class="connector-line"></div>
+      <span>Sync State</span>
+    </div>
+
+    <!-- Right: Cloud & Knowledge Services -->
+    <div class="card card-glow-blue">
+      <div class="card-header text-blue">
+        <span>🔵 Google Cloud & Storage</span>
+      </div>
+      <div class="item-box">
+        <div class="item-title">Google Cloud Firestore</div>
+        <div class="item-desc">Stateful session memory, user milestones, exam readiness analytics</div>
+      </div>
+      <div class="item-box">
+        <div class="item-title">Google Vertex AI / Gemini 3.7</div>
+        <div class="item-desc">High-reasoning foundation model with sub-second token generation</div>
+      </div>
+      <div class="item-box">
+        <div class="item-title">Breaking Into Cyber Knowledge</div>
+        <div class="item-desc">7+ years, 1,164 podcast episodes, 9 certifications, 300+ interview rubrics</div>
+      </div>
+      <div class="item-box">
+        <div class="item-title">Cloudflare Edge & SSL</div>
+        <div class="item-desc">Global zero-trust proxy with edge caching & HSTS</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div><strong>Project:</strong> CyberMentor by <span class="footer-highlight">Christophe Foulon (CPF Coaching LLC)</span></div>
+    <div><strong>Live URL:</strong> <span class="footer-highlight">https://client.breakingintocybersecurity.org</span></div>
+    <div><strong>Category:</strong> <span class="footer-highlight">The Collaborative Partner</span></div>
+  </div>
+
+</body>
+</html>
