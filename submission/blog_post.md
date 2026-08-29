@@ -198,8 +198,9 @@ gcloud config set project YOUR_PROJECT_ID
 
 ## 🌐 Project Links and Community Resources
 
-- **Live Application**: [https://cybermentor-1019457807345.us-central1.run.app](https://cybermentor-1019457807345.us-central1.run.app)
-- **API Documentation**: [https://cybermentor-1019457807345.us-central1.run.app/docs](https://cybermentor-1019457807345.us-central1.run.app/docs)
+- **Official Marketing Homepage**: [https://client.breakingintocybersecurity.org/home.html](https://client.breakingintocybersecurity.org/home.html)
+- **Live AI Coach Studio**: [https://client.breakingintocybersecurity.org](https://client.breakingintocybersecurity.org) (Mirror: [https://cybermentor-1019457807345.us-central1.run.app](https://cybermentor-1019457807345.us-central1.run.app))
+- **FastAPI Backend Docs**: [https://cybermentor-1019457807345.us-central1.run.app/docs](https://cybermentor-1019457807345.us-central1.run.app/docs)
 - **GitHub Repository**: [https://github.com/cpfcoaching/cybermentor](https://github.com/cpfcoaching/cybermentor)
 - **Support the Mission**: [Buy Me a Coffee](https://www.buymeacoffee.com/cpf_coaching)
 - **Breaking Into Cybersecurity**: [breakingintocybersecurity.org](https://breakingintocybersecurity.org)

@@ -21,7 +21,7 @@ Built on Google Antigravity SDK + Gemini 3.7 Flash + Veo + Lyria + Gemma
 
 #AllThingsAgenticHackathon
 
-→ https://cybermentor-1019457807345.us-central1.run.app
+→ https://client.breakingintocybersecurity.org
 ```
 
 ---
@@ -42,7 +42,7 @@ Two-tier inference (Gemma → Gemini) reduced latency significantly.
 
 Built for #AllThingsAgenticHackathon with @GoogleCloud Antigravity SDK.
 
-Live: https://cybermentor-1019457807345.us-central1.run.app
+Live: https://client.breakingintocybersecurity.org
 Code: https://github.com/cpfcoaching/cybermentor
 ```
 
@@ -59,11 +59,8 @@ This weekend I built the autonomous AI version of that framework.
 
 CyberMentor: persistent memory, personalized coaching, 15 custom AI tools.
 
-Powered by @GoogleCloud Antigravity SDK + Gemini 3.7 Flash.
-
-#AllThingsAgenticHackathon 🛡️
-
-→ https://cybermentor-1019457807345.us-central1.run.app
+Built for the #AllThingsAgenticHackathon:
+→ https://client.breakingintocybersecurity.org
 ```
 
 ---
