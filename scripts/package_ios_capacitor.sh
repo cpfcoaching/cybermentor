@@ -28,7 +28,11 @@ EOF
 fi
 
 echo "🔄 Step 3: Adding iOS platform & syncing web assets..."
-npx cap add ios || true
+if [ ! -d "ios/App" ]; then
+    rm -rf ios
+    npx cap add ios
+fi
+
 npx cap sync ios
 
 echo ""

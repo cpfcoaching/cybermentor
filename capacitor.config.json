@@ -1,0 +1,10 @@
+{
+  "appId": "org.breakingintocybersecurity.cybermentor",
+  "appName": "CyberMentor",
+  "webDir": "web",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://client.breakingintocybersecurity.org",
+    "cleartext": false
+  }
+}
