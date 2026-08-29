@@ -318,7 +318,9 @@ body::before {
 .hero-title .gradient-text {
   background: linear-gradient(135deg, #ffffff 20%, var(--accent-cyan) 65%, var(--accent-emerald) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .hero-subtitle {
