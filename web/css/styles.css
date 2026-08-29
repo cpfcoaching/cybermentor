@@ -256,7 +256,11 @@ body::before {
   position: relative;
   z-index: 1;
 }
-.app-layout.hidden { display: none; }
+.hidden,
+#resume-file-input {
+  display: none !important;
+}
+.app-layout.hidden { display: none !important; }
 
 /* ── Sidebar ───────────────────────────────────────────────────────────── */
 .sidebar {

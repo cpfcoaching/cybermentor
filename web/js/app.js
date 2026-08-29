@@ -322,7 +322,16 @@ async function streamAgentResponse(userMessage) {
       }),
     });
 
-    if (!response.ok) throw new Error(`API error: ${response.status}`);
+    if (!response.ok) {
+      let errorDetail = `API error: ${response.status}`;
+      try {
+        const errJson = await response.json();
+        if (errJson.detail) {
+          errorDetail = typeof errJson.detail === 'string' ? errJson.detail : JSON.stringify(errJson.detail);
+        }
+      } catch (_) {}
+      throw new Error(errorDetail);
+    }
 
     // Remove typing indicator once first chunk arrives
     let firstChunk = true;
@@ -636,18 +645,22 @@ async function extractTextFromResumeFile(file) {
     console.warn('Server-side parse endpoint error:', err);
   }
 
-  // 5. Ultimate fallback: Read as raw text if small and printable
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const text = e.target.result || '';
-      // Strip unprintable control characters to prevent binary junk
-      const printable = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]/g, ' ');
-      resolve(printable);
-    };
-    reader.onerror = () => resolve('');
-    reader.readAsText(file);
-  });
+  // 5. Ultimate fallback: Only read plain-text format files, NEVER binary files
+  if (['txt', 'md', 'json', 'rtf', 'csv', 'log'].includes(ext)) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target.result || '';
+        // Strip unprintable control characters to prevent binary junk
+        const printable = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]/g, ' ');
+        resolve(printable);
+      };
+      reader.onerror = () => resolve('');
+      reader.readAsText(file);
+    });
+  }
+
+  return '';
 }
 
 if (uploadResumeBtn && resumeFileInput) {
