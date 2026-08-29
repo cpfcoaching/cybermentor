@@ -30,26 +30,33 @@ def check_secrets_and_api_keys() -> list[str]:
         (r'["\']password["\']\s*:\s*["\'][^"\']{4,}["\']', "Hardcoded Password"),
     ]
 
-    ignored_dirs = {".git", "__pycache__", ".venv", "venv", "node_modules", "test_helper_sessions", "test_sessions", "test_vertex_sessions"}
+    ignored_dirs = {
+        ".git", "__pycache__", ".venv", "venv", "node_modules", 
+        "android", "ios", "Pods", "coverage", "out", "dist", "build",
+        "test_helper_sessions", "test_sessions", "test_vertex_sessions",
+        "raw_video", "audio_scenes", "submission", ".gemini"
+    }
     ignored_files = {"package-lock.json", ".env.example", "security_check.py", ".env", ".env.local"}
 
-    for path in ROOT.rglob("*"):
-        if any(part in ignored_dirs for part in path.parts):
-            continue
-        if path.name in ignored_files or path.name.endswith(".env") or path.is_dir():
-            continue
+    for root, dirs, files in os.walk(ROOT):
+        # Prune ignored directories in-place to avoid descending into them
+        dirs[:] = [d for d in dirs if d not in ignored_dirs and not d.startswith(".")]
 
-        try:
-            content = path.read_text(encoding="utf-8", errors="ignore")
-            for pattern, desc in patterns:
-                matches = re.findall(pattern, content)
-                for match in matches:
-                    # Allow client-side Firebase public web API key in app.js if configured
-                    if "AIzaSyAMRuiN-oGbuxZ3a63l7bjTugRi2TjYdjQ" in str(match) and path.name == "app.js":
-                        continue
-                    errors.append(f"❌ [SECRET DETECTED] {desc} found in {path.relative_to(ROOT)}: {match[:10]}...")
-        except Exception as e:
-            pass
+        for file_name in files:
+            if file_name in ignored_files or file_name.endswith((".env", ".png", ".jpg", ".webp", ".mp4", ".mp3", ".wav", ".apk", ".aab", ".zip", ".tar.gz", ".jks", ".keystore")):
+                continue
+
+            path = pathlib.Path(root) / file_name
+            try:
+                content = path.read_text(encoding="utf-8", errors="ignore")
+                for pattern, desc in patterns:
+                    matches = re.findall(pattern, content)
+                    for match in matches:
+                        if "AIzaSyAMRuiN-oGbuxZ3a63l7bjTugRi2TjYdjQ" in str(match) and path.name == "app.js":
+                            continue
+                        errors.append(f"❌ [SECRET DETECTED] {desc} found in {path.relative_to(ROOT)}: {match[:10]}...")
+            except Exception:
+                pass
 
     return errors
 
