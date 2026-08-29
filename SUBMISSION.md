@@ -15,10 +15,23 @@ CyberMentor is an interactive AI expert that guides aspiring cybersecurity profe
 
 ## 🌐 Hosted Project URL
 
-> **Live URL:** [https://cybermentor-1019457807345.us-central1.run.app](https://cybermentor-1019457807345.us-central1.run.app)
-> **API Docs:** [https://cybermentor-1019457807345.us-central1.run.app/docs](https://cybermentor-1019457807345.us-central1.run.app/docs)
+> **Live Marketing Homepage:** [https://client.breakingintocybersecurity.org/home.html](https://client.breakingintocybersecurity.org/home.html)
+> **Live AI Coach Studio:** [https://client.breakingintocybersecurity.org](https://client.breakingintocybersecurity.org)
+> **API Docs & Swagger:** [https://client.breakingintocybersecurity.org/docs](https://client.breakingintocybersecurity.org/docs)
 
-The project is live on Google Cloud Run and integrated with Cloud Firestore. See [Spin-up Instructions](#-spin-up-instructions) below.
+The project is live in production on Google Cloud Run with Cloudflare Edge SSL proxy and Cloud Firestore persistence.
+
+---
+
+## 🎥 Video Demo URL
+
+> **Master 5-Minute Walkthrough Video:** [https://youtu.be/ucU61U_IQ0w](https://youtu.be/ucU61U_IQ0w)
+> 
+> **30-Second Social Shorts:**
+> - Short 1 (ROI Tuition Savings): [https://youtu.be/FemcUl7NHMI](https://youtu.be/FemcUl7NHMI)
+> - Short 2 (6-Week Security+ Planner): [https://youtu.be/rcnGlY_Gv5o](https://youtu.be/rcnGlY_Gv5o)
+> - Short 3 (Transfer IT Skills Mindmap): [https://youtu.be/0OLpHcjJyYE](https://youtu.be/0OLpHcjJyYE)
+> - Short 4 (SOC Mock Interview Drill): [https://youtu.be/j5DPnaWebQo](https://youtu.be/j5DPnaWebQo)
 
 ---
 
