@@ -72,9 +72,10 @@ async function main() {
   }
   fs.mkdirSync(rawDir, { recursive: true });
 
-  console.log('\n🚀 Launching Playwright Chromium (1920x1080 60fps)...');
+  const isHeaded = process.argv.includes('--headed');
+  console.log(`\n🚀 Launching Playwright Chromium (1920x1080 60fps, Headed: ${isHeaded})...`);
   const browser = await chromium.launch({
-    headless: true,
+    headless: !isHeaded,
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--window-size=1920,1080']
   });
 
@@ -124,41 +125,46 @@ async function main() {
   }
 
   // ───────────────────────────────────────────────────────────────────────────
-  // SCENE 2: Entering Studio, NIST NICE Mapping & Study Plan (Target: ~57s)
+  // SCENE 2: Entering Studio, Google SSO & Study Plan (Target: ~57s)
   // ───────────────────────────────────────────────────────────────────────────
-  console.log('\n🎬 Recording Scene 2: Entering Studio, Google SSO & Study Plan...');
+  console.log('\n🎬 Recording Scene 2: Entering Studio, Authenticating & Study Plan...');
   const scene2Start = Date.now();
   await page.goto(`${BASE_URL}/index.html`, { waitUntil: 'networkidle' });
-  await sleep(2500);
+  await sleep(2000);
 
-  // Authenticate with Google SSO
-  console.log('  → Signing in with Google SSO account...');
-  const googleBtn = await page.$('#google-sso-btn');
-  if (googleBtn) {
-    await googleBtn.click();
-    await sleep(1500);
-    const chrisAccountBtn = await page.$('#btn-sso-chris');
-    if (chrisAccountBtn) {
-      await chrisAccountBtn.click();
-      await sleep(2500);
+  // Perform Google SSO Authentication on-screen
+  console.log('  → Opening Google SSO authentication modal...');
+  await page.evaluate(() => {
+    const ssoBtn = document.getElementById('google-sso-btn');
+    if (ssoBtn) ssoBtn.click();
+  });
+  await sleep(1500);
+
+  console.log('  → Selecting Christophe Foulon authenticated profile...');
+  await page.evaluate(() => {
+    const chrisBtn = document.getElementById('btn-sso-chris');
+    if (chrisBtn) {
+      chrisBtn.click();
+    } else if (typeof initSessionWithUser === 'function') {
+      initSessionWithUser('Christophe_Foulon', 'google_sso_verified_token', false);
     }
-  }
+  });
+  await sleep(3000);
 
   // Trigger Career Path Roadmap prompt
   console.log('  → Triggering Career Path Roadmap prompt...');
-  const careerBtn = await page.$('#btn-career-path');
-  if (careerBtn && await careerBtn.isVisible()) {
-    await careerBtn.click();
-  } else {
-    await typeNaturally(page, '#message-input', 'I have 2 years of IT helpdesk experience and want to transition to a SOC Analyst role. What is my roadmap?', 2000);
-    await page.click('#send-btn');
-  }
+  await page.evaluate(() => {
+    const careerBtn = document.getElementById('btn-career-path');
+    if (careerBtn) careerBtn.click();
+  });
   await sleep(14000);
 
   // Send Study Plan request
-  console.log('  → Requesting Certification Study Planner for Security+...');
-  await typeNaturally(page, '#message-input', 'Generate an hour-calibrated 6-week study plan for CompTIA Security+ SY0-701 with lab recommendations.', 2500);
-  await page.click('#send-btn');
+  console.log('  → Triggering Study Plan prompt...');
+  await page.evaluate(() => {
+    const studyBtn = document.getElementById('btn-study-plan');
+    if (studyBtn) studyBtn.click();
+  });
   await sleep(14000);
 
   const scene2Elapsed = (Date.now() - scene2Start) / 1000;
@@ -174,32 +180,39 @@ async function main() {
   const scene3Start = Date.now();
 
   // Open Mindmap Modal
-  const mindmapBtn = await page.$('#btn-mindmap');
-  if (mindmapBtn) {
-    await mindmapBtn.click();
+  console.log('  → Opening Skills & Certs Mindmap Modal...');
+  await page.evaluate(() => {
+    const mindmapBtn = document.getElementById('btn-mindmap-explorer');
+    if (mindmapBtn) mindmapBtn.click();
+  });
+  await sleep(3500);
+
+  // Switch across tabs inside mindmap modal
+  const tabs = await page.$$('.mindmap-tab');
+  for (const tab of tabs) {
+    await tab.click();
     await sleep(3000);
-
-    // Switch across tabs inside mindmap modal
-    const tabs = await page.$$('.mindmap-tab');
-    for (const tab of tabs) {
-      await tab.click();
-      await sleep(3000);
-    }
-
-    const closeBtn = await page.$('#close-mindmap-btn');
-    if (closeBtn) await closeBtn.click();
-    await sleep(2000);
   }
+
+  await page.evaluate(() => {
+    const closeBtn = document.getElementById('close-mindmap-btn');
+    if (closeBtn) closeBtn.click();
+  });
+  await sleep(2000);
 
   // Open Analytics Modal
-  const analyticsBtn = await page.$('#btn-analytics');
-  if (analyticsBtn) {
-    await analyticsBtn.click();
-    await sleep(4000);
-    const closeAnalytics = await page.$('#close-analytics-btn');
-    if (closeAnalytics) await closeAnalytics.click();
-    await sleep(2000);
-  }
+  console.log('  → Opening Career Analytics Dashboard...');
+  await page.evaluate(() => {
+    const analyticsBtn = document.getElementById('btn-analytics');
+    if (analyticsBtn) analyticsBtn.click();
+  });
+  await sleep(4500);
+
+  await page.evaluate(() => {
+    const closeAnalytics = document.getElementById('close-analytics-btn');
+    if (closeAnalytics) closeAnalytics.click();
+  });
+  await sleep(2000);
 
   const scene3Elapsed = (Date.now() - scene3Start) / 1000;
   const scene3Target = manifest[2].duration;
@@ -213,14 +226,21 @@ async function main() {
   console.log('\n🎬 Recording Scene 4: 1,164-Episode RAG Insights & Scored Mock Interview...');
   const scene4Start = Date.now();
 
-  // Ask mock interview scenario
-  await typeNaturally(page, '#message-input', 'Can you drill me on a Tier 1 SOC phishing incident response interview question?', 2200);
-  await page.click('#send-btn');
+  // Trigger Interview Prep
+  console.log('  → Triggering Interview Prep drill...');
+  await page.evaluate(() => {
+    const interviewBtn = document.getElementById('btn-interview');
+    if (interviewBtn) interviewBtn.click();
+  });
   await sleep(14000);
 
   // Submit candidate answer
+  console.log('  → Typing candidate triage answer...');
   await typeNaturally(page, '#message-input', 'I inspect email headers for SPF/DKIM, analyze the attachment in a sandbox, extract IOCs, block malicious IPs on the firewall, and purge related emails across all inboxes.', 3000);
-  await page.click('#send-btn');
+  await page.evaluate(() => {
+    const send = document.getElementById('send-btn');
+    if (send) send.click();
+  });
   await sleep(16000);
 
   const scene4Elapsed = (Date.now() - scene4Start) / 1000;
@@ -235,12 +255,20 @@ async function main() {
   console.log('\n🎬 Recording Scene 5: Ambient Audio Player, Firestore Persistence & Outro...');
   const scene5Start = Date.now();
 
-  // Toggle ambient focus beats
-  const audioBtn = await page.$('#btn-focus-music');
-  if (audioBtn) {
-    await audioBtn.click();
-    await sleep(3000);
-  }
+  // Trigger ACE Memory observation inspection
+  console.log('  → Inspecting ACE Cognitive Memory notes...');
+  await page.evaluate(() => {
+    const aceBtn = document.getElementById('btn-ace-memory');
+    if (aceBtn) aceBtn.click();
+  });
+  await sleep(10000);
+
+  // Trigger Focus Music
+  await page.evaluate(() => {
+    const lyriaBtn = document.getElementById('btn-lyria-music');
+    if (lyriaBtn) lyriaBtn.click();
+  });
+  await sleep(4000);
 
   // Scroll smoothly through entire session history to showcase persistent state
   await page.evaluate(() => {
