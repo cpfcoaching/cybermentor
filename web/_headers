@@ -1,0 +1,33 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Cloudflare Edge Headers Configuration for client.breakingintocybersecurity.org
+# PageSpeed 100/100 Caching & Enterprise Security Posture
+# ─────────────────────────────────────────────────────────────────────────────
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), browsing-topics=()
+  Access-Control-Allow-Origin: *
+
+# HTML Pages (Fast Revalidation, Zero Stale Shell)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Static CSS & JS Assets (1-Year Immutable Edge Cache)
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images & Graphics
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Audio & Media
+/audio/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
