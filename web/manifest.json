@@ -1,0 +1,41 @@
+{
+  "name": "CyberMentor — Autonomous AI Cybersecurity Career Coach",
+  "short_name": "CyberMentor",
+  "description": "AI-powered career coaching, cert study planning, and mock interviews for aspiring cybersecurity professionals.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Career Path",
+      "short_name": "Career Path",
+      "description": "Map your background to cybersecurity specializations",
+      "url": "/index.html#career-path",
+      "icons": [{ "src": "/img/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Mock Interview",
+      "short_name": "Interview",
+      "description": "Practice realistic SOC incident triage questions",
+      "url": "/index.html#interview",
+      "icons": [{ "src": "/img/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
