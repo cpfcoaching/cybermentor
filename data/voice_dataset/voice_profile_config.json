@@ -1,0 +1,10 @@
+{
+  "voice_id": "cybermentor-island-boy",
+  "speaker_name": "Christophe Foulon",
+  "sample_rate": 24000,
+  "sample_count": 15,
+  "target_duration_minutes": "3.5 - 5.0",
+  "inference_engine": "onnxruntime-cpu",
+  "target_latency_ms": 220,
+  "cloud_run_memory_requirement": "512MiB"
+}
