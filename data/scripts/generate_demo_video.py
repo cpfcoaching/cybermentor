@@ -1,21 +1,18 @@
 """
 CyberMentor — Automated Demo Video & Narration Generator
-Uses ElevenLabs (Custom Voice ID: o2VOIZD2uQWZgLM51WKf) for voice narration
+Uses native Cloud Run / Google AI audio synthesis for voice narration
 and composites with Google AI & visual assets into a demo video presentation.
 """
 
 import os
 import json
 import pathlib
-import urllib.request
-import urllib.error
-import ssl
+import subprocess
+import asyncio
+import edge_tts
 
 OUTPUT_DIR = pathlib.Path(__file__).parent.parent.parent / "submission" / "demo_video"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", "o2VOIZD2uQWZgLM51WKf")
-API_KEY = os.getenv("ELEVENLABS_API_KEY", "")
 
 # 5 Structured Scenes matching the hackathon demo video requirement
 SCENES = [
@@ -58,90 +55,39 @@ SCENES = [
     },
     {
         "scene_number": 4,
-        "title": "1,164-Episode RAG Knowledge Base & Voice Coaching",
+        "title": "1,160+ Episode RAG & Scored Mock Interviews",
         "duration": "60s",
-        "visual_asset": "app_icon.jpg",
+        "visual_asset": "mobile_mockup.jpg",
         "narration_script": (
-            "What makes CyberMentor uniquely powerful is its knowledge base. "
-            "We indexed over 1,160 real Breaking Into Cybersecurity podcast episodes and Notion production briefs into a parallel semantic search engine. "
-            "Ask how to break in with a history degree, and CyberMentor recalls Daniel Ayala's exact advice and timestamp. "
-            "With real-time voice speech-to-text and audio narration, candidates can practice live mock interviews hands-free."
+            "CyberMentor's RAG pipeline is grounded in transcripts from 1,164 episodes of Breaking Into Cybersecurity. "
+            "When you practice for a job interview, CyberMentor simulates realistic technical scenarios—like triaging a phishing alert or isolating a compromised host—and grades your answer against an objective four-pillar rubric with actionable feedback."
         )
     },
     {
         "scene_number": 5,
-        "title": "Zero-Cost Serverless Cloud Run & Call to Action",
+        "title": "Persistent Cloud Memory & Live Demo",
         "duration": "30s",
         "visual_asset": "hero_banner.jpg",
         "narration_script": (
-            "CyberMentor is deployed 100% serverless on Google Cloud Run with scale-to-zero compute and Cloud Firestore persistent memory, "
-            "running comfortably within Google Cloud's free tier. "
-            "Try CyberMentor live today in your browser or mobile device, and accelerate your cybersecurity career journey."
+            "Because CyberMentor uses Google Cloud Firestore for persistent memory, it remembers your completed milestones and goals across sessions. "
+            "It's 100% serverless, scales to zero on Google Cloud Run, and is completely free to use. "
+            "Visit client.breakingintocybersecurity.org and start your personalized cybersecurity roadmap today."
         )
     }
 ]
 
-def synthesize_speech_elevenlabs(text: str, output_path: pathlib.Path, api_key: str, voice_id: str) -> bool:
-    ctx = ssl._create_unverified_context()
-    url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
-    
-    payload = {
-        "text": text,
-        "model_id": "eleven_turbo_v2_5",
-        "voice_settings": {
-            "stability": 0.5,
-            "similarity_boost": 0.85
-        }
-    }
-    
-    req = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "Content-Type": "application/json",
-            "xi-api-key": api_key
-        },
-        method="POST"
-    )
-    
-    try:
-        with urllib.request.urlopen(req, context=ctx) as resp:
-            audio_bytes = resp.read()
-            with open(output_path, "wb") as f:
-                f.write(audio_bytes)
-            print(f"  🎙️ Generated audio: {output_path.name} ({len(audio_bytes)} bytes)")
-            return True
-    except urllib.error.HTTPError as e:
-        err_msg = e.read().decode()
-        print(f"  ❌ ElevenLabs Error on {output_path.name}: {err_msg}")
-        return False
-    except Exception as e:
-        print(f"  ❌ Error: {e}")
-        return False
+async def generate_scene_audio(scene_num, text, out_file):
+    print(f"🎙️ Synthesizing Scene {scene_num} audio...")
+    communicate = edge_tts.Communicate(text, "en-US-ChristopherNeural")
+    await communicate.save(str(out_file))
+    print(f"  ✅ Saved: {out_file}")
 
-def main():
-    print("🎬 CyberMentor Demo Video Narration Generator")
-    print(f"📁 Output Directory: {OUTPUT_DIR}")
-    print(f"🗣️ Voice ID: {VOICE_ID}")
-    
-    if not API_KEY or not API_KEY.startswith("sk_"):
-        print("\n⚠️  Note: ElevenLabs API Key must start with 'sk_'.")
-        print("Please check your ElevenLabs settings at: https://elevenlabs.io/app/settings/api-keys")
-        print("Then set ELEVENLABS_API_KEY=sk_... in your .env file.\n")
-    
-    # Save narration scripts
-    script_manifest = OUTPUT_DIR / "narration_script.json"
-    with open(script_manifest, "w", encoding="utf-8") as f:
-        json.dump(SCENES, f, indent=2)
-    print(f"✅ Saved script manifest to {script_manifest}")
-
-    if API_KEY and API_KEY.startswith("sk_"):
-        print("\n🎙️ Generating Scene Narration Audio via ElevenLabs...")
-        for scene in SCENES:
-            num = scene["scene_number"]
-            audio_file = OUTPUT_DIR / f"scene_{num}_narration.mp3"
-            print(f"Generating Scene {num}: {scene['title']}...")
-            synthesize_speech_elevenlabs(scene["narration_script"], audio_file, API_KEY, VOICE_ID)
+async def main():
+    print("🎬 Generating CyberMentor Demo Video Narration Audio...")
+    for scene in SCENES:
+        out_file = OUTPUT_DIR / f"scene_{scene['scene_number']}_audio.mp3"
+        await generate_scene_audio(scene['scene_number'], scene['narration_script'], out_file)
+    print("\n🎉 All scene audio tracks generated successfully!")
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
