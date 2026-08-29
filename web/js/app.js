@@ -381,6 +381,11 @@ async function streamAgentResponse(userMessage) {
     // Reload progress after message (agent may have saved a milestone)
     setTimeout(() => loadProgress(currentUser), 1500);
 
+    // Speak response if voice narration is active (Zero-Cost Cloud Run Engine)
+    if (isVoiceNarrationEnabled && rawText) {
+      speakCoachSpeech(rawText);
+    }
+
   } catch (err) {
     typingEl.remove();
     addAgentMessage(
@@ -395,6 +400,50 @@ async function streamAgentResponse(userMessage) {
     scrollToBottom();
   }
 }
+
+// ── Cloud Run Zero-Cost Neural Voice Engine ──────────────────────────────
+let isVoiceNarrationEnabled = false;
+let currentCoachVoiceAudio = null;
+
+const voiceToggleBtn = document.getElementById('voice-toggle-btn');
+if (voiceToggleBtn) {
+  voiceToggleBtn.addEventListener('click', () => {
+    isVoiceNarrationEnabled = !isVoiceNarrationEnabled;
+    voiceToggleBtn.textContent = isVoiceNarrationEnabled ? '🔊 Voice: ON (Island Boy)' : '🔊 Voice: Off';
+    voiceToggleBtn.classList.toggle('active', isVoiceNarrationEnabled);
+    if (isVoiceNarrationEnabled) {
+      speakCoachSpeech("CyberMentor voice enabled. I am ready to guide your cybersecurity career journey.");
+    } else if (currentCoachVoiceAudio) {
+      currentCoachVoiceAudio.pause();
+    }
+  });
+}
+
+async function speakCoachSpeech(text) {
+  if (!isVoiceNarrationEnabled || !text) return;
+  const clean = text.replace(/[*#`_\[\]()]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 450);
+  if (!clean) return;
+
+  try {
+    if (currentCoachVoiceAudio) {
+      currentCoachVoiceAudio.pause();
+    }
+    const res = await fetch(`${API_BASE_URL}/api/voice/speak`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: clean, voice_profile: 'island_boy' })
+    });
+    if (res.ok) {
+      const blob = await res.blob();
+      const audioUrl = URL.createObjectURL(blob);
+      currentCoachVoiceAudio = new Audio(audioUrl);
+      currentCoachVoiceAudio.play();
+    }
+  } catch (err) {
+    console.warn("Cloud Run voice playback fallback:", err);
+  }
+}
+window.speakCoachSpeech = speakCoachSpeech;
 
 // ── Quick Actions ─────────────────────────────────────────────────────────
 document.querySelectorAll('.quick-action-btn').forEach(btn => {
