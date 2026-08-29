@@ -755,14 +755,95 @@ if (certsRoleSelect)  certsRoleSelect.addEventListener('change', renderCertsMind
 
 // In-memory role ontology cache for client-side snappy interactions
 const _ROLE_ONTOLOGY = {
-  it_helpdesk: {
-    title: "IT Helpdesk / Systems Support",
+  software_developer: {
+    title: "Software Developer / Software Engineer",
     skills: {
-      "Technical Foundations": ["Windows/Linux/macOS OS Internals", "Active Directory & LDAP Management", "TCP/IP, Subnetting & Gateway Routing", "DNS, DHCP, Firewall Basics"],
-      "Tooling & Admin": ["ServiceNow & Jira Service Desk", "PowerShell & CLI Scripting", "Endpoint Antivirus & Sysinternals", "RMM & Patch Management"],
-      "Process & Soft Skills": ["SLA Triage & Queue Management", "User Access Provisioning", "Root-cause Troubleshooting", "Customer Incident De-escalation"]
+      "Software Architecture": ["Clean Architecture & Design Patterns", "REST & GraphQL API Design", "Microservices & Distributed Systems", "Relational & NoSQL Database Optimization"],
+      "Engineering & Tooling": ["Git Version Control & PR Reviews", "CI/CD Pipeline Automation", "Unit, Integration & E2E Testing", "Docker Containerization"],
+      "Languages & Frameworks": ["Python, TypeScript, Go, Java, Rust", "Modern Web Frameworks (FastAPI, Next.js, React)", "Data Structures & Algorithmic Complexity"]
     },
-    certs: { "Foundational": ["CompTIA A+", "Google IT Support"], "Core": ["CompTIA Network+", "Microsoft MD-102"], "Advanced": ["CompTIA Security+", "Microsoft SC-900"] }
+    certs: { "Foundational": ["AWS Certified Developer - Associate", "Meta Front-End/Back-End Professional"], "Core": ["Google Cloud Professional Developer", "Certified Kubernetes Application Developer (CKAD)"], "Advanced": ["AWS Solutions Architect - Associate", "Microsoft Certified: Azure Developer"] }
+  },
+  security_software_engineer: {
+    title: "Security Software Engineer (AppSec / DevSecOps)",
+    skills: {
+      "Application Security": ["OWASP Top 10 & ASVS Standards", "Threat Modeling (STRIDE, PASTA)", "Static & Dynamic Analysis (SAST/DAST/IAST)", "Software Composition Analysis (SCA) & SBOM"],
+      "Secure Engineering": ["Cryptographic Implementations (AES, RSA, ECC, TLS)", "OAuth2, OIDC, JWT & SAML Authentication", "Secrets Management (HashiCorp Vault, AWS Secrets)", "Memory Safety & Input Sanitization Defenses"],
+      "DevSecOps Automation": ["Security Gates in GitHub Actions & GitLab CI", "Infrastructure as Code Security (Semgrep, Tfsec)", "Container Image Scanning (Trivy, Grype)", "Automated Bug Bounty & Vulnerability Remediation"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "CSSLP (Certified Secure Software Lifecycle Professional)"], "Core": ["Certified DevSecOps Professional (CDP)", "OffSec OSWE (Web Expert)"], "Advanced": ["SANS SEC540 (Cloud DevSecOps)", "GIAC GWEB", "CASE (Certified Application Security Engineer)"], "Capstone": ["SANS SEC522", "ISC2 CISSP"] }
+  },
+  ai_developer: {
+    title: "AI Developer / LLM Application Engineer",
+    skills: {
+      "LLM & GenAI Development": ["Gemini API / OpenAI API / Anthropic Claude SDKs", "Retrieval-Augmented Generation (RAG) Architecture", "Vector Databases & Embeddings (Pinecone, Chroma, pgvector)", "Structured Outputs, JSON Schema & Function Calling"],
+      "Agentic Frameworks & Ops": ["Google Antigravity SDK & Multi-Agent Orchestration", "LangChain, LlamaIndex, Semantic Kernel", "Semantic Caching & Token Optimization", "Model Quantization, LoRA & Parameter-Efficient Fine-Tuning"],
+      "Evaluation & Pipelines": ["Ragas / Promptfoo RAG Evaluation Benchmarks", "Context Window Management & Chunking Strategies", "Streaming SSE & Bidirectional WebSocket Protocols"]
+    },
+    certs: { "Foundational": ["Google Cloud Digital Leader", "DeepLearning.AI Generative AI Specialist"], "Core": ["Google Cloud Professional Machine Learning Engineer", "AWS Certified AI Practitioner"], "Advanced": ["Databricks Certified Generative AI Engineer", "TensorFlow Developer Certificate"] }
+  },
+  ai_security_specialist: {
+    title: "AI Security Specialist / AI Safety Engineer",
+    skills: {
+      "GenAI Threat Vectors": ["OWASP Top 10 for LLMs / GenAI Security", "Direct & Indirect Prompt Injection Defenses", "Model Inversion, Extraction & Data Poisoning", "RAG Vector Poisoning & Context Leakage"],
+      "AI Red Teaming & Guardrails": ["Adversarial Jailbreak Testing & Prompt Fuzzing", "NeMo Guardrails & Guardrails.ai Policy Enforcement", "Constitutional AI Alignment & Content Safety Filters", "Training Data Watermarking & Model Fingerprinting"],
+      "AI Governance & Compliance": ["NIST AI Risk Management Framework (AI RMF 1.0)", "EU Artificial Intelligence Act (AI Act) Compliance", "ISO/IEC 42001 AI Management System (AIMS)", "Differential Privacy & Synthetic Data Protection"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "IAPP AIGP (AI Governance Professional)"], "Core": ["Certified AI Security Professional (CAISP)", "SANS SEC595 (AI Security & LLM Defense)"], "Advanced": ["OffSec OSDA", "MIT Professional Certificate in AI Safety"], "Capstone": ["ISC2 CISSP + AI Security Specialization"] }
+  },
+  prompt_engineer: {
+    title: "Prompt Engineer / LLM Guardrail Specialist",
+    skills: {
+      "Prompt Optimization": ["Few-Shot, Zero-Shot & Chain-of-Thought Prompting", "System Prompt Engineering & Role Alignment", "XML/Markdown Semantic Delimiters for Injection Defense", "ReAct & Tree-of-Thoughts Reasoning Frameworks"],
+      "Guardrails & Evals": ["Promptfoo & DeepEval Automated Benchmarks", "Hallucination Detection & Groundedness Scoring", "Adversarial Fuzzing & Red-Teaming Prompt Sets", "Token Compression & Latency Reduction"],
+      "Integration": ["JSON Schema Strict Output Structuring", "Tool/Function-Calling Prompt Schema Design", "Dynamic Context Injection & Metaprompting"]
+    },
+    certs: { "Foundational": ["Anthropic Prompt Engineering Certification", "Vanderbilt Prompt Engineering Specialization"], "Core": ["OpenAI Certified Prompt Architect", "DeepLearning.AI Prompt Engineering for Developers"], "Advanced": ["AWS Certified AI Practitioner"] }
+  },
+  forward_deployed_engineer: {
+    title: "Forward Deployed Engineer (FDE)",
+    skills: {
+      "Customer Integration": ["Enterprise Architecture Custom Connectors", "On-Prem, Hybrid & Air-Gapped Cloud Deployments", "API Ingestion & ETL Data Pipeline Transformation", "Mission-Critical Production Debugging on Client Sites"],
+      "Rapid Engineering": ["Full-Stack Prototyping (FastAPI, Python, TypeScript)", "Reverse Engineering Legacy Systems", "Telemetry, Observability & Custom Metrics (OpenTelemetry)", "Zero-Downtime Migration & Cutover Strategies"],
+      "Consulting & Leadership": ["Executive Technical Briefings & Stakeholder Buy-in", "Translating Ambiguous Business Needs to Production Code", "Solution Architecture & SLA Management"]
+    },
+    certs: { "Foundational": ["AWS Certified Solutions Architect - Associate", "CompTIA Security+"], "Core": ["Google Cloud Professional Cloud Architect", "Certified Kubernetes Administrator (CKA)"], "Advanced": ["AWS Certified Solutions Architect - Professional", "HashiCorp Certified: Terraform Associate"] }
+  },
+  cloud_engineer: {
+    title: "Cloud Engineer / Infrastructure Architect",
+    skills: {
+      "Cloud Architecture": ["Multi-Cloud Fleet Management (AWS, GCP, Azure)", "VPC Networking, Transit Gateways & DirectConnect", "Cloud Compute, Serverless (Lambda/Cloud Run) & Edge", "Object, Block & Elastic Cloud Storage"],
+      "DevOps & IaC": ["Infrastructure as Code (Terraform, OpenTofu, Pulumi)", "Kubernetes (K8s) Cluster Administration", "GitOps (ArgoCD, Flux) & CI/CD Pipelines", "Linux Fleet Automation (Ansible, Bash)"],
+      "Reliability & Cost": ["High Availability & Disaster Recovery Architecture", "Cloud FinOps & Resource Cost Optimization", "Observability (Prometheus, Grafana, Datadog)"]
+    },
+    certs: { "Foundational": ["AWS Cloud Practitioner", "GCP Cloud Digital Leader"], "Core": ["AWS Solutions Architect - Associate", "Google Cloud Professional Cloud Architect", "CKA (Kubernetes)"], "Advanced": ["AWS Solutions Architect - Professional", "HashiCorp Terraform Associate"] }
+  },
+  cloud_security: {
+    title: "Cloud Security Engineer",
+    skills: {
+      "Cloud Architecture": ["AWS / GCP / Azure Security Architecture", "IAM Least Privilege & Role Trust Policies", "VPC Flow Logs, GuardDuty & CloudTrail", "KMS Encryption & Key Management"],
+      "DevSecOps & Automation": ["Infrastructure as Code (Terraform)", "CI/CD Pipeline Security Gates", "Container & Kubernetes Hardening (Falco/Trivy)", "CSPM & CWPP Configuration (Wiz, Prisma)"],
+      "Cloud Compliance": ["CIS Cloud Foundations Benchmarks", "Shared Responsibility Model", "Automated Remediation Lambda/Cloud Functions", "Cloud Forensics & Posture Audits"]
+    },
+    certs: { "Foundational": ["AWS Cloud Practitioner", "GCP Cloud Digital Leader", "CompTIA Security+"], "Core": ["AWS Certified Security - Specialty", "Google Cloud Security Engineer", "Microsoft SC-100"], "Advanced": ["ISC2 CCSP", "Certified Kubernetes Security Specialist (CKS)"], "Capstone": ["ISC2 CISSP", "GIAC GCSA"] }
+  },
+  security_engineer: {
+    title: "Security Engineer (SecOps & Infrastructure)",
+    skills: {
+      "Infrastructure Defense": ["Identity & Access Management (SSO, MFA, PAM)", "Endpoint Security & EDR/XDR Engineering", "Next-Gen Firewalls & Microsegmentation", "Vulnerability Management & Patch Governance (Qualys, Tenable)"],
+      "Security Automation": ["SOAR Playbook Authoring (Tines, Splunk SOAR, Cortex XSOAR)", "Python & Bash Security Automation Scripting", "Log Aggregation Pipeline Tuning", "Certificate Lifecycle & PKI Management"],
+      "Hardening & Zero Trust": ["Operating System Hardening (CIS Benchmarks)", "Zero Trust Architecture (NIST SP 800-207)", "Cloud & On-Prem Attack Surface Reduction"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "Microsoft SC-900"], "Core": ["CompTIA CySA+", "GIAC GSEC", "Microsoft SC-200"], "Advanced": ["GIAC GCED", "ISC2 SSCP", "Palo Alto PCNSE"], "Capstone": ["ISC2 CISSP", "SANS SEC501"] }
+  },
+  network_security_engineer: {
+    title: "Network Security Engineer",
+    skills: {
+      "Network Perimeter Defense": ["Next-Gen Firewalls (Palo Alto Networks, Fortinet, Cisco ASA)", "Intrusion Detection/Prevention (Snort, Suricata, Zeek)", "Zero Trust Network Access (ZTNA) & SASE", "WAF & DDoS Mitigation (Cloudflare, Akamai, AWS Shield)"],
+      "Secure Connectivity": ["IPsec / SSL VPN Tunneling Architecture", "BGP, OSPF, VLANs, VXLAN & Network Segmentation", "TLS/SSL Decryption & Certificate Inspection", "802.1X Network Access Control (NAC / Cisco ISE)"],
+      "Network Telemetry": ["Wireshark & NetFlow/IPFIX Traffic Analysis", "Network Packet Broker (NPB) & TAP Infrastructure", "DNS Security (DNSSEC, DoH, Sinkholing)"]
+    },
+    certs: { "Foundational": ["CompTIA Network+", "Cisco CCNA"], "Core": ["Cisco CCNP Security", "Palo Alto PCNSE", "Fortinet NSE 4/7"], "Advanced": ["GIAC GNFA (Network Forensics)", "Check Point CCSA/CCSE"], "Capstone": ["Cisco CCIE Security", "SANS SEC503"] }
   },
   soc_analyst: {
     title: "SOC Analyst (Security Operations Center)",
@@ -774,7 +855,7 @@ const _ROLE_ONTOLOGY = {
     certs: { "Foundational": ["CompTIA Security+", "Cisco CyberOps Associate"], "Core": ["CompTIA CySA+", "Splunk Core Power User", "Microsoft SC-200"], "Advanced": ["GIAC GCIH (Incident Handler)", "Blue Team Level 1 (BTL1)"], "Capstone": ["GIAC GCFA", "SANS SEC504"] }
   },
   penetration_tester: {
-    title: "Penetration Tester / Offensive Security",
+    title: "Penetration Tester / Ethical Hacker",
     skills: {
       "Offensive Assessment": ["OWASP Top 10 Web Application Flaws", "Active Directory Domain Escalation", "Network Port & Service Enumeration", "Vulnerability Exploitation (Metasploit)"],
       "Tooling & Scripting": ["Burp Suite Professional", "Nmap, Masscan, Amass", "BloodHound & Mimikatz", "Python & Bash Exploit Customization"],
@@ -782,14 +863,14 @@ const _ROLE_ONTOLOGY = {
     },
     certs: { "Foundational": ["eLearnSecurity eJPT", "CompTIA PenTest+"], "Core": ["TCM Security PNPT", "OffSec OSCP"], "Advanced": ["OffSec OSWE", "GIAC GPEN", "CRTO"], "Capstone": ["OffSec OSEP", "SANS SEC660"] }
   },
-  cloud_security: {
-    title: "Cloud Security Engineer",
+  red_team: {
+    title: "Red Teamer / Offensive Operations",
     skills: {
-      "Cloud Architecture": ["AWS / GCP / Azure Security Architecture", "IAM Least Privilege & Role Trust Policies", "VPC Flow Logs, GuardDuty & CloudTrail", "KMS Encryption & Key Management"],
-      "DevSecOps & Automation": ["Infrastructure as Code (Terraform)", "CI/CD Pipeline Security Gates", "Container & Kubernetes Hardening (Falco/Trivy)", "CSPM & CWPP Configuration (Wiz, Prisma)"],
-      "Cloud Compliance": ["CIS Cloud Foundations Benchmarks", "Shared Responsibility Model", "Automated Remediation Lambda/Cloud Functions", "Cloud Forensics & Posture Audits"]
+      "Adversary Emulation": ["Command & Control (C2) Infrastructure (Cobalt Strike, Sliver, Havoc)", "Active Directory Multi-Forest Compromise & Kerberoasting", "EDR / AV Evasion & Process Injection", "Living off the Land (LotL / LOLBins) Techniques"],
+      "Covert Operations": ["Custom Payload Weaponization & Obfuscation", "Initial Access (Spearphishing, Waterholing, Hardware Implants)", "Physical Penetration Testing & Social Engineering", "Lateral Movement (WMI, WinRM, PsExec, Pass-the-Hash)"],
+      "Debrief & Defense Collaboration": ["Purple Teaming & Threat Hunting Collaboration", "TIBER-EU & CBEST Regulatory Emulation Frameworks", "Executive Proof-of-Impact & Risk Remediation Roadmaps"]
     },
-    certs: { "Foundational": ["AWS Cloud Practitioner", "GCP Cloud Digital Leader", "CompTIA Security+"], "Core": ["AWS Certified Security - Specialty", "Google Cloud Security Engineer", "Microsoft SC-100"], "Advanced": ["ISC2 CCSP", "Certified Kubernetes Security Specialist (CKS)"], "Capstone": ["ISC2 CISSP", "GIAC GCSA"] }
+    certs: { "Foundational": ["OffSec OSCP", "CompTIA PenTest+"], "Core": ["Zero-Point Security CRTO (Red Team Operator)", "OffSec OSEP (Evasion)"], "Advanced": ["CRTE (Red Team Expert)", "SANS SEC565 (Red Team Operations)"], "Capstone": ["OffSec OSMR", "SANS SEC699"] }
   },
   grc: {
     title: "GRC Analyst (Governance, Risk, Compliance)",
@@ -799,6 +880,33 @@ const _ROLE_ONTOLOGY = {
       "Audit & Advisory": ["Internal Audit Evidence Gathering", "Control Gap Assessments", "Security Awareness Program Design", "Regulatory Compliance Remediation Tracking"]
     },
     certs: { "Foundational": ["CompTIA Security+", "ISACA ITCA"], "Core": ["ISACA CISA (Auditor)", "ISACA CRISC (Risk Specialist)"], "Advanced": ["ISO 27001 Lead Auditor", "ISC2 CGRC", "IAPP CIPP/E"], "Capstone": ["ISC2 CISSP", "ISACA CISM"] }
+  },
+  grc_leader: {
+    title: "GRC Leader / VP of Risk & Compliance",
+    skills: {
+      "Enterprise Risk Leadership": ["Board-Level Cyber Risk Quantification (FAIR Model)", "Enterprise Risk Management (ERM) Alignment", "Multi-Jurisdiction Regulatory Strategy (SEC, DORA, NIS2, NYDFS)", "Enterprise Compliance Budget & Resource Allocation"],
+      "Audit & Trust Governance": ["External Regulatory Examination Defense", "Global Trust & Assurance Program Direction", "Continuous Automated Compliance Monitoring (Vanta, Drata)", "Executive Crisis & Breach Disclosure Oversight"],
+      "Team & Policy Direction": ["Building High-Performance GRC & Audit Teams", "Enterprise Governance Charter & Committee Chairing"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "CISA"], "Core": ["ISACA CISM", "ISACA CRISC"], "Advanced": ["ISC2 CISSP", "ISACA CGEIT (Governance)"], "Capstone": ["Open FAIR Certification", "Executive GRC Leadership"] }
+  },
+  privacy_specialist: {
+    title: "Privacy Specialist / Data Protection Officer (DPO)",
+    skills: {
+      "Privacy Law & Regulation": ["GDPR, CCPA/CPRA, HIPAA, GLBA, PIPEDA", "Cross-Border Data Transfer Frameworks (EU-US DPF, SCCs)", "Data Subject Access Request (DSAR) Workflows", "Data Retention, Purge & Minimization Enforcement"],
+      "Privacy by Design": ["Data Privacy Impact Assessments (DPIA / PIA)", "Data Mapping, Classification & Lineage (OneTrust, BigID)", "Data Anonymization, Pseudonymization & Tokenization", "Privacy Incident & Breach Notification Handling"],
+      "Governance & Advisory": ["Privacy Policy, Terms & Cookie Consent Management", "Vendor Data Processing Agreement (DPA) Negotiations"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "IAPP CIPM (Privacy Manager)"], "Core": ["IAPP CIPP/US", "IAPP CIPP/E (European Privacy)", "IAPP CIPT (Privacy Technologist)"], "Advanced": ["ISACA CDPSE (Data Privacy Solutions Engineer)", "FIP (Fellow of Information Privacy)"] }
+  },
+  policy_specialist: {
+    title: "Policy Specialist / Cyber Regulatory Strategist",
+    skills: {
+      "Policy Architecture": ["Enterprise Information Security Policy Frameworks", "Standards, Guidelines & SOP Development", "NIST CSF 2.0 & ISO 27001 Control Mapping", "Exception Management & Compensating Controls"],
+      "Regulatory & Legal Strategy": ["SEC Cyber Disclosure Rule Alignment (Form 8-K/10-K)", "Executive Orders (EO 14028) & Federal Standards", "Critical Infrastructure Directives (CISA, TSA, NERC-CIP)", "Incident Disclosure Coordination with General Counsel"],
+      "AI & Emerging Governance": ["Enterprise AI Use Policy & Acceptable Use Governance", "Supply Chain Security Directives & SBOM Mandates"]
+    },
+    certs: { "Foundational": ["CompTIA Security+", "ISACA ITCA"], "Core": ["ISC2 CGRC (Governance, Risk & Compliance)", "ISACA CGEIT"], "Advanced": ["SANS MGT514 (Security Strategic Planning)", "Harvard/Georgetown Cyber Policy Certificate"] }
   },
   dfir: {
     title: "DFIR (Digital Forensics & Incident Response)",
@@ -816,7 +924,35 @@ const _ROLE_ONTOLOGY = {
       "Leadership & Culture": ["Building & Mentoring Security Teams", "Crisis Command & Breach Spokesperson", "Enterprise Security Culture Advocacy", "Regulatory & Legal Risk Strategy"]
     },
     certs: { "Foundational": ["CompTIA Security+", "CISA"], "Core": ["CISM", "CRISC"], "Advanced": ["ISC2 CISSP", "GIAC GSLC"], "Capstone": ["CCISO", "Executive Leadership (CMU/Wharton)"] }
+  },
+  it_helpdesk: {
+    title: "IT Helpdesk / Systems Support",
+    skills: {
+      "Technical Foundations": ["Windows/Linux/macOS OS Internals", "Active Directory & LDAP Management", "TCP/IP, Subnetting & Gateway Routing", "DNS, DHCP, Firewall Basics"],
+      "Tooling & Admin": ["ServiceNow & Jira Service Desk", "PowerShell & CLI Scripting", "Endpoint Antivirus & Sysinternals", "RMM & Patch Management"],
+      "Process & Soft Skills": ["SLA Triage & Queue Management", "User Access Provisioning", "Root-cause Troubleshooting", "Customer Incident De-escalation"]
+    },
+    certs: { "Foundational": ["CompTIA A+", "Google IT Support"], "Core": ["CompTIA Network+", "Microsoft MD-102"], "Advanced": ["CompTIA Security+", "Microsoft SC-900"] }
   }
+};
+
+// Comprehensive role transition matrix
+const _TRANSFER_PRESETS = {
+  "software_developer->security_software_engineer": { score: 92, diff: "Very Smooth", timeline: "3-6 months", shared: ["Codebase Architecture & Design Patterns", "CI/CD Pipeline Configurations", "Git Workflows & Pull Request Reviews", "REST API Development & Database Queries"], bridge: ["Writing Feature Code ➔ Threat Modeling & Secure Code Review", "Debugging Logic Flaws ➔ Identifying Business Logic & OWASP Flaws", "Unit Testing ➔ Automated SAST / DAST Security Gates"], delta: ["OWASP ASVS & Top 10 Exploitation", "Cryptographic Primitives & Secret Management", "Software Composition Analysis & SBOM (Trivy)", "Threat Modeling Frameworks (STRIDE)"], certs: ["Certified DevSecOps Professional (CDP)", "OffSec OSWE", "CSSLP"], note: "Developers make world-class AppSec engineers because you already understand how code executes. Focus on exploiting and fixing OWASP vulnerabilities in PortSwigger Web Security Academy." },
+  "software_developer->ai_developer": { score: 90, diff: "Direct Pivot", timeline: "2-4 months", shared: ["Python & TypeScript Development", "API Consumption & Asynchronous Processing", "Data Structures & Database Queries", "Modern Web Framework Integration"], bridge: ["Standard APIs ➔ LLM Client SDKs (Gemini, OpenAI, Anthropic)", "SQL Database Queries ➔ Vector Embeddings & Similarity Search (pgvector/Pinecone)", "Deterministic Functions ➔ Agentic Function-Calling & Tool Execution"], delta: ["Retrieval-Augmented Generation (RAG) Architecture", "Structured Output Schema Enforcement (Pydantic/JSON Schema)", "Context Window & Token Budget Management", "RAG Evaluation Metrics (Ragas, DeepEval)"], certs: ["DeepLearning.AI Generative AI Specialist", "Google Cloud Machine Learning Engineer"], note: "Your coding velocity is your superpower. Master RAG indexing, function-calling agent loops, and prompt caching to build state-of-the-art AI applications." },
+  "software_developer->forward_deployed_engineer": { score: 88, diff: "Smooth", timeline: "3-6 months", shared: ["Full-Stack Problem Solving", "API Integration & Reverse Engineering", "Git & Deployment Workflows", "Production Bug Triage"], bridge: ["Internal Codebases ➔ Client Enterprise Environments", "Sprint Planning ➔ Stakeholder Requirement Alignment"], delta: ["Hybrid / Air-Gapped Cloud Deployments", "OpenTelemetry Observability & Live Diagnostics", "High-Stakes Client Communication & Technical Demos"], certs: ["AWS Certified Solutions Architect", "Certified Kubernetes Administrator (CKA)"], note: "Forward Deployed Engineers sit right between engineering and the customer mission. Pair your code expertise with rapid prototyping and customer empathy." },
+  "ai_developer->ai_security_specialist": { score: 85, diff: "Direct Evolution", timeline: "3-6 months", shared: ["LLM Architecture & RAG Pipelines", "Tokenization & Vector Embeddings", "System Prompt & Function-Calling Design", "Python & Agent SDKs"], bridge: ["Building Prompts ➔ Adversarial Prompt Injection Fuzzing", "Deploying RAG ➔ Securing Vector Databases from Context Extraction", "Agent Tool Calling ➔ Guardrailing Arbitrary Code & Tool Abuse"], delta: ["OWASP Top 10 for LLMs", "NeMo Guardrails & Guardrails.ai Policy Definition", "NIST AI Risk Management Framework (AI RMF)", "Model Poisoning & Adversarial Robustness"], certs: ["Certified AI Security Professional (CAISP)", "SANS SEC595", "IAPP AIGP"], note: "As organizations adopt GenAI, AI Security Specialists are in extreme demand. Transition by building red-teaming test suites for production agents." },
+  "penetration_tester->red_team": { score: 90, diff: "Natural Senior Progression", timeline: "6-12 months", shared: ["Exploitation Mechanics & Privilege Escalation", "Burp Suite & Network Tooling", "Active Directory Exploitation", "Scripting & Custom Exploits"], bridge: ["Running Automated Scanners ➔ Stealthy Living off the Land (LOLBins)", "Exploiting One Host ➔ Enterprise Multi-Forest Takeover", "Technical Report Writing ➔ Executive Purple Team Collaboration"], delta: ["C2 Infrastructure (Cobalt Strike, Sliver, Havoc)", "EDR / AV Hooking & Memory Evasion", "Physical Pentesting & Targeted Spearphishing", "Adversary Emulation Frameworks (TIBER-EU)"], certs: ["CRTO (Certified Red Team Operator)", "OffSec OSEP", "CRTE"], note: "Pentesting tests vulnerabilities; Red Teaming tests detection and human response. Master C2 deployment and stealth evasion on Zero-Point Security labs." },
+  "it_helpdesk->soc_analyst": { score: 85, diff: "Easy to Moderate", timeline: "3-6 months", shared: ["Windows/Linux OS Troubleshooting", "Active Directory User Administration", "Network Protocol Basics (TCP/IP, DNS)", "Ticket Queue Triage under SLAs"], bridge: ["Antivirus Troubleshooting ➔ EDR Alert Triage", "Network Connectivity Checks ➔ Wireshark PCAP Analysis", "User Lockout Investigation ➔ Account Takeover Detection"], delta: ["SIEM Query Syntax (SPL / KQL)", "MITRE ATT&CK Threat Mapping", "Phishing Email Header Forensics", "Cyber Kill Chain Containment"], certs: ["CompTIA Security+", "CompTIA CySA+", "Splunk Core Power User"], note: "You already know how computers and users break. Pivot by learning how attackers exploit those exact systems using SIEM logs and TryHackMe labs." },
+  "it_helpdesk->network_security_engineer": { score: 80, diff: "Moderate", timeline: "6-9 months", shared: ["TCP/IP, Subnetting & Gateway Routing", "DNS, DHCP, Switches & Router Admin", "Basic Firewall Rule Inspection", "Network Cable & Hardware Triage"], bridge: ["Configuring Office Routers ➔ Next-Gen Enterprise Firewalls (Palo Alto, Fortinet)", "Troubleshooting WiFi ➔ 802.1X Network Access Control (Cisco ISE)", "Checking Ping/Traceroute ➔ Wireshark Packet Analysis & PCAP Inspection"], delta: ["Zero Trust Network Access (ZTNA) & SASE", "Intrusion Prevention Systems (Suricata/Snort)", "IPsec / SSL VPN Tunnel Engineering", "TLS Inspection & Certificate Decryption"], certs: ["CompTIA Network+", "Cisco CCNA", "Palo Alto PCNSE"], note: "Your deep physical and logical networking foundations make Network Security a seamless fit. Practice firewall rule design and PCAP analysis." },
+  "it_helpdesk->cloud_security": { score: 65, diff: "Moderate", timeline: "6-12 months", shared: ["User Authentication Concepts", "Networking Fundamentals", "Operating System Administration"], bridge: ["On-Prem Active Directory ➔ AWS IAM / Azure Entra ID", "Virtual Machines ➔ Cloud Compute (EC2 / Compute Engine)"], delta: ["Cloud Architecture & IAM Least Privilege", "Infrastructure as Code (Terraform)", "Cloud Security Posture Management (CSPM)", "CloudTrail & GuardDuty Log Auditing"], certs: ["AWS Certified Security - Specialty", "CompTIA Security+"], note: "Build free-tier cloud projects and convert manual sysadmin scripts into secure Terraform templates." },
+  "grc->grc_leader": { score: 92, diff: "Leadership Evolution", timeline: "2-4 years", shared: ["NIST CSF / ISO 27001 Controls", "Third-Party Vendor Risk Management", "Audit Evidence Gathering & Gap Analysis", "Security Policy Authoring"], bridge: ["Running Control Audits ➔ Defining Enterprise Compliance Strategy", "Filling Risk Registers ➔ Board-Level FAIR Financial Risk Modeling"], delta: ["Global Regulatory Directives (SEC Cyber, DORA, NIS2)", "Automated Compliance Platform Architecture (Vanta/Drata)", "Executive Committee Chairing & C-suite Risk Alignment"], certs: ["ISACA CISM", "ISACA CRISC", "ISC2 CISSP", "CGEIT"], note: "GRC leaders bridge technical controls with corporate bottom lines. Master the FAIR quantitative risk model to articulate cyber risk in dollars." },
+  "grc->privacy_specialist": { score: 88, diff: "Smooth Specialty", timeline: "3-6 months", shared: ["Compliance Auditing & Control Frameworks", "Policy Documentation & Governance", "Third-Party Vendor Risk Reviews", "Regulatory Gap Assessments"], bridge: ["Security Controls ➔ Privacy Impact Assessments (DPIA)", "Data Classification ➔ Subject Access Request (DSAR) Fulfillment"], delta: ["Global Privacy Statutes (GDPR, CCPA/CPRA, HIPAA Privacy)", "Privacy by Design & Data Minimization Engineering", "Cross-Border Data Transfer Agreements (DPAs, SCCs)"], certs: ["IAPP CIPP/US", "IAPP CIPP/E", "IAPP CIPM", "ISACA CDPSE"], note: "Privacy is one of the highest-paying compliance specializations. Combine your GRC audit instincts with IAPP CIPP certifications." },
+  "grc->policy_specialist": { score: 90, diff: "Direct Alignment", timeline: "2-4 months", shared: ["Security Framework Mapping (NIST/ISO)", "Policy & Standard Authoring", "Audit Defense & Regulatory Scoping", "Executive Reporting"], bridge: ["Internal SOPs ➔ Enterprise Cyber Strategy & SEC Disclosures", "Compliance Tracking ➔ AI & Supply Chain Governance Policy"], delta: ["SEC Form 8-K/10-K Cyber Disclosure Timelines", "Federal Directives & Cyber Executive Orders", "AI Use & Acceptable Risk Policy Frameworks"], certs: ["ISC2 CGRC", "SANS MGT514", "ISACA CGEIT"], note: "Policy specialists shape corporate posture. Focus on emerging AI governance and SEC cyber disclosure mandates to stand out." },
+  "soc_analyst->penetration_tester": { score: 75, diff: "Moderate", timeline: "6-12 months", shared: ["Network Packet Capture (Wireshark)", "Understanding Exploit Mechanics", "Attack Signature Footprints", "MITRE ATT&CK Framework"], bridge: ["Detecting Web Attacks ➔ Executing Exploits (SQLi, XSS, SSRF)", "Investigating Malware Persistence ➔ Crafting Payloads", "Reading Alert Signatures ➔ Evading EDR/IDS Rules"], delta: ["Burp Suite Professional & Web App Methodology", "Manual Privilege Escalation (Linux/Windows)", "Penetration Testing Scoping & Report Writing"], certs: ["eLearnSecurity eJPT", "TCM Security PNPT", "OffSec OSCP"], note: "You know what alarms look like on the blue team. Use that insight to practice stealthy offensive techniques on PortSwigger Web Security Academy." },
+  "soc_analyst->dfir": { score: 90, diff: "Easy to Moderate", timeline: "3-6 months", shared: ["Evidence Gathering & Timeline Creation", "Endpoint Telemetry Analysis", "Threat Intel Correlation", "Root Cause Incident Analysis"], bridge: ["EDR Alerts ➔ Deep Memory & Disk Forensics", "Alert Triage ➔ Full Forensic Timeline Reconstruction"], delta: ["Memory Dump Analysis (Volatility)", "Master File Table (MFT) & Registry Forensics", "Malware Static/Dynamic Triage (Ghidra, PEStudio)"], certs: ["GIAC GCIH", "GIAC GCFA", "Blue Team Level 1"], note: "DFIR is the natural senior evolution for SOC analysts. Practice investigating memory dumps from past CyberDefenders challenges." },
+  "soc_analyst->cloud_security": { score: 80, diff: "Moderate", timeline: "6-9 months", shared: ["Log Correlation & Parsing", "Threat Detection Rules", "Identity & Access Monitoring", "Incident Response Workflows"], bridge: ["On-Prem SIEM ➔ AWS CloudTrail, GuardDuty & CloudWatch", "Firewall Rules ➔ Security Groups & Cloud WAFs"], delta: ["Cloud Architecture (IAM, S3, VPCs)", "Infrastructure as Code Security (Tfsec)", "Container & Kubernetes Runtime Monitoring"], certs: ["AWS Certified Security - Specialty", "Google Cloud Security Engineer"], note: "Master cloud log sources and automate incident containment scripts using AWS Lambda." },
+  "grc->ciso": { score: 90, diff: "Leadership Progression", timeline: "5-8 years", shared: ["Enterprise Risk Governance", "Board & Executive Reporting", "Security Policy Management", "Regulatory Compliance (NIST/ISO)"], bridge: ["Control Auditing ➔ Departmental Security Budget Planning", "Vendor Risk Reviews ➔ Enterprise Cyber Insurance Negotiation"], delta: ["Executive Crisis Leadership", "C-suite Business Strategy Alignment", "Enterprise Security Culture Strategy"], certs: ["CISM", "CISSP", "CCISO"], note: "GRC is the most direct path to the CISO chair because modern CISOs are business risk executives first." }
 };
 
 function renderTransferExplorer() {
@@ -828,18 +964,8 @@ function renderTransferExplorer() {
   const srcData = _ROLE_ONTOLOGY[src] || _ROLE_ONTOLOGY.it_helpdesk;
   const tgtData = _ROLE_ONTOLOGY[tgt] || _ROLE_ONTOLOGY.soc_analyst;
 
-  // Transfer matrix presets
-  const presets = {
-    "it_helpdesk->soc_analyst": { score: 85, diff: "Easy to Moderate", timeline: "3-6 months", shared: ["Windows/Linux OS Troubleshooting", "Active Directory User Administration", "Network Protocol Basics (TCP/IP, DNS)", "Ticket Queue Triage under SLAs"], bridge: ["Antivirus Troubleshooting ➔ EDR Alert Triage", "Network Connectivity Checks ➔ Wireshark PCAP Analysis", "User Lockout Investigation ➔ Account Takeover Detection"], delta: ["SIEM Query Syntax (SPL / KQL)", "MITRE ATT&CK Threat Mapping", "Phishing Email Header Forensics", "Cyber Kill Chain Containment"], certs: ["CompTIA Security+", "CompTIA CySA+", "Splunk Core Power User"], note: "You already know how computers and users break. Pivot by learning how attackers exploit those exact systems using SIEM logs and TryHackMe labs." },
-    "it_helpdesk->cloud_security": { score: 65, diff: "Moderate", timeline: "6-12 months", shared: ["User Authentication Concepts", "Networking Fundamentals", "Operating System Administration"], bridge: ["On-Prem Active Directory ➔ AWS IAM / Azure Entra ID", "Virtual Machines ➔ Cloud Compute (EC2 / Compute Engine)"], delta: ["Cloud Architecture & IAM Least Privilege", "Infrastructure as Code (Terraform)", "Cloud Security Posture Management (CSPM)", "CloudTrail & GuardDuty Log Auditing"], certs: ["AWS Certified Security - Specialty", "CompTIA Security+"], note: "Build free-tier cloud projects and convert manual sysadmin scripts into secure Terraform templates." },
-    "soc_analyst->penetration_tester": { score: 75, diff: "Moderate", timeline: "6-12 months", shared: ["Network Packet Capture (Wireshark)", "Understanding Exploit Mechanics", "Attack Signature Footprints", "MITRE ATT&CK Framework"], bridge: ["Detecting Web Attacks ➔ Executing Exploits (SQLi, XSS, SSRF)", "Investigating Malware Persistence ➔ Crafting Payloads", "Reading Alert Signatures ➔ Evading EDR/IDS Rules"], delta: ["Burp Suite Professional & Web App Methodology", "Manual Privilege Escalation (Linux/Windows)", "Penetration Testing Scoping & Report Writing"], certs: ["eLearnSecurity eJPT", "TCM Security PNPT", "OffSec OSCP"], note: "You know what alarms look like on the blue team. Use that insight to practice stealthy offensive techniques on PortSwigger Web Security Academy." },
-    "soc_analyst->dfir": { score: 90, diff: "Easy to Moderate", timeline: "3-6 months", shared: ["Evidence Gathering & Timeline Creation", "Endpoint Telemetry Analysis", "Threat Intel Correlation", "Root Cause Incident Analysis"], bridge: ["EDR Alerts ➔ Deep Memory & Disk Forensics", "Alert Triage ➔ Full Forensic Timeline Reconstruction"], delta: ["Memory Dump Analysis (Volatility)", "Master File Table (MFT) & Registry Forensics", "Malware Static/Dynamic Triage (Ghidra, PEStudio)"], certs: ["GIAC GCIH", "GIAC GCFA", "Blue Team Level 1"], note: "DFIR is the natural senior evolution for SOC analysts. Practice investigating memory dumps from past CyberDefenders challenges." },
-    "soc_analyst->cloud_security": { score: 80, diff: "Moderate", timeline: "6-9 months", shared: ["Log Correlation & Parsing", "Threat Detection Rules", "Identity & Access Monitoring", "Incident Response Workflows"], bridge: ["On-Prem SIEM ➔ AWS CloudTrail, GuardDuty & CloudWatch", "Firewall Rules ➔ Security Groups & Cloud WAFs"], delta: ["Cloud Architecture (IAM, S3, VPCs)", "Infrastructure as Code Security (Tfsec)", "Container & Kubernetes Runtime Monitoring"], certs: ["AWS Certified Security - Specialty", "Google Cloud Security Engineer"], note: "Master cloud log sources and automate incident containment scripts using AWS Lambda." },
-    "grc->ciso": { score: 90, diff: "Leadership Progression", timeline: "5-8 years", shared: ["Enterprise Risk Governance", "Board & Executive Reporting", "Security Policy Management", "Regulatory Compliance (NIST/ISO)"], bridge: ["Control Auditing ➔ Departmental Security Budget Planning", "Vendor Risk Reviews ➔ Enterprise Cyber Insurance Negotiation"], delta: ["Executive Crisis Leadership", "C-suite Business Strategy Alignment", "Enterprise Security Culture Strategy"], certs: ["CISM", "CISSP", "CCISO"], note: "GRC is the most direct path to the CISO chair because modern CISOs are business risk executives first." }
-  };
-
   const key = `${src}->${tgt}`;
-  const data = presets[key] || {
+  const data = _TRANSFER_PRESETS[key] || {
     score: 70,
     diff: "Moderate",
     timeline: "6 months",

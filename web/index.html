@@ -313,23 +313,65 @@
         <div class="control-group">
           <label for="select-source-role">Your Current Background / Role:</label>
           <select id="select-source-role" class="form-input">
-            <option value="it_helpdesk">IT Helpdesk / Systems Support</option>
-            <option value="soc_analyst">SOC Analyst (Security Operations)</option>
-            <option value="penetration_tester">Penetration Tester / Offensive Security</option>
-            <option value="grc">GRC Analyst (Governance, Risk, Compliance)</option>
-            <option value="cloud_security">Cloud Security Engineer</option>
+            <optgroup label="Engineering & Development">
+              <option value="software_developer">Software Developer / Software Engineer</option>
+              <option value="security_software_engineer">Security Software Engineer (AppSec / DevSecOps)</option>
+              <option value="ai_developer">AI Developer / LLM Application Engineer</option>
+              <option value="forward_deployed_engineer">Forward Deployed Engineer (FDE)</option>
+              <option value="cloud_engineer">Cloud Engineer / Infrastructure Architect</option>
+            </optgroup>
+            <optgroup label="Security Operations & Defense">
+              <option value="it_helpdesk" selected>IT Helpdesk / Systems Support</option>
+              <option value="soc_analyst">SOC Analyst (Security Operations)</option>
+              <option value="security_engineer">Security Engineer (SecOps & Infrastructure)</option>
+              <option value="network_security_engineer">Network Security Engineer</option>
+              <option value="cloud_security">Cloud Security Engineer</option>
+              <option value="dfir">DFIR (Digital Forensics & Incident Response)</option>
+            </optgroup>
+            <optgroup label="Offensive Security & AI Safety">
+              <option value="penetration_tester">Penetration Tester / Ethical Hacker</option>
+              <option value="red_team">Red Teamer / Offensive Operations</option>
+              <option value="ai_security_specialist">AI Security Specialist / AI Safety Engineer</option>
+              <option value="prompt_engineer">Prompt Engineer / LLM Guardrail Specialist</option>
+            </optgroup>
+            <optgroup label="Governance, Risk, Privacy & Leadership">
+              <option value="grc">GRC Analyst (Governance, Risk, Compliance)</option>
+              <option value="grc_leader">GRC Leader / VP of Risk & Compliance</option>
+              <option value="privacy_specialist">Privacy Specialist / Data Protection Officer (DPO)</option>
+              <option value="policy_specialist">Policy Specialist / Cyber Regulatory Strategist</option>
+              <option value="ciso">CISO / Executive Security Leadership</option>
+            </optgroup>
           </select>
         </div>
         <div class="transfer-arrow-badge">➔</div>
         <div class="control-group">
           <label for="select-target-role">Target Cybersecurity Role:</label>
           <select id="select-target-role" class="form-input">
-            <option value="soc_analyst">SOC Analyst (Security Operations)</option>
-            <option value="penetration_tester">Penetration Tester / Offensive Security</option>
-            <option value="cloud_security" selected>Cloud Security Engineer</option>
-            <option value="grc">GRC Analyst (Governance, Risk, Compliance)</option>
-            <option value="dfir">DFIR (Digital Forensics & Incident Response)</option>
-            <option value="ciso">CISO / Executive Security Leadership</option>
+            <optgroup label="Offensive Security & AI Safety">
+              <option value="penetration_tester">Penetration Tester / Ethical Hacker</option>
+              <option value="red_team">Red Teamer / Offensive Operations</option>
+              <option value="ai_security_specialist">AI Security Specialist / AI Safety Engineer</option>
+              <option value="prompt_engineer">Prompt Engineer / LLM Guardrail Specialist</option>
+            </optgroup>
+            <optgroup label="Security Engineering & AppSec">
+              <option value="security_software_engineer">Security Software Engineer (AppSec / DevSecOps)</option>
+              <option value="security_engineer">Security Engineer (SecOps & Infrastructure)</option>
+              <option value="cloud_security" selected>Cloud Security Engineer</option>
+              <option value="network_security_engineer">Network Security Engineer</option>
+              <option value="forward_deployed_engineer">Forward Deployed Engineer (FDE)</option>
+              <option value="ai_developer">AI Developer / LLM Application Engineer</option>
+            </optgroup>
+            <optgroup label="Security Operations & Response">
+              <option value="soc_analyst">SOC Analyst (Security Operations)</option>
+              <option value="dfir">DFIR (Digital Forensics & Incident Response)</option>
+            </optgroup>
+            <optgroup label="Governance, Risk, Privacy & Leadership">
+              <option value="grc">GRC Analyst (Governance, Risk, Compliance)</option>
+              <option value="grc_leader">GRC Leader / VP of Risk & Compliance</option>
+              <option value="privacy_specialist">Privacy Specialist / Data Protection Officer (DPO)</option>
+              <option value="policy_specialist">Policy Specialist / Cyber Regulatory Strategist</option>
+              <option value="ciso">CISO / Executive Security Leadership</option>
+            </optgroup>
           </select>
         </div>
       </div>
@@ -344,11 +386,34 @@
       <div class="role-selector-bar">
         <label for="select-skills-role">Select Cybersecurity Role:</label>
         <select id="select-skills-role" class="form-input">
-          <option value="soc_analyst">SOC Analyst (Security Operations)</option>
-          <option value="penetration_tester">Penetration Tester / Offensive Security</option>
-          <option value="cloud_security">Cloud Security Engineer</option>
-          <option value="grc">GRC Analyst (Governance, Risk, Compliance)</option>
-          <option value="it_helpdesk">IT Helpdesk / Systems Support</option>
+          <optgroup label="Engineering, AppSec & AI">
+            <option value="security_software_engineer">Security Software Engineer (AppSec / DevSecOps)</option>
+            <option value="software_developer">Software Developer / Software Engineer</option>
+            <option value="ai_developer">AI Developer / LLM Application Engineer</option>
+            <option value="ai_security_specialist">AI Security Specialist / AI Safety Engineer</option>
+            <option value="prompt_engineer">Prompt Engineer / LLM Guardrail Specialist</option>
+            <option value="forward_deployed_engineer">Forward Deployed Engineer (FDE)</option>
+            <option value="cloud_engineer">Cloud Engineer / Infrastructure Architect</option>
+          </optgroup>
+          <optgroup label="Security Defense & Operations">
+            <option value="soc_analyst">SOC Analyst (Security Operations)</option>
+            <option value="security_engineer">Security Engineer (SecOps & Infrastructure)</option>
+            <option value="network_security_engineer">Network Security Engineer</option>
+            <option value="cloud_security">Cloud Security Engineer</option>
+            <option value="dfir">DFIR (Digital Forensics & Incident Response)</option>
+            <option value="it_helpdesk">IT Helpdesk / Systems Support</option>
+          </optgroup>
+          <optgroup label="Offensive Security">
+            <option value="penetration_tester">Penetration Tester / Ethical Hacker</option>
+            <option value="red_team">Red Teamer / Offensive Operations</option>
+          </optgroup>
+          <optgroup label="Governance, Risk, Privacy & Leadership">
+            <option value="grc">GRC Analyst (Governance, Risk, Compliance)</option>
+            <option value="grc_leader">GRC Leader / VP of Risk & Compliance</option>
+            <option value="privacy_specialist">Privacy Specialist / Data Protection Officer (DPO)</option>
+            <option value="policy_specialist">Policy Specialist / Cyber Regulatory Strategist</option>
+            <option value="ciso">CISO / Executive Security Leadership</option>
+          </optgroup>
         </select>
       </div>
       <div id="skills-mindmap-container" class="mindmap-grid-container">
@@ -361,11 +426,34 @@
       <div class="role-selector-bar">
         <label for="select-certs-role">Select Cybersecurity Role:</label>
         <select id="select-certs-role" class="form-input">
-          <option value="soc_analyst">SOC Analyst (Security Operations)</option>
-          <option value="penetration_tester">Penetration Tester / Offensive Security</option>
-          <option value="cloud_security">Cloud Security Engineer</option>
-          <option value="grc">GRC Analyst (Governance, Risk, Compliance)</option>
-          <option value="it_helpdesk">IT Helpdesk / Systems Support</option>
+          <optgroup label="Engineering, AppSec & AI">
+            <option value="security_software_engineer">Security Software Engineer (AppSec / DevSecOps)</option>
+            <option value="software_developer">Software Developer / Software Engineer</option>
+            <option value="ai_developer">AI Developer / LLM Application Engineer</option>
+            <option value="ai_security_specialist">AI Security Specialist / AI Safety Engineer</option>
+            <option value="prompt_engineer">Prompt Engineer / LLM Guardrail Specialist</option>
+            <option value="forward_deployed_engineer">Forward Deployed Engineer (FDE)</option>
+            <option value="cloud_engineer">Cloud Engineer / Infrastructure Architect</option>
+          </optgroup>
+          <optgroup label="Security Defense & Operations">
+            <option value="soc_analyst">SOC Analyst (Security Operations)</option>
+            <option value="security_engineer">Security Engineer (SecOps & Infrastructure)</option>
+            <option value="network_security_engineer">Network Security Engineer</option>
+            <option value="cloud_security">Cloud Security Engineer</option>
+            <option value="dfir">DFIR (Digital Forensics & Incident Response)</option>
+            <option value="it_helpdesk">IT Helpdesk / Systems Support</option>
+          </optgroup>
+          <optgroup label="Offensive Security">
+            <option value="penetration_tester">Penetration Tester / Ethical Hacker</option>
+            <option value="red_team">Red Teamer / Offensive Operations</option>
+          </optgroup>
+          <optgroup label="Governance, Risk, Privacy & Leadership">
+            <option value="grc">GRC Analyst (Governance, Risk, Compliance)</option>
+            <option value="grc_leader">GRC Leader / VP of Risk & Compliance</option>
+            <option value="privacy_specialist">Privacy Specialist / Data Protection Officer (DPO)</option>
+            <option value="policy_specialist">Policy Specialist / Cyber Regulatory Strategist</option>
+            <option value="ciso">CISO / Executive Security Leadership</option>
+          </optgroup>
         </select>
       </div>
       <div id="certs-mindmap-container" class="mindmap-cert-timeline">
