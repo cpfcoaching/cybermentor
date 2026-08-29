@@ -25,7 +25,10 @@ def check_secrets_and_api_keys() -> list[str]:
     # Common high-risk secret patterns (with strict word boundaries)
     patterns = [
         (r'\bAIzaSy[A-Za-z0-9_-]{33}\b', "Google / Firebase API Key"),
-        (r'\bsk-[A-Za-z0-9_-]{20,}\b', "OpenAI / Generic Secret Key"),
+        (r'\bsk-[A-Za-z0-9_-]{20,}\b', "OpenAI / Anthropic Secret Key"),
+        (r'\bghp_[A-Za-z0-9]{36}\b', "GitHub Personal Access Token"),
+        (r'\bglpat-[A-Za-z0-9_-]{20,}\b', "GitLab Personal Access Token"),
+        (r'\bxox[baprs]-[A-Za-z0-9_-]{10,}\b', "Slack Access Token"),
         (r'-----BEGIN\s+(RSA|EC|OPENSSH|PRIVATE)\s+KEY-----', "Private Key Material"),
         (r'["\']password["\']\s*:\s*["\'][^"\']{4,}["\']', "Hardcoded Password"),
     ]
