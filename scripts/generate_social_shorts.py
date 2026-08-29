@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generates 30-second 9:16 vertical shorts from the master walkthrough video
-with on-screen URL watermark and typography cards using PIL overlays and FFmpeg.
+with pixel-perfect auto-wrapped text, centered layouts, and generous padding.
 """
 
 import os
@@ -22,7 +22,7 @@ SHORTS_CLIPS = [
         "start": "00:00:20",
         "duration": "00:00:30",
         "tag": "💰 $15,000+ TUITION SAVINGS",
-        "headline": "STOP PAYING FOR EXPENSIVE BOOTCAMPS",
+        "headline": "STOP PAYING $15,000\nFOR EXPENSIVE BOOTCAMPS",
         "subtitle": "Autonomous AI Mentorship Powered by Google AI"
     },
     {
@@ -31,7 +31,7 @@ SHORTS_CLIPS = [
         "start": "00:01:40",
         "duration": "00:00:30",
         "tag": "📅 HOUR-CALIBRATED ROADMAP",
-        "headline": "COMPTIA SECURITY+ IN 6 WEEKS",
+        "headline": "COMPTIA SECURITY+\nIN JUST 6 WEEKS",
         "subtitle": "Personalized Lab Schedules & Exam Weightings"
     },
     {
@@ -40,7 +40,7 @@ SHORTS_CLIPS = [
         "start": "00:02:25",
         "duration": "00:00:30",
         "tag": "🧠 SKILLS & CERTS MINDMAP",
-        "headline": "TRANSFER YOUR IT SKILLS TO CYBER",
+        "headline": "TRANSFER YOUR IT SKILLS\nDIRECTLY TO CYBER",
         "subtitle": "SOC Operations, Cloud Security & GRC Roadmaps"
     },
     {
@@ -49,51 +49,81 @@ SHORTS_CLIPS = [
         "start": "00:03:30",
         "duration": "00:00:30",
         "tag": "🎤 SCORED MOCK INTERVIEWS",
-        "headline": "REALISTIC SOC INCIDENT TRIAGE",
+        "headline": "REALISTIC SOC INCIDENT\nTRIAGE DRILLS",
         "subtitle": "Scored 4-Pillar Rubrics & 1,160+ Podcast Insights"
     }
 ]
 
+def load_font(font_path, size):
+    try:
+        return ImageFont.truetype(font_path, size)
+    except Exception:
+        return ImageFont.load_default()
+
 def create_overlay_png(clip, out_png):
-    # 1080x1920 RGBA transparent image
+    # 1080x1920 RGBA transparent canvas
     img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
 
-    # Try loading system fonts
-    try:
-        font_tag = ImageFont.truetype("/System/Library/Fonts/HelveticaNeue.ttc", 30)
-        font_title = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 46)
-        font_sub = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", 28)
-        font_url_label = ImageFont.truetype("/System/Library/Fonts/HelveticaNeue.ttc", 26)
-        font_url = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 42)
-    except Exception:
-        font_tag = ImageFont.load_default()
-        font_title = ImageFont.load_default()
-        font_sub = ImageFont.load_default()
-        font_url_label = ImageFont.load_default()
-        font_url = ImageFont.load_default()
+    font_tag = load_font("/System/Library/Fonts/Helvetica.ttc", 26)
+    font_title = load_font("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 40)
+    font_sub = load_font("/System/Library/Fonts/Helvetica.ttc", 24)
+    font_url_label = load_font("/System/Library/Fonts/Helvetica.ttc", 24)
+    font_url = load_font("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 36)
 
-    # ── Top Card Overlay (y: 180 - 480) ─────────────────────────────────────
-    # Glassmorphism dark pill background
-    draw.rounded_rectangle([40, 160, 1040, 480], radius=28, fill=(15, 23, 42, 230), outline=(56, 189, 248, 180), width=3)
-    
-    # Tag Pill
-    draw.rounded_rectangle([80, 190, 600, 245], radius=15, fill=(30, 41, 59, 255), outline=(56, 189, 248, 255), width=2)
-    draw.text((105, 202), clip["tag"], font=font_tag, fill=(56, 189, 248, 255))
-    
-    # Headline & Subtitle
-    draw.text((80, 270), clip["headline"], font=font_title, fill=(255, 255, 255, 255))
-    draw.text((80, 390), clip["subtitle"], font=font_sub, fill=(148, 163, 184, 255))
+    # ── Top Card Overlay (y: 120 - 520, w: 960 centered at x=60..1020) ──────
+    card_x1, card_y1, card_x2, card_y2 = 50, 120, 1030, 520
+    draw.rounded_rectangle([card_x1, card_y1, card_x2, card_y2], radius=28, fill=(10, 15, 30, 240), outline=(56, 189, 248, 200), width=3)
 
-    # ── Bottom URL Watermark Card (y: 1420 - 1680) ───────────────────────────
-    draw.rounded_rectangle([40, 1440, 1040, 1680], radius=28, fill=(15, 23, 42, 240), outline=(34, 211, 238, 200), width=3)
-    
-    # Label
-    draw.text((80, 1475), "⚡ TRY THE AI COACH LIVE (FREE):", font=font_url_label, fill=(56, 189, 248, 255))
-    
-    # URL Pill
-    draw.rounded_rectangle([80, 1530, 1000, 1630], radius=20, fill=(2, 6, 23, 255), outline=(34, 211, 238, 255), width=2)
-    draw.text((115, 1555), "client.breakingintocybersecurity.org", font=font_url, fill=(34, 211, 238, 255))
+    # Dynamic Tag Pill (Auto-width centered)
+    tag_text = clip["tag"]
+    tag_bbox = draw.textbbox((0, 0), tag_text, font=font_tag)
+    tag_w = tag_bbox[2] - tag_bbox[0] + 40
+    tag_x1 = int((1080 - tag_w) / 2)
+    tag_y1 = card_y1 + 25
+    draw.rounded_rectangle([tag_x1, tag_y1, tag_x1 + tag_w, tag_y1 + 45], radius=12, fill=(30, 41, 59, 255), outline=(56, 189, 248, 255), width=2)
+    draw.text((tag_x1 + 20, tag_y1 + 8), tag_text, font=font_tag, fill=(56, 189, 248, 255))
+
+    # Headline (Centered, 2 lines)
+    headline_lines = clip["headline"].split("\n")
+    cur_y = tag_y1 + 68
+    for line in headline_lines:
+        line_bbox = draw.textbbox((0, 0), line, font=font_title)
+        line_w = line_bbox[2] - line_bbox[0]
+        draw.text(((1080 - line_w) / 2, cur_y), line, font=font_title, fill=(255, 255, 255, 255))
+        cur_y += 50
+
+    # Subtitle (Centered, with padding)
+    sub_text = clip["subtitle"]
+    sub_bbox = draw.textbbox((0, 0), sub_text, font=font_sub)
+    sub_w = sub_bbox[2] - sub_bbox[0]
+    draw.text(((1080 - sub_w) / 2, cur_y + 15), sub_text, font=font_sub, fill=(148, 163, 184, 255))
+
+    # ── Bottom URL Watermark Card (y: 1400 - 1680) ───────────────────────────
+    bcard_x1, bcard_y1, bcard_x2, bcard_y2 = 50, 1400, 1030, 1680
+    draw.rounded_rectangle([bcard_x1, bcard_y1, bcard_x2, bcard_y2], radius=28, fill=(10, 15, 30, 245), outline=(34, 211, 238, 220), width=3)
+
+    # Label (Centered)
+    lbl_text = "⚡ TRY THE AI CAREER COACH (100% FREE)"
+    lbl_bbox = draw.textbbox((0, 0), lbl_text, font=font_url_label)
+    lbl_w = lbl_bbox[2] - lbl_bbox[0]
+    draw.text(((1080 - lbl_w) / 2, bcard_y1 + 30), lbl_text, font=font_url_label, fill=(56, 189, 248, 255))
+
+    # URL Pill (Centered with generous padding)
+    url_text = "client.breakingintocybersecurity.org"
+    url_bbox = draw.textbbox((0, 0), url_text, font=font_url)
+    url_w = url_bbox[2] - url_bbox[0]
+    pill_w = url_w + 60
+    pill_x1 = int((1080 - pill_w) / 2)
+    pill_y1 = bcard_y1 + 80
+    draw.rounded_rectangle([pill_x1, pill_y1, pill_x1 + pill_w, pill_y1 + 80], radius=20, fill=(2, 6, 23, 255), outline=(34, 211, 238, 255), width=2)
+    draw.text(((1080 - url_w) / 2, pill_y1 + 20), url_text, font=font_url, fill=(34, 211, 238, 255))
+
+    # Sub-footer CTA
+    sub_cta = "Built with Google Antigravity SDK & Gemini 3.7"
+    cta_bbox = draw.textbbox((0, 0), sub_cta, font=font_sub)
+    cta_w = cta_bbox[2] - cta_bbox[0]
+    draw.text(((1080 - cta_w) / 2, pill_y1 + 105), sub_cta, font=font_sub, fill=(100, 116, 139, 255))
 
     img.save(out_png)
 
@@ -104,10 +134,6 @@ def render_short(clip):
 
     print(f"🎬 Rendering Short: {clip['title']} ({clip['duration']}s)...")
 
-    # Filter graph:
-    # 1. Scale/crop 16:9 1080p to 9:16 vertical 1080x1920 blurred background
-    # 2. Overlay sharp 1080x608 center gameplay/tour video at y=656
-    # 3. Overlay typography cards at y=0
     filter_graph = (
         "[0:v]split=2[bgsrc][fgsrc];"
         "[bgsrc]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=25:5,eq=brightness=-0.35[bg];"
@@ -143,7 +169,7 @@ def main():
         print(f"❌ Source video not found at {VIDEO_SRC}")
         return
 
-    print(f"🚀 Generating {len(SHORTS_CLIPS)} Social Media & YouTube Shorts (9:16 Vertical 1080x1920)...")
+    print(f"🚀 Re-generating {len(SHORTS_CLIPS)} Social Media & YouTube Shorts with centered borders...")
     for clip in SHORTS_CLIPS:
         render_short(clip)
         
