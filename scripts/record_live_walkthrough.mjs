@@ -125,31 +125,21 @@ async function main() {
   }
 
   // ───────────────────────────────────────────────────────────────────────────
-  // SCENE 2: Entering Studio, Google SSO & Study Plan (Target: ~57s)
+  // SCENE 2: Entering Studio, Authentication & Study Plan (Target: ~57s)
   // ───────────────────────────────────────────────────────────────────────────
   console.log('\n🎬 Recording Scene 2: Entering Studio, Authenticating & Study Plan...');
   const scene2Start = Date.now();
   await page.goto(`${BASE_URL}/index.html`, { waitUntil: 'networkidle' });
-  await sleep(2000);
-
-  // Perform Google SSO Authentication on-screen
-  console.log('  → Opening Google SSO authentication modal...');
-  await page.evaluate(() => {
-    const ssoBtn = document.getElementById('google-sso-btn');
-    if (ssoBtn) ssoBtn.click();
-  });
   await sleep(1500);
 
-  console.log('  → Selecting Christophe Foulon authenticated profile...');
+  // Authenticate directly as verified coach (bypasses external OAuth popup)
+  console.log('  → Loading authenticated profile: Christophe Foulon...');
   await page.evaluate(() => {
-    const chrisBtn = document.getElementById('btn-sso-chris');
-    if (chrisBtn) {
-      chrisBtn.click();
-    } else if (typeof initSessionWithUser === 'function') {
+    if (typeof initSessionWithUser === 'function') {
       initSessionWithUser('Christophe_Foulon', 'google_sso_verified_token', false);
     }
   });
-  await sleep(3000);
+  await sleep(2500);
 
   // Trigger Career Path Roadmap prompt
   console.log('  → Triggering Career Path Roadmap prompt...');
@@ -327,19 +317,23 @@ async function muxMasterAudioVideo(rawVideoPath, manifest) {
 
   const bgMusic = path.resolve('web/audio/track1_deep_focus_alpha.wav');
 
-  console.log('\n🎞️ Rendering master 1080p 60fps MP4 walkthrough with timed narration & ambient focus beats...');
+  console.log('\n🎞️ Rendering master 1080p 60fps MP4 walkthrough with studio audio cleanup & -16 LUFS normalization...');
   const ffmpegCmd = [
     '/usr/local/bin/ffmpeg', '-y',
     '-i', rawVideoPath,
     '-i', fullNarration,
     '-i', bgMusic,
     '-filter_complex',
-    '[1:a]volume=1.0[voice];[2:a]volume=0.10,aloop=loop=-1:size=2e+09[bg];[voice][bg]amix=inputs=2:duration=first:dropout_transition=2[aout]',
+    '[1:a]highpass=f=80,afftdn=nr=10:nf=-25,equalizer=f=3000:width_type=h:width=1200:g=2.5,acompressor=threshold=-16dB:ratio=3:attack=20:release=200,volume=1.0[voice];' +
+    '[2:a]volume=0.08,aloop=loop=-1:size=2e+09[bg];' +
+    '[voice][bg]amix=inputs=2:duration=first:dropout_transition=2,loudnorm=I=-16:TP=-1.5:LRA=11[aout]',
     '-map', '0:v:0',
     '-map', '[aout]',
     '-c:v', 'libx264',
     '-preset', 'fast',
     '-crf', '18',
+    '-c:a', 'aac',
+    '-b:a', '192k',
     '-pix_fmt', 'yuv420p',
     '-shortest',
     finalOutput

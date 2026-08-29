@@ -61,3 +61,16 @@ package-lock.json
 submission/demo_video/raw_video/
 submission/demo_video/audio_scenes/
 
+
+# Added by GitGuard (Node.js, Python, FastAPI)
+# Environment-specific local files may contain sensitive overrides
+.env.*.local
+# Development environment secrets should not be shared
+.env.development.local
+# Production secrets must never be committed to version control
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+out/
+coverage/
