@@ -1195,11 +1195,19 @@ function finalizeStreamingMessage(el, markdown) {
   speakBtn.className = 'tts-speak-btn';
   speakBtn.title = 'Listen to this response';
   speakBtn.innerHTML = '🔊';
-  speakBtn.addEventListener('click', () => speakText(markdown));
+  speakBtn.addEventListener('click', () => {
+    if (typeof speakCoachSpeech === 'function') {
+      speakCoachSpeech(markdown);
+    } else if (typeof speakTextFallback === 'function') {
+      speakTextFallback(markdown);
+    }
+  });
   bubble.appendChild(speakBtn);
 
-  if (voiceEnabled) {
-    speakText(markdown);
+  if (typeof isVoiceNarrationEnabled !== 'undefined' && isVoiceNarrationEnabled) {
+    if (typeof speakCoachSpeech === 'function') {
+      speakCoachSpeech(markdown);
+    }
   }
 
   scrollToBottom();
