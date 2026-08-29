@@ -268,6 +268,23 @@ The core coaching rubrics, career roadmaps, interview preparation scenarios, and
 
 ---
 
+## 🔬 Official Citations, Standards & Career Adaptation Research
+
+CyberMentor's capability-first ontology, interview drills, and continual coaching models are informed by official workforce taxonomies, security standards, and modern career adaptation frameworks:
+
+- **CISA NICCS Cyber Career Pathways Tool**: [`https://niccs.cisa.gov/tools/cyber-career-pathways-tool`](https://niccs.cisa.gov/tools/cyber-career-pathways-tool)
+- **NIST NICE Cybersecurity Workforce Framework (SP 800-181r1)**: [`https://www.nist.gov/itl/applied-cybersecurity/nice/nice-framework-resource-center`](https://www.nist.gov/itl/applied-cybersecurity/nice/nice-framework-resource-center)
+- **Paul Jerimy Security Certification Roadmap**: [`https://pauljerimy.com/security-certification-roadmap/`](https://pauljerimy.com/security-certification-roadmap/)
+- **Hadess Cybersecurity Certification Roadmap**: [`https://career.hadess.io/certificate-roadmap`](https://career.hadess.io/certificate-roadmap)
+- **Cyberdudekz Security Cert Roadmap**: [`https://github.com/cyberdudekz/security-cert-roadmap`](https://github.com/cyberdudekz/security-cert-roadmap)
+- **NIST AI Risk Management Framework (AI RMF 1.0)**: [`https://www.nist.gov/itl/ai-risk-management-framework`](https://www.nist.gov/itl/ai-risk-management-framework)
+- **OWASP Top 10 for Large Language Model Applications**: [`https://owasp.org/www-project-top-10-for-large-language-model-applications/`](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- **How to Figure Out Your Next Career Move** (Lenny's Newsletter): [`https://www.lennysnewsletter.com/p/how-to-figure-out-your-next-career`](https://www.lennysnewsletter.com/p/how-to-figure-out-your-next-career) — Framework for identifying high-leverage pivots and energy-giving roles.
+- **If Your Job Title Disappeared Tomorrow: Rebuilding Around Capabilities in 2026** (Metaintro): [`https://www.metaintro.com/blog/job-title-disappeared-rebuild-career-around-capabilities-2026`](https://www.metaintro.com/blog/job-title-disappeared-rebuild-career-around-capabilities-2026) — Capability-first tech career engineering.
+- **Your Job Title Won’t Exist in 3 Years: How to Upskill Before It’s Too Late** (LeveragAI): [`https://www.leveragai.com/your-job-title-wont-exist-in-3-years-heres-how-to-upskill-before-its-too-late`](https://www.leveragai.com/your-job-title-wont-exist-in-3-years-heres-how-to-upskill-before-its-too-late) — Proactive AI upskilling and career reinvention.
+
+---
+
 ## 👤 Author & Acknowledgments
 
 Built with ❤️ by **Christophe Foulon**  
