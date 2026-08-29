@@ -282,6 +282,8 @@ CyberMentor's capability-first ontology, interview drills, and continual coachin
 - **How to Figure Out Your Next Career Move** (Lenny's Newsletter): [`https://www.lennysnewsletter.com/p/how-to-figure-out-your-next-career`](https://www.lennysnewsletter.com/p/how-to-figure-out-your-next-career) — Framework for identifying high-leverage pivots and energy-giving roles.
 - **If Your Job Title Disappeared Tomorrow: Rebuilding Around Capabilities in 2026** (Metaintro): [`https://www.metaintro.com/blog/job-title-disappeared-rebuild-career-around-capabilities-2026`](https://www.metaintro.com/blog/job-title-disappeared-rebuild-career-around-capabilities-2026) — Capability-first tech career engineering.
 - **Your Job Title Won’t Exist in 3 Years: How to Upskill Before It’s Too Late** (LeveragAI): [`https://www.leveragai.com/your-job-title-wont-exist-in-3-years-heres-how-to-upskill-before-its-too-late`](https://www.leveragai.com/your-job-title-wont-exist-in-3-years-heres-how-to-upskill-before-its-too-late) — Proactive AI upskilling and career reinvention.
+- **These Cybersecurity Roles Are the Future: How to Thrive in the Age of AI** (Cloud Security Guy): [`https://cloudsecurityguy.substack.com/p/these-cybersecurity-roles-are-the`](https://cloudsecurityguy.substack.com/p/these-cybersecurity-roles-are-the) — Future-proof cybersecurity specializations, AI security defense postures, and navigating career growth.
+- **Will AI Replace Cybersecurity Jobs?** (Wallarm): [`https://www.wallarm.com/what/will-ai-replace-cybersecurity-jobs`](https://www.wallarm.com/what/will-ai-replace-cybersecurity-jobs) — AI-augmented AppSec, API defense automation, and human-in-the-loop cyber analyst roles.
 
 ---
 
