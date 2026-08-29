@@ -251,19 +251,19 @@ CyberMentor is ready for distribution across all platforms:
 
 ---
 
-## 📚 Authored Books by Christophe Foulon
+## 📚 Co-Authored & Contributed Books by Christophe Foulon
 
-The core coaching rubrics, career roadmaps, interview preparation scenarios, and risk quantification frameworks inside CyberMentor are directly derived from the published books by Christophe Foulon:
+The core coaching rubrics, career roadmaps, interview preparation scenarios, and risk quantification frameworks inside CyberMentor are directly derived from the published literature co-authored, authored, and contributed by Christophe Foulon:
 
-1. **Develop Your Cybersecurity Career Path: How to Break into Cybersecurity at Any Level**  
+1. **Develop Your Cybersecurity Career Path: How to Break into Cybersecurity at Any Level** *(Co-Author)*  
    📖 [Available on Amazon (Paperback & Kindle)](https://www.amazon.com/dp/1955976007/) — Practical roadmap for transitioning from non-traditional or IT backgrounds into cybersecurity.
-2. **Hack the Cybersecurity Interview: A complete interview preparation guide for jumpstarting your cybersecurity career**  
+2. **Hack the Cybersecurity Interview: A complete interview preparation guide for jumpstarting your cybersecurity career** *(Co-Author)*  
    📖 [Available on Amazon (Packt Publishing)](https://www.amazon.com/Hack-Cybersecurity-Interview-Interviews-Entry-level/dp/1835461298/) — Master technical, behavioral, and situational cybersecurity interviews.
-3. **Understand, Manage, and Measure Cyber Risk: Practical Solutions for Creating a Sustainable Cyber Program**  
+3. **Understand, Manage, and Measure Cyber Risk: Practical Solutions for Creating a Sustainable Cyber Program** *(Contributing Author)*  
    📖 [Available on Springer Nature / Apress](https://link.springer.com/book/10.1007/978-1-4842-9319-5) — Enterprise risk frameworks, executive communication, and practical FAIR risk quantification.
-4. **Hacker Inc.: Mindset For Your Career**  
+4. **Hacker Inc.: Mindset For Your Career** *(Co-authored with Renee Small)*  
    📖 [Available on Amazon](https://www.amazon.com/Hacker-Inc-Mindset-Your-Career/dp/B0DKTK1R93/) — Cultivating curiosity, adaptability, offensive thinking, and long-term career resilience.
-5. **The Cybersecurity Advantage: How SMB Leaders Leverage Fractional Executive Guidance to Build Trust, Win Business, and Drive Growth**  
+5. **The Cybersecurity Advantage: How SMB Leaders Leverage Fractional Executive Guidance to Build Trust, Win Business, and Drive Growth** *(Author)*  
    📖 [Available on Leanpub](https://leanpub.com/the-cybersecurity-advantage) — Fractional CISO advisory, executive trust, and strategic cyber program leadership for growth.
 
 ---

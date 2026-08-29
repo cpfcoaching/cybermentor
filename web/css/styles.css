@@ -919,6 +919,19 @@ body::before {
   margin-bottom: 6px;
 }
 
+.badge-author-role {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #a78bfa;
+  background: rgba(167, 139, 250, 0.15);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
 .book-resource-list {
   list-style: none;
   padding: 0;
