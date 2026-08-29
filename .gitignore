@@ -74,3 +74,15 @@ yarn-debug.log*
 yarn-error.log*
 out/
 coverage/
+
+# Native Mobile App Components & Platforms
+android/
+ios/
+capacitor.config.json
+capacitor.config.ts
+*.apk
+*.aab
+*.xcworkspace
+*.xcodeproj
+Podfile.lock
+Pods/
