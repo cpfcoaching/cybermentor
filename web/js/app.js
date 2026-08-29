@@ -1241,26 +1241,11 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   }
 }
 
-// ── Voice Output (Text-to-Speech) ─────────────────────────────────────────
-let voiceEnabled = false;
-const voiceToggleBtn = document.getElementById('voice-toggle-btn');
-
-if (voiceToggleBtn) {
-  voiceToggleBtn.addEventListener('click', () => {
-    voiceEnabled = !voiceEnabled;
-    voiceToggleBtn.textContent = voiceEnabled ? "🔊 Voice: On" : "🔊 Voice: Off";
-    voiceToggleBtn.style.color = voiceEnabled ? "var(--clr-cyan)" : "inherit";
-    if (!voiceEnabled && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
-  });
-}
-
-function speakText(text) {
+// ── Browser Voice Fallback Helper ─────────────────────────────────────────
+function speakTextFallback(text) {
   if (!('speechSynthesis' in window) || !text) return;
   window.speechSynthesis.cancel();
-  // Strip markdown characters for clean speech
-  const clean = text.replace(/[*_#`[\]()]/g, '').replace(/https?:\/\/\S+/g, 'link').slice(0, 500);
+  const clean = text.replace(/[*_#`[\]()]/g, '').replace(/https?:\/\/\S+/g, 'link').slice(0, 450);
   const utterance = new SpeechSynthesisUtterance(clean);
   utterance.rate = 1.05;
   utterance.pitch = 1.0;

@@ -6,7 +6,7 @@ This guide outlines how to migrate from third-party paid TTS APIs (ElevenLabs) t
 
 ## 🏗️ 3 Google & Open Architectures to Replace ElevenLabs
 
-```
+```text
                ┌───────────────────────────────────────────────────────────┐
                │    Island Boy Reference Audio (Christophe Foulon WAVs)    │
                └─────────────────────────────┬─────────────────────────────┘
@@ -30,14 +30,17 @@ This guide outlines how to migrate from third-party paid TTS APIs (ElevenLabs) t
 
 Google Cloud TTS allows training a **Custom Voice Model** directly within your Google Cloud project (`cybermentor-506813`).
 
-### How It Works:
+### How It Works
+
 1. **Prepare Audio Dataset**:
    - Provide 15–30 minutes of clean, isolated speech audio from your *Breaking Into Cybersecurity* podcast or studio recordings (WAV 44.1kHz / 48kHz mono).
    - Generate corresponding transcript lines in a CSV file: `audio_filename.wav, "Transcript of spoken audio"`.
+
 2. **Train Model in Google Cloud Console**:
    - Navigate to [Google Cloud Text-to-Speech > Custom Voice](https://console.cloud.google.com/speech/text-to-speech/custom-voices).
    - Upload your audio dataset bucket (`gs://cybermentor-voice-dataset/`).
    - Initiate training for `cybermentor-island-boy`.
+
 3. **Integration**:
    - Once trained, CyberMentor invokes the model directly via the standard Google Cloud Python SDK with project IAM credentials—no third-party keys or credit cards needed!
 
@@ -92,6 +95,7 @@ const liveSession = await ai.createLiveSession({
 ## 💡 Option 3: Zero-Cost Open Source Voice Cloning on Cloud Run
 
 For instant 5-second voice cloning with $0 API fees:
+
 - CyberMentor can deploy an open-weights neural voice cloner (such as **XTTS-v2** or **Kokoro**) directly inside the Google Cloud Run container.
 - Simply upload a single 10-second reference audio clip (`island_boy_sample.wav`).
 - The model generates all coach speech dynamically, saving thousands of dollars in annual TTS subscription costs while keeping full ownership of your AI voice profile!

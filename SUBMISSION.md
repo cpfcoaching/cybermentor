@@ -7,7 +7,7 @@
 
 ## 📋 Category
 
-**The Collaborative Partner**
+### The Collaborative Partner
 
 CyberMentor is an interactive AI expert that guides aspiring cybersecurity professionals through one of the most daunting career transitions they'll face. It asks the right questions to understand where you are, remembers everything it learns about your goals and progress, and gets measurably better at coaching you the more you interact with it. It is not a chatbot — it is a persistent, evolving co-pilot for your career.
 
@@ -26,8 +26,9 @@ The project is live in production on Google Cloud Run with Cloudflare Edge SSL p
 ## 🎥 Video Demo URL
 
 > **Master 5-Minute Walkthrough Video:** [https://youtu.be/ucU61U_IQ0w](https://youtu.be/ucU61U_IQ0w)
-> 
+>
 > **30-Second Social Shorts:**
+>
 > - Short 1 (ROI Tuition Savings): [https://youtu.be/FemcUl7NHMI](https://youtu.be/FemcUl7NHMI)
 > - Short 2 (6-Week Security+ Planner): [https://youtu.be/rcnGlY_Gv5o](https://youtu.be/rcnGlY_Gv5o)
 > - Short 3 (Transfer IT Skills Mindmap): [https://youtu.be/0OLpHcjJyYE](https://youtu.be/0OLpHcjJyYE)
@@ -53,23 +54,28 @@ I've spent years at [Breaking Into Cybersecurity](https://breakingintocybersecur
 
 ### The Solution: CyberMentor
 
-CyberMentor is an AI career coaching agent built on the Google Antigravity SDK and Gemini 3.5. It operates as a true collaborative partner — not a one-shot Q&A tool, but a session-aware, memory-persistent coach that builds a model of each user over time.
+CyberMentor is an AI career coaching agent built on the Google Antigravity SDK and Gemini 3.7. It operates as a true collaborative partner — not a one-shot Q&A tool, but a session-aware, memory-persistent coach that builds a model of each user over time.
 
 **It does five things exceptionally well:**
 
 #### 1. 🗺️ Career Path Advisor
+
 CyberMentor asks about your background (IT experience, education, current role) and your goals, then maps you to the right cybersecurity career track: SOC Analyst, Penetration Tester, GRC, Cloud Security, or CISO path. It explains the day-to-day realities of each role, the typical hiring requirements, and the realistic salary range — so you make an informed decision, not one driven by hype.
 
 #### 2. 📅 Personalized Study Planner
+
 Once a target certification is chosen (Security+, CISSP, OSCP, CySA+, eJPT, and more), CyberMentor generates a week-by-week study plan calibrated to your available hours per week and your current experience level. It phases the study into foundations, domain coverage, practice exams, and a final review buffer — with specific resource recommendations for each phase.
 
 #### 3. 📄 Resume Analyzer
+
 Users paste their resume text and CyberMentor performs a gap analysis: Which certifications are present? Which security tools are named? Are achievements quantified with metrics? Is the language tailored to cybersecurity job descriptions? It returns a scored assessment (out of 100) with prioritized action items.
 
 #### 4. 🎤 Interview Coach
+
 CyberMentor drills users on real interview questions for their target role — both technical (explain IDS vs IPS, walk me through incident response) and behavioral (tell me about a time you had to escalate a critical issue). After each answer, it evaluates the response against a rubric of key points, scores it out of 10, identifies gaps, and provides a model answer template.
 
 #### 5. 🧠 Persistent Memory (Firestore)
+
 Every session is remembered. When a user returns, CyberMentor loads their progress history and personalized profile from Firestore, picking up exactly where they left off. Completed milestones (passed a practice exam, earned a cert, landed a job interview) are logged and surfaced in the UI's progress sidebar. The agent gets measurably more useful over time as it accumulates context about each individual user.
 
 ---
@@ -77,9 +83,9 @@ Every session is remembered. When a user returns, CyberMentor loads their progre
 ### Technologies Used
 
 | Component | Technology |
-|---|---|
+| :--- | :--- |
 | **AI Agent Framework** | Google Antigravity SDK |
-| **AI Model** | Gemini 3.5 Flash (via Antigravity SDK default) |
+| **AI Model** | Gemini 3.7 Flash (via Antigravity SDK default) |
 | **Persistent Memory** | Google Cloud Firestore (Enterprise edition) |
 | **Deployment** | Google Cloud Run (containerized FastAPI) |
 | **Backend API** | Python 3.12 + FastAPI + Server-Sent Events (SSE) |
@@ -128,11 +134,12 @@ Every session is remembered. When a user returns, CyberMentor loads their progre
 
 ## 🔗 Code Repository
 
-**GitHub:** `https://github.com/cpfcoaching/cybermentor`
+**GitHub:** [`https://github.com/cpfcoaching/cybermentor`](https://github.com/cpfcoaching/cybermentor)
 
 > If the repository is private, it has been shared with:
-> - testing@devpost.com
-> - cloudhackathons@google.com
+>
+> - `testing@devpost.com`
+> - `cloudhackathons@google.com`
 
 ---
 
@@ -140,7 +147,8 @@ Every session is remembered. When a user returns, CyberMentor loads their progre
 
 ### Option A: Run Locally (No Cloud Required)
 
-**Prerequisites**
+#### Prerequisites
+
 - Python 3.11 or 3.12
 - A Gemini API key from [Google AI Studio](https://aistudio.google.com/app/api-keys) (free tier is sufficient)
 
@@ -162,9 +170,11 @@ cp .env.example .env
 ```
 
 Open `.env` and set at minimum:
-```
+
+```bash
 GEMINI_API_KEY=your_key_here
 ```
+
 *(GOOGLE_CLOUD_PROJECT is optional for local — Firestore will gracefully fall back to local JSON storage)*
 
 ```bash
@@ -178,7 +188,8 @@ python -m http.server 3000 --directory web
 # Then visit http://localhost:3000
 ```
 
-**Test the agent:**
+#### Test the agent
+
 - Enter a display name on the welcome screen
 - Click "Career Path" in the sidebar and type your background
 - Ask: *"I want to become a SOC analyst. Where do I start?"*
@@ -189,7 +200,8 @@ python -m http.server 3000 --directory web
 
 ### Option B: Deploy to Google Cloud Run
 
-**Prerequisites**
+#### Prerequisites
+
 - [Google Cloud CLI](https://cloud.google.com/sdk/docs/install) installed and authenticated
 - A Google Cloud project with billing enabled
 - Firestore database created in your project
@@ -210,18 +222,21 @@ echo -n "YOUR_GEMINI_API_KEY" | \
 ```
 
 The script will:
+
 - Enable required GCP APIs (Cloud Run, Firestore, Cloud Build, Container Registry)
 - Build and push the Docker container via Cloud Build
 - Deploy to Cloud Run (us-central1, 0–10 instances, 1GB RAM)
 - Print the live service URL
 
 **Expected output:**
-```
+
+```text
 ✅ Deployment complete!
    URL: https://cybermentor-abc123-uc.a.run.app
 ```
 
 **Verify the deployment:**
+
 ```bash
 # Health check
 curl https://cybermentor-abc123-uc.a.run.app/health
@@ -253,7 +268,7 @@ open http://localhost:8080
 
 See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the full Mermaid diagram. Summary:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                    Browser (SPA)                        │
 │   web/index.html · styles.css · app.js                 │
@@ -281,13 +296,14 @@ See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the full Mermaid diagram. Summary:
 └──────────────────┬───────────────────┬─────────────────┘
                    │                   │
         ┌──────────▼──────┐   ┌────────▼─────────────────┐
-        │   Gemini 3.5    │   │  Google Cloud Firestore   │
+        │   Gemini 3.7    │   │  Google Cloud Firestore   │
         │  (via AGY SDK)  │   │  users/ · sessions/       │
         └─────────────────┘   │  progress/ · knowledge/   │
                               └──────────────────────────┘
 ```
 
 **Data flows:**
+
 1. User types message in browser
 2. Frontend POSTs to `/api/chat/stream`
 3. FastAPI creates/resumes an Antigravity agent with the user's `conversation_id`
@@ -298,50 +314,52 @@ See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the full Mermaid diagram. Summary:
 
 ---
 
-## 🎬 Demo Video Script (~4 minutes)
+## 🎬 Demo Video Script (~5 minutes)
 
 > *This section is a guide for recording the submission demo video.*
 
-**[0:00 – 0:30] Problem Statement**
+### [0:00 – 1:08] Problem Statement & Homepage
+
 > "Every week I hear from people who want to break into cybersecurity but don't know where to start. They're overwhelmed by conflicting advice, they don't know which certification to get first, they have no one to review their resume, and they can't afford to pay for interview coaching. I built CyberMentor to solve all of that."
 
-**[0:30 – 1:00] Architecture Walk-through**
+### [1:08 – 2:20] Architecture & Frictionless Onboarding
+
 > Show the Cloud Run dashboard with the deployed service. Show the Firestore database collections. Briefly show the Cloud Build history to prove the backend is live on Google Cloud.
 
-**[1:00 – 2:00] Career Coaching Demo**
+### [2:20 – 3:21] Career Pathing & Interactive Mindmap
+
 > Open the live URL. Enter a display name. Click "Career Path" and say: "I have 3 years in IT helpdesk and I want to move into security. I'm interested in either SOC or pen testing." Show the agent ask clarifying questions, then deliver a structured career recommendation with salary info and cert roadmap.
 
-**[2:00 – 3:00] Study Plan + Interview Prep Demo**
+### [3:21 – 4:26] 1,164-Episode RAG & Scored Mock Interview Drills
+
 > Ask: "Give me a study plan for Security+. I have 8 hours a week and I'm a beginner." Show the week-by-week plan stream in. Then click "Interview Prep" and say: "Ask me a SOC Analyst technical question." Submit an answer. Show the scored evaluation with specific gaps identified.
 
-**[3:00 – 3:30] Memory Demo**
-> Refresh the page, re-enter the same username. Show that the agent immediately references the prior session: *"Welcome back! Last time we were building your Security+ study plan..."* Show the Firestore console in another tab to prove the data is persisted in the cloud.
+### [4:26 – 5:13] State Persistence & Focus Audio
 
-**[3:30 – 4:00] Closing**
-> "CyberMentor runs on the Google Antigravity SDK with Gemini 3.5, persists memory in Firestore, and is hosted on Cloud Run. It's built on seven years of Breaking Into Cyber content and it's available right now at [URL]. This is what AI-powered career mentorship looks like."
+> Refresh the page, re-enter the same username. Show that the agent immediately references the prior session: *"Welcome back! Last time we were building your Security+ study plan..."* Show the Firestore console in another tab to prove the data is persisted in the cloud.
 
 ---
 
 ## ✅ Hackathon Requirements Checklist
 
 | Requirement | Status |
-|---|---|
+| :--- | :--- |
 | Gemini 3.5 or newer | ✅ Via Google Antigravity SDK & Vertex AI (default: `gemini-3.7-flash` in `cybermentor-506813`) |
 | Google Agent Framework | ✅ Google Antigravity SDK |
 | Google Cloud Service | ✅ Cloud Firestore + Cloud Run |
-| Hosted Project URL | ⏳ Post-deploy |
+| Hosted Project URL | ✅ `https://client.breakingintocybersecurity.org` |
 | Text Description | ✅ This document |
 | Code Repository URL | ✅ GitHub |
 | Spin-up Instructions | ✅ Section above + README.md |
 | Architecture Diagram | ✅ ARCHITECTURE.md + this document |
-| ~4-min Demo Video | ⏳ To be recorded |
+| ~5-min Demo Video | ✅ `https://youtu.be/ucU61U_IQ0w` |
 
 ### Bonus Points Targets
 
 | Bonus | Plan | Points |
-|---|---|---|
+| :--- | :--- | :--- |
 | Publish blog/video about the build | dev.to post: "Building CyberMentor with Google Antigravity SDK" | +0.2 |
-| Post on X + LinkedIn with #AllThingsAgenticHackathon | Screenshot to be added | +0.2 |
+| Post on X + LinkedIn with #AllThingsAgenticHackathon | Ready in `submission/social_media.md` | +0.2 |
 | Integrate Veo (video generation) | ✅ Implemented: role previews & cert explainer video generation | +0.2 |
 | Integrate Lyria (music generation) | ✅ Implemented: ambient focus study music (5 moods) & pass fanfare | +0.2 |
 | Integrate Gemma | ✅ Implemented: two-tier pre-routing, resume skill extraction & skill gap scoring | +0.2 |
