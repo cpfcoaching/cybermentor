@@ -147,7 +147,7 @@ Every session is remembered. When a user returns, CyberMentor loads their progre
 
 ### Option A: Run Locally (No Cloud Required)
 
-#### Prerequisites
+#### Local Prerequisites
 
 - Python 3.11 or 3.12
 - A Gemini API key from [Google AI Studio](https://aistudio.google.com/app/api-keys) (free tier is sufficient)
@@ -175,7 +175,7 @@ Open `.env` and set at minimum:
 GEMINI_API_KEY=your_key_here
 ```
 
-*(GOOGLE_CLOUD_PROJECT is optional for local — Firestore will gracefully fall back to local JSON storage)*
+Note: `GOOGLE_CLOUD_PROJECT` is optional for local development because Firestore will automatically fall back to local JSON storage.
 
 ```bash
 # 5. Start the API server
@@ -200,7 +200,7 @@ python -m http.server 3000 --directory web
 
 ### Option B: Deploy to Google Cloud Run
 
-#### Prerequisites
+#### Cloud Run Prerequisites
 
 - [Google Cloud CLI](https://cloud.google.com/sdk/docs/install) installed and authenticated
 - A Google Cloud project with billing enabled
@@ -364,8 +364,8 @@ See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the full Mermaid diagram. Summary:
 | Integrate Lyria (music generation) | ✅ Implemented: ambient focus study music (5 moods) & pass fanfare | +0.2 |
 | Integrate Gemma | ✅ Implemented: two-tier pre-routing, resume skill extraction & skill gap scoring | +0.2 |
 
-**Potential bonus total: +1.0**
+#### Potential Bonus Total: +1.0
 
 ---
 
-*Built by Christophe Foulon · Breaking Into Cybersecurity · All Things Agentic Hackathon 2026*
+Built by Christophe Foulon · Breaking Into Cybersecurity · All Things Agentic Hackathon 2026
