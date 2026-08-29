@@ -52,8 +52,6 @@ def check_secrets_and_api_keys() -> list[str]:
                 for pattern, desc in patterns:
                     matches = re.findall(pattern, content)
                     for match in matches:
-                        if "AIzaSyAMRuiN-oGbuxZ3a63l7bjTugRi2TjYdjQ" in str(match) and path.name == "app.js":
-                            continue
                         errors.append(f"❌ [SECRET DETECTED] {desc} found in {path.relative_to(ROOT)}: {match[:10]}...")
             except Exception:
                 pass
