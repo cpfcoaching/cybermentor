@@ -5,10 +5,14 @@ echo "🤖 ========================================================"
 echo "   CyberMentor — Android Package Builder (APK & AAB)"
 echo "============================================================"
 
-# Set Java 21 and Android SDK environment
-export JAVA_HOME=/usr/local/opt/openjdk@21
+# Set Java and Android SDK environment
+if [ -d "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home" ]; then
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home"
+else
+  export JAVA_HOME="/usr/local/opt/openjdk@21"
+fi
 export ANDROID_HOME=/usr/local/share/android-commandlinetools
-export PATH="/usr/local/opt/openjdk@21/bin:$ANDROID_HOME/platform-tools:$PATH"
+export PATH="$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$PATH"
 
 echo "🔧 Step 1: Syncing web assets into native Android project..."
 npx cap sync android

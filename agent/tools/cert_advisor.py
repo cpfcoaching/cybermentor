@@ -204,8 +204,13 @@ def recommend_certifications(
                           (no IT/security experience), "intermediate"
                           (1-3 years IT/security experience), "advanced"
                           (3+ years, or already in security).
-        career_goal: The security career the user wants. One of: "soc_analyst",
-                     "penetration_tester", "grc", "cloud_security", "ciso".
+        career_goal: The security career the user wants. One of:
+                     "software_developer", "security_software_engineer", "ai_developer",
+                     "ai_security_specialist", "prompt_engineer", "forward_deployed_engineer",
+                     "cloud_engineer", "cloud_security", "security_engineer",
+                     "network_security_engineer", "soc_analyst", "penetration_tester",
+                     "red_team", "grc", "grc_leader", "privacy_specialist",
+                     "policy_specialist", "dfir", "ciso", "it_helpdesk".
                      Use the closest match based on what the user described.
 
     Returns:
