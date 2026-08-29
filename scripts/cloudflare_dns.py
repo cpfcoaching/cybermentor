@@ -19,6 +19,10 @@ import os
 import sys
 import argparse
 import requests
+from dotenv import load_dotenv
+
+# Automatically load .env file
+load_dotenv()
 
 CF_API_BASE = "https://api.cloudflare.com/client/v4"
 ZONE_NAME = "breakingintocybersecurity.org"
