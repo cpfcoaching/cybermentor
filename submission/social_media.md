@@ -96,10 +96,27 @@ KEY ARCHITECTURAL LESSON:
 Tool docstrings are your routing engine. By writing explicit "Use this tool when..." docstrings in the Google Antigravity SDK, Gemini autonomously routes complex coaching workflows without brittle prompt chains.
 
 Try the live application for free:
-👉 https://cybermentor-1019457807345.us-central1.run.app
+👉 https://client.breakingintocybersecurity.org
 
-Full open-source architecture breakdown:
+Explore the complete open-source codebase on GitHub:
 👉 https://github.com/cpfcoaching/cybermentor
+
+#GoogleCloud #AgenticAI #AllThingsAgenticHackathon #Gemini #Cybersecurity #CareerCoaching #ArtificialIntelligence #MachineLearning
+
+---
+
+## 📱 Vertical 9:16 Video Shorts Package (Ready to Upload)
+
+We generated 4 high-retention 30-second vertical video clips (1080×1920) with on-screen URL watermarks (`client.breakingintocybersecurity.org`) and animated typography cards:
+
+| Short # | Video File | Hook & Topic | Best Platform |
+| :---: | :--- | :--- | :--- |
+| **Short 1** | [`submission/social_shorts/short_01_roi_tuition_savings.mp4`](file:///Volumes/Crucial%20X9%20Pro%20For%20Mac/Antigravity/data/antigravity/scratch/cybermentor/submission/social_shorts/short_01_roi_tuition_savings.mp4) | **Stop Paying $15,000 For Bootcamps** ($15k+ Tuition Savings & Free AI Coaching) | YouTube Shorts, LinkedIn Video, TikTok |
+| **Short 2** | [`submission/social_shorts/short_02_cert_study_planner.mp4`](file:///Volumes/Crucial%20X9%20Pro%20For%20Mac/Antigravity/data/antigravity/scratch/cybermentor/submission/social_shorts/short_02_cert_study_planner.mp4) | **CompTIA Security+ in 6 Weeks** (Hour-Calibrated Study Schedules & Practice Labs) | YouTube Shorts, Instagram Reels |
+| **Short 3** | [`submission/social_shorts/short_03_skills_mindmap_analytics.mp4`](file:///Volumes/Crucial%20X9%20Pro%20For%20Mac/Antigravity/data/antigravity/scratch/cybermentor/submission/social_shorts/short_03_skills_mindmap_analytics.mp4) | **Transfer Your IT Skills to Cyber** (Interactive Skills & Certs Mindmap Explorer) | LinkedIn Video, X Video |
+| **Short 4** | [`submission/social_shorts/short_04_mock_interview_drill.mp4`](file:///Volumes/Crucial%20X9%20Pro%20For%20Mac/Antigravity/data/antigravity/scratch/cybermentor/submission/social_shorts/short_04_mock_interview_drill.mp4) | **Realistic SOC Incident Triage Drill** (Scored Rubric & 1,160+ Podcast RAG Insights) | YouTube Shorts, TikTok, LinkedIn |
+
+---
 
 What is the biggest hurdle you face in your cybersecurity career transition today? Let me know below. 👇
 
