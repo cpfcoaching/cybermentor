@@ -18,3 +18,9 @@ This document records consolidated learnings and architectural rules established
 
 ## 3. UI/UX Authentication Rules
 - **No Browser JS Prompts:** NEVER use Javascript `prompt()` popup dialogs for Google SSO. Display status messages directly inside the onboarding card element (`#auth-status-msg`) if popups are cancelled or blocked.
+
+## 4. Zero Literal Secret & API Key Policy
+- **Never Embed Literal Keys:** NEVER write, compare, or allowlist literal API key strings (e.g. `AIzaSy...`, `sk-...`, private keys) in any source file, test script, regex comparison, or security check.
+- **Dynamic Config Only:** All API configurations must be loaded via runtime environment variables (`os.getenv(...)`) without hardcoded fallback strings.
+- **Security Checkers:** All static security checkers and pre-commit hooks must scan using abstract regex patterns only without embedding example secret strings.
+- **Incident Remediation:** When a credential occurs in a commit diff, immediately rotate or delete the key in the cloud console (e.g. Google Cloud Credentials) to ensure automated scanners mark the credential invalid.
