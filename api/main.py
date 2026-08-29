@@ -67,7 +67,23 @@ async def root():
     return {"message": "CyberMentor API is running. Visit /docs for API documentation."}
 
 
+@app.get("/home")
+@app.get("/landing")
+async def home():
+    """Serve the frontend homepage home.html."""
+    web_dir = Path(__file__).parent.parent / "web"
+    home_file = web_dir / "home.html"
+    if home_file.exists():
+        return FileResponse(str(home_file))
+    index = web_dir / "index.html"
+    if index.exists():
+        return FileResponse(str(index))
+    return {"message": "CyberMentor API is running. Visit /docs for API documentation."}
+
+
 # ── Static Files (Frontend) ───────────────────────────────────────────────────
 web_dir = Path(__file__).parent.parent / "web"
 if web_dir.exists():
     app.mount("/", StaticFiles(directory=str(web_dir), html=True), name="static")
+
+
