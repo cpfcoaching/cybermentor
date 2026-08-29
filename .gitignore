@@ -54,3 +54,10 @@ db.sqlite3
 secrets.json
 # Local settings often contain secrets and should not be committed
 local_settings.py
+
+# Node & Demo Video Scratch
+node_modules/
+package-lock.json
+submission/demo_video/raw_video/
+submission/demo_video/audio_scenes/
+

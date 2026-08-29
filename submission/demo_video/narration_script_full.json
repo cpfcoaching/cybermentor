@@ -1,0 +1,32 @@
+[
+  {
+    "scene_number": 1,
+    "title": "Introduction, The Mentorship Bottleneck & Marketing Homepage",
+    "duration_target": "50s",
+    "narration_script": "Breaking into cybersecurity is tough because generic advice fails. Why did the router go to therapy? It had too many unresolved connections. After seven years and hundreds of episodes hosting Breaking Into Cybersecurity, one truth stands out: candidates need personalized, continuous mentorship tailored to their exact background. Because I cannot personally mentor thousands of career changers one-on-one, I built CyberMentor for the Google Cloud All Things Agentic Hackathon. CyberMentor is a persistent, 24/7 AI cybersecurity career coach built on the Google Antigravity SDK and Google Gemini 3.7 Flash. As you can see on our newly launched homepage at client dot breakingintocybersecurity dot org, CyberMentor helps candidates bypass expensive fifteen-thousand-dollar bootcamps, accelerating time-to-hire by sixty-five percent with measurable return on investment."
+  },
+  {
+    "scene_number": 2,
+    "title": "Frictionless Onboarding, Career Pathing & Certification Study Planners",
+    "duration_target": "65s",
+    "narration_script": "Let's step into the AI Coach Studio. Signing in connects your profile to Google Cloud Firestore with persistent memory across sessions. When an IT helpdesk specialist, military veteran, or career switcher wants to pivot into security operations, CyberMentor maps their transferable skills directly to the NIST NICE Cybersecurity Workforce Framework. When you ask for a study plan, CyberMentor doesn't give you a generic list of links. It generates an hour-calibrated, week-by-week roadmap for industry-standard certifications like CompTIA Security+, CySA+, or CISSP — complete with hands-on lab recommendations, practice exam targets, and active recall milestones. When you upload a resume in PDF or DOCX format, CyberMentor executes an automated semantic skill gap audit, ensuring you stop phishing for compliments and start mastering the exact tooling hiring managers want."
+  },
+  {
+    "scene_number": 3,
+    "title": "Google Antigravity SDK Architecture, Gemma Routing & Interactive Mindmap",
+    "duration_target": "55s",
+    "narration_script": "Under the hood, CyberMentor is engineered with the Google Antigravity SDK. Rather than relying on brittle prompt chains, our agent orchestrates autonomous tools using explicit docstrings and structured JSON schema validation. To optimize cost and latency, we built a high-performance two-tier model routing architecture: Google Gemma 3 27B handles instant intent classification, sentiment tracking, and quick triage, while Gemini 3.7 Flash powers complex career reasoning, rubric evaluations, and multi-turn coaching. Candidates can also launch our interactive Skills and Certifications Mindmap to explore overlapping competencies across SOC Operations, Cloud Security, and Governance, Risk, and Compliance, making career mobility visual and intuitive."
+  },
+  {
+    "scene_number": 4,
+    "title": "1,164-Episode RAG Knowledge Base & Scored Mock Interview Drills",
+    "duration_target": "65s",
+    "narration_script": "CyberMentor is backed by seven years of real-world cybersecurity leadership insights. Why do red teamers make terrible secret keepers? Because they always crack under pressure. We indexed over 1,160 Breaking Into Cybersecurity podcast episodes and production briefs into a semantic search engine. Candidates can ask specific career questions and receive verified insights from veteran CISOs and security managers. Before heading into high-stakes interviews, candidates drill with our realistic mock interview simulator. CyberMentor delivers scenario-based incident triage questions, evaluates technical depth, and returns scored rubric feedback with specific areas for improvement. With integrated speech recognition, users can even practice technical and behavioral mock interviews hands-free."
+  },
+  {
+    "scene_number": 5,
+    "title": "Zero-Cost Serverless Cloud Run, Firestore Persistence & Call to Action",
+    "duration_target": "45s",
+    "narration_script": "CyberMentor runs completely serverless on Google Cloud Run with persistent cross-session memory in Cloud Firestore and ambient focus audio powered by Google Lyria. When you reload or return days later, the coach remembers your target role, past resume scores, and interview performance history — unlike me trying to remember where I left my SSH keys. CyberMentor is live today at client dot breakingintocybersecurity dot org and completely open source. Experience the autonomous coach today to map your roadmap, master your interviews, and land your next cybersecurity role!"
+  }
+]
