@@ -284,6 +284,7 @@ CyberMentor's capability-first ontology, interview drills, and continual coachin
 - **Your Job Title Won’t Exist in 3 Years: How to Upskill Before It’s Too Late** (LeveragAI): [`https://www.leveragai.com/your-job-title-wont-exist-in-3-years-heres-how-to-upskill-before-its-too-late`](https://www.leveragai.com/your-job-title-wont-exist-in-3-years-heres-how-to-upskill-before-its-too-late) — Proactive AI upskilling and career reinvention.
 - **These Cybersecurity Roles Are the Future: How to Thrive in the Age of AI** (Cloud Security Guy): [`https://cloudsecurityguy.substack.com/p/these-cybersecurity-roles-are-the`](https://cloudsecurityguy.substack.com/p/these-cybersecurity-roles-are-the) — Future-proof cybersecurity specializations, AI security defense postures, and navigating career growth.
 - **Will AI Replace Cybersecurity Jobs?** (Wallarm): [`https://www.wallarm.com/what/will-ai-replace-cybersecurity-jobs`](https://www.wallarm.com/what/will-ai-replace-cybersecurity-jobs) — AI-augmented AppSec, API defense automation, and human-in-the-loop cyber analyst roles.
+- **Coach not crutch: Evidence that AI can improve writing skill despite reducing effort** (arXiv:2502.02880): [`https://arxiv.org/html/2502.02880v4`](https://arxiv.org/html/2502.02880v4) — Pedagogical foundation for AI as an active cognitive coach that enhances human capability and technical mastery rather than a passive shortcut.
 
 ---
 
