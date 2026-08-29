@@ -197,6 +197,47 @@ python -m http.server 3000 --directory web
 
 ---
 
+## 🧪 Reproducible Testing Instructions
+
+To verify all system capabilities and automated endpoints, follow these reproducible steps:
+
+### 1. API Health & Knowledge Verification
+```bash
+# Verify backend health and status
+curl -i http://localhost:8080/health
+# (Or against live deployment: curl -i https://client.breakingintocybersecurity.org/health)
+
+# Expected response:
+# HTTP/1.1 200 OK
+# {"status":"ok","version":"1.0.0"}
+```
+
+### 2. Test Agent Knowledge Retrieval & Tool Routing
+```bash
+# Test career path analysis endpoint
+curl -X POST http://localhost:8080/api/chat/stream \
+  -H "Content-Type: application/json" \
+  -d '{"message": "I have 2 years of IT helpdesk experience. What cybersecurity role fits me best?", "conversation_id": "test-user-001"}'
+
+# Test certification study planner tool
+curl -X POST http://localhost:8080/api/chat/stream \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Generate a 6-week study plan for CompTIA Security+ with 10 hours per week", "conversation_id": "test-user-001"}'
+
+# Test interview question drill
+curl -X POST http://localhost:8080/api/chat/stream \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Ask me a technical SOC Analyst interview question", "conversation_id": "test-user-001"}'
+```
+
+### 3. Test State Persistence (Firestore / Local Memory)
+1. In the Web Studio UI (`http://localhost:3000` or `https://client.breakingintocybersecurity.org`), enter a test username (e.g., `TestCandidate`).
+2. Ask for a Security+ study plan and complete one interview question.
+3. Refresh the page and re-enter `TestCandidate`.
+4. **Verification:** The agent will immediately greet you by name and load your prior milestones and progress history from memory.
+
+---
+
 ## ☁️ Deploying to Google Cloud Run
 
 Deploy the entire containerized architecture with a single command:
