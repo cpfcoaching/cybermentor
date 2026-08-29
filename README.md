@@ -32,6 +32,7 @@
 Every single week on the **Breaking Into Cybersecurity** podcast and community channels, aspiring security professionals ask the same question: *"I want to break into cybersecurity. Where do I start?"*
 
 Over **7+ years, 1,164 podcast episodes, and hundreds of 1-on-1 coaching sessions**, the answer is always tailored to each person's specific background:
+
 - An IT helpdesk technician should take a radically different path than an accountant moving into GRC.
 - Generic advice on Reddit or social media is contradictory and overwhelming.
 - Predatory bootcamps charge **$15,000+** for generic video playlists.
@@ -40,6 +41,7 @@ Over **7+ years, 1,164 podcast episodes, and hundreds of 1-on-1 coaching session
 ### The Solution: An Autonomous Collaborative Partner
 
 **CyberMentor** transforms 7+ years of real-world coaching methodology into a **persistent, evolving AI Collaborative Partner**. It is not a stateless chatbot. It is a 24/7 autonomous coach that:
+
 1. Understands your technical and non-technical background.
 2. Identifies adjacent transferable skills you forgot to list.
 3. Calibrates customized week-by-week certification study plans to your available hours.
@@ -92,32 +94,39 @@ Over **7+ years, 1,164 podcast episodes, and hundreds of 1-on-1 coaching session
 ## 🌟 Key Capabilities & Innovations
 
 ### 1. 🗺️ Career Path Architect & Transferable Skills Mindmap
+
 - Analyzes your unique background (IT, software, military, law, accounting, or non-technical).
 - Translates non-security experience into **NIST NICE Framework Work Roles** (SOC Analyst, Penetration Tester, Cloud Security Engineer, GRC Specialist, CISO).
 - Features an interactive **SVG Skills & Certifications Mindmap Explorer**.
 
 ### 2. 📅 Hour-Calibrated Study Planner
+
 - Generates week-by-week certification schedules for **Security+, CySA+, CASP+, CEH, CISSP, eJPT, OSCP, AWS Security, and GCP Security**.
 - Calibrates automatically to your exact available study hours per week (e.g. 5 hrs/wk vs 20 hrs/wk) with phase-by-phase resource breakdowns and buffer weeks.
 
 ### 3. 📄 NIST-Aligned Resume Analyzer & Document Parser
+
 - Supports direct client-side parsing of **PDF, Microsoft Word (.docx), Markdown, and Plain Text resumes**.
 - Performs automated gap analysis: detects missing tool keywords (Wireshark, Splunk, Linux, Python, NIST 800-53) and provides prioritized action items with an overall Readiness Score.
 
 ### 4. 🎤 Live Mock Interview Drills with Scored Rubrics
+
 - Simulates realistic Tier 1/2 SOC incident triage scenarios (phishing escalation, malware beaconing, ransomware isolation) and behavioral leadership questions.
 - Scores your response across four pillars: **Technical Accuracy, Methodology & Frameworks, Communication Clarity, and Security Mindset**.
 
 ### 5. 🎙️ Zero-Cost Cloud Run Voice Engine (Island Boy)
+
 - Replaced costly third-party voice APIs with a self-hosted serverless neural voice engine running on Google Cloud Run.
 - Delivers **sub-250ms voice streaming** at **$0.00 recurring external API fees**.
 - In-app toggle: `🔊 Voice: ON (Island Boy)` speaks coaching responses in real time.
 
 ### 6. 🧠 Autonomous Agent with Continual Evolution (ACE Memory)
+
 - Employs structured metacognitive memory reflection notes in Cloud Firestore.
 - Remembers candidate certifications, study progress, and past interview weak spots across sessions.
 
 ### 7. 🎧 Focus Audio Synthesizer Studio
+
 - Built-in Web Audio API binaural beats and ambient study soundscapes (Deep Focus Alpha 10Hz, Exam Crunch Beta 14Hz, Cyber SOC Schumann 7.83Hz, Cooldown Theta 6Hz).
 
 ---
@@ -162,9 +171,11 @@ cp .env.example .env
 ```
 
 Edit `.env` and set your API key:
+
 ```bash
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
+
 *(Google Cloud Firestore automatically falls back to local JSON storage for zero-cloud local testing)*.
 
 ### 3. Start the Backend API
@@ -206,6 +217,7 @@ echo -n "YOUR_GEMINI_API_KEY" | \
 ```
 
 The script automatically:
+
 - Enables Google Cloud Run, Cloud Build, and Cloud Firestore APIs.
 - Builds the multi-stage Docker container with non-root security.
 - Deploys the service to `us-central1` with automatic scale-to-zero.
@@ -215,6 +227,7 @@ The script automatically:
 ## 📱 App Store Packaging & Distribution
 
 CyberMentor is ready for distribution across all platforms:
+
 - **Progressive Web App (PWA)**: Standalone installable app via Safari (*Add to Home Screen*) and Chrome (*Install App*).
 - **Google Play Store**: Packaged via Bubblewrap / Trusted Web Activity (`.aab`) with **Closed Testing tracks for registered users only**.
 - **Apple App Store**: Packaged via Capacitor / Xcode with **TestFlight & Unlisted Distribution for registered users only**.
