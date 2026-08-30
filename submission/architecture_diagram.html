@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CyberMentor Architecture Diagram</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -87,6 +88,7 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.5);
       position: relative;
     }
+    .card-full-height { height: 100%; }
     .card-glow-cyan { border-color: rgba(0, 220, 220, 0.5); box-shadow: 0 0 35px rgba(0, 220, 220, 0.15); }
     .card-glow-green { border-color: rgba(0, 255, 157, 0.4); box-shadow: 0 0 35px rgba(0, 255, 157, 0.12); }
     .card-glow-blue { border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 0 35px rgba(59, 130, 246, 0.12); }
@@ -113,9 +115,29 @@
       padding: 14px 18px;
       margin-bottom: 12px;
     }
+    .item-box-accent-green {
+      background: rgba(0, 255, 157, 0.05);
+      border-color: rgba(0, 255, 157, 0.2);
+    }
+    .item-box-spaced { margin-top: 18px; }
     .item-box:last-child { margin-bottom: 0; }
     .item-title { font-size: 16px; font-weight: 600; color: #ffffff; }
+    .item-title-accent { color: #00ff9d; }
     .item-desc { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+    .item-desc-light { color: #cbd5e1; }
+
+    .section-sublabel {
+      font-size: 14px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin: 18px 0 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .text-highlight-cyan { color: #00dcdc; }
+    .text-highlight-purple { color: #c084fc; }
+    .text-highlight-blue { color: #60a5fa; }
 
     /* Connector Arrows */
     .connector {
@@ -227,17 +249,17 @@
     </div>
 
     <!-- Center: Serverless Agent Core -->
-    <div class="card card-glow-green" style="height: 100%;">
+    <div class="card card-glow-green card-full-height">
       <div class="card-header text-green">
         <span>☁️ Google Cloud Run — Containerized Agent Backend (Python 3.12 + FastAPI)</span>
       </div>
       
-      <div class="item-box" style="background: rgba(0, 255, 157, 0.05); border-color: rgba(0, 255, 157, 0.2);">
-        <div class="item-title" style="color: #00ff9d;">🤖 Google Antigravity SDK Agent Runtime</div>
-        <div class="item-desc" style="color: #cbd5e1;">Orchestrates persistent candidate profiles, persona steering, and deterministic tool execution via Gemini 3.7 Flash</div>
+      <div class="item-box item-box-accent-green">
+        <div class="item-title item-title-accent">🤖 Google Antigravity SDK Agent Runtime</div>
+        <div class="item-desc item-desc-light">Orchestrates persistent candidate profiles, persona steering, and deterministic tool execution via Gemini 3.7 Flash</div>
       </div>
 
-      <div style="font-size: 14px; font-weight: 600; color: #94a3b8; text-transform: uppercase; margin: 18px 0 10px; letter-spacing: 0.05em;">
+      <div class="section-sublabel">
         Registered Agentic Tool Capabilities:
       </div>
 
@@ -250,12 +272,12 @@
         <div class="tool-chip"><span>💾</span> sync_user_progress()</div>
       </div>
 
-      <div class="item-box" style="margin-top: 18px;">
+      <div class="item-box item-box-spaced">
         <div class="item-title">⚡ Multi-Modal Google AI Augmentations</div>
         <div class="item-desc">
-          <strong style="color:#00dcdc;">Gemma 3:</strong> Token-efficient pre-routing & skill extraction · 
-          <strong style="color:#c084fc;">Google Veo:</strong> Role video previews · 
-          <strong style="color:#60a5fa;">Google Lyria:</strong> Focus audio
+          <strong class="text-highlight-cyan">Gemma 3:</strong> Token-efficient pre-routing & skill extraction · 
+          <strong class="text-highlight-purple">Google Veo:</strong> Role video previews · 
+          <strong class="text-highlight-blue">Google Lyria:</strong> Focus audio
         </div>
       </div>
     </div>
