@@ -1,0 +1,36 @@
+name: 🛡️ Daily Health & Safety Check (ACE)
+
+on:
+  schedule:
+    # Runs every day at 08:00 UTC (4:00 AM EDT)
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  daily-health-and-safety-check:
+    name: 🩺 Run ACE Health & Safety Probe
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: 🛡️ Run Codebase Security & OWASP Mandate Audit
+        run: |
+          python scripts/security_check.py
+
+      - name: 🩺 Execute ACE Live Health & Safety Probe
+        env:
+          CYBERMENTOR_BASE_URL: https://client.breakingintocybersecurity.org
+        run: |
+          python scripts/daily_safety_and_health_check.py
