@@ -2050,22 +2050,26 @@ async function openResumeStudio(customText = null) {
   resumeStudioOverlay.classList.remove('hidden');
   resumeStudioOverlay.classList.add('active');
 
-  if (customText) {
+  if (customText && customText.trim()) {
     currentResumeDraft = customText;
     updateStudioContent(customText);
     return;
   }
 
+  const activeUserId = currentUser || 'guest';
+
   // Load from current memory or local storage
-  const localSaved = localStorage.getItem(`cybermentor_resume_${currentUser}`);
-  if (localSaved) {
+  const localSaved = localStorage.getItem(`cybermentor_resume_${activeUserId}`) || 
+                     localStorage.getItem('cybermentor_resume_guest') || 
+                     localStorage.getItem('cybermentor_resume_Christophe_Foulon');
+  if (localSaved && localSaved.trim()) {
     currentResumeDraft = localSaved;
     updateStudioContent(localSaved);
   }
 
   // Fetch from API backend
   try {
-    const res = await fetch(`${API_BASE_URL}/api/resume/${encodeURIComponent(currentUser)}/latest`);
+    const res = await fetch(`${API_BASE_URL}/api/resume/${encodeURIComponent(activeUserId)}/latest`);
     if (res.ok) {
       const data = await res.json();
       if (data.found && data.markdown_text) {

@@ -85,21 +85,35 @@ def save_user_resume_to_storage(user_id: str, markdown_text: str, target_role: s
 
 def get_user_resume_from_storage(user_id: str) -> Optional[dict]:
     """Retrieve the latest resume draft from Firestore or local fallback."""
+    clean_id = (user_id or "guest").strip()
+    if clean_id in ("null", "undefined", ""):
+        clean_id = "guest"
+
     db = _get_firestore()
     if db:
         try:
-            doc = db.collection("users").document(user_id).collection("resumes").document("latest").get()
+            doc = db.collection("users").document(clean_id).collection("resumes").document("latest").get()
             if doc.exists:
                 return doc.to_dict()
         except Exception:
             pass
 
-    path = _local_resume_path(user_id)
+    # Try exact local path
+    path = _local_resume_path(clean_id)
     if path.exists():
         try:
             return json.loads(path.read_text(encoding="utf-8"))
         except Exception:
             pass
+
+    # Fallback to guest or default_user
+    for fallback in ["guest", "default_user", "Christophe_Foulon"]:
+        p = _local_resume_path(fallback)
+        if p.exists():
+            try:
+                return json.loads(p.read_text(encoding="utf-8"))
+            except Exception:
+                pass
     return None
 
 
