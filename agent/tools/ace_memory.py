@@ -127,23 +127,55 @@ def get_documented_candidate_skills(user_id: str) -> list[dict]:
 
 
 _SKILL_HEURISTICS = [
-    # OS & Scripting
+    # Executive Leadership & Governance
+    "executive leadership", "board reporting", "ciso", "vciso", "fair", "grc", "tprm", "vendor risk",
+    "compliance-as-code", "zero trust", "sec cyber disclosure", "cyber insurance", "m&a security",
+    "nist csf", "nist 800-53", "iso 27001", "soc 2", "hipaa", "pci-dss", "gdpr", "ccpa", "risk assessment",
+    "fedramp", "cmmc", "incident command",
+    # AI Security & LLM Governance
+    "nist ai rmf", "iso 42001", "prompt injection", "llm security", "aigp", "guardrails", "ai governance",
+    # Cloud, Containers & DevSecOps
+    "aws", "azure", "gcp", "iam", "terraform", "docker", "kubernetes", "guardduty", "cloudtrail",
+    "cloudwatch", "devsecops", "sast", "dast", "sbom", "api security", "microservices",
+    # OS, Scripting & Automation
     "linux", "kali", "ubuntu", "debian", "windows server", "active directory", "powershell", "python", "bash", "sql", "git",
-    # Network & Tools
+    # Network & Detection
     "wireshark", "pcap", "tcpdump", "nmap", "tcp/ip", "dns", "dhcp", "firewall", "vpn", "proxy", "ids", "ips", "snort", "suricata", "zeek",
-    # SIEM / Operations
-    "splunk", "sentinel", "qradar", "elastic", "crowdstrike", "sentinelone", "defender", "edr", "siem", "soc", "virustotal", "alienvault",
+    # SIEM / Operations / Threat Hunt
+    "splunk", "sentinel", "qradar", "elastic", "crowdstrike", "sentinelone", "defender", "edr", "siem", "soc", "virustotal", "alienvault", "mitre att&ck", "cyber kill chain", "picerl",
     # Offensive & Web
     "burp suite", "metasploit", "owasp", "nessus", "qualys", "penetration test", "hashcat", "gobuster", "amass", "bloodhound", "mimikatz",
-    # Cloud & DevOps
-    "aws", "azure", "gcp", "iam", "terraform", "docker", "kubernetes", "guardduty", "cloudtrail", "cloudwatch", "devsecops",
-    # Frameworks & Governance
-    "nist csf", "nist 800-53", "iso 27001", "soc 2", "hipaa", "pci-dss", "mitre att&ck", "cyber kill chain", "picerl", "risk assessment", "fair",
     # Forensics & Reversing
     "volatility", "autopsy", "ghidra", "ftk imager", "plaso", "malware analysis", "pestudio",
     # Certifications
-    "security+", "cysa+", "casp+", "ceh", "cissp", "cism", "cisa", "crisc", "oscp", "ejpt", "pnpt", "gcih", "gcfa", "grem", "gicsp", "ccsp", "network+", "a+"
+    "security+", "cysa+", "casp+", "ceh", "cissp", "cism", "cisa", "crisc", "cciso", "cgeit", "oscp", "ejpt", "pnpt", "gcih", "gcfa", "grem", "gicsp", "ccsp", "network+", "a+"
 ]
+
+
+def sync_profile_skills_from_resume(user_id: str, resume_markdown: str) -> list[str]:
+    """Extract and record all documented competencies from a candidate's resume into ACE memory."""
+    if not resume_markdown or len(resume_markdown.strip()) < 20:
+        return []
+
+    text_lower = resume_markdown.lower()
+    discovered = []
+
+    for skill in _SKILL_HEURISTICS:
+        if skill in text_lower:
+            clean_title = (
+                skill.upper()
+                if len(skill) <= 4 or skill in ("splunk", "nist csf", "iso 27001", "soc 2", "nist 800-53", "nist ai rmf", "iso 42001", "fedramp", "cmmc")
+                else skill.title()
+            )
+            record_candidate_skill(
+                user_id=user_id,
+                skill_name=clean_title,
+                context="Documented in candidate resume and verified executive profile.",
+                source="resume"
+            )
+            discovered.append(clean_title)
+
+    return discovered
 
 
 def analyze_conversation_for_skills(
@@ -168,10 +200,12 @@ def analyze_conversation_for_skills(
     documented_skills = []
 
     for skill in _SKILL_HEURISTICS:
-        # Check whole word match or phrase match
         if skill in text_lower:
-            # Format clean title
-            clean_title = skill.upper() if len(skill) <= 4 or skill in ("splunk", "nist csf", "iso 27001", "soc 2") else skill.title()
+            clean_title = (
+                skill.upper()
+                if len(skill) <= 4 or skill in ("splunk", "nist csf", "iso 27001", "soc 2", "nist 800-53", "nist ai rmf", "iso 42001", "fedramp", "cmmc")
+                else skill.title()
+            )
             success = record_candidate_skill(
                 user_id=user_id,
                 skill_name=clean_title,

@@ -1435,6 +1435,11 @@ if (btnAnalytics && analyticsOverlay) {
           document.getElementById('stat-recommended-action').textContent = data.recommended_next_step;
         }
 
+        const trackBadge = document.getElementById('analytics-target-track-badge');
+        if (trackBadge && data.target_role) {
+          trackBadge.textContent = `🎯 Active Track: ${data.target_role}`;
+        }
+
         const skillsContainer = document.getElementById('analytics-skills-list');
         if (skillsContainer && data.skills_breakdown) {
           skillsContainer.innerHTML = data.skills_breakdown
