@@ -49,9 +49,11 @@ def _session_file_exists(save_dir: pathlib.Path, session_id: str) -> bool:
 
 def _build_contextualized_prompt(user_id: str, message: str, gemma_intent: str | None = None) -> str:
     """
-    Build a prompt that injects the user's persistent progress history,
-    Gemma pre-routed intent classification, and ACE long-term cognitive memory notes & documented skills into context.
+    Build a prompt that injects the user's persistent progress history, active resume profile,
+    target career track, Gemma pre-routed intent classification, and ACE cognitive memory notes & documented skills into context.
     """
+    from api.routes.resume import get_user_resume_from_storage
+    
     history_ctx = get_user_progress(user_id)
     memory_ctx = get_agent_memory(user_id)
     
@@ -60,17 +62,32 @@ def _build_contextualized_prompt(user_id: str, message: str, gemma_intent: str |
     skills_summary = ""
     if doc_skills:
         skill_names = [s.get("skill_name", "") for s in doc_skills if s.get("skill_name")]
-        skills_summary = f"[ACE DOCUMENTED CANDIDATE SKILLS ACROSS ALL PAST CONVERSATIONS]: {', '.join(skill_names)}\n"
+        skills_summary = f"[ACE DOCUMENTED CANDIDATE SKILLS]: {', '.join(skill_names)}\n"
+
+    # Retrieve candidate's active resume and target role
+    resume_record = get_user_resume_from_storage(user_id)
+    resume_ctx = ""
+    if resume_record and resume_record.get("markdown_text"):
+        c_name = resume_record.get("candidate_name", "Candidate")
+        t_role = resume_record.get("target_role", "Enterprise CISO / Executive Advisory")
+        raw_text = resume_record.get("markdown_text", "")
+        resume_ctx = (
+            f"[ACTIVE CANDIDATE PROFILE ON FILE]:\n"
+            f"Candidate Name: {c_name}\n"
+            f"Target Career Track: {t_role}\n"
+            f"Profile Resume Highlights: {raw_text[:800]}...\n"
+        )
 
     intent_info = f"[GEMMA INTENT CLASSIFICATION PRE-ROUTING]: {gemma_intent}\n" if gemma_intent else ""
     return (
         f"[SYSTEM CONTEXT FOR CANDIDATE PROFILE '{user_id}']\n"
         f"{intent_info}"
+        f"{resume_ctx}"
         f"{skills_summary}"
         f"{history_ctx}\n\n"
         f"{memory_ctx}\n\n"
-        f"[IMPORTANT INSTRUCTION]: You already know this candidate's history, goals, documented skills, and notes. "
-        f"Do NOT ask generic questions about experience level if already known above.\n\n"
+        f"[STRATEGIC ALIGNMENT DIRECTIVE]: You already have full access to this candidate's history, target track, verified skills, and resume. "
+        f"Whenever the candidate asks to review or update their profile/goals, summarize what you know about their background and target track, evaluate how well their experience aligns with their goals, and guide their next calibration.\n\n"
         f"[CANDIDATE MESSAGE]:\n{message}"
     )
 
