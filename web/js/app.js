@@ -2250,11 +2250,38 @@ if (resumeTrackSelect) {
 
 if (btnTailorResume) {
   btnTailorResume.addEventListener('click', () => {
-    const selectedTrack = resumeTrackSelect ? resumeTrackSelect.options[resumeTrackSelect.selectedIndex].text : 'Enterprise CISO / VP InfoSec';
+    const selectedOpt = resumeTrackSelect ? resumeTrackSelect.options[resumeTrackSelect.selectedIndex] : null;
+    const selectedTrack = selectedOpt ? selectedOpt.text : 'Enterprise CISO / VP of Information Security';
+    const isStretch = selectedOpt && selectedOpt.parentElement && selectedOpt.parentElement.label && selectedOpt.parentElement.label.includes('Stretch');
+    
     closeResumeStudio();
-    const tailorPrompt = `Please tailor, calibrate, and draft my complete updated resume for the target track: "${selectedTrack}". Highlight the specific leadership proof points, technical oversight, framework compliance, and metrics that enterprise search panels and hiring committees look for in this track. Once drafted, save it to my profile so I can immediately download the updated Word (.docx) and PDF (.pdf) documents!`;
+    let tailorPrompt = `Please tailor, calibrate, and draft my complete updated resume for the target track: "${selectedTrack}". `;
+    if (isStretch) {
+      tailorPrompt += `This is a high-demand STRETCH role track for me: strategically bridge my 20+ years of executive advisory, GRC oversight, Compliance-as-Code automation, and risk quantification into the specialized competencies, market-demanded frameworks, and high-impact metrics required for this specific role. `;
+    } else {
+      tailorPrompt += `Highlight the specific leadership proof points, technical oversight, framework compliance, and metrics that executive search panels look for in this track. `;
+    }
+    tailorPrompt += `Once drafted, output the full complete resume and save it to my profile so I can immediately download the updated Word (.docx) and PDF (.pdf) documents!`;
+    
     if (!isStreaming) {
       messageInput.value = tailorPrompt;
+      messageInput.dispatchEvent(new Event('input'));
+      sendMessage();
+    }
+  });
+}
+
+// ── Discover Fit & High-Demand Stretch Roles Listener ───────────────────────
+const btnSuggestRoles = document.getElementById('btn-suggest-roles');
+if (btnSuggestRoles) {
+  btnSuggestRoles.addEventListener('click', () => {
+    closeResumeStudio();
+    const prompt = `Based on my current cybersecurity background, executive advisory experience, GRC leadership, authored books, and technical competencies, please perform a deep market calibration analysis:
+1. Identify my top direct-fit roles where I have immediate compensation and hiring committee leverage.
+2. Identify 3 to 4 high-demand STRETCH roles where my existing transferable capabilities (e.g. Compliance-as-Code, FAIR risk quantification, AI security governance, FedRAMP, Product Security) uniquely position me in the 2026 market.
+3. For each stretch role, explain the exact capability bridge, market compensation trajectory, and specific positioning advice to win executive interviews.`;
+    if (!isStreaming) {
+      messageInput.value = prompt;
       messageInput.dispatchEvent(new Event('input'));
       sendMessage();
     }

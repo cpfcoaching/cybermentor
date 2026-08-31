@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=2.2.1" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVP30SB1WX"></script>
   <script>
@@ -367,25 +367,42 @@
       <div class="resume-studio-toolbar">
         <div class="resume-studio-meta">
           <div class="track-select-wrap">
-            <label for="resume-track-select" class="track-select-label">Target Track:</label>
+            <label for="resume-track-select" class="track-select-label">Target Role Track:</label>
             <select id="resume-track-select" class="form-input resume-track-dropdown">
-              <option value="enterprise_ciso" selected>Enterprise CISO / VP InfoSec</option>
-              <option value="fractional_vciso">Fractional vCISO & Advisory Practice Leader</option>
-              <option value="technical_ciso">Technical CISO & DevSecOps / Architecture</option>
-              <option value="soc_analyst">SOC Analyst & Incident Response Lead</option>
-              <option value="grc_director">GRC & Enterprise Risk Director</option>
+              <optgroup label="🎯 Core Executive & Leadership Targets">
+                <option value="enterprise_ciso" selected>Enterprise CISO / VP of Information Security</option>
+                <option value="fractional_vciso">Fractional vCISO & Advisory Practice Leader</option>
+                <option value="technical_ciso">Technical CISO & DevSecOps / Architecture Director</option>
+                <option value="grc_director">Director of GRC, Cyber Risk & Enterprise Trust</option>
+              </optgroup>
+              <optgroup label="🚀 High-Demand Market Stretch Roles (2026 Focus)">
+                <option value="caiso_ai_governance">Chief AI Security Officer (CAISO) / Head of AI Safety & Governance</option>
+                <option value="vp_product_security">VP of Product Security & Secure Platform Engineering</option>
+                <option value="federal_ciso_fedramp">Federal CISO / FedRAMP & CMMC Practice Leader</option>
+                <option value="risk_quantification_director">Cyber Risk Quantification & Quantitative Resilience Director (FAIR)</option>
+                <option value="cloud_security_director">Principal Cloud Security Architect / Zero Trust Director</option>
+                <option value="trust_sales_enablement">Security Trust & Commercial Revenue Enablement Director</option>
+              </optgroup>
+              <optgroup label="🔍 Specialized & Operational Leadership">
+                <option value="soc_director">SOC Operations & Incident Crisis Management Director</option>
+                <option value="offensive_security_lead">Offensive Security & Red Team Practice Leader</option>
+                <option value="soc_analyst">Senior SOC Analyst & Incident Response Lead</option>
+              </optgroup>
             </select>
           </div>
           <button class="btn btn-secondary btn-tailor-track" id="btn-tailor-resume" title="Automatically rewrite and optimize resume for the selected track">
             <span>✨ Auto-Tailor Track</span>
           </button>
+          <button class="btn btn-ghost btn-discover-roles" id="btn-suggest-roles" title="Analyze your active resume against 2026 market demand to identify high-yield stretch opportunities">
+            <span>💡 Discover Fit & Stretch Roles</span>
+          </button>
           <span class="resume-updated-time" id="resume-last-updated-time">Last Synced: Loaded</span>
         </div>
         <div class="resume-studio-btn-group">
-          <button class="btn btn-primary btn-export-doc" id="btn-export-docx" title="Download Word DOCX document">
+          <button class="btn btn-docx-export btn-export-doc" id="btn-export-docx" title="Download Word DOCX document">
             <span>📥 Download Word (.docx)</span>
           </button>
-          <button class="btn btn-secondary btn-export-doc" id="btn-export-pdf" title="Download styled PDF document">
+          <button class="btn btn-pdf-export btn-export-doc" id="btn-export-pdf" title="Download styled PDF document">
             <span>📥 Download PDF (.pdf)</span>
           </button>
           <button class="btn btn-ghost" id="btn-copy-resume" title="Copy markdown to clipboard">
@@ -944,6 +961,6 @@
 <!-- Firebase Auth SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-<script src="js/app.js?v=2.2.0"></script>
+<script src="js/app.js?v=2.2.1"></script>
 </body>
 </html>

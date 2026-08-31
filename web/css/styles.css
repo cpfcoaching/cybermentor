@@ -2029,12 +2029,10 @@ audio.media-player {
 
 .resume-studio-toolbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 10px 16px;
-  background: rgba(15, 23, 42, 0.65);
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.75);
   border: 1px solid var(--clr-border);
   border-radius: var(--r-md);
   margin-bottom: 12px;
@@ -2043,8 +2041,10 @@ audio.media-player {
 .resume-studio-meta {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .badge-role-tag {
@@ -2061,18 +2061,60 @@ audio.media-player {
 .resume-updated-time {
   font-size: 0.8rem;
   color: var(--clr-text-sub);
+  margin-left: auto;
 }
 
 .resume-studio-btn-group {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
   flex-wrap: wrap;
+  width: 100%;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.resume-studio-btn-group .btn {
+  width: auto !important;
+  padding: 7px 14px;
+  font-size: 0.82rem;
+}
+
+.btn-docx-export {
+  background: #2563eb !important;
+  color: #fff !important;
+  border: 1px solid #3b82f6 !important;
+  font-weight: 600;
+}
+.btn-docx-export:hover {
+  background: #1d4ed8 !important;
+}
+
+.btn-pdf-export {
+  background: #dc2626 !important;
+  color: #fff !important;
+  border: 1px solid #ef4444 !important;
+  font-weight: 600;
+}
+.btn-pdf-export:hover {
+  background: #b91c1c !important;
+}
+
+.btn-discover-roles {
+  font-size: 0.82rem;
+  padding: 6px 12px;
+  color: var(--clr-cyan);
+  border-color: rgba(0, 212, 255, 0.35);
+  background: rgba(0, 212, 255, 0.08);
+}
+.btn-discover-roles:hover {
+  background: rgba(0, 212, 255, 0.18);
+  border-color: var(--clr-cyan);
 }
 
 .btn-export-doc {
   font-weight: 600;
-  box-shadow: 0 4px 14px rgba(0, 212, 255, 0.2);
 }
 
 .resume-studio-split-view {
