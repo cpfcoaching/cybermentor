@@ -1,3 +1,4 @@
+import json
 from agent.tools.ace_memory import get_documented_candidate_skills
 
 
@@ -215,5 +216,44 @@ def analyze_resume(resume_text: str, target_role: str = "general", user_id: str 
 3. **Include Home Lab / GitHub Link**: If you don't have paid experience, a link to your documented lab projects serves as tangible proof of competence.
 
 ---
-💬 *Reply with your answers to the probing questions above, or paste a bullet point you'd like me to rewrite for you!*"""
+💬 *Reply with your answers to the probing questions above, or tell me which sections you would like me to rewrite or draft for you!*"""
+
+
+def save_updated_resume(resume_markdown: str, user_id: str = "guest", target_role: str = "general", candidate_name: str = "Candidate") -> str:
+    """Save the candidate's updated, rewritten, or newly drafted resume to their profile and enable one-click DOCX/PDF export.
+
+    Call this tool whenever you draft, update, or rewrite the candidate's resume so that the document is
+    persisted into their user profile and immediately made downloadable in Word (.docx) and PDF (.pdf) format on the web interface.
+
+    Args:
+        resume_markdown: The complete updated resume formatted in clean Markdown.
+        user_id: The candidate's user ID or session identifier.
+        target_role: The target cybersecurity track (e.g. 'ciso', 'soc_analyst', 'cloud_security', 'grc', 'general').
+        candidate_name: The candidate's name (optional).
+
+    Returns:
+        Confirmation message with export details and next steps.
+    """
+    from api.routes.resume import save_user_resume_to_storage
+
+    try:
+        record = save_user_resume_to_storage(
+            user_id=user_id,
+            markdown_text=resume_markdown,
+            target_role=target_role,
+            candidate_name=candidate_name
+        )
+        return (
+            f"✅ **Updated Resume Successfully Saved to User Profile!**\n\n"
+            f"- **Target Track**: {target_role.replace('_', ' ').title()}\n"
+            f"- **Timestamp**: {record.get('updated_at', 'Just now')}\n\n"
+            f"📄 **Your resume is ready for 1-click export on the web interface:**\n"
+            f"• Click **'Download DOCX'** for an ATS-optimized Microsoft Word version.\n"
+            f"• Click **'Download PDF'** for a formatted PDF version.\n"
+            f"• Access and edit it anytime from the **'My Resume & Exports'** studio in your sidebar.\n\n"
+            f"```resume_export_ready\n{json.dumps({'user_id': user_id, 'target_role': target_role, 'saved': True})}\n```"
+        )
+    except Exception as e:
+        return f"✅ **Updated Resume Generated:**\n\n{resume_markdown}\n\n*(Note: Could not automatically save to cloud storage: {e}, but you can copy/paste or export directly)*"
+
 

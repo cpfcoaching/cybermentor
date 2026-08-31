@@ -3,7 +3,7 @@
 # Core coaching tools
 from agent.tools.knowledge_base import query_knowledge_base, get_cited_resources, search_breaking_into_cyber_episodes
 from agent.tools.study_planner import generate_study_plan
-from agent.tools.resume_analyzer import analyze_resume
+from agent.tools.resume_analyzer import analyze_resume, save_updated_resume
 from agent.tools.interview_coach import get_interview_question, evaluate_answer
 from agent.tools.cert_advisor import recommend_certifications
 from agent.tools.progress_tracker import save_user_progress, get_user_progress
@@ -26,6 +26,7 @@ __all__ = [
     "search_breaking_into_cyber_episodes",
     "generate_study_plan",
     "analyze_resume",
+    "save_updated_resume",
     "get_interview_question",
     "evaluate_answer",
     "recommend_certifications",

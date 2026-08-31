@@ -86,3 +86,17 @@ capacitor.config.ts
 *.xcodeproj
 Podfile.lock
 Pods/
+
+# Added by GitGuard (Node.js, Python, FastAPI, Gradle)
+# Local Spring properties may contain secrets and should not be committed
+application-local.properties
+# Local Spring YAML config may contain secrets
+application-local.yml
+# Local Spring YAML config may contain secrets
+application-local.yaml
+*.class
+*.jar
+*.war
+bin/
+.gradle/
+gradle.properties

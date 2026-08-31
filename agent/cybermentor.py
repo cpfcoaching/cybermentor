@@ -17,6 +17,7 @@ from agent.tools import (
     search_breaking_into_cyber_episodes,
     generate_study_plan,
     analyze_resume,
+    save_updated_resume,
     get_interview_question,
     evaluate_answer,
     recommend_certifications,
@@ -59,6 +60,7 @@ ALL_TOOLS = [
     search_breaking_into_cyber_episodes, # 7+ years of YouTube podcast transcript RAG search
     generate_study_plan,
     analyze_resume,
+    save_updated_resume,
     get_interview_question,
     evaluate_answer,
     recommend_certifications,

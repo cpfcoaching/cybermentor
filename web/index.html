@@ -353,6 +353,60 @@
   </div>
 </div>
 
+<!-- ── Updated Resume Studio & Executive Document Export Modal ────────── -->
+<div id="resume-studio-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="resume-studio-title">
+  <div class="resources-card glass resume-studio-modal-card">
+    <div class="resources-header">
+      <div class="resume-header-title-wrap">
+        <h2 id="resume-studio-title">📄 Updated Resume Studio & Executive Exports</h2>
+        <p class="resume-studio-sub">View, edit, and export your AI-reviewed and updated resume as polished Word (.docx) and PDF (.pdf) documents.</p>
+      </div>
+      <button id="close-resume-studio-btn" class="btn-close" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="resources-content resume-studio-modal-content">
+      <div class="resume-studio-toolbar">
+        <div class="resume-studio-meta">
+          <span class="badge-role-tag" id="resume-target-role-badge">Track: Enterprise CISO / Executive</span>
+          <span class="resume-updated-time" id="resume-last-updated-time">Last Synced: Loaded</span>
+        </div>
+        <div class="resume-studio-btn-group">
+          <button class="btn btn-primary btn-export-doc" id="btn-export-docx" title="Download Word DOCX document">
+            <span>📥 Download Word (.docx)</span>
+          </button>
+          <button class="btn btn-secondary btn-export-doc" id="btn-export-pdf" title="Download styled PDF document">
+            <span>📥 Download PDF (.pdf)</span>
+          </button>
+          <button class="btn btn-ghost" id="btn-copy-resume" title="Copy markdown to clipboard">
+            <span>📋 Copy Text</span>
+          </button>
+          <button class="btn btn-ghost" id="btn-save-resume-manual" title="Save current edits to profile">
+            <span>💾 Save Changes</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="resume-studio-split-view">
+        <div class="resume-pane resume-editor-pane">
+          <div class="pane-header">
+            <span class="pane-title">✏️ Resume Markdown Source</span>
+            <span class="pane-hint">Editable source text</span>
+          </div>
+          <textarea id="resume-markdown-editor" class="resume-textarea" placeholder="Your reviewed & updated resume will appear here once drafted by CyberMentor..."></textarea>
+        </div>
+        <div class="resume-pane resume-preview-pane">
+          <div class="pane-header">
+            <span class="pane-title">👁️ Live Formatted Preview</span>
+            <span class="pane-hint">ATS & Executive Layout</span>
+          </div>
+          <div id="resume-formatted-preview" class="resume-preview-content markdown-body">
+            <p class="empty-resume-hint">No updated resume generated yet. Ask CyberMentor to review, rewrite, or update your resume in chat!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ── Skills & Certs Mindmap & Transfer Explorer Modal ────────────── -->
 <div id="mindmap-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="mindmap-title">
   <div class="mindmap-card glass">
@@ -577,6 +631,10 @@
       <button class="quick-action-btn" id="btn-resume" data-prompt="I'd like to get my resume reviewed for cybersecurity roles.">
         <span class="qa-icon">📄</span>
         <span>Resume Review</span>
+      </button>
+      <button class="quick-action-btn" id="btn-resume-studio">
+        <span class="qa-icon">📑</span>
+        <span>My Resume & Exports</span>
       </button>
       <button class="quick-action-btn" id="btn-interview" data-prompt="Let's do a mock interview. Ask me a cybersecurity interview question.">
         <span class="qa-icon">🎤</span>

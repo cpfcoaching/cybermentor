@@ -465,6 +465,10 @@ document.querySelectorAll('.quick-action-btn').forEach(btn => {
       }
       return;
     }
+    if (btn.id === 'btn-resume-studio') {
+      openResumeStudio();
+      return;
+    }
     if (btn.id === 'btn-mindmap-explorer') {
       const mindmapOverlay = document.getElementById('mindmap-overlay');
       if (mindmapOverlay) {
@@ -1144,6 +1148,7 @@ function addAgentMessage(markdown) {
     <div class="message-bubble">${renderMarkdown(markdown)}</div>
   `;
   messagesEl.appendChild(el);
+  checkAndAttachResumeActions(el, markdown);
   scrollToBottom();
   return el;
 }
@@ -1202,11 +1207,16 @@ function finalizeStreamingMessage(el, markdown) {
       speakTextFallback(markdown);
     }
   });
-  bubble.appendChild(speakBtn);
+  // Check if this response contains an updated resume draft or export trigger
+  checkAndAttachResumeActions(el, markdown);
 
   if (typeof isVoiceNarrationEnabled !== 'undefined' && isVoiceNarrationEnabled) {
     if (typeof speakCoachSpeech === 'function') {
       speakCoachSpeech(markdown);
+    } else if (typeof speakTextFallback === 'function') {
+      speakTextFallback(markdown);
+    } else if (typeof speakText === 'function') {
+      speakText(markdown);
     }
   }
 
@@ -1910,4 +1920,315 @@ if (btnCloseDeck) {
     if (focusDeck) focusDeck.classList.add('hidden');
   });
 }
+
+// ── Updated Resume Studio & Executive Document Exporter Module ───────────────
+let currentResumeDraft = '';
+let currentResumeTargetRole = 'Enterprise CISO / Executive';
+
+const resumeStudioOverlay = document.getElementById('resume-studio-overlay');
+const closeResumeStudioBtn = document.getElementById('close-resume-studio-btn');
+const resumeMarkdownEditor = document.getElementById('resume-markdown-editor');
+const resumeFormattedPreview = document.getElementById('resume-formatted-preview');
+const resumeTargetRoleBadge = document.getElementById('resume-target-role-badge');
+const resumeLastUpdatedTime = document.getElementById('resume-last-updated-time');
+
+const btnExportDocx = document.getElementById('btn-export-docx');
+const btnExportPdf = document.getElementById('btn-export-pdf');
+const btnCopyResume = document.getElementById('btn-copy-resume');
+const btnSaveResumeManual = document.getElementById('btn-save-resume-manual');
+
+// Extract clean resume markdown from assistant response
+function extractResumeTextFromMarkdown(markdown) {
+  if (!markdown) return '';
+
+  // Check for codeblock containing resume
+  const codeBlockMatch = markdown.match(/```(?:markdown|resume_export_ready|text)?\n([\s\S]*?)```/);
+  if (codeBlockMatch && (codeBlockMatch[1].includes('EXPERIENCE') || codeBlockMatch[1].includes('SUMMARY') || codeBlockMatch[1].includes('CISO'))) {
+    return codeBlockMatch[1].trim();
+  }
+
+  // If the markdown starts with # or contains # [Name], extract starting from the first heading
+  const headingMatch = markdown.search(/^# [A-Z]/m);
+  if (headingMatch !== -1) {
+    return markdown.slice(headingMatch).trim();
+  }
+
+  return markdown.trim();
+}
+
+function checkAndAttachResumeActions(el, markdown) {
+  if (!markdown || !el) return;
+
+  const isResume = (
+    markdown.includes('### PROFESSIONAL EXPERIENCE') ||
+    markdown.includes('### EXECUTIVE SUMMARY') ||
+    markdown.includes('### CORE COMPETENCIES') ||
+    markdown.includes('resume_export_ready') ||
+    (markdown.includes('Christophe Foulon') && markdown.includes('CISO'))
+  );
+
+  if (!isResume) return;
+
+  const resumeText = extractResumeTextFromMarkdown(markdown);
+  if (resumeText) {
+    currentResumeDraft = resumeText;
+    // Auto-sync with backend profile
+    autoSaveResumeDraft(resumeText);
+  }
+
+  // Prevent duplicate cards
+  const bubble = el.querySelector('.message-bubble');
+  if (!bubble || bubble.querySelector('.resume-chat-export-card')) return;
+
+  const card = document.createElement('div');
+  card.className = 'resume-chat-export-card';
+  card.innerHTML = `
+    <div class="resume-chat-card-header">
+      <div class="resume-chat-card-title">
+        <span>📄</span>
+        <span>Updated Executive Resume Ready</span>
+      </div>
+      <span class="resume-chat-card-badge">ATS & Board Optimized</span>
+    </div>
+    <div class="resume-chat-card-actions">
+      <button class="btn-chat-export btn-chat-docx" title="Download Word DOCX (.docx)">
+        <span>📥 Download Word (.docx)</span>
+      </button>
+      <button class="btn-chat-export btn-chat-pdf" title="Download Styled PDF (.pdf)">
+        <span>📥 Download PDF (.pdf)</span>
+      </button>
+      <button class="btn-chat-export btn-chat-studio" title="Open in Resume Studio">
+        <span>📑 Open in Resume Studio</span>
+      </button>
+    </div>
+  `;
+
+  card.querySelector('.btn-chat-docx').addEventListener('click', (e) => {
+    e.stopPropagation();
+    downloadResumeDocx(resumeText || currentResumeDraft);
+  });
+
+  card.querySelector('.btn-chat-pdf').addEventListener('click', (e) => {
+    e.stopPropagation();
+    downloadResumePdf(resumeText || currentResumeDraft);
+  });
+
+  card.querySelector('.btn-chat-studio').addEventListener('click', (e) => {
+    e.stopPropagation();
+    openResumeStudio(resumeText || currentResumeDraft);
+  });
+
+  bubble.appendChild(card);
+}
+
+async function autoSaveResumeDraft(markdownText) {
+  if (!markdownText || !currentUser) return;
+  try {
+    localStorage.setItem(`cybermentor_resume_${currentUser}`, markdownText);
+    await fetch(`${API_BASE_URL}/api/resume/save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: currentUser,
+        markdown_text: markdownText,
+        target_role: currentResumeTargetRole,
+        candidate_name: 'Christophe Foulon'
+      })
+    });
+  } catch (err) {
+    console.warn('Auto-save resume error:', err);
+  }
+}
+
+async function openResumeStudio(customText = null) {
+  if (!resumeStudioOverlay) return;
+
+  resumeStudioOverlay.classList.remove('hidden');
+  resumeStudioOverlay.classList.add('active');
+
+  if (customText) {
+    currentResumeDraft = customText;
+    updateStudioContent(customText);
+    return;
+  }
+
+  // Load from current memory or local storage
+  const localSaved = localStorage.getItem(`cybermentor_resume_${currentUser}`);
+  if (localSaved) {
+    currentResumeDraft = localSaved;
+    updateStudioContent(localSaved);
+  }
+
+  // Fetch from API backend
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/resume/${encodeURIComponent(currentUser)}/latest`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.found && data.markdown_text) {
+        currentResumeDraft = data.markdown_text;
+        if (data.target_role) currentResumeTargetRole = data.target_role;
+        updateStudioContent(data.markdown_text, data.updated_at);
+      }
+    }
+  } catch (err) {
+    console.warn('Error fetching latest resume from backend:', err);
+  }
+}
+
+function updateStudioContent(text, updatedAt = null) {
+  if (resumeMarkdownEditor) {
+    resumeMarkdownEditor.value = text || '';
+  }
+  if (resumeFormattedPreview) {
+    resumeFormattedPreview.innerHTML = text ? renderMarkdown(text) : '<p class="empty-resume-hint">No updated resume generated yet. Ask CyberMentor to review, rewrite, or update your resume in chat!</p>';
+  }
+  if (resumeTargetRoleBadge) {
+    resumeTargetRoleBadge.textContent = `Track: ${currentResumeTargetRole.replace('_', ' ').toUpperCase()}`;
+  }
+  if (resumeLastUpdatedTime) {
+    resumeLastUpdatedTime.textContent = updatedAt ? `Last Updated: ${new Date(updatedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : 'Last Synced: Just now';
+  }
+}
+
+function closeResumeStudio() {
+  if (resumeStudioOverlay) {
+    resumeStudioOverlay.classList.remove('active');
+    resumeStudioOverlay.classList.add('hidden');
+  }
+}
+
+if (closeResumeStudioBtn) {
+  closeResumeStudioBtn.addEventListener('click', closeResumeStudio);
+}
+
+if (resumeMarkdownEditor) {
+  resumeMarkdownEditor.addEventListener('input', () => {
+    currentResumeDraft = resumeMarkdownEditor.value;
+    if (resumeFormattedPreview) {
+      resumeFormattedPreview.innerHTML = currentResumeDraft ? renderMarkdown(currentResumeDraft) : '<p class="empty-resume-hint">Resume editor is empty.</p>';
+    }
+  });
+}
+
+// ── Download Helpers ────────────────────────────────────────────────────────
+async function downloadResumeDocx(text, filename = "Christophe_Foulon_CISO_Resume.docx") {
+  const content = text || (resumeMarkdownEditor ? resumeMarkdownEditor.value : '') || currentResumeDraft;
+  if (!content.trim()) {
+    alert("No resume text found. Please generate or paste your resume first.");
+    return;
+  }
+
+  try {
+    setStatus('working', 'Generating Word document (.docx)...');
+    const resp = await fetch(`${API_BASE_URL}/api/resume/export/docx`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        markdown_text: content,
+        filename: filename,
+        target_role: currentResumeTargetRole
+      })
+    });
+
+    if (!resp.ok) throw new Error(`DOCX Export failed: ${resp.status}`);
+
+    const blob = await resp.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
+    setStatus('ready', 'CyberMentor Ready');
+  } catch (err) {
+    console.error('Error exporting DOCX:', err);
+    alert(`Could not export DOCX: ${err.message}`);
+    setStatus('ready', 'CyberMentor Ready');
+  }
+}
+
+async function downloadResumePdf(text, filename = "Christophe_Foulon_CISO_Resume.pdf") {
+  const content = text || (resumeMarkdownEditor ? resumeMarkdownEditor.value : '') || currentResumeDraft;
+  if (!content.trim()) {
+    alert("No resume text found. Please generate or paste your resume first.");
+    return;
+  }
+
+  try {
+    setStatus('working', 'Generating PDF document (.pdf)...');
+    const resp = await fetch(`${API_BASE_URL}/api/resume/export/pdf`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        markdown_text: content,
+        filename: filename,
+        target_role: currentResumeTargetRole
+      })
+    });
+
+    if (!resp.ok) throw new Error(`PDF Export failed: ${resp.status}`);
+
+    const blob = await resp.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
+    setStatus('ready', 'CyberMentor Ready');
+  } catch (err) {
+    console.error('Error exporting PDF:', err);
+    alert(`Could not export PDF: ${err.message}`);
+    setStatus('ready', 'CyberMentor Ready');
+  }
+}
+
+// ── Button Listeners ────────────────────────────────────────────────────────
+if (btnExportDocx) {
+  btnExportDocx.addEventListener('click', () => downloadResumeDocx());
+}
+
+if (btnExportPdf) {
+  btnExportPdf.addEventListener('click', () => downloadResumePdf());
+}
+
+if (btnCopyResume) {
+  btnCopyResume.addEventListener('click', async () => {
+    const content = (resumeMarkdownEditor ? resumeMarkdownEditor.value : '') || currentResumeDraft;
+    if (!content) return;
+    try {
+      await navigator.clipboard.writeText(content);
+      const originalText = btnCopyResume.innerHTML;
+      btnCopyResume.innerHTML = '<span>✅ Copied!</span>';
+      setTimeout(() => { btnCopyResume.innerHTML = originalText; }, 2000);
+    } catch (err) {
+      alert('Could not copy to clipboard. Please copy manually from the editor.');
+    }
+  });
+}
+
+if (btnSaveResumeManual) {
+  btnSaveResumeManual.addEventListener('click', async () => {
+    const content = (resumeMarkdownEditor ? resumeMarkdownEditor.value : '') || currentResumeDraft;
+    if (!content) return;
+    try {
+      setStatus('working', 'Saving resume draft to profile...');
+      await autoSaveResumeDraft(content);
+      const originalText = btnSaveResumeManual.innerHTML;
+      btnSaveResumeManual.innerHTML = '<span>✅ Saved!</span>';
+      setTimeout(() => { btnSaveResumeManual.innerHTML = originalText; }, 2000);
+      setStatus('ready', 'CyberMentor Ready');
+    } catch (err) {
+      alert(`Save failed: ${err.message}`);
+      setStatus('ready', 'CyberMentor Ready');
+    }
+  });
+}
+
 
