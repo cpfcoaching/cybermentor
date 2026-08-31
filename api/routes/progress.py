@@ -321,8 +321,15 @@ async def get_user_analytics(user_id: str):
         readiness = min(95, max(70, 70 + (skills_count * 2) + (effective_milestones * 3)))
         recommended_action = "Practice Zero Trust & DevSecOps CI/CD compliance gate defense"
     elif "soc" in role_key or "secops" in role_key:
-        readiness = min(95, max(60, 55 + (skills_count * 3) + (effective_milestones * 4)))
-        recommended_action = "Complete EDR alert triage and live attack containment drill"
+        if "manager" in role_key or "lead" in role_key or "director" in role_key:
+            readiness = min(95, max(65, 65 + (skills_count * 2) + (effective_milestones * 3)))
+            recommended_action = "Practice SOC Incident Escalation & Tier-1 Team Leadership drill in the Studio"
+        elif "tier_1" in role_key or "tier 1" in role_key or "entry" in role_key or "junior" in role_key:
+            readiness = min(95, max(50, 50 + (skills_count * 4) + (effective_milestones * 5)))
+            recommended_action = "Practice Phishing Email Header & VirusTotal Artifact Analysis drill in the Studio"
+        else:
+            readiness = min(95, max(60, 55 + (skills_count * 3) + (effective_milestones * 4)))
+            recommended_action = "Complete EDR alert triage and live attack containment drill in the Studio"
     elif "grc" in role_key or "compliance" in role_key:
         readiness = min(95, max(70, 65 + (skills_count * 2) + (effective_milestones * 3)))
         recommended_action = "Run 0-to-1 SOC 2 Type II & ISO 27001 roadmap scoping drill"
