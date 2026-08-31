@@ -2353,7 +2353,7 @@ if (btnTailorResume) {
     } else {
       tailorPrompt += `Highlight the specific leadership proof points, technical oversight, framework compliance, and metrics that executive search panels look for in this track. `;
     }
-    tailorPrompt += `Once drafted, output the full complete resume and save it to my profile so I can immediately download the updated Word (.docx) and PDF (.pdf) documents!`;
+    tailorPrompt += `CRITICAL MANDATORY INSTRUCTION: Seamlessly incorporate all of my actual candidate contact information, real employer names, employment dates, verified certifications, and authored publications/books from my uploaded profile. NEVER use placeholder tokens like [Placeholder Phone], [Placeholder Email], [Placeholder LinkedIn], or (Placeholder). Output the full, complete markdown resume document and save it to my profile so I can immediately export updated Word (.docx) and PDF (.pdf) documents!`;
     
     if (!isStreaming) {
       messageInput.value = tailorPrompt;
