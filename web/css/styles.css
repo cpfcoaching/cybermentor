@@ -1521,6 +1521,42 @@ audio.media-player {
 
 .mindmap-view.hidden { display: none !important; }
 
+.profile-sync-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(99, 102, 241, 0.12) 100%);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  border-radius: var(--r-md);
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  color: #38bdf8;
+  flex-wrap: wrap;
+}
+
+.btn-sync-profile {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #fff;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-sync-profile:hover {
+  background: rgba(56, 189, 248, 0.3);
+  transform: translateY(-1px);
+}
+
+.chip-verified {
+  background: rgba(34, 197, 94, 0.2) !important;
+  color: #4ade80 !important;
+  border-color: rgba(34, 197, 94, 0.45) !important;
+}
+
 .transfer-controls {
   display: flex;
   align-items: center;

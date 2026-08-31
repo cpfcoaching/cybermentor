@@ -458,6 +458,13 @@
 
     <!-- View: Transferable Intersection -->
     <div id="view-transfer" class="mindmap-view active">
+      <div class="profile-sync-banner" id="transfer-profile-sync-banner">
+        <span class="sync-indicator">✨ Auto-Calibrated from Active Candidate Profile & ACE Memory</span>
+        <button class="btn btn-ghost btn-sync-profile" id="btn-sync-transfer-profile" title="Re-sync current background & target role from your active resume and ACE cognitive memory">
+          <span>🔄 Auto-Detect from My Profile</span>
+        </button>
+      </div>
+
       <div class="transfer-controls">
         <div class="control-group">
           <label for="select-source-role">Your Current Background / Role:</label>
@@ -496,30 +503,34 @@
         <div class="control-group">
           <label for="select-target-role">Target Cybersecurity Role:</label>
           <select id="select-target-role" class="form-input">
-            <optgroup label="Offensive Security & AI Safety">
-              <option value="penetration_tester">Penetration Tester / Ethical Hacker</option>
-              <option value="red_team">Red Teamer / Offensive Operations</option>
+            <optgroup label="Core Executive & Leadership Targets">
+              <option value="ciso">CISO / Executive Security Leadership</option>
+              <option value="fractional_vciso">Fractional vCISO & Advisory Practice Leader</option>
+              <option value="grc_leader">GRC Leader / VP of Risk & Compliance</option>
+              <option value="grc">GRC Analyst & Enterprise Risk Specialist</option>
+              <option value="privacy_specialist">Privacy Specialist / Data Protection Officer (DPO)</option>
+              <option value="policy_specialist">Policy Specialist / Cyber Regulatory Strategist</option>
+            </optgroup>
+            <optgroup label="High-Demand Market Stretch Roles (2026 Focus)">
+              <option value="caiso_ai_governance">Chief AI Security Officer (CAISO) / AI Governance</option>
+              <option value="vp_product_security">VP of Product Security & DevSecOps Platform</option>
+              <option value="federal_ciso_fedramp">Federal CISO / FedRAMP & CMMC Leader</option>
               <option value="ai_security_specialist">AI Security Specialist / AI Safety Engineer</option>
               <option value="prompt_engineer">Prompt Engineer / LLM Guardrail Specialist</option>
             </optgroup>
             <optgroup label="Security Engineering & AppSec">
               <option value="security_software_engineer">Security Software Engineer (AppSec / DevSecOps)</option>
               <option value="security_engineer">Security Engineer (SecOps & Infrastructure)</option>
-              <option value="cloud_security" selected>Cloud Security Engineer</option>
+              <option value="cloud_security">Cloud Security Engineer</option>
               <option value="network_security_engineer">Network Security Engineer</option>
               <option value="forward_deployed_engineer">Forward Deployed Engineer (FDE)</option>
               <option value="ai_developer">AI Developer / LLM Application Engineer</option>
             </optgroup>
-            <optgroup label="Security Operations & Response">
+            <optgroup label="Security Operations & Offensive">
               <option value="soc_analyst">SOC Analyst (Security Operations)</option>
               <option value="dfir">DFIR (Digital Forensics & Incident Response)</option>
-            </optgroup>
-            <optgroup label="Governance, Risk, Privacy & Leadership">
-              <option value="grc">GRC Analyst (Governance, Risk, Compliance)</option>
-              <option value="grc_leader">GRC Leader / VP of Risk & Compliance</option>
-              <option value="privacy_specialist">Privacy Specialist / Data Protection Officer (DPO)</option>
-              <option value="policy_specialist">Policy Specialist / Cyber Regulatory Strategist</option>
-              <option value="ciso">CISO / Executive Security Leadership</option>
+              <option value="penetration_tester">Penetration Tester / Ethical Hacker</option>
+              <option value="red_team">Red Teamer / Offensive Operations</option>
             </optgroup>
           </select>
         </div>

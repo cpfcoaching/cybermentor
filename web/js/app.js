@@ -478,7 +478,7 @@ document.querySelectorAll('.quick-action-btn').forEach(btn => {
       if (mindmapOverlay) {
         mindmapOverlay.classList.remove('hidden');
         mindmapOverlay.classList.add('active');
-        renderTransferExplorer();
+        syncTransferExplorerWithActiveProfile();
         renderSkillsMindmap();
         renderCertsMindmap();
       }
@@ -957,13 +957,80 @@ const _TRANSFER_PRESETS = {
   "grc->grc_leader": { score: 92, diff: "Leadership Evolution", timeline: "2-4 years", shared: ["NIST CSF / ISO 27001 Controls", "Third-Party Vendor Risk Management", "Audit Evidence Gathering & Gap Analysis", "Security Policy Authoring"], bridge: ["Running Control Audits ➔ Defining Enterprise Compliance Strategy", "Filling Risk Registers ➔ Board-Level FAIR Financial Risk Modeling"], delta: ["Global Regulatory Directives (SEC Cyber, DORA, NIS2)", "Automated Compliance Platform Architecture (Vanta/Drata)", "Executive Committee Chairing & C-suite Risk Alignment"], certs: ["ISACA CISM", "ISACA CRISC", "ISC2 CISSP", "CGEIT"], note: "GRC leaders bridge technical controls with corporate bottom lines. Master the FAIR quantitative risk model to articulate cyber risk in dollars." },
   "grc->privacy_specialist": { score: 88, diff: "Smooth Specialty", timeline: "3-6 months", shared: ["Compliance Auditing & Control Frameworks", "Policy Documentation & Governance", "Third-Party Vendor Risk Reviews", "Regulatory Gap Assessments"], bridge: ["Security Controls ➔ Privacy Impact Assessments (DPIA)", "Data Classification ➔ Subject Access Request (DSAR) Fulfillment"], delta: ["Global Privacy Statutes (GDPR, CCPA/CPRA, HIPAA Privacy)", "Privacy by Design & Data Minimization Engineering", "Cross-Border Data Transfer Agreements (DPAs, SCCs)"], certs: ["IAPP CIPP/US", "IAPP CIPP/E", "IAPP CIPM", "ISACA CDPSE"], note: "Privacy is one of the highest-paying compliance specializations. Combine your GRC audit instincts with IAPP CIPP certifications." },
   "grc->policy_specialist": { score: 90, diff: "Direct Alignment", timeline: "2-4 months", shared: ["Security Framework Mapping (NIST/ISO)", "Policy & Standard Authoring", "Audit Defense & Regulatory Scoping", "Executive Reporting"], bridge: ["Internal SOPs ➔ Enterprise Cyber Strategy & SEC Disclosures", "Compliance Tracking ➔ AI & Supply Chain Governance Policy"], delta: ["SEC Form 8-K/10-K Cyber Disclosure Timelines", "Federal Directives & Cyber Executive Orders", "AI Use & Acceptable Risk Policy Frameworks"], certs: ["ISC2 CGRC", "SANS MGT514", "ISACA CGEIT"], note: "Policy specialists shape corporate posture. Focus on emerging AI governance and SEC cyber disclosure mandates to stand out." },
-  "soc_analyst->penetration_tester": { score: 75, diff: "Moderate", timeline: "6-12 months", shared: ["Network Packet Capture (Wireshark)", "Understanding Exploit Mechanics", "Attack Signature Footprints", "MITRE ATT&CK Framework"], bridge: ["Detecting Web Attacks ➔ Executing Exploits (SQLi, XSS, SSRF)", "Investigating Malware Persistence ➔ Crafting Payloads", "Reading Alert Signatures ➔ Evading EDR/IDS Rules"], delta: ["Burp Suite Professional & Web App Methodology", "Manual Privilege Escalation (Linux/Windows)", "Penetration Testing Scoping & Report Writing"], certs: ["eLearnSecurity eJPT", "TCM Security PNPT", "OffSec OSCP"], note: "You know what alarms look like on the blue team. Use that insight to practice stealthy offensive techniques on PortSwigger Web Security Academy." },
-  "soc_analyst->dfir": { score: 90, diff: "Easy to Moderate", timeline: "3-6 months", shared: ["Evidence Gathering & Timeline Creation", "Endpoint Telemetry Analysis", "Threat Intel Correlation", "Root Cause Incident Analysis"], bridge: ["EDR Alerts ➔ Deep Memory & Disk Forensics", "Alert Triage ➔ Full Forensic Timeline Reconstruction"], delta: ["Memory Dump Analysis (Volatility)", "Master File Table (MFT) & Registry Forensics", "Malware Static/Dynamic Triage (Ghidra, PEStudio)"], certs: ["GIAC GCIH", "GIAC GCFA", "Blue Team Level 1"], note: "DFIR is the natural senior evolution for SOC analysts. Practice investigating memory dumps from past CyberDefenders challenges." },
-  "soc_analyst->cloud_security": { score: 80, diff: "Moderate", timeline: "6-9 months", shared: ["Log Correlation & Parsing", "Threat Detection Rules", "Identity & Access Monitoring", "Incident Response Workflows"], bridge: ["On-Prem SIEM ➔ AWS CloudTrail, GuardDuty & CloudWatch", "Firewall Rules ➔ Security Groups & Cloud WAFs"], delta: ["Cloud Architecture (IAM, S3, VPCs)", "Infrastructure as Code Security (Tfsec)", "Container & Kubernetes Runtime Monitoring"], certs: ["AWS Certified Security - Specialty", "Google Cloud Security Engineer"], note: "Master cloud log sources and automate incident containment scripts using AWS Lambda." },
-  "grc->ciso": { score: 90, diff: "Leadership Progression", timeline: "5-8 years", shared: ["Enterprise Risk Governance", "Board & Executive Reporting", "Security Policy Management", "Regulatory Compliance (NIST/ISO)"], bridge: ["Control Auditing ➔ Departmental Security Budget Planning", "Vendor Risk Reviews ➔ Enterprise Cyber Insurance Negotiation"], delta: ["Executive Crisis Leadership", "C-suite Business Strategy Alignment", "Enterprise Security Culture Strategy"], certs: ["CISM", "CISSP", "CCISO"], note: "GRC is the most direct path to the CISO chair because modern CISOs are business risk executives first." }
+  "ciso->fractional_vciso": { score: 98, diff: "Natural Lateral Pivot", timeline: "Immediate", shared: ["Board-Level Cyber Risk Governance", "FAIR Risk Quantification", "Executive Client Advisory", "SOC 2 / ISO 27001 ISMS Implementation"], bridge: ["Single Enterprise Governance ➔ Multi-Client Advisory Agility", "Direct Team Management ➔ Executive Sponsoring & Enablement"], delta: ["Fractional SOW Scoping & Rapid Compliance Roadmaps", "Commercial Advisory Business Development"], certs: ["CISM", "CCISO", "CRISC"], note: "Your enterprise credibility is your greatest asset. High-growth startups need seasoned CISO leadership without full-time executive overhead." },
+  "ciso->caiso_ai_governance": { score: 88, diff: "Emerging Tech Evolution", timeline: "3-6 months", shared: ["Enterprise Risk Governance", "Regulatory Directives & Board Briefings", "Third-Party Vendor Risk", "Policy Enforcement"], bridge: ["Enterprise Cybersecurity Risk ➔ AI & LLM Model Risk", "NIST CSF ➔ NIST AI RMF 1.0 & ISO 42001"], delta: ["OWASP Top 10 for LLMs", "Prompt Injection & Model Extraction Defenses", "AI Safety Guardrail Policy Frameworks"], certs: ["IAPP AIGP (AI Governance Professional)", "AWS Certified AI Practitioner"], note: "CISOs who understand AI risk quantification and NIST AI RMF are leading the new Chief AI Security Officer category." },
+  "ciso->vp_product_security": { score: 85, diff: "Technical Leadership Lateral", timeline: "3-6 months", shared: ["Executive Engineering Alignment", "Compliance-as-Code Strategy", "Vulnerability Remediation Prioritization (EPSS/CVSS)", "Zero Trust Architecture"], bridge: ["Enterprise Governance ➔ CI/CD Automated Security Gates", "Cloud Risk Oversight ➔ Kubernetes & Container Hardening"], delta: ["Hands-On SAST/DAST Tool Tuning", "Threat Modeling for Agile Squads (STRIDE)", "SBOM Generation & Supply Chain SLSA Standards"], certs: ["CSSLP", "CKS (Kubernetes Security)", "CISSP"], note: "Modern Product Security VPs bridge executive trust with developer empathy to automate security into daily sprint velocity." },
+  "grc_leader->ciso": { score: 95, diff: "Direct Leadership Progression", timeline: "1-2 years", shared: ["Board Risk Reporting", "FAIR Quantitative Risk Analysis", "Regulatory Examination Defense", "Global Compliance Strategy (SOC 2/ISO/SEC)"], bridge: ["Compliance Audit Defense ➔ Holistic Enterprise Cyber Strategy", "Risk Registry Ownership ➔ Full Cybersecurity Budget Justification"], delta: ["Executive Crisis Command & Law Enforcement Coordination", "High-Stakes Technical Architecture Oversight"], certs: ["CISM", "CISSP", "CCISO", "CGEIT"], note: "GRC leaders sit in the front seat of modern CISO hiring committees because modern security leadership is risk management first." },
+  "software_developer->vp_product_security": { score: 88, diff: "Moderate", timeline: "6-12 months", shared: ["Code Architecture & Design Patterns", "CI/CD Pipelines & GitHub Actions", "API Development & Cloud Microservices", "PR Review Culture"], bridge: ["Writing Code ➔ Threat Modeling & Secure Code Review", "Debugging Logic Flaws ➔ Identifying Business Logic & OWASP Flaws"], delta: ["SAST/DAST/SCA Pipeline Security Gates", "Secrets Management (HashiCorp Vault)", "SBOM & Container Image Hardening"], certs: ["Certified DevSecOps Professional (CDP)", "OffSec OSWE", "CSSLP"], note: "Software developers make the strongest Application Security leaders because you know how code builds and runs in production." },
+  "cloud_security->ciso": { score: 82, diff: "Leadership Evolution", timeline: "3-5 years", shared: ["Cloud Security Architecture", "Identity & Least-Privilege IAM", "Multi-Cloud Governance (AWS/Azure)", "DevSecOps Automation"], bridge: ["Technical Engineering ➔ Executive Business Risk Framing", "Infrastructure Hardening ➔ Board Budget Defense"], delta: ["Enterprise Budget & Resource Allocation", "SEC Cyber Disclosures & Corporate Governance", "Vendor Risk Management & Cyber Insurance"], certs: ["CISSP", "CISM", "CCISO"], note: "As enterprises operate 100% in the cloud, technical cloud security leaders who master financial risk quantification are in high demand for CISO chairs." }
 };
 
-function renderTransferExplorer() {
+let _lastLoadedUserSkills = [];
+
+async function syncTransferExplorerWithActiveProfile() {
+  const activeUser = currentUser || 'guest';
+  const banner = document.getElementById('transfer-profile-sync-banner');
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/progress/${encodeURIComponent(activeUser)}/analytics`);
+    if (res.ok) {
+      const data = await res.json();
+      _lastLoadedUserSkills = data.skills_breakdown || [];
+      const role = (data.target_role || '').toLowerCase();
+      
+      // Auto-set Target Role from profile
+      if (targetRoleSelect) {
+        if (role.includes('ciso') || role.includes('executive')) {
+          targetRoleSelect.value = 'ciso';
+        } else if (role.includes('ai') || role.includes('caiso')) {
+          targetRoleSelect.value = 'ai_security_specialist';
+        } else if (role.includes('product') || role.includes('devsecops')) {
+          targetRoleSelect.value = 'security_software_engineer';
+        } else if (role.includes('soc') || role.includes('secops')) {
+          targetRoleSelect.value = 'soc_analyst';
+        } else if (role.includes('grc') || role.includes('risk')) {
+          targetRoleSelect.value = 'grc_leader';
+        } else if (role.includes('cloud')) {
+          targetRoleSelect.value = 'cloud_security';
+        }
+      }
+
+      // Auto-set Source Role based on background
+      if (sourceRoleSelect) {
+        if (role.includes('ciso') || role.includes('executive') || role.includes('vciso')) {
+          sourceRoleSelect.value = 'grc_leader';
+        } else if (role.includes('dev') || role.includes('software')) {
+          sourceRoleSelect.value = 'software_developer';
+        }
+      }
+
+      // Update banner text
+      if (banner) {
+        const syncText = banner.querySelector('.sync-indicator');
+        if (syncText) {
+          syncText.innerHTML = `✨ Auto-Calibrated to Active Candidate Profile & ACE Memory (<strong>${escapeHtml(data.target_role || 'Target Track')}</strong> · ${data.documented_skills_count || _lastLoadedUserSkills.length} Verified Skills)`;
+        }
+      }
+
+      renderTransferExplorer(_lastLoadedUserSkills);
+      return;
+    }
+  } catch (err) {
+    console.warn('Sync transfer profile error:', err);
+  }
+
+  renderTransferExplorer(_lastLoadedUserSkills);
+}
+
+const btnSyncTransferProfile = document.getElementById('btn-sync-transfer-profile');
+if (btnSyncTransferProfile) {
+  btnSyncTransferProfile.addEventListener('click', syncTransferExplorerWithActiveProfile);
+}
+
+function renderTransferExplorer(userVerifiedSkills = null) {
+  const verifiedList = userVerifiedSkills || _lastLoadedUserSkills || [];
+  const verifiedLower = verifiedList.map(s => s.toLowerCase());
+
   const src = sourceRoleSelect ? sourceRoleSelect.value : 'it_helpdesk';
   const tgt = targetRoleSelect ? targetRoleSelect.value : 'soc_analyst';
   const container = document.getElementById('transfer-results');
@@ -984,6 +1051,13 @@ function renderTransferExplorer() {
     note: `Transitioning from ${srcData.title} to ${tgtData.title} leverages your existing domain strengths while expanding targeted hands-on skills.`
   };
 
+  // Helper to test if skill is verified in candidate profile
+  const isVerified = (text) => {
+    if (!verifiedLower.length) return false;
+    const t = text.toLowerCase();
+    return verifiedLower.some(v => t.includes(v) || v.includes(t.split(' ')[0]));
+  };
+
   container.innerHTML = `
     <div class="transfer-summary-card">
       <div class="compatibility-bar-wrapper">
@@ -997,14 +1071,20 @@ function renderTransferExplorer() {
       <div class="transfer-section">
         <h4>✅ Directly Transferable Skills (100% Match)</h4>
         <div class="chips-cloud">
-          ${data.shared.map(s => `<span class="chip chip-shared">${escapeHtml(s)}</span>`).join('')}
+          ${data.shared.map(s => {
+            const verified = isVerified(s);
+            return `<span class="chip chip-shared ${verified ? 'chip-verified' : ''}" title="${verified ? 'Verified in your active profile & ACE memory' : ''}">${escapeHtml(s)}${verified ? ' ✅ (Verified)' : ''}</span>`;
+          }).join('')}
         </div>
       </div>
 
       <div class="transfer-section">
         <h4>🌉 Bridge Skills (Adapt & Recontextualize)</h4>
         <div class="chips-cloud">
-          ${data.bridge.map(b => `<span class="chip chip-bridge">${escapeHtml(b)}</span>`).join('')}
+          ${data.bridge.map(b => {
+            const verified = isVerified(b);
+            return `<span class="chip chip-bridge ${verified ? 'chip-verified' : ''}">${escapeHtml(b)}${verified ? ' ✅' : ''}</span>`;
+          }).join('')}
         </div>
       </div>
 
@@ -1018,7 +1098,10 @@ function renderTransferExplorer() {
       <div class="transfer-section">
         <h4>🎓 Recommended Bridge Certifications</h4>
         <div class="chips-cloud">
-          ${data.certs.map(c => `<span class="chip chip-cert">${escapeHtml(c)}</span>`).join('')}
+          ${data.certs.map(c => {
+            const verified = isVerified(c);
+            return `<span class="chip chip-cert ${verified ? 'chip-verified' : ''}">${escapeHtml(c)}${verified ? ' ✅ (Earned)' : ''}</span>`;
+          }).join('')}
         </div>
       </div>
 
