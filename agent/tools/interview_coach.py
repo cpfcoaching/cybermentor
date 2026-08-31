@@ -47,6 +47,32 @@ _QUESTIONS = {
             {"q": "How would you explain a complex security risk to a non-technical executive?", "key_points": ["business language", "financial impact", "simple analogy", "recommendation"]},
         ],
     },
+    "ciso": {
+        "technical": [
+            {
+                "q": "You need to justify a $3.5M cybersecurity budget increase to the Board of Directors and CFO. How do you quantify cyber risk and return on investment without relying on Fear, Uncertainty, and Doubt (FUD)?",
+                "key_points": ["FAIR risk quantification", "loss expectancy (ALE/SLE)", "business enablement & revenue velocity", "risk appetite alignment", "defensible metrics"]
+            },
+            {
+                "q": "Your team detects an actively exploited remote code execution vulnerability (CVSS 9.8) in a core production microservice during end-of-quarter billing. The VP of Engineering pushes back against patching due to release SLAs. How do you resolve this?",
+                "key_points": ["collaborative risk framing", "blast radius & CIA impact", "interim virtual patching/WAF controls", "phased canary/wave rollout", "time-bound formal risk acceptance"]
+            },
+            {
+                "q": "How do you design and execute a Zero Trust architecture and automated DevSecOps transformation across a multi-cloud enterprise without stalling sprint velocity?",
+                "key_points": ["identity perimeter & IAM/RBAC", "Compliance-as-Code automation", "CI/CD security gates (SAST/DAST)", "least-privilege & micro-segmentation", "developer empathy & security champions"]
+            }
+        ],
+        "behavioral": [
+            {
+                "q": "A tier-1 SaaS vendor discloses a critical breach compromising sensitive customer records. Walk through your executive crisis management and stakeholder communication strategy in the first 48 hours.",
+                "key_points": ["crisis command structure", "containment & vendor forensic audit", "Board & C-Suite executive briefing", "legal & regulatory notification SLAs", "transparent customer advisory"]
+            },
+            {
+                "q": "How do you navigate friction between engineering velocity and compliance mandates (e.g. SOC 2 Type II or ISO 27001) in a high-growth scale-up?",
+                "key_points": ["automate evidence collection (Drata/Vanta/APIs)", "embed controls in daily workflows", "frame compliance as commercial differentiator", "cross-functional partnership"]
+            }
+        ]
+    },
     "general": {
         "behavioral": [
             {"q": "Why do you want to work in cybersecurity?", "key_points": ["genuine motivation", "specific interest area", "career trajectory"]},

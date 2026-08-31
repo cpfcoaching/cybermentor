@@ -469,6 +469,10 @@ document.querySelectorAll('.quick-action-btn').forEach(btn => {
       openResumeStudio();
       return;
     }
+    if (btn.id === 'btn-interview') {
+      openInterviewStudio();
+      return;
+    }
     if (btn.id === 'btn-mindmap-explorer') {
       const mindmapOverlay = document.getElementById('mindmap-overlay');
       if (mindmapOverlay) {
@@ -2230,5 +2234,86 @@ if (btnSaveResumeManual) {
     }
   });
 }
+
+// Track Selector & 1-Click Auto-Tailor Listener
+const resumeTrackSelect = document.getElementById('resume-track-select');
+const btnTailorResume = document.getElementById('btn-tailor-resume');
+
+if (resumeTrackSelect) {
+  resumeTrackSelect.addEventListener('change', () => {
+    currentResumeTargetRole = resumeTrackSelect.value;
+    if (resumeTargetRoleBadge) {
+      resumeTargetRoleBadge.textContent = `Track: ${resumeTrackSelect.options[resumeTrackSelect.selectedIndex].text}`;
+    }
+  });
+}
+
+if (btnTailorResume) {
+  btnTailorResume.addEventListener('click', () => {
+    const selectedTrack = resumeTrackSelect ? resumeTrackSelect.options[resumeTrackSelect.selectedIndex].text : 'Enterprise CISO / VP InfoSec';
+    closeResumeStudio();
+    const tailorPrompt = `Please tailor, calibrate, and draft my complete updated resume for the target track: "${selectedTrack}". Highlight the specific leadership proof points, technical oversight, framework compliance, and metrics that enterprise search panels and hiring committees look for in this track. Once drafted, save it to my profile so I can immediately download the updated Word (.docx) and PDF (.pdf) documents!`;
+    if (!isStreaming) {
+      messageInput.value = tailorPrompt;
+      messageInput.dispatchEvent(new Event('input'));
+      sendMessage();
+    }
+  });
+}
+
+// ── Executive Mock Interview & Board Defense Studio Module ──────────────────
+const interviewStudioOverlay = document.getElementById('interview-studio-overlay');
+const closeInterviewStudioBtn = document.getElementById('close-interview-studio-btn');
+const interviewTabBtns = document.querySelectorAll('.interview-tab-btn');
+const interviewDrillCards = document.querySelectorAll('.interview-drill-card');
+const launchDrillBtns = document.querySelectorAll('.btn-launch-drill');
+
+function openInterviewStudio() {
+  if (interviewStudioOverlay) {
+    interviewStudioOverlay.classList.remove('hidden');
+    interviewStudioOverlay.classList.add('active');
+  }
+}
+
+function closeInterviewStudio() {
+  if (interviewStudioOverlay) {
+    interviewStudioOverlay.classList.remove('active');
+    interviewStudioOverlay.classList.add('hidden');
+  }
+}
+
+if (closeInterviewStudioBtn) {
+  closeInterviewStudioBtn.addEventListener('click', closeInterviewStudio);
+}
+
+interviewTabBtns.forEach(tab => {
+  tab.addEventListener('click', () => {
+    interviewTabBtns.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+
+    interviewDrillCards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+launchDrillBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const prompt = btn.dataset.prompt;
+    if (!prompt) return;
+    closeInterviewStudio();
+    if (!isStreaming) {
+      messageInput.value = prompt;
+      messageInput.dispatchEvent(new Event('input'));
+      sendMessage();
+    }
+  });
+});
+
 
 

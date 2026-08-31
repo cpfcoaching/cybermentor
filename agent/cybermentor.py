@@ -124,8 +124,8 @@ def create_cybermentor_agent(
     else:
         config_kwargs["vertex"] = True
         config_kwargs["project"] = project_id
-        config_kwargs["location"] = os.getenv("GOOGLE_CLOUD_LOCATION", os.getenv("GOOGLE_CLOUD_REGION", "global"))
-        config_kwargs["model"] = os.getenv("MODEL_NAME", "gemini-3.7-flash")
+        config_kwargs["location"] = os.getenv("GOOGLE_CLOUD_LOCATION", os.getenv("GOOGLE_CLOUD_REGION", "us-central1"))
+        config_kwargs["model"] = os.getenv("MODEL_NAME", "gemini-2.5-flash")
 
     if conversation_id:
         config_kwargs["conversation_id"] = conversation_id

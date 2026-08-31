@@ -2276,3 +2276,216 @@ audio.media-player {
   transform: translateY(-1px);
 }
 
+/* ── Track Selector in Resume Studio ──────────────────────────────── */
+.track-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.track-select-label {
+  font-size: 0.82rem;
+  color: var(--clr-text-sub);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.resume-track-dropdown {
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--clr-border);
+  color: #fff;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+
+.resume-track-dropdown:focus {
+  border-color: var(--clr-cyan);
+  outline: none;
+}
+
+.btn-tailor-track {
+  font-size: 0.82rem;
+  padding: 6px 12px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+  border: none;
+  color: #fff;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-tailor-track:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
+}
+
+/* ── Executive Mock Interview & Board Defense Studio ──────────────── */
+.interview-studio-modal-card {
+  width: 96vw;
+  max-width: 1200px;
+  height: 90vh;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+}
+
+.interview-header-title-wrap {
+  text-align: left;
+}
+
+.interview-header-title-wrap h2 {
+  font-size: 1.35rem;
+  margin-bottom: 2px;
+}
+
+.interview-studio-sub {
+  font-size: 0.85rem;
+  color: var(--clr-text-sub);
+}
+
+.interview-studio-modal-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: 0.5rem;
+}
+
+.interview-tabs-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-md);
+  margin-bottom: 14px;
+}
+
+.interview-tab-btn {
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--clr-text-sub);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.interview-tab-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.interview-tab-btn.active {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.4);
+  color: var(--clr-cyan);
+}
+
+.interview-drills-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.interview-drill-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-md);
+  padding: 16px;
+  transition: all 0.25s ease;
+}
+
+.interview-drill-card:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.drill-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.drill-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.badge-ciso {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.badge-cloud {
+  background: rgba(14, 165, 233, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.4);
+}
+
+.badge-secops {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.badge-grc {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.drill-difficulty {
+  font-size: 0.75rem;
+  color: var(--clr-text-muted, #718096);
+}
+
+.drill-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.drill-scenario {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  flex: 1;
+}
+
+.drill-objectives {
+  font-size: 0.78rem;
+  color: var(--clr-cyan);
+  background: rgba(0, 212, 255, 0.08);
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  margin-bottom: 14px;
+  border-left: 3px solid var(--clr-cyan);
+}
+
+.btn-launch-drill {
+  width: 100%;
+  font-weight: 600;
+  padding: 9px 14px;
+  font-size: 0.85rem;
+}
+
+
