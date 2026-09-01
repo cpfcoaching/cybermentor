@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CyberMentor</string>
+    <string name="title_activity_main">CyberMentor</string>
+    <string name="package_name">org.breakingintocybersecurity.cybermentor</string>
+    <string name="custom_url_scheme">org.breakingintocybersecurity.cybermentor</string>
+</resources>

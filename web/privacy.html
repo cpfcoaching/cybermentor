@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberMentor — Privacy Policy & Data Protection Charter</title>
+    <link rel="icon" type="image/png" href="/img/app_icon.webp">
+    <style>
+        :root {
+            --bg-primary: #020617;
+            --bg-secondary: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(148, 163, 184, 0.15);
+            --accent-cyan: #38bdf8;
+            --accent-green: #10b981;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin: 1.75rem 0 0.75rem 0;
+            color: var(--accent-cyan);
+        }
+
+        p, li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="/img/app_icon.webp" alt="CyberMentor Icon" class="logo">
+            <div>
+                <h1>Privacy Policy & Data Protection</h1>
+                <div class="subtitle">Effective Date: August 29, 2026 | Developer: Christophe Foulon / Breaking Into Cybersecurity</div>
+            </div>
+        </div>
+
+        <h2>1. Core Commitment</h2>
+        <p>CyberMentor is an AI-powered career mentor designed to help candidates break into and advance within cybersecurity. All data collected is used solely to personalize coaching, certification study planning, and mock interview drills within the application. We do not sell, rent, or monetize your personal data.</p>
+
+        <h2>2. Zero-Knowledge & Complete Profile Isolation</h2>
+        <p>Candidate profiles are logically isolated in Cloud Firestore by authenticated user ID. Individual conversational transcripts, voice recordings, resume files, and private learning notes cannot be accessed by administrative staff or other users.</p>
+
+        <h2>3. Data Collection & Purpose</h2>
+        <ul>
+            <li><strong>User Identity & Account Data:</strong> Email address and profile info via Google SSO for session management and cloud progress sync.</li>
+            <li><strong>Career Profiles & Resumes:</strong> Parsed skill backgrounds and NIST NICE framework work role preferences.</li>
+            <li><strong>Interview Simulations & Rubrics:</strong> User responses and automated scoring rubrics for mock technical and behavioral interviews.</li>
+        </ul>
+
+        <h2>4. Right to Erasure & Account Deletion</h2>
+        <p>Users have the unconditional right to delete all data at any time directly in-app or by visiting our <a href="/delete-account.html" style="color: var(--accent-cyan);">Account Deletion Page</a>. We also enforce an automated 90-day inactivity purge on inactive accounts.</p>
+
+        <h2>5. Security Controls</h2>
+        <p>All network data in transit is encrypted using TLS 1.3. Cloud databases are encrypted at rest using AES-256 encryption.</p>
+
+        <div class="footer">
+            <p>Developer: <strong>Breaking Into Cybersecurity / Christophe Foulon</strong></p>
+            <p><a href="/home.html">Home</a> · <a href="/delete-account.html">Delete Account Request</a> · <a href="https://breakingintocybersecurity.org">Podcast & Community</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -18,6 +18,8 @@ build/
 # Secrets / Credentials
 *service-account*.json
 *-key.json
+*.jks
+*.keystore
 
 # IDE
 .idea/
@@ -76,15 +78,11 @@ out/
 coverage/
 
 # Native Mobile App Components & Platforms
-android/
-ios/
-capacitor.config.json
-capacitor.config.ts
+!android/
+!ios/
+!capacitor.config.json
 *.apk
 *.aab
-*.xcworkspace
-*.xcodeproj
-Podfile.lock
 Pods/
 
 # Added by GitGuard (Node.js, Python, FastAPI, Gradle)
