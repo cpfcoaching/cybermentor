@@ -36,7 +36,7 @@ app = FastAPI(
 # ── CORS ──────────────────────────────────────────────────────────────────────
 cors_origins = os.getenv(
     "CORS_ORIGINS",
-    "http://localhost:3000,http://127.0.0.1:3000,http://localhost:8080,https://client.breakingintocybersecurity.org,https://breakingintocybersecurity.org",
+    "http://localhost:3000,http://127.0.0.1:3000,http://localhost:8080,https://client.breakingintocybersecurity.org,https://breakingintocybersecurity.org,capacitor://localhost,https://localhost,http://localhost",
 )
 app.add_middleware(
     CORSMiddleware,
