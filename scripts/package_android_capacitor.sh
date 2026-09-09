@@ -6,10 +6,10 @@ echo "   CyberMentor — Android Package Builder (APK & AAB)"
 echo "============================================================"
 
 # Set Java and Android SDK environment
-if [ -d "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home" ]; then
-  export JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home"
-else
+if [ -d "/usr/local/opt/openjdk@21" ]; then
   export JAVA_HOME="/usr/local/opt/openjdk@21"
+elif [ -d "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home" ]; then
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home"
 fi
 export ANDROID_HOME=/usr/local/share/android-commandlinetools
 export PATH="$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$PATH"
