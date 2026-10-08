@@ -22,7 +22,53 @@ logger = logging.getLogger("cybermentor.resume_exporter")
 
 def _strip_markdown_links(text: str) -> str:
     """Convert [text](url) to 'text (url)' or just 'text' if standard."""
-    return re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'\1 (\2)', text)
+    result = []
+    opening_brackets = []
+    output_start = 0
+    closing_parenthesis = 0
+    index = 0
+
+    while index < len(text):
+        if text[index] == "[":
+            opening_brackets.append(index)
+        elif text[index] == "]":
+            if (
+                index + 1 < len(text)
+                and text[index + 1] == "("
+                and opening_brackets
+                and opening_brackets[0] < index - 1
+            ):
+                url_start = index + 2
+                while closing_parenthesis < url_start:
+                    closing_parenthesis += 1
+                while (
+                    closing_parenthesis < len(text)
+                    and text[closing_parenthesis] != ")"
+                ):
+                    closing_parenthesis += 1
+
+                if closing_parenthesis > url_start and closing_parenthesis < len(text):
+                    link_start = opening_brackets[0]
+                    result.extend(
+                        (
+                            text[output_start:link_start],
+                            text[link_start + 1:index],
+                            " (",
+                            text[url_start:closing_parenthesis],
+                            ")",
+                        )
+                    )
+                    output_start = closing_parenthesis + 1
+                    index = output_start
+                    opening_brackets.clear()
+                    continue
+
+            opening_brackets.clear()
+
+        index += 1
+
+    result.append(text[output_start:])
+    return "".join(result)
 
 
 def _parse_inline_bold(text: str) -> List[Tuple[str, bool]]:
