@@ -12,20 +12,26 @@ Stores data persistently in Cloud Firestore (or local JSON fallback).
 import json
 import os
 import pathlib
+import re
 from datetime import datetime, timezone
 from typing import Optional
 
 _ACE_STORAGE = pathlib.Path(__file__).parent.parent.parent / "sessions" / "ace_memory"
+_FIRESTORE_CLIENT: Optional[object] = None
 
 
 def _get_firestore_client():
-    """Get Firestore client, returns None if not available."""
+    """Get singleton Firestore client, returns None if not available."""
+    global _FIRESTORE_CLIENT
+    if _FIRESTORE_CLIENT is not None:
+        return _FIRESTORE_CLIENT
     try:
         from google.cloud import firestore
         project = os.getenv("GOOGLE_CLOUD_PROJECT")
         if not project:
             return None
-        return firestore.Client(project=project)
+        _FIRESTORE_CLIENT = firestore.Client(project=project)
+        return _FIRESTORE_CLIENT
     except Exception:
         return None
 
@@ -151,6 +157,12 @@ _SKILL_HEURISTICS = [
     "security+", "cysa+", "casp+", "ceh", "cissp", "cism", "cisa", "crisc", "cciso", "cgeit", "oscp", "ejpt", "pnpt", "gcih", "gcfa", "grem", "gicsp", "ccsp", "network+", "a+"
 ]
 
+# Precompile regex patterns with boundary guards to prevent substring false positives (e.g. 'iam' in 'william')
+_SKILL_PATTERNS = {
+    skill: re.compile(rf"(?<![\w\-]){re.escape(skill)}(?![\w\-])", re.IGNORECASE)
+    for skill in _SKILL_HEURISTICS
+}
+
 
 def sync_profile_skills_from_resume(user_id: str, resume_markdown: str) -> list[str]:
     """Extract and record all documented competencies from a candidate's resume into ACE memory."""
@@ -161,7 +173,7 @@ def sync_profile_skills_from_resume(user_id: str, resume_markdown: str) -> list[
     discovered = []
 
     for skill in _SKILL_HEURISTICS:
-        if skill in text_lower:
+        if _SKILL_PATTERNS[skill].search(text_lower):
             clean_title = (
                 skill.upper()
                 if len(skill) <= 4 or skill in ("splunk", "nist csf", "iso 27001", "soc 2", "nist 800-53", "nist ai rmf", "iso 42001", "fedramp", "cmmc")
@@ -200,7 +212,7 @@ def analyze_conversation_for_skills(
     documented_skills = []
 
     for skill in _SKILL_HEURISTICS:
-        if skill in text_lower:
+        if _SKILL_PATTERNS[skill].search(text_lower):
             clean_title = (
                 skill.upper()
                 if len(skill) <= 4 or skill in ("splunk", "nist csf", "iso 27001", "soc 2", "nist 800-53", "nist ai rmf", "iso 42001", "fedramp", "cmmc")

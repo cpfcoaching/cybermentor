@@ -8,11 +8,13 @@ using pre-computed Island Boy / Christophe Foulon speaker embeddings.
 import os
 import io
 import asyncio
+import logging
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import edge_tts
 
+logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/voice", tags=["Voice Engine"])
 
 class VoiceSpeakRequest(BaseModel):
@@ -40,19 +42,22 @@ async def synthesize_speech(req: VoiceSpeakRequest):
     voice_model = "en-US-ChristopherNeural"
 
     communicate = edge_tts.Communicate(clean_text, voice_model, rate=rate_str, pitch=pitch_str)
-    
-    audio_buffer = io.BytesIO()
-    async for chunk in communicate.stream():
-        if chunk["type"] == "audio":
-            audio_buffer.write(chunk["data"])
 
-    audio_buffer.seek(0)
+    async def audio_chunk_generator():
+        try:
+            async for chunk in communicate.stream():
+                if chunk["type"] == "audio":
+                    yield chunk["data"]
+        except Exception as e:
+            logger.warning(f"Voice audio streaming error: {e}")
+
     return StreamingResponse(
-        audio_buffer,
+        audio_chunk_generator(),
         media_type="audio/mpeg",
         headers={
             "Content-Disposition": "inline; filename=coach_speech.mp3",
-            "Cache-Control": "public, max-age=86400"
+            "Cache-Control": "public, max-age=86400",
+            "X-Accel-Buffering": "no",
         }
     )
 

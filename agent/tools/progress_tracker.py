@@ -14,16 +14,21 @@ from typing import Optional
 from agent.tools.conversation_store import save_conversation_message
 
 _LOCAL_STORAGE = pathlib.Path(__file__).parent.parent.parent / "sessions" / "progress"
+_FIRESTORE_CLIENT: Optional[object] = None
 
 
 def _get_firestore_client():
-    """Get Firestore client, returns None if not configured."""
+    """Get singleton Firestore client, returns None if not configured."""
+    global _FIRESTORE_CLIENT
+    if _FIRESTORE_CLIENT is not None:
+        return _FIRESTORE_CLIENT
     try:
         from google.cloud import firestore
         project = os.getenv("GOOGLE_CLOUD_PROJECT")
         if not project:
             return None
-        return firestore.Client(project=project)
+        _FIRESTORE_CLIENT = firestore.Client(project=project)
+        return _FIRESTORE_CLIENT
     except Exception:
         return None
 

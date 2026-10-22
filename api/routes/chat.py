@@ -6,6 +6,7 @@ Supports Server-Sent Events (SSE) for real-time streaming responses.
 """
 
 import asyncio
+import concurrent.futures
 import json
 import logging
 import os
@@ -51,21 +52,28 @@ def _build_contextualized_prompt(user_id: str, message: str, gemma_intent: str |
     """
     Build a prompt that injects the user's persistent progress history, active resume profile,
     target career track, Gemma pre-routed intent classification, and ACE cognitive memory notes & documented skills into context.
+    Fetches context sources in parallel threads to eliminate sequential database round-trip latencies.
     """
     from api.routes.resume import get_user_resume_from_storage
-    
-    history_ctx = get_user_progress(user_id)
-    memory_ctx = get_agent_memory(user_id)
-    
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        f_history = executor.submit(get_user_progress, user_id)
+        f_memory = executor.submit(get_agent_memory, user_id)
+        f_skills = executor.submit(get_documented_candidate_skills, user_id)
+        f_resume = executor.submit(get_user_resume_from_storage, user_id)
+
+        history_ctx = f_history.result()
+        memory_ctx = f_memory.result()
+        doc_skills = f_skills.result()
+        resume_record = f_resume.result()
+
     # Retrieve cumulative documented skills from ACE memory
-    doc_skills = get_documented_candidate_skills(user_id)
     skills_summary = ""
     if doc_skills:
         skill_names = [s.get("skill_name", "") for s in doc_skills if s.get("skill_name")]
         skills_summary = f"[ACE DOCUMENTED CANDIDATE SKILLS]: {', '.join(skill_names)}\n"
 
     # Retrieve candidate's active resume and target role
-    resume_record = get_user_resume_from_storage(user_id)
     resume_ctx = ""
     if resume_record and resume_record.get("markdown_text"):
         c_name = resume_record.get("candidate_name", "Candidate")
@@ -118,6 +126,14 @@ async def get_cybermentor_agent(session_id: str | None = None):
         yield active_agent, actual_id
 
 
+def _safe_mine_skills(user_id: str, message: str):
+    """Safe background worker to extract skills from conversation turns into ACE memory."""
+    try:
+        analyze_conversation_for_skills(user_id, message, source="text_conversation")
+    except Exception as se:
+        logger.warning(f"ACE conversation skill extraction background error: {se}")
+
+
 @router.post("/chat/stream")
 async def chat_stream(request: ChatRequest):
     """
@@ -129,11 +145,8 @@ async def chat_stream(request: ChatRequest):
 
     async def event_generator():
         try:
-            # Continually mine and document candidate skills from conversation turn into ACE memory
-            try:
-                analyze_conversation_for_skills(request.user_id, request.message, source="text_conversation")
-            except Exception as se:
-                logger.warning(f"ACE conversation skill extraction error: {se}")
+            # Continually mine and document candidate skills asynchronously in background
+            asyncio.create_task(asyncio.to_thread(_safe_mine_skills, request.user_id, request.message))
 
             # Gemma 3 27B Fast Pre-Routing Intent Classification
             try:
@@ -203,10 +216,8 @@ async def chat(request: ChatRequest):
     session_id = request.session_id or _SESSION_STORE.get(request.user_id)
 
     try:
-        try:
-            analyze_conversation_for_skills(request.user_id, request.message, source="text_conversation")
-        except Exception as se:
-            logger.warning(f"ACE conversation skill extraction error: {se}")
+        # Continually mine and document candidate skills asynchronously in background
+        asyncio.create_task(asyncio.to_thread(_safe_mine_skills, request.user_id, request.message))
 
         async with get_cybermentor_agent(session_id) as (agent, active_session_id):
             _SESSION_STORE[request.user_id] = active_session_id

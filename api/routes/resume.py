@@ -38,14 +38,21 @@ class ResumeExportRequest(BaseModel):
     target_role: Optional[str] = Field("general", description="Target cybersecurity role track")
 
 
+_FIRESTORE_CLIENT = None
+
+
 def _get_firestore():
     """Try to get Firestore client."""
+    global _FIRESTORE_CLIENT
+    if _FIRESTORE_CLIENT is not None:
+        return _FIRESTORE_CLIENT
     try:
         from google.cloud import firestore
         project = os.getenv("GOOGLE_CLOUD_PROJECT")
         if not project:
             return None
-        return firestore.Client(project=project)
+        _FIRESTORE_CLIENT = firestore.Client(project=project)
+        return _FIRESTORE_CLIENT
     except Exception:
         return None
 

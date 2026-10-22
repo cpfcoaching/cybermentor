@@ -5,6 +5,7 @@ Searches the curated CyberMentor knowledge base (certifications, career paths,
 interview questions) and returns relevant content for the agent to use.
 """
 
+import functools
 import json
 import pathlib
 from typing import Optional
@@ -12,13 +13,15 @@ from typing import Optional
 _DATA_DIR = pathlib.Path(__file__).parent.parent.parent / "data" / "knowledge"
 
 
+@functools.lru_cache(maxsize=16)
 def _load_json(filename: str) -> dict | list:
-    """Load a JSON knowledge file."""
+    """Load and cache a JSON knowledge file in memory to avoid redundant disk I/O."""
     path = _DATA_DIR / filename
     if not path.exists():
         return {}
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
+
 
 
 def query_knowledge_base(topic: str, category: Optional[str] = None) -> str:
