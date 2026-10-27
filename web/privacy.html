@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberMentor — Privacy Policy & Data Protection Charter</title>
+    <title>CyberMentor — Privacy Policy & Terms and Conditions</title>
     <link rel="icon" type="image/png" href="/img/app_icon.webp">
+    <link rel="canonical" href="https://breakingintocybersecurity.org/privacy">
     <style>
         :root {
             --bg-primary: #020617;
@@ -13,6 +14,7 @@
             --border-color: rgba(148, 163, 184, 0.15);
             --accent-cyan: #38bdf8;
             --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -37,7 +39,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 840px;
             width: 100%;
             background: var(--card-bg);
             backdrop-filter: blur(16px);
@@ -51,20 +53,20 @@
         .header {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.25rem;
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             border-radius: 12px;
         }
 
         h1 {
-            font-size: 1.75rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--text-primary);
         }
@@ -72,10 +74,67 @@
         .subtitle {
             font-size: 0.9rem;
             color: var(--accent-cyan);
+            margin-top: 0.25rem;
+        }
+
+        .canonical-banner {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .canonical-banner p {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .canonical-banner a.btn-canonical {
+            background: var(--accent-cyan);
+            color: #020617;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+        }
+
+        .canonical-banner a.btn-canonical:hover {
+            opacity: 0.9;
+        }
+
+        .badge-domain {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-green);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: monospace;
+            margin-bottom: 1rem;
+        }
+
+        .part-header {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-cyan);
+            color: var(--text-primary);
+            font-size: 1.4rem;
         }
 
         h2 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             margin: 1.75rem 0 0.75rem 0;
             color: var(--accent-cyan);
         }
@@ -95,8 +154,24 @@
             margin-bottom: 0.5rem;
         }
 
+        strong {
+            color: var(--text-primary);
+        }
+
+        .highlight-box {
+            background: rgba(15, 23, 42, 0.8);
+            border-left: 4px solid var(--accent-green);
+            border-radius: 0 8px 8px 0;
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0;
+        }
+
+        .highlight-box.warning {
+            border-left-color: var(--accent-yellow);
+        }
+
         .footer {
-            margin-top: 2.5rem;
+            margin-top: 3rem;
             padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
             text-align: center;
@@ -115,33 +190,92 @@
         <div class="header">
             <img src="/img/app_icon.webp" alt="CyberMentor Icon" class="logo">
             <div>
-                <h1>Privacy Policy & Data Protection</h1>
-                <div class="subtitle">Effective Date: August 29, 2026 | Developer: Christophe Foulon / Breaking Into Cybersecurity</div>
+                <h1>Privacy Policy &amp; Terms of Service</h1>
+                <div class="subtitle">Effective Date: October 27, 2026 | Operator: CPF Coaching LLC &amp; Breaking Into Cybersecurity</div>
             </div>
         </div>
 
-        <h2>1. Core Commitment</h2>
-        <p>CyberMentor is an AI-powered career mentor designed to help candidates break into and advance within cybersecurity. All data collected is used solely to personalize coaching, certification study planning, and mock interview drills within the application. We do not sell, rent, or monetize your personal data.</p>
+        <div class="canonical-banner">
+            <div>
+                <p><strong>Official Canonical Legal Document</strong></p>
+                <p>The authoritative, live version of this policy is hosted at <code>breakingintocybersecurity.org/privacy</code>.</p>
+            </div>
+            <a href="https://breakingintocybersecurity.org/privacy" target="_blank" rel="noopener noreferrer" class="btn-canonical">
+                Open breakingintocybersecurity.org/privacy &rarr;
+            </a>
+        </div>
 
-        <h2>2. Zero-Knowledge & Complete Profile Isolation</h2>
-        <p>Candidate profiles are logically isolated in Cloud Firestore by authenticated user ID. Individual conversational transcripts, voice recordings, resume files, and private learning notes cannot be accessed by administrative staff or other users.</p>
+        <span class="badge-domain">Scope: breakingintocybersecurity.org &amp; agent.breakingintocybersecurity.org</span>
 
-        <h2>3. Data Collection & Purpose</h2>
+        <!-- PART 1: PRIVACY POLICY -->
+        <h2 class="part-header">Part 1 — Privacy Policy &amp; Data Protection Charter</h2>
+
+        <h2>1. Scope &amp; Hosting Architecture</h2>
+        <p>This Privacy Policy applies to the services, websites, and applications operated under <strong>breakingintocybersecurity.org</strong> and all subdomains, specifically including the CyberMentor AI coaching platform hosted at <strong>agent.breakingintocybersecurity.org</strong> (collectively, the "Platform").</p>
+        <p>The Platform is served and secured globally using <strong>Cloudflare</strong> reverse proxy and edge security services (providing TLS 1.3 encryption, DDoS mitigation, and Web Application Firewall protection) backed by containerized instances hosted on Google Cloud (Cloud Run and Cloud Firestore).</p>
+
+        <h2>2. Data Collection &amp; Purpose Specification</h2>
+        <p>We believe in strict data minimization. We collect only what is necessary to authenticate users and generate personalized cybersecurity mentorship:</p>
         <ul>
-            <li><strong>User Identity & Account Data:</strong> Email address and profile info via Google SSO for session management and cloud progress sync.</li>
-            <li><strong>Career Profiles & Resumes:</strong> Parsed skill backgrounds and NIST NICE framework work role preferences.</li>
-            <li><strong>Interview Simulations & Rubrics:</strong> User responses and automated scoring rubrics for mock technical and behavioral interviews.</li>
+            <li><strong>Authentication &amp; Profile Data:</strong> When signing in with Google SSO (Firebase Authentication), we receive non-sensitive identity metadata (your name, email address, avatar photo, and unique Firebase user ID). We do <em>not</em> request or access third-party write scopes or sensitive permissions for students.</li>
+            <li><strong>Career &amp; Learning Preferences:</strong> Work role targets aligned with the NIST NICE Framework, target certifications, skill self-assessments, and study streak milestones.</li>
+            <li><strong>Career Artifacts &amp; Coaching Prompts:</strong> Uploaded resume excerpts and interactive coaching queries submitted to CyberMentor.</li>
         </ul>
 
-        <h2>4. Right to Erasure & Account Deletion</h2>
-        <p>Users have the unconditional right to delete all data at any time directly in-app or by visiting our <a href="/delete-account.html" style="color: var(--accent-cyan);">Account Deletion Page</a>. We also enforce an automated 90-day inactivity purge on inactive accounts.</p>
+        <h2>3. Zero Foundation Model Training &amp; Ephemeral AI Processing</h2>
+        <div class="highlight-box">
+            <p><strong>Your Privacy with Generative AI:</strong> Prompts, interview simulation answers, and resume texts submitted on <code>agent.breakingintocybersecurity.org</code> are transmitted ephemerally to Google Gemini AI models via Google Cloud solely to generate real-time feedback. Your personal prompts and candidate data are <strong>never sold, never shared with third-party advertisers, and never used to train or fine-tune public foundation AI models</strong>.</p>
+        </div>
 
-        <h2>5. Security Controls</h2>
-        <p>All network data in transit is encrypted using TLS 1.3. Cloud databases are encrypted at rest using AES-256 encryption.</p>
+        <h2>4. Zero-Knowledge &amp; Profile Isolation</h2>
+        <p>Every candidate's progress and conversation history are isolated in Cloud Firestore using authenticated user ID security rules (<code>request.auth.uid == userId</code>). No other user or unauthorized administrative personnel can access your private career roadmaps or interview scores.</p>
+
+        <h2>5. Unconditional Right to Erasure &amp; Retention</h2>
+        <ul>
+            <li><strong>1-Click Instant Deletion:</strong> You can permanently wipe your entire history, ACE cognitive reflections, and skill profile at any time in-app via the "Delete All My Data" button or at <a href="/delete-account.html" style="color: var(--accent-cyan);">agent.breakingintocybersecurity.org/delete-account.html</a>.</li>
+            <li><strong>Automated 90-Day Inactivity Purge:</strong> Unused accounts inactive for 90 consecutive days are automatically and irreversibly purged from our database.</li>
+        </ul>
+
+        <h2>6. Security &amp; Encryption Standards</h2>
+        <p>All traffic is encrypted in transit using modern TLS 1.3 through Cloudflare edge SSL/TLS. Stored database records are encrypted at rest using industry-standard AES-256 encryption.</p>
+
+        <!-- PART 2: TERMS AND CONDITIONS -->
+        <h2 class="part-header">Part 2 — Terms &amp; Conditions / User Agreement</h2>
+
+        <h2>7. Educational &amp; Career Mentorship Disclaimer</h2>
+        <div class="highlight-box warning">
+            <p><strong>Disclaimer:</strong> CyberMentor is an artificial intelligence-assisted educational career simulation and study guidance platform. While developed by cybersecurity executives and aligned with industry standards (e.g., NIST NICE Framework), CyberMentor <strong>does not guarantee employment, job interviews, hiring offers, salary raises, or passing scores on any third-party certification examination</strong> (including CompTIA, ISC2, ISACA, AWS, or SANS/GIAC).</p>
+        </div>
+
+        <h2>8. Acceptable Use Policy</h2>
+        <p>By using <code>agent.breakingintocybersecurity.org</code>, you agree not to:</p>
+        <ul>
+            <li>Conduct denial-of-service (DoS) attacks, automated scraping, or rate-limit circumvention against our Cloudflare-protected edge endpoints.</li>
+            <li>Execute prompt injection attacks designed to extract underlying system prompts, proprietary rubrics, or API secrets.</li>
+            <li>Upload malicious payloads, viruses, or non-educational content.</li>
+        </ul>
+
+        <h2>9. Intellectual Property &amp; Content Ownership</h2>
+        <ul>
+            <li><strong>Your Content:</strong> You retain full ownership of any resumes, personal career histories, and original written responses you input into the tool.</li>
+            <li><strong>Platform Intellectual Property:</strong> All software, agent system instructions, coaching frameworks, cognitive architecture (ACE), graphic assets, and trademarks associated with CyberMentor and Breaking Into Cybersecurity are the exclusive property of <strong>CPF Coaching LLC</strong>.</li>
+        </ul>
+
+        <h2>10. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by applicable law, CPF Coaching LLC and its contributors shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of or inability to use the platform.</p>
+
+        <h2>11. Contact &amp; Data Protection Officer</h2>
+        <p>For questions regarding this policy, Data Subject Access Requests (DSAR), or terms of service, please contact:</p>
+        <p>
+            <strong>Christophe Foulon, CISO &amp; Founder</strong><br>
+            CPF Coaching LLC / Breaking Into Cybersecurity<br>
+            Email: <a href="mailto:privacy@cpf-coaching.com" style="color: var(--accent-cyan);">privacy@cpf-coaching.com</a> · <a href="mailto:info@cpf-coaching.com" style="color: var(--accent-cyan);">info@cpf-coaching.com</a><br>
+            Website: <a href="https://breakingintocybersecurity.org" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan);">breakingintocybersecurity.org</a>
+        </p>
 
         <div class="footer">
             <p>Developer: <strong>Breaking Into Cybersecurity / Christophe Foulon</strong></p>
-            <p><a href="/home.html">Home</a> · <a href="/delete-account.html">Delete Account Request</a> · <a href="https://breakingintocybersecurity.org">Podcast & Community</a></p>
+            <p><a href="/home.html">Home</a> · <a href="https://breakingintocybersecurity.org/privacy" target="_blank" rel="noopener noreferrer">Live Privacy &amp; Terms</a> · <a href="/delete-account.html">Delete Account Request</a> · <a href="https://breakingintocybersecurity.org" target="_blank" rel="noopener noreferrer">Community &amp; Podcast</a></p>
         </div>
     </div>
 </body>

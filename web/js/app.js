@@ -525,11 +525,11 @@ if (closePrivacyBtn) {
 const linkPrivacyFooter = document.getElementById('link-privacy-footer');
 if (linkPrivacyFooter) {
   linkPrivacyFooter.addEventListener('click', (e) => {
-    e.preventDefault();
-    const privacyOverlay = document.getElementById('privacy-overlay');
-    if (privacyOverlay) {
-      privacyOverlay.classList.remove('hidden');
-      privacyOverlay.classList.add('active');
+    // Allows natural navigation to https://breakingintocybersecurity.org/privacy
+    // In Capacitor native wrappers, open in external browser
+    if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+      e.preventDefault();
+      window.open('https://breakingintocybersecurity.org/privacy', '_system');
     }
   });
 }
