@@ -1798,22 +1798,22 @@ const FOCUS_PLAYLIST = [
   {
     title: 'Deep Focus Alpha (10Hz Binaural Beats)',
     tag: 'Alpha Flow · 60 BPM Ambient Synth',
-    src: 'audio/track1_deep_focus_alpha.wav'
+    src: 'audio/track1_deep_focus_alpha.mp3'
   },
   {
     title: 'Beta Exam Crunch (14Hz Active Prep)',
     tag: 'High-Retention Problem Solving',
-    src: 'audio/track2_beta_exam_crunch.wav'
+    src: 'audio/track2_beta_exam_crunch.mp3'
   },
   {
     title: 'Cyber SOC Night Drone (7.83Hz Schumann)',
     tag: 'Dark Ambient Lab & Terminal Focus',
-    src: 'audio/track3_cyber_soc_drone.wav'
+    src: 'audio/track3_cyber_soc_drone.mp3'
   },
   {
     title: 'Solfeggio Theta Cooldown (6Hz Relaxation)',
     tag: 'Post-Study Restoration Pad',
-    src: 'audio/track4_theta_cooldown.wav'
+    src: 'audio/track4_theta_cooldown.mp3'
   }
 ];
 
