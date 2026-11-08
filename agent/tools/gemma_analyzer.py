@@ -19,8 +19,23 @@ import os
 import json
 import logging
 from typing import Optional
+from urllib.parse import urlsplit
 
 logger = logging.getLogger(__name__)
+
+
+def _contains_domain_url(text: str, domain: str) -> bool:
+    """Check URL hosts in text without treating a domain substring as a match."""
+    for token in text.split():
+        candidate = token.strip(".,;:!?()[]{}<>\"'")
+        if not candidate:
+            continue
+        parsed = urlsplit(candidate if "://" in candidate else f"//{candidate}")
+        host = parsed.hostname
+        if host and (host == domain or host.endswith(f".{domain}")):
+            return True
+    return False
+
 
 # Gemma model to use (via Vertex AI Model Garden)
 GEMMA_MODEL = "gemma-3-27b-it"
@@ -202,8 +217,8 @@ Return ONLY the JSON object, no explanation."""
         "years_of_experience": 20 if "20+" in resume_text or "20 years" in text_lower else 5,
         "current_role": "Cybersecurity Executive / Advisor",
         "education": "Master of Science / Professional Degree",
-        "linkedin_present": "linkedin.com" in text_lower,
-        "github_present": "github.com" in text_lower,
+        "linkedin_present": _contains_domain_url(text_lower, "linkedin.com"),
+        "github_present": _contains_domain_url(text_lower, "github.com"),
         "quantified_achievements": True,
         "job_titles": ["CISO", "vCISO", "Senior Manager", "Security Consultant"],
         "source": "deterministic_extractor",
